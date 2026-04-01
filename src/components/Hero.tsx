@@ -1,7 +1,7 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import profileImg from "@/assets/profile.jpg";
-import { Code2, Trophy, Server, Cpu, Database, Zap, ExternalLink } from "lucide-react";
+import { Code2, Trophy, Server, ExternalLink } from "lucide-react";
 
 // --- PROOF SECTION LOGIC ---
 const stats = [
@@ -115,7 +115,7 @@ const Hero = () => {
                   </AnimatePresence>
                 </span>
                 <br />
-                <span className="text-white/40">Systems that perform.</span>
+                <span className="text-white/20 text-4xl sm:text-5xl lg:text-6xl">Systems that perform.</span>
               </h1>
 
               <p className="text-muted-foreground text-lg sm:text-xl max-w-2xl mx-auto lg:mx-0 mb-10 leading-relaxed font-light">
@@ -125,7 +125,7 @@ const Hero = () => {
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
                 <a
                   href="#projects"
-                  className="bg-white text-black px-8 py-4 rounded-xl font-bold text-sm hover:bg-cyan-400 transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl shadow-white/5"
+                  className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-4 rounded-full font-bold text-sm hover:scale-105 hover:shadow-[0_0_25px_rgba(34,211,238,0.3)] active:scale-95 transition-all duration-300"
                 >
                   Explore Systems
                 </a>
@@ -133,9 +133,9 @@ const Hero = () => {
                   href="mailto:priyanshuguptanitian9696@gmail.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-8 py-4 rounded-xl font-bold text-sm border border-white/10 text-white hover:bg-white/5 transition-all duration-300 hover:scale-105 flex items-center gap-2"
+                  className="px-8 py-4 rounded-full font-bold text-sm border border-white/10 text-white/70 hover:border-white/30 hover:text-white hover:bg-white/5 transition-all duration-300 hover:scale-105"
                 >
-                  Consult Me <Zap size={14} className="text-cyan-400" />
+                  Consult Me
                 </a>
               </div>
             </motion.div>
@@ -146,14 +146,16 @@ const Hero = () => {
               transition={{ duration: 1, delay: 0.3, ease: [0.25, 0.1, 0, 1] }}
               className="relative"
             >
-              <div className="absolute inset-0 bg-cyan-500/20 blur-[100px] rounded-full animate-pulse" />
-              <div className="relative z-10 w-64 h-64 lg:w-80 lg:h-80 rounded-3xl overflow-hidden border border-white/10 group mx-auto lg:mx-0">
+              <div className="absolute inset-0 bg-cyan-500/15 blur-[120px] rounded-full" />
+              <div
+                className="relative z-10 w-64 h-64 lg:w-80 lg:h-80 rounded-3xl overflow-hidden group mx-auto lg:mx-0 transition-all duration-500 hover:scale-[1.03]"
+                style={{ boxShadow: "0 0 0 1px rgba(255,255,255,0.08), 0 0 40px -10px rgba(34,211,238,0.2)" }}
+              >
                 <img
                   src={profileImg}
                   alt="Priyanshu Gupta"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale hover:grayscale-0"
+                  className="w-full h-full object-cover brightness-105 transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent opacity-60" />
               </div>
             </motion.div>
           </div>

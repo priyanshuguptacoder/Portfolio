@@ -94,11 +94,10 @@ const MessageBubble = ({ msg }: { msg: Message }) => (
     )}
     <div className={`max-w-[82%] ${msg.role === "user" ? "" : "flex flex-col"}`}>
       <div
-        className={`px-4 py-3 rounded-2xl text-sm leading-relaxed ${
-          msg.role === "user"
+        className={`px-4 py-3 rounded-2xl text-sm leading-relaxed ${msg.role === "user"
             ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-tr-sm font-medium"
             : "bg-white/5 border border-white/5 text-white/80 rounded-tl-sm"
-        }`}
+          }`}
       >
         {msg.text}
       </div>

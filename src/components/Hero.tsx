@@ -24,8 +24,8 @@ const stats = [
     icon: Trophy,
     value: 5,
     prefix: "Top ",
-    label: "Competition Rank",
-    detail: "Forge & IIC Summit",
+    label: "Contest Performance",
+    detail: "Consistent High Ranking in Global Contests",
   },
 ];
 
@@ -239,8 +239,8 @@ const Hero = () => {
                   }`}>
                     <CountUp end={s.value} prefix={s.prefix} suffix={s.suffix} />
                   </div>
-                  <h3 className="text-[10px] font-bold text-white/90 mb-2 uppercase tracking-[0.2em]">{s.label}</h3>
-                  <p className="text-[11px] text-white/40 leading-relaxed font-light group-hover:text-white/60 transition-colors">{s.detail}</p>
+                  <h3 className="text-[11px] font-bold text-white/80 mb-2 uppercase tracking-[0.2em]">{s.label}</h3>
+                  <p className="text-xs text-white/40 leading-relaxed font-light group-hover:text-white/70 transition-colors">{s.detail}</p>
                 </div>
                 
                 {/* Extra glow for dominant card */}

@@ -15,7 +15,7 @@ const socials = [
   {
     label: "GitHub",
     href: "https://github.com/priyanshuguptacoder",
-    icon: <FaGithub size={28} />,
+    icon: <FaGithub size={24} />,
     hoverColor: "group-hover:text-white",
     borderGlow: "hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.12)]",
     bgGlow: "rgba(255,255,255,0.05)",
@@ -23,18 +23,18 @@ const socials = [
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/priyanshu-gupta-b98689376/",
-    icon: <FaLinkedin size={28} />,
-    hoverColor: "group-hover:text-[#0A66C2]",
-    borderGlow: "hover:border-[#0A66C2]/50 hover:shadow-[0_0_20px_rgba(10,102,194,0.2)]",
-    bgGlow: "rgba(10,102,194,0.06)",
+    icon: <FaLinkedin size={24} />,
+    hoverColor: "group-hover:text-blue-400",
+    borderGlow: "hover:border-blue-400/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]",
+    bgGlow: "rgba(59,130,246,0.06)",
   },
   {
     label: "LeetCode",
     href: "https://leetcode.com/u/invisiblemanfromheart/",
-    icon: <LeetCodeIcon size={28} />,
-    hoverColor: "group-hover:text-[#FFA116]",
-    borderGlow: "hover:border-[#FFA116]/50 hover:shadow-[0_0_20px_rgba(255,161,22,0.2)]",
-    bgGlow: "rgba(255,161,22,0.06)",
+    icon: <LeetCodeIcon size={24} />,
+    hoverColor: "group-hover:text-orange-400",
+    borderGlow: "hover:border-orange-400/50 hover:shadow-[0_0_20px_rgba(251,146,60,0.2)]",
+    bgGlow: "rgba(251,146,60,0.06)",
   },
 ];
 
@@ -73,7 +73,7 @@ const SocialIcon = ({
         aria-label={label}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className={`group relative flex items-center justify-center w-16 h-16 rounded-2xl border border-white/10 bg-[#0b1220] text-white/30 backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-110 active:scale-95 ${borderGlow} ${hoverColor}`}
+        className={`group relative flex items-center justify-center w-12 h-12 rounded-xl border border-white/10 bg-[#0b1220] text-white/30 backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-110 active:scale-95 ${borderGlow} ${hoverColor}`}
         style={{
           boxShadow: hovered ? undefined : "0 4px 24px rgba(0,0,0,0.3)",
           background: hovered

@@ -1,13 +1,13 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import profileImg from "@/assets/profile.jpg";
-import { Code2, Trophy, Server, Cpu, Database, Zap } from "lucide-react";
+import { Code2, Trophy, Server, Cpu, Database, Zap, ExternalLink } from "lucide-react";
 
 // --- PROOF SECTION LOGIC ---
 const stats = [
   {
     icon: Code2,
-    value: 250,
+    value: 260,
     suffix: "+",
     label: "Problems Solved",
     detail: "Consistent DSA practice & pattern mastery",
@@ -28,6 +28,12 @@ const stats = [
     label: "Competition Rank",
     detail: "Forge & IIC Summit",
   },
+];
+
+const difficultyStats = [
+  { label: "Easy", value: 104, color: "text-green-400" },
+  { label: "Medium", value: 140, color: "text-yellow-400" },
+  { label: "Hard", value: 16, color: "text-red-400" },
 ];
 
 const CountUp = ({ end, prefix = "", suffix = "", duration = 2 }: { end: number; prefix?: string; suffix?: string; duration?: number }) => {
@@ -70,14 +76,14 @@ const Hero = () => {
   return (
     <>
       {/* HERO SECTION */}
-      <section className="min-h-screen flex items-center pt-32 pb-20 relative overflow-hidden">
+      <section className="min-h-screen flex items-center pt-32 pb-20 relative overflow-hidden text-center lg:text-left">
         <div className="container mx-auto px-6 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.25, 0.1, 0, 1] }}
-              className="flex-1 text-center lg:text-left"
+              className="flex-1"
             >
               <motion.div
                 initial={{ opacity: 0 }}
@@ -141,7 +147,7 @@ const Hero = () => {
               className="relative"
             >
               <div className="absolute inset-0 bg-cyan-500/20 blur-[100px] rounded-full animate-pulse" />
-              <div className="relative z-10 w-64 h-64 lg:w-80 lg:h-80 rounded-3xl overflow-hidden border border-white/10 group">
+              <div className="relative z-10 w-64 h-64 lg:w-80 lg:h-80 rounded-3xl overflow-hidden border border-white/10 group mx-auto lg:mx-0">
                 <img
                   src={profileImg}
                   alt="Priyanshu Gupta"
@@ -155,7 +161,7 @@ const Hero = () => {
       </section>
 
       {/* PROOF OF WORK */}
-      <section className="py-32 relative overflow-hidden">
+      <section className="py-24 relative overflow-hidden">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {stats.map((s, i) => (
@@ -168,7 +174,7 @@ const Hero = () => {
                 className={`group relative p-1 rounded-3xl transition-all duration-500 ${
                   s.isDominant 
                     ? "scale-105 md:scale-110 z-10 bg-gradient-to-br from-cyan-500 to-blue-500 shadow-[0_0_50px_-10px_rgba(34,211,238,0.3)]" 
-                    : "bg-white/5 hover:bg-white/10"
+                    : "bg-white/5 hover:bg-white/10 shadow-xl"
                 }`}
               >
                 <div className="bg-[#020617] rounded-[22px] p-8 h-full flex flex-col items-center text-center">
@@ -186,6 +192,59 @@ const Hero = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* PROBLEM SOLVING & CONSISTENCY */}
+      <section className="py-24 relative overflow-hidden bg-white/[0.01] border-y border-white/5">
+        <div className="container mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <p className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-4 font-bold">Metrics</p>
+            <h2 className="font-heading text-3xl sm:text-4xl font-black text-white mb-12">Problem Solving & Consistency</h2>
+            
+            <div className="inline-block relative mb-12">
+              <div className="text-6xl sm:text-8xl font-black bg-gradient-to-r from-cyan-400 to-blue-500 text-transparent bg-clip-text tracking-tighter">
+                <CountUp end={260} suffix="+" />
+              </div>
+              <p className="text-lg text-white/60 font-medium tracking-wide mt-2">Problems Solved</p>
+            </div>
+
+            <p className="text-muted-foreground text-base max-w-2xl mx-auto leading-relaxed font-light mb-12">
+              Consistent problem solving across data structures, algorithms, and real-world patterns.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+              {difficultyStats.map((ds, i) => (
+                <motion.div
+                  key={ds.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="glass rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,211,238,0.1)] group"
+                >
+                  <div className="text-sm font-mono text-white/40 uppercase tracking-widest mb-2">{ds.label}</div>
+                  <div className={`text-4xl font-black ${ds.color} group-hover:scale-110 transition-transform duration-300`}>
+                    {ds.value}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            <a
+              href="https://leetcode.com/u/invisiblemanfromheart/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors group"
+            >
+              View Full Profile <ExternalLink size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </a>
+          </motion.div>
         </div>
       </section>
     </>

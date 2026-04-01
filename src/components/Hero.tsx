@@ -196,41 +196,85 @@ const Hero = () => {
       </section>
 
       {/* PROBLEM SOLVING & CONSISTENCY */}
-      <section className="py-24 relative overflow-hidden bg-white/[0.01] border-y border-white/5">
-        <div className="container mx-auto px-6 text-center">
+      <section className="py-32 relative overflow-hidden bg-white/[0.01] border-y border-white/5">
+        {/* Ambient background glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/8 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-purple-500/6 blur-[100px] rounded-full pointer-events-none" />
+
+        <div className="container mx-auto px-6 text-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-16"
           >
-            <p className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-4 font-bold">Metrics</p>
-            <h2 className="font-heading text-3xl sm:text-4xl font-black text-white mb-12">Problem Solving & Consistency</h2>
-            
-            <div className="inline-block relative mb-12">
-              <div className="text-6xl sm:text-8xl font-black bg-gradient-to-r from-cyan-400 to-blue-500 text-transparent bg-clip-text tracking-tighter">
+            <p className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-6 font-bold">Metrics</p>
+            <h2 className="font-heading text-4xl sm:text-5xl font-black text-white mb-20">
+              Problem Solving & Consistency
+            </h2>
+
+            {/* Hero Number */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.85 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="relative inline-block mb-6"
+            >
+              {/* Number glow backdrop */}
+              <div className="absolute inset-0 bg-cyan-500/10 blur-3xl rounded-full scale-150 pointer-events-none" />
+              <div className="relative text-[80px] sm:text-[120px] font-black bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 text-transparent bg-clip-text tracking-tighter leading-none drop-shadow-[0_0_40px_rgba(34,211,238,0.3)]">
                 <CountUp end={260} suffix="+" />
               </div>
-              <p className="text-lg text-white/60 font-medium tracking-wide mt-2">Problems Solved</p>
-            </div>
+            </motion.div>
 
-            <p className="text-muted-foreground text-base max-w-2xl mx-auto leading-relaxed font-light mb-12">
+            <p className="text-xl sm:text-2xl font-bold text-white/80 mb-6 tracking-wide">
+              Problems Solved
+            </p>
+
+            <p className="text-base text-white/40 max-w-2xl mx-auto leading-relaxed font-light mb-20">
               Consistent problem solving across data structures, algorithms, and real-world patterns.
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
+            {/* Difficulty Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-16">
               {difficultyStats.map((ds, i) => (
                 <motion.div
                   key={ds.label}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="glass rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(34,211,238,0.1)] group"
+                  transition={{ delay: i * 0.12, duration: 0.5, ease: "easeOut" }}
+                  className="group relative p-[1px] rounded-2xl transition-all duration-400 hover:scale-105"
+                  style={{
+                    background:
+                      ds.label === "Easy"
+                        ? "linear-gradient(135deg, rgba(34,197,94,0.2), transparent)"
+                        : ds.label === "Medium"
+                        ? "linear-gradient(135deg, rgba(234,179,8,0.2), transparent)"
+                        : "linear-gradient(135deg, rgba(239,68,68,0.2), transparent)",
+                  }}
                 >
-                  <div className="text-sm font-mono text-white/40 uppercase tracking-widest mb-2">{ds.label}</div>
-                  <div className={`text-4xl font-black ${ds.color} group-hover:scale-110 transition-transform duration-300`}>
-                    {ds.value}
+                  <div className="bg-[#020617]/80 backdrop-blur-xl rounded-2xl px-8 py-10 h-full transition-all duration-400 group-hover:bg-[#020617]/60">
+                    {/* Glow blob */}
+                    <div
+                      className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
+                      style={{
+                        background:
+                          ds.label === "Easy"
+                            ? "radial-gradient(circle, rgba(34,197,94,0.12), transparent 70%)"
+                            : ds.label === "Medium"
+                            ? "radial-gradient(circle, rgba(234,179,8,0.12), transparent 70%)"
+                            : "radial-gradient(circle, rgba(239,68,68,0.12), transparent 70%)",
+                      }}
+                    />
+                    <div className="relative z-10">
+                      <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-white/30 mb-4">
+                        {ds.label}
+                      </p>
+                      <div className={`text-5xl sm:text-6xl font-black ${ds.color} transition-transform duration-300 group-hover:scale-110`}>
+                        {ds.value}
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -240,9 +284,10 @@ const Hero = () => {
               href="https://leetcode.com/u/invisiblemanfromheart/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors group"
+              className="inline-flex items-center gap-2 text-sm font-bold text-cyan-400 hover:text-white transition-colors group"
             >
-              View Full Profile <ExternalLink size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              <span className="group-hover:underline underline-offset-4">View Full Profile</span>
+              <ExternalLink size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </a>
           </motion.div>
         </div>

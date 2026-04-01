@@ -6,19 +6,18 @@ import { Code2, Trophy, Server, ExternalLink } from "lucide-react";
 
 const stats = [
   {
-    icon: Code2,
-    value: 260,
-    suffix: "+",
-    label: "Problems Solved",
-    detail: "Consistent DSA practice & pattern mastery",
-    showProgress: true,
-  },
-  {
     icon: Server,
     value: 5,
     suffix: "+",
     label: "Backend Systems Built",
     detail: "Scalable APIs & Optimized Databases",
+  },
+  {
+    icon: Code2,
+    value: 250,
+    suffix: "+",
+    label: "Problems Solved",
+    detail: "Consistent DSA practice & pattern mastery",
     isDominant: true,
   },
   {
@@ -190,7 +189,7 @@ const Hero = () => {
                 style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.4)" }}
               >
                 <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Problems Solved</p>
-                <p className="text-2xl font-black text-white">260<span className="text-cyan-400">+</span></p>
+                <p className="text-2xl font-black text-white">250<span className="text-cyan-400">+</span></p>
               </motion.div>
 
               {/* Second floating badge */}
@@ -221,24 +220,33 @@ const Hero = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`group relative p-1 rounded-3xl transition-all duration-500 ${
+                className={`group relative p-[1px] rounded-3xl transition-all duration-500 ${
                   s.isDominant 
-                    ? "scale-105 md:scale-110 z-10 bg-gradient-to-br from-cyan-500 to-blue-500 shadow-[0_0_50px_-10px_rgba(34,211,238,0.3)]" 
-                    : "bg-white/5 hover:bg-white/10 shadow-xl"
+                    ? "md:scale-110 z-10 bg-gradient-to-br from-cyan-500 to-blue-600 shadow-[0_0_40px_-5px_rgba(34,211,238,0.3)]" 
+                    : "bg-white/5 hover:bg-white/10"
                 }`}
               >
-                <div className="bg-[#020617] rounded-[22px] p-8 h-full flex flex-col items-center text-center">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 ${
+                <div className={`bg-[#020617] rounded-[23px] p-8 h-full flex flex-col items-center text-center transition-all duration-300 ${
+                  !s.isDominant && i === 2 ? "opacity-60 grayscale hover:opacity-100 hover:grayscale-0" : ""
+                }`}>
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 ${
                     s.isDominant ? "bg-cyan-500/20 text-cyan-400" : "bg-white/5 text-white/40"
                   }`}>
                     <s.icon size={22} />
                   </div>
-                  <div className="text-4xl sm:text-5xl font-black text-white mb-2 tracking-tighter">
+                  <div className={`text-4xl sm:text-5xl font-black mb-2 tracking-tighter transition-colors duration-300 ${
+                    s.isDominant ? "text-white" : "text-white/80 group-hover:text-white"
+                  }`}>
                     <CountUp end={s.value} prefix={s.prefix} suffix={s.suffix} />
                   </div>
-                  <h3 className="text-sm font-bold text-white/90 mb-2 uppercase tracking-widest">{s.label}</h3>
-                  <p className="text-xs text-white/40 leading-relaxed font-light">{s.detail}</p>
+                  <h3 className="text-[10px] font-bold text-white/90 mb-2 uppercase tracking-[0.2em]">{s.label}</h3>
+                  <p className="text-[11px] text-white/40 leading-relaxed font-light group-hover:text-white/60 transition-colors">{s.detail}</p>
                 </div>
+                
+                {/* Extra glow for dominant card */}
+                {s.isDominant && (
+                  <div className="absolute inset-0 bg-cyan-400/20 blur-2xl rounded-full -z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                )}
               </motion.div>
             ))}
           </div>
@@ -253,9 +261,10 @@ const Hero = () => {
 
         <div className="container mx-auto px-6 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
             <p className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-6 font-bold">Metrics</p>
             <h2 className="font-heading text-4xl sm:text-5xl font-black text-white mb-20">
@@ -264,66 +273,43 @@ const Hero = () => {
 
             {/* Hero Number */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.85 }}
+              initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: "easeOut" }}
-              className="relative inline-block mb-6"
+              className="relative inline-block mb-4"
             >
-              {/* Number glow backdrop */}
-              <div className="absolute inset-0 bg-cyan-500/10 blur-3xl rounded-full scale-150 pointer-events-none" />
-              <div className="relative text-[80px] sm:text-[120px] font-black bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 text-transparent bg-clip-text tracking-tighter leading-none drop-shadow-[0_0_40px_rgba(34,211,238,0.3)]">
-                <CountUp end={260} suffix="+" />
+              <div className="absolute inset-0 bg-cyan-500/10 blur-2xl rounded-full scale-150 pointer-events-none" />
+              <div className="relative text-7xl md:text-8xl font-bold tracking-tight bg-gradient-to-r from-cyan-400 to-blue-500 text-transparent bg-clip-text drop-shadow-[0_0_20px_rgba(34,211,238,0.3)]">
+                <CountUp end={250} suffix="+" />
               </div>
             </motion.div>
 
-            <p className="text-xl sm:text-2xl font-bold text-white/80 mb-6 tracking-wide">
+            <p className="text-lg md:text-xl font-medium text-white/80 mb-6 uppercase tracking-wide">
               Problems Solved
             </p>
 
-            <p className="text-base text-white/40 max-w-2xl mx-auto leading-relaxed font-light mb-20">
+            <p className="text-sm md:text-base text-white/50 max-w-xl mx-auto leading-relaxed font-light mb-16">
               Consistent problem solving across data structures, algorithms, and real-world patterns.
             </p>
 
             {/* Difficulty Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-16">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mt-10 mb-16">
               {difficultyStats.map((ds, i) => (
                 <motion.div
                   key={ds.label}
-                  initial={{ opacity: 0, y: 24 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.12, duration: 0.5, ease: "easeOut" }}
-                  className="group relative p-[1px] rounded-2xl transition-all duration-400 hover:scale-105"
-                  style={{
-                    background:
-                      ds.label === "Easy"
-                        ? "linear-gradient(135deg, rgba(34,197,94,0.2), transparent)"
-                        : ds.label === "Medium"
-                        ? "linear-gradient(135deg, rgba(234,179,8,0.2), transparent)"
-                        : "linear-gradient(135deg, rgba(239,68,68,0.2), transparent)",
-                  }}
+                  transition={{ delay: i * 0.1, duration: 0.5 }}
+                  className="group relative p-6 rounded-2xl border border-white/10 bg-[#0b1220]/60 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)]"
                 >
-                  <div className="bg-[#020617]/80 backdrop-blur-xl rounded-2xl px-8 py-10 h-full transition-all duration-400 group-hover:bg-[#020617]/60">
-                    {/* Glow blob */}
-                    <div
-                      className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"
-                      style={{
-                        background:
-                          ds.label === "Easy"
-                            ? "radial-gradient(circle, rgba(34,197,94,0.12), transparent 70%)"
-                            : ds.label === "Medium"
-                            ? "radial-gradient(circle, rgba(234,179,8,0.12), transparent 70%)"
-                            : "radial-gradient(circle, rgba(239,68,68,0.12), transparent 70%)",
-                      }}
-                    />
-                    <div className="relative z-10">
-                      <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-white/30 mb-4">
-                        {ds.label}
-                      </p>
-                      <div className={`text-5xl sm:text-6xl font-black ${ds.color} transition-transform duration-300 group-hover:scale-110`}>
-                        {ds.value}
-                      </div>
+                  <div className="relative z-10">
+                    <p className="text-sm tracking-widest uppercase text-white/40 mb-3">
+                      {ds.label}
+                    </p>
+                    <div className={`text-3xl md:text-4xl font-semibold ${ds.color} transition-transform duration-300 group-hover:scale-110`}>
+                      <CountUp end={ds.value} />
                     </div>
                   </div>
                 </motion.div>
@@ -334,10 +320,10 @@ const Hero = () => {
               href="https://leetcode.com/u/invisiblemanfromheart/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-bold text-cyan-400 hover:text-white transition-colors group"
+              className="inline-flex items-center gap-1 text-sm font-medium text-cyan-400 hover:text-white hover:underline transition-colors group"
             >
-              <span className="group-hover:underline underline-offset-4">View Full Profile</span>
-              <ExternalLink size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              <span>View Full Profile</span>
+              <ExternalLink size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </a>
           </motion.div>
         </div>

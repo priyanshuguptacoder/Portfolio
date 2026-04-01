@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22d3ee" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  <rect width="120" height="120" rx="30" fill="#020817" />
+  <rect x="2" y="2" width="116" height="116" rx="28" fill="transparent" stroke="url(#grad1)" stroke-width="1.5" opacity="0.3" />
+  <text x="50%" y="54%" font-family="system-ui, -apple-system, sans-serif" font-size="56" font-weight="900" fill="url(#grad1)" text-anchor="middle" dominant-baseline="middle" letter-spacing="-2" filter="url(#glow)">PG</text>
+</svg>

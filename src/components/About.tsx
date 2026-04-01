@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Download, Trophy, Server, Award, Code2, BookOpen, GraduationCap, Medal } from "lucide-react";
+import { Download, Trophy, Server, Award, Code2, BookOpen, GraduationCap, Medal, Brain } from "lucide-react";
 
 const education = [
   {
@@ -24,16 +24,16 @@ const education = [
 ];
 
 const skillsSummary = [
-  { category: "Backend Engineering", items: ["Node.js", "Express", "MongoDB", "REST APIs", "System Design"] },
-  { category: "CS Fundamentals", items: ["DSA", "Operating Systems", "DBMS", "Networking"] },
-  { category: "Frontend", items: ["React", "JavaScript", "Tailwind CSS", "HTML/CSS"] },
-  { category: "Tools", items: ["Git", "GitHub", "Postman", "VS Code"] },
+  { category: "Backend Engineering", items: ["Node.js", "Express", "MongoDB", "REST APIs"] },
+  { category: "Problem Solving & DSA", items: ["Data Structures", "Algorithms", "Problem Solving"] },
+  { category: "Frontend Support", items: ["React", "JavaScript", "Tailwind CSS", "HTML/CSS"] },
+  { category: "Tools & Workflow", items: ["Git", "GitHub", "Postman", "VS Code"] },
 ];
 
-const certifications = [
-  { title: "Frontend Implementation", issuer: "Meta (via Coursera)", date: "2024" },
-  { title: "Backend Architecture", issuer: "IBM (via SkillsBuild)", date: "2024" },
-  { title: "Problem Solving (Intermediate)", issuer: "HackerRank", date: "2023" },
+const coreStrengths = [
+  { title: "Data Structures & Algorithms", detail: "250+ problems solved across patterns", icon: Code2 },
+  { title: "Backend Development", detail: "APIs, authentication, database design", icon: Server },
+  { title: "System Thinking", detail: "Scalable architecture and optimization mindset", icon: Brain },
 ];
 
 const About = () => {
@@ -42,7 +42,7 @@ const About = () => {
   const tabs = [
     { id: "skills", label: "Skills", icon: Code2 },
     { id: "education", label: "Education", icon: GraduationCap },
-    { id: "certifications", label: "Certifications", icon: Medal },
+    { id: "strengths", label: "Core Strengths", icon: Award },
   ];
 
   return (
@@ -131,23 +131,22 @@ const About = () => {
                 </motion.div>
               )}
 
-              {activeTab === "certifications" && (
+              {activeTab === "strengths" && (
                 <motion.div
-                  key="certifications"
+                  key="strengths"
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   className="grid sm:grid-cols-2 gap-4"
                 >
-                  {certifications.map((cert, i) => (
+                  {coreStrengths.map((s, i) => (
                     <div key={i} className="glass rounded-2xl p-6 transition-all duration-300 hover:border-cyan-500/20 flex gap-4">
-                      <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
-                        <Medal size={20} className="text-cyan-400" />
+                      <div className="w-10 h-10 rounded-xl bg-cyan-400/10 flex items-center justify-center shrink-0">
+                        <s.icon size={20} className="text-cyan-400" />
                       </div>
                       <div>
-                        <h4 className="font-bold text-white text-sm mb-1">{cert.title}</h4>
-                        <p className="text-white/50 text-[11px] mb-1">{cert.issuer}</p>
-                        <p className="text-white/30 text-[10px] font-mono">{cert.date}</p>
+                        <h4 className="font-bold text-white text-sm mb-1">{s.title}</h4>
+                        <p className="text-white/50 text-[11px] leading-relaxed">{s.detail}</p>
                       </div>
                     </div>
                   ))}
@@ -168,20 +167,23 @@ const About = () => {
           >
             <p className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-6 font-bold">Documentation</p>
             <h2 className="font-heading text-4xl sm:text-5xl font-black text-white mb-6 tracking-tighter">
-              Complete Payload
+              Download Resume
             </h2>
             <p className="text-lg text-white/40 mb-12 max-w-md mx-auto font-light leading-relaxed">
-              For a detailed architectural breakdown of my engineering journey and technical specifications.
+              A concise overview of my technical skills, projects, and experience.
             </p>
-            <a
-              href="/resume.pdf"
-              download
-              className="group relative inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-white text-black font-black text-sm transition-all duration-500 hover:scale-105 active:scale-95 shadow-2xl shadow-cyan-500/10 hover:shadow-cyan-400/30"
-            >
-              <Download size={18} className="group-hover:-translate-y-0.5 transition-transform" /> 
-              Download Resume (PDF)
-              <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 blur-xl transition-opacity" />
-            </a>
+            <div className="flex flex-col items-center gap-3">
+              <a
+                href="/resume.pdf"
+                download
+                className="group relative inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-white text-black font-black text-sm transition-all duration-500 hover:scale-105 active:scale-95 shadow-2xl shadow-white/10"
+              >
+                <Download size={18} className="group-hover:-translate-y-0.5 transition-transform" /> 
+                Download Resume
+                <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 blur-xl transition-opacity" />
+              </a>
+              <span className="text-[10px] font-mono uppercase tracking-widest text-white/40">Updated Recently</span>
+            </div>
           </motion.div>
         </div>
       </section>

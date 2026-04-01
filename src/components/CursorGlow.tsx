@@ -40,21 +40,23 @@ const CursorGlow = () => {
 
     const tick = () => {
       // Lerp: current += (target - current) * factor
-      primary.x += (target.x - primary.x) * 0.08;
-      primary.y += (target.y - primary.y) * 0.08;
+      // Slower factor (0.05) for smoother, premium lag
+      primary.x += (target.x - primary.x) * 0.05;
+      primary.y += (target.y - primary.y) * 0.05;
 
-      secondary.x += (target.x - secondary.x) * 0.035;
-      secondary.y += (target.y - secondary.y) * 0.035;
+      secondary.x += (target.x - secondary.x) * 0.025;
+      secondary.y += (target.y - secondary.y) * 0.025;
 
-      const intensity = isHovering ? 1.35 : 1;
+      const intensity = isHovering ? 1.2 : 1;
 
       if (primaryRef.current) {
         primaryRef.current.style.transform = `translate(${primary.x - 300}px, ${primary.y - 300}px)`;
-        primaryRef.current.style.opacity = String(0.18 * intensity);
+        // Lower max opacity (0.12)
+        primaryRef.current.style.opacity = String(0.12 * intensity);
       }
       if (secondaryRef.current) {
         secondaryRef.current.style.transform = `translate(${secondary.x - 400}px, ${secondary.y - 400}px)`;
-        secondaryRef.current.style.opacity = String(0.12 * intensity);
+        secondaryRef.current.style.opacity = String(0.08 * intensity);
       }
 
       rafId = requestAnimationFrame(tick);
@@ -86,14 +88,14 @@ const CursorGlow = () => {
           height: 600,
           borderRadius: "50%",
           background:
-            "radial-gradient(circle, rgba(34,211,238,0.55) 0%, rgba(59,130,246,0.3) 40%, transparent 70%)",
-          filter: "blur(80px)",
-          opacity: 0.18,
-          transition: "opacity 0.4s ease",
+            "radial-gradient(circle, rgba(30,58,138,0.4) 0%, rgba(30,64,175,0.2) 40%, transparent 70%)",
+          filter: "blur(120px)",
+          opacity: 0.12,
+          transition: "opacity 0.5s ease",
         }}
       />
 
-      {/* SECONDARY glow — slower trail, purple depth */}
+      {/* SECONDARY glow — slower trail, darker indigo/purple depth */}
       <div
         ref={secondaryRef}
         className="absolute top-0 left-0 will-change-transform"
@@ -102,10 +104,10 @@ const CursorGlow = () => {
           height: 800,
           borderRadius: "50%",
           background:
-            "radial-gradient(circle, rgba(139,92,246,0.45) 0%, rgba(99,102,241,0.2) 40%, transparent 70%)",
-          filter: "blur(110px)",
-          opacity: 0.12,
-          transition: "opacity 0.4s ease",
+            "radial-gradient(circle, rgba(49,46,129,0.3) 0%, rgba(67,56,202,0.1) 40%, transparent 70%)",
+          filter: "blur(140px)",
+          opacity: 0.08,
+          transition: "opacity 0.5s ease",
         }}
       />
     </div>

@@ -5,25 +5,25 @@ const categories = [
   { 
     icon: Server, 
     title: "Backend Engineering", 
-    items: ["Node.js", "Express", "MongoDB", "REST APIs", "System Design"],
+    items: ["Node.js", "Express", "MongoDB", "REST APIs"],
     isDominant: true
   },
   { 
     icon: Brain, 
-    title: "Computer Science Fundamentals", 
-    items: ["DSA", "WEB DEV"],
+    title: "Problem Solving & DSA", 
+    items: ["Data Structures", "Algorithms", "Problem Solving"],
     isDominant: false
   },
   { 
-    icon: Globe, 
-    title: "Frontend (Supporting)", 
-    items: ["HTML", "CSS", "JavaScript", "React"],
+    icon: Layout, 
+    title: "Frontend Support", 
+    items: ["React", "JavaScript", "Tailwind CSS", "HTML/CSS"],
     isDominant: false
   },
   { 
     icon: Wrench, 
     title: "Tools & Workflow", 
-    items: ["Git", "GitHub", "VS Code"],
+    items: ["Git", "GitHub", "Postman", "VS Code"],
     isDominant: false
   },
 ];
@@ -63,11 +63,7 @@ const Skills = () => (
                 {c.items.map((item) => (
                   <span
                     key={item}
-                    className={`text-[11px] font-mono px-3.5 py-1.5 rounded-lg transition-all duration-300 border ${
-                      c.isDominant 
-                        ? "bg-cyan-500/10 text-cyan-100 border-cyan-500/20 hover:bg-cyan-500/20 hover:border-cyan-400/50" 
-                        : "bg-white/[0.02] text-white/40 border-white/5 group-hover:text-white/60 group-hover:border-white/10"
-                    }`}
+                    className="text-xs px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/50 transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:text-white"
                   >
                     {item}
                   </span>

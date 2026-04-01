@@ -7,6 +7,7 @@ import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ChatAssistant from "@/components/ChatAssistant";
+import CursorGlow from "@/components/CursorGlow";
 
 const Index = () => {
   useEffect(() => {
@@ -33,7 +34,8 @@ const Index = () => {
   return (
     <main className="relative min-h-screen overflow-x-hidden" style={{ background: "linear-gradient(180deg, #020617 0%, #020617 60%, #030a1a 100%)" }}>
 
-      {/* ── GLOBAL BACKGROUND GLOW SYSTEM ─────────────────────────────── */}
+      {/* Cursor-reactive glow (layer 0) */}
+      <CursorGlow />
       <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
         {/* Top-left: primary cyan/blue glow */}
         <div className="absolute -top-32 -left-40 w-[700px] h-[700px] rounded-full opacity-[0.18] blur-[120px]"

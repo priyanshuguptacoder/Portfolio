@@ -6,34 +6,26 @@
 
 @layer base {
   :root {
-    --background: 222 47% 6%;
+    --background: 222 47% 3%;
     --foreground: 210 40% 96%;
-    --card: 222 39% 9%;
+    --card: 222 39% 7%;
     --card-foreground: 210 40% 96%;
-    --popover: 222 39% 9%;
+    --popover: 222 39% 7%;
     --popover-foreground: 210 40% 96%;
-    --primary: 166 100% 45%;
+    --primary: 187 92% 48%;
     --primary-foreground: 222 47% 6%;
-    --secondary: 220 26% 12%;
+    --secondary: 220 26% 10%;
     --secondary-foreground: 210 40% 96%;
-    --muted: 220 20% 14%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 220 20% 12%;
+    --muted-foreground: 215 16% 55%;
     --accent: 187 92% 48%;
     --accent-foreground: 222 47% 6%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
-    --border: 220 16% 14%;
-    --input: 220 16% 14%;
-    --ring: 166 100% 45%;
-    --radius: 0.75rem;
-    --sidebar-background: 222 39% 9%;
-    --sidebar-foreground: 210 40% 96%;
-    --sidebar-primary: 166 100% 45%;
-    --sidebar-primary-foreground: 222 47% 6%;
-    --sidebar-accent: 220 26% 12%;
-    --sidebar-accent-foreground: 210 40% 96%;
-    --sidebar-border: 220 16% 14%;
-    --sidebar-ring: 166 100% 45%;
+    --border: 220 16% 12%;
+    --input: 220 16% 12%;
+    --ring: 187 92% 48%;
+    --radius: 1rem;
   }
 }
 
@@ -43,6 +35,10 @@
   }
   body {
     @apply bg-background text-foreground font-body antialiased;
+    background-image: 
+      radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 100% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 40%),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
   }
   html {
     scroll-behavior: smooth;
@@ -62,33 +58,30 @@
 @layer utilities {
   .gradient-text {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(166, 100%, 45%), hsl(187, 92%, 48%));
-  }
-  .gradient-border {
-    background-image: linear-gradient(135deg, hsl(166, 100%, 45%), hsl(187, 92%, 48%));
+    background-image: linear-gradient(135deg, #22d3ee, #3b82f6);
   }
   .gradient-bg {
-    background-image: linear-gradient(135deg, hsl(166, 100%, 45%), hsl(187, 92%, 48%));
+    background-image: linear-gradient(135deg, #22d3ee, #3b82f6);
   }
   .glass {
-    @apply bg-card/60 backdrop-blur-2xl border border-border/40;
+    @apply bg-white/[0.02] backdrop-blur-3xl border border-white/10;
   }
   .glass-strong {
-    @apply bg-card/80 backdrop-blur-2xl border border-border/50;
+    @apply bg-white/[0.05] backdrop-blur-3xl border border-white/20;
   }
-  .glow-primary {
-    box-shadow: 0 0 60px -10px hsl(166 100% 45% / 0.25);
+  .glow-cyan {
+    box-shadow: 0 0 40px -10px rgba(34, 211, 238, 0.2);
   }
-  .glow-primary-sm {
-    box-shadow: 0 0 30px -5px hsl(166 100% 45% / 0.15);
-  }
-  .card-hover {
-    @apply transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-xl hover:shadow-primary/10 hover:border-primary/20;
+  .glow-blue {
+    box-shadow: 0 0 40px -10px rgba(59, 130, 246, 0.2);
   }
   .section-padding {
-    @apply py-24 lg:py-32;
+    @apply py-24 lg:py-40;
   }
   .section-divider {
-    @apply border-t border-border/30;
+    @apply border-t border-white/5;
+  }
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
   }
 }

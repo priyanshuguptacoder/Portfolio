@@ -1,10 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageCircle, X, Send, Bot } from "lucide-react";
+import { MessageCircle, X, Send } from "lucide-react";
 
-// ─────────────────────────────────────────────
-// RESPONSE CONTENT
-// ─────────────────────────────────────────────
+// Response content
 const EMAIL = "mailto:priyanshuguptanitian9696@gmail.com";
 
 interface ResponseData {
@@ -13,123 +11,161 @@ interface ResponseData {
 }
 
 const RESPONSES: Record<string, ResponseData> = {
+  greeting: {
+    lines: [
+      "Hey - I can walk you through Priyanshu's work, projects, and problem-solving background.",
+      "Want a quick overview or looking for something specific?"
+    ],
+  },
   identity: {
     lines: [
-      "I’m part of Priyanshu’s portfolio — built to help you quickly understand what he’s worked on and where he’s strong.",
-      "I can show you his projects, explain his backend work, or walk you through his problem-solving stats."
+      "I'm Priyanshu's portfolio assistant - I help you quickly explore his work, projects, and problem-solving background.",
+      "Ask me anything about his projects, skills, or how to reach him."
+    ],
+  },
+  about: {
+    lines: [
+      "Priyanshu is a backend-focused developer. He's solved 280+ DSA problems and actively improves through competitive programming on Codeforces.",
+      "Most of his work focuses on building scalable APIs and real-world systems.",
+      "Want to see his projects or problem-solving stats?"
     ],
   },
   projects_overview: {
     lines: [
-      "Most of his projects focus on backend systems — APIs, tracking systems, and scalable logic.",
-      "Want me to show his strongest project right now?"
+      "He builds backend-focused applications with API design and clean architecture.",
+      "Want me to show his strongest project?"
     ],
   },
   projects_detailed: {
     lines: [
-      "His strongest work is the Competitive Programming Tracker.",
-      "It features REST API sync pipelines, streak computation logic, and a scalable Node.js/MongoDB backend.",
-      "Want to see his other projects or explore his tech stack?"
+      "His strongest work is the Competitive Programming Tracker - REST API sync pipelines, streak logic, and a scalable Node.js/MongoDB backend.",
+      "Want to see his tech stack or problem-solving stats?"
     ],
     showCta: true,
   },
   dsa: {
     lines: [
-      "Priyanshu has solved 280+ DSA problems on LeetCode and is actively improving through Codeforces contests.",
-      "Strong focus on patterns and consistency.",
-      "Want details on his tech stack next?"
+      "280+ problems on LeetCode with strong coverage across arrays, graphs, DP, and greedy. Contest rating: 1469.",
+      "Actively building speed and accuracy through Codeforces contests.",
+      "Want to see his projects or tech stack?"
     ],
   },
   skills: {
     lines: [
-      "Primarily backend-focused — Node.js, Express, databases — with strong DSA foundations.",
+      "Focused on backend development - Node.js, Express, MongoDB - with strong DSA fundamentals.",
       "He prioritizes scalable architecture over surface-level features.",
       "Want to see how he applies this in his projects?"
     ],
   },
   internship: {
     lines: [
-      "Yes, he's actively open to backend-focused internships and available immediately.",
-      "He's looking for teams building scalable or impactful backend systems.",
-      "Want to grab his email to connect?"
+      "Yes - he's actively open to backend-focused internships and available immediately.",
+      "Looking for teams building scalable or impactful backend systems.",
+      "Want to grab his email?"
     ],
   },
   contact: {
     lines: [
-      "You can email him directly at priyanshuguptanitian9696@gmail.com.",
-      "He usually responds within 24 hours. No forms, no friction.",
-      "Want a copy of his resume?"
+      "Email him directly at priyanshuguptanitian9696@gmail.com - he usually responds within 24 hours.",
+      "No forms, no friction."
     ],
     showCta: true,
   },
   resume: {
     lines: [
-      "Shoot him an email and he'll send the latest resume version straight to you.",
-      "Want to check out his projects while you wait?"
-    ],
-  },
-  fallback: {
-    lines: [
-      "I didn't quite catch that.",
-      "I can explain his backend systems, show his problem-solving stats, or give you his contact info. What sounds best?"
+      "You can download his resume from the About section, or email him for the latest version.",
+      "Want to explore his projects instead?"
     ],
   },
 };
 
-// ─────────────────────────────────────────────
-// KEYWORD MATCHER
-// ─────────────────────────────────────────────
-function matchResponse(input: string): ResponseData {
-  const q = input.toLowerCase();
-  
-  if (q.includes("who are you") || q.includes("what are you") || q.includes("what can you do"))
-    return RESPONSES.identity;
+const FALLBACKS: ResponseData[] = [
+  {
+    lines: [
+      "I can walk you through his projects, backend work, or problem-solving stats.",
+      "What are you curious about?"
+    ],
+  },
+  {
+    lines: [
+      "Try asking about his projects, LeetCode stats, tech stack, or how to reach him.",
+    ],
+  },
+  {
+    lines: [
+      "Not sure I caught that - here's what I know well: projects, skills, DSA stats, and contact info.",
+    ],
+  },
+];
 
-  if (q.includes("best project") || q.includes("strongest") || (q.includes("project") && q.includes("detail")))
-    return RESPONSES.projects_detailed;
+// Intent detection
+let fallbackIndex = 0;
 
-  if (q.includes("project") || q.includes("work") || q.includes("build") || q.includes("system") || q.includes("api"))
-    return RESPONSES.projects_overview;
-
-  if (q.includes("dsa") || q.includes("leetcode") || q.includes("problem") || q.includes("algorithm") || q.includes("codeforces") || q.includes("contest"))
-    return RESPONSES.dsa;
-
-  if (q.includes("skill") || q.includes("tech") || q.includes("stack") || q.includes("language") || q.includes("node") || q.includes("mongo") || q.includes("backend"))
-    return RESPONSES.skills;
-
-  if (q.includes("intern") || q.includes("available") || q.includes("hire") || q.includes("job") || q.includes("role"))
-    return RESPONSES.internship;
-
-  if (q.includes("contact") || q.includes("email") || q.includes("reach") || q.includes("connect"))
-    return RESPONSES.contact;
-
-  if (q.includes("resume") || q.includes("cv") || q.includes("download"))
-    return RESPONSES.resume;
-
-  return RESPONSES.fallback;
+function normalize(input: string): string {
+  return input
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
-// ─────────────────────────────────────────────
-// TYPES
-// ─────────────────────────────────────────────
+function matchResponse(input: string): ResponseData {
+  const q = normalize(input);
+  const has = (...tokens: string[]) => tokens.some(t => q.includes(t));
+
+  if (has("hello", "hey", "howdy", "sup") || q === "hi")
+    return RESPONSES.greeting;
+
+  if (has("who are you", "what are you", "what can you do", "your name", "what your name", "whats your name", "who is this"))
+    return RESPONSES.identity;
+
+  if (has("who is priyanshu", "tell me about", "about him", "about priyanshu", "what does he do", "what he do", "introduce"))
+    return RESPONSES.about;
+
+  if (has("best project", "strongest", "top project", "main project") || (has("project") && has("detail")))
+    return RESPONSES.projects_detailed;
+
+  if (has("project", "work", "built", "build", "system", "api", "portfolio"))
+    return RESPONSES.projects_overview;
+
+  if (has("dsa", "leetcode", "leet code", "codeforces", "code forces", "algorithm", "contest", "competitive", "problem solv", "solved"))
+    return RESPONSES.dsa;
+
+  if (has("skill", "tech", "stack", "language", "node", "mongo", "backend", "frontend", "database", "express", "tool"))
+    return RESPONSES.skills;
+
+  if (has("intern", "available", "hire", "hiring", "job", "role", "open to", "looking for"))
+    return RESPONSES.internship;
+
+  if (has("contact", "email", "reach", "connect", "mail", "touch"))
+    return RESPONSES.contact;
+
+  if (has("resume", "cv", "download"))
+    return RESPONSES.resume;
+
+  const fb = FALLBACKS[fallbackIndex % FALLBACKS.length];
+  fallbackIndex++;
+  return fb;
+}
+
+// Types
 interface Message {
   id: number;
   role: "bot" | "user";
   lines?: string[];
   text?: string;
   showCta?: boolean;
+  showActions?: boolean;
 }
 
 const QUICK_ACTIONS = [
-  { label: "🚀 View Projects", key: "projects" },
-  { label: "🧠 Problem Solving", key: "dsa" },
-  { label: "⚙️ Tech Stack", key: "skills" },
-  { label: "📩 Contact", key: "contact" },
+  { label: "View Projects", key: "projects" },
+  { label: "Problem Solving", key: "dsa" },
+  { label: "Tech Stack", key: "skills" },
+  { label: "Contact", key: "contact" },
 ];
 
-// ─────────────────────────────────────────────
-// COMPONENTS
-// ─────────────────────────────────────────────
+// Sub-components
 const BotMessage = ({ msg }: { msg: Message }) => (
   <motion.div
     initial={{ opacity: 0, y: 8 }}
@@ -154,7 +190,7 @@ const BotMessage = ({ msg }: { msg: Message }) => (
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 text-[11px] font-bold text-cyan-400 hover:text-cyan-300 transition-colors ml-1"
         >
-          Email Priyanshu ↗
+          Email Priyanshu
         </a>
       )}
     </div>
@@ -190,21 +226,22 @@ const TypingIndicator = () => (
   </div>
 );
 
+// Chat Panel
 const ChatPanel = ({ onClose }: { onClose: () => void }) => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 0,
       role: "bot",
       lines: [
-        "Hey — I can walk you through Priyanshu’s work, projects, and problem-solving background.",
+        "Hey - I can walk you through Priyanshu's work, projects, and problem-solving background.",
         "Want a quick overview or looking for something specific?"
       ],
       showCta: false,
+      showActions: true,
     },
   ]);
   const [input, setInput] = useState("");
   const [isTyping, setIsTyping] = useState(false);
-  const [showQuickActions, setShowQuickActions] = useState(true);
   const bottomRef = useRef<HTMLDivElement>(null);
   const idRef = useRef(1);
 
@@ -214,9 +251,11 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
 
   const sendMessage = (text: string) => {
     if (!text.trim() || isTyping) return;
-    setShowQuickActions(false);
-    
-    setMessages((prev) => [...prev, { id: idRef.current++, role: "user", text: text.trim() }]);
+
+    setMessages((prev) => [
+      ...prev.map(m => ({ ...m, showActions: false })),
+      { id: idRef.current++, role: "user" as const, text: text.trim() },
+    ]);
     setInput("");
     setIsTyping(true);
 
@@ -225,9 +264,9 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
       setIsTyping(false);
       setMessages((prev) => [
         ...prev,
-        { id: idRef.current++, role: "bot", lines: data.lines, showCta: data.showCta },
+        { id: idRef.current++, role: "bot" as const, lines: data.lines, showCta: data.showCta, showActions: true },
       ]);
-    }, 450 + Math.random() * 200); // 450-650ms delay for natural feel
+    }, 450 + Math.random() * 200);
   };
 
   return (
@@ -250,9 +289,7 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
             <span className="text-cyan-400 font-bold font-mono text-sm leading-none pt-0.5">PG</span>
           </div>
           <div>
-            <p className="text-sm font-bold text-white leading-none">
-              Portfolio Guide
-            </p>
+            <p className="text-sm font-bold text-white leading-none">Portfolio Guide</p>
             <p className="text-white/30 text-[10px] mt-1 font-mono uppercase tracking-widest leading-none">Ready to explain</p>
           </div>
         </div>
@@ -267,33 +304,34 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
       <div className="flex-1 overflow-y-auto px-5 pt-5 pb-2 min-h-[300px]" style={{ scrollbarWidth: "none" }}>
         {messages.map((msg) =>
           msg.role === "bot" ? (
-            <BotMessage key={msg.id} msg={msg} />
+            <div key={msg.id}>
+              <BotMessage msg={msg} />
+              {msg.showActions && !isTyping && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex flex-wrap gap-2 mb-4 ml-9"
+                >
+                  {QUICK_ACTIONS.map((a, i) => (
+                    <motion.button
+                      key={a.key}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: i * 0.05 }}
+                      onClick={() => sendMessage(a.key)}
+                      className="px-3 py-1.5 rounded-lg border border-white/[0.08] text-white/60 text-[11px] font-medium hover:border-cyan-500/40 hover:text-cyan-400 hover:bg-cyan-500/5 transition-all shadow-sm flex items-center gap-1.5"
+                    >
+                      {a.label}
+                    </motion.button>
+                  ))}
+                </motion.div>
+              )}
+            </div>
           ) : (
             <UserMessage key={msg.id} msg={msg} />
           )
         )}
         {isTyping && <TypingIndicator />}
-
-        {showQuickActions && !isTyping && (
-          <motion.div
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex flex-wrap gap-2 mb-4 mt-2"
-          >
-            {QUICK_ACTIONS.map((a, i) => (
-              <motion.button
-                key={a.key}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: i * 0.05 }}
-                onClick={() => sendMessage(a.key)}
-                className="px-3 py-1.5 rounded-lg border border-white/[0.08] text-white/60 text-[11px] font-medium hover:border-cyan-500/40 hover:text-cyan-400 hover:bg-cyan-500/5 transition-all shadow-sm flex items-center gap-1.5"
-              >
-                {a.label}
-              </motion.button>
-            ))}
-          </motion.div>
-        )}
         <div ref={bottomRef} className="h-1" />
       </div>
 
@@ -318,6 +356,7 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
   );
 };
 
+// Chat Button
 const ChatButton = ({ onClick, isOpen }: { onClick: () => void; isOpen: boolean }) => (
   <motion.button
     onClick={onClick}
@@ -341,6 +380,7 @@ const ChatButton = ({ onClick, isOpen }: { onClick: () => void; isOpen: boolean 
   </motion.button>
 );
 
+// Main Export
 const ChatAssistant = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (

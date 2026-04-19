@@ -205,31 +205,33 @@
 
 /* Featured card base */
 .stats-card-featured {
-  background: rgba(6, 12, 26, 0.95);   /* darker than side cards */
+  background: rgba(6, 12, 26, 0.95);
+  /* Thick 2px border via box-shadow outline trick — always visible */
   box-shadow:
+    0 0 0 2px rgba(0, 180, 255, 0.55),
     0 16px 50px rgba(0, 0, 0, 0.7),
     inset 0 0 20px rgba(0, 100, 220, 0.07);
-  /* Float on its own 4.5s cycle — offset from side cards */
   animation: floatSoft 4.5s ease-in-out infinite;
   animation-delay: 0.25s;
 }
 
-/* Animated border — faster + brighter than side cards */
+/* Animated border — thick, fast, bright */
 .stats-card-featured::before {
   background: linear-gradient(
     120deg,
-    rgba(0, 140, 255, 0.08),
-    rgba(0, 180, 255, 0.75),
-    rgba(0, 220, 255, 0.20),
-    rgba(0, 120, 255, 0.75),
-    rgba(0, 140, 255, 0.08)
+    rgba(0, 140, 255, 0.10),
+    rgba(0, 200, 255, 1.00),
+    rgba(0, 120, 255, 0.20),
+    rgba(0, 200, 255, 1.00),
+    rgba(0, 140, 255, 0.10)
   );
   background-size: 300% 300%;
-  animation: borderMove 2.5s linear infinite;  /* faster = more alive */
-  opacity: 0.9;
+  padding: 2px;          /* thick 2px animated border */
+  animation: borderMove 2s linear infinite;
+  opacity: 1;
 }
 
-/* Inner depth layer — breathes to give life */
+/* Inner depth layer — breathes */
 .stats-card-featured::after {
   background: linear-gradient(
     180deg,
@@ -239,19 +241,20 @@
   animation: depthPulse 3s ease-in-out infinite;
 }
 
-/* Disable hover transform on featured — it's always animated, hover is redundant */
+/* No hover transform on featured — always animated */
 @media (hover: hover) {
   .stats-card-featured:hover {
     transform: none;
     box-shadow:
+      0 0 0 2px rgba(0, 180, 255, 0.55),
       0 16px 50px rgba(0, 0, 0, 0.7),
       inset 0 0 20px rgba(0, 100, 220, 0.07);
-    animation-play-state: running;  /* keep running on hover */
+    animation-play-state: running;
   }
 
   .stats-card-featured:hover::before {
-    opacity: 0.9;
-    animation-duration: 2.5s;  /* unchanged */
+    opacity: 1;
+    animation-duration: 2s;
   }
 }
 

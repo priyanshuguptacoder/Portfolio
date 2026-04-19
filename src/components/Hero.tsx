@@ -271,9 +271,17 @@ const Hero = () => {
                         href={s.linkUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-auto inline-flex items-center gap-1.5 text-[11px] font-bold text-white/60 hover:text-cyan-400 transition-colors duration-300 border border-white/10 hover:border-cyan-400/50 rounded-full px-4 py-1.5 z-20"
+                        className={`mt-auto inline-flex items-center gap-2 text-[12px] font-semibold rounded-full px-5 py-2 z-20 transition-all duration-300 group/link ${
+                          s.isDominant
+                            ? "bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-cyan-500/40 text-cyan-300 hover:from-blue-500/35 hover:to-cyan-500/35 hover:border-cyan-400/70 hover:text-white hover:shadow-[0_0_18px_rgba(0,180,255,0.3)]"
+                            : "bg-white/[0.05] border border-white/[0.12] text-white/65 hover:bg-white/[0.10] hover:border-white/25 hover:text-white"
+                        }`}
                       >
-                        {s.linkText}
+                        {s.linkText.replace(" ↗", "")}
+                        <ExternalLink
+                          size={11}
+                          className="transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
+                        />
                       </a>
                     )}
                   </div>

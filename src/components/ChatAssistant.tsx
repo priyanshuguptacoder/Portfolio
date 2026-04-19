@@ -419,7 +419,7 @@ const ActionButton = ({ action }: { action: Action }) => (
       if (action.url) window.open(action.url, "_blank", "noopener,noreferrer");
       else if (action.scrollTo) handleScroll(action.scrollTo);
     }}
-    className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.09] text-white/60 text-[11.5px] font-medium hover:border-cyan-500/45 hover:text-cyan-400 hover:bg-cyan-500/[0.07] hover:scale-[1.03] active:scale-[0.97] transition-all duration-200"
+    className="inline-flex items-center gap-1 px-[14px] py-[7px] rounded-full bg-white/[0.04] border border-white/[0.08] text-white/65 text-[12px] font-medium hover:border-[rgba(0,180,255,0.4)] hover:text-cyan-400 hover:bg-[rgba(0,180,255,0.08)] hover:scale-[1.03] active:scale-[0.97] transition-all duration-200"
   >
     {action.label}
     {action.url
@@ -437,13 +437,22 @@ const BotMessage = ({ msg }: { msg: Message }) => (
     transition={{ duration: 0.22, ease: "easeOut" }}
     className="flex justify-start mb-5 gap-2.5"
   >
-    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shrink-0 mt-0.5 shadow-[0_0_8px_rgba(34,211,238,0.2)]">
+    {/* Avatar */}
+    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shrink-0 mt-0.5 shadow-[0_0_8px_rgba(0,180,255,0.25)]">
       <span className="text-white text-[9px] font-black font-mono tracking-tight">PG</span>
     </div>
     <div className="max-w-[88%] flex flex-col gap-2">
-      <div className="bg-white/[0.045] border border-white/[0.07] rounded-2xl rounded-tl-sm px-4 py-3.5 text-[13.5px] text-white/90 leading-[1.6]">
+      {/* Bubble: deep navy, readable contrast */}
+      <div
+        className="rounded-2xl rounded-tl-sm px-4 py-[14px] text-[14px] text-white/90 leading-[1.6]"
+        style={{
+          background: "rgba(18, 28, 48, 0.9)",
+          border: "1px solid rgba(255,255,255,0.06)",
+          boxShadow: "0 6px 18px rgba(0,0,0,0.4)",
+        }}
+      >
         {msg.content.map((line, i) => (
-          <p key={i} className={i > 0 && line.length > 0 ? "mt-2.5 text-white/68" : ""}>
+          <p key={i} className={i > 0 && line.length > 0 ? "mt-2.5 text-white/70" : ""}>
             {line}
           </p>
         ))}
@@ -467,7 +476,14 @@ const UserMessage = ({ msg }: { msg: Message }) => (
     transition={{ duration: 0.22, ease: "easeOut" }}
     className="flex justify-end mb-5"
   >
-    <div className="max-w-[80%] px-4 py-3 rounded-2xl rounded-tr-sm bg-blue-500/[0.13] border border-blue-500/[0.18] text-white/90 text-[13.5px] leading-[1.6]">
+    {/* User bubble: subtle cyan gradient tint */}
+    <div
+      className="max-w-[80%] px-4 py-3 rounded-2xl rounded-tr-sm text-white/90 text-[14px] leading-[1.6]"
+      style={{
+        background: "linear-gradient(135deg, rgba(0,120,255,0.18), rgba(0,180,255,0.10))",
+        border: "1px solid rgba(0,180,255,0.2)",
+      }}
+    >
       {msg.content[0]}
     </div>
   </motion.div>
@@ -562,35 +578,39 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 16, scale: 0.97 }}
+      initial={{ opacity: 0, y: 12, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: 16, scale: 0.97 }}
-      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed bottom-24 right-4 sm:right-6 w-[360px] sm:w-[400px] max-h-[580px] flex flex-col z-50 rounded-2xl overflow-hidden"
+      exit={{ opacity: 0, y: 12, scale: 0.97 }}
+      transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+      /* Container: 380px desktop, 92vw mobile, max-height 520px */
+      className="fixed bottom-24 right-4 sm:right-6 w-[92vw] sm:w-[380px] max-h-[520px] flex flex-col z-50 rounded-[18px] overflow-hidden"
       style={{
-        background: "rgba(2, 6, 23, 0.97)",
-        backdropFilter: "blur(28px)",
-        border: "1px solid rgba(34, 211, 238, 0.09)",
-        boxShadow: "0 0 50px -14px rgba(34,211,238,0.07), 0 24px 56px -12px rgba(0,0,0,0.88)",
+        background: "rgba(8, 14, 28, 0.96)",
+        backdropFilter: "blur(14px)",
+        border: "1px solid rgba(0, 180, 255, 0.18)",
+        boxShadow: "0 20px 60px rgba(0,0,0,0.6), 0 0 25px rgba(0,120,255,0.12)",
       }}
     >
       {/* ── Header ── */}
-      <div className="flex items-center justify-between px-5 py-[14px] border-b border-white/[0.05] shrink-0">
+      <div className="flex items-center justify-between px-[18px] py-4 border-b border-white/[0.07] shrink-0">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600/25 to-cyan-500/25 border border-cyan-500/20 flex items-center justify-center">
+          {/* Avatar */}
+          <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500/30 to-cyan-500/30 border border-cyan-500/30 flex items-center justify-center shrink-0">
             <span className="text-cyan-400 font-black font-mono text-[11px] tracking-tight">PG</span>
           </div>
           <div>
-            <p className="text-[13.5px] font-bold text-white leading-none">Portfolio Assistant</p>
+            {/* Title: 16px, semibold */}
+            <p className="text-[16px] font-semibold text-white leading-none">Portfolio Assistant</p>
+            {/* Status row */}
             <div className="flex items-center gap-1.5 mt-[5px]">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <p className="text-white/30 text-[10px] font-mono uppercase tracking-widest leading-none">Online</p>
+              <p className="text-white/60 text-[11px] leading-none">Online</p>
             </div>
           </div>
         </div>
         <button
           onClick={onClose}
-          className="w-7 h-7 rounded-full flex items-center justify-center text-white/25 hover:text-white/70 hover:bg-white/[0.07] transition-all"
+          className="w-7 h-7 rounded-full flex items-center justify-center text-white/30 hover:text-white/80 hover:bg-white/[0.08] transition-all"
         >
           <X size={14} />
         </button>
@@ -598,7 +618,7 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
 
       {/* ── Messages ── */}
       <div
-        className="flex-1 overflow-y-auto px-5 pt-5 pb-3 min-h-[300px]"
+        className="flex-1 overflow-y-auto px-[18px] pt-5 pb-3 min-h-[260px]"
         style={{ scrollbarWidth: "none" }}
       >
         {messages.map((msg) =>
@@ -619,7 +639,7 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: i * 0.05, duration: 0.18, ease: "easeOut" }}
                       onClick={() => sendMessage(a.input)}
-                      className="px-2.5 py-1 rounded-md border border-white/[0.07] text-white/35 text-[10.5px] font-medium hover:border-cyan-500/35 hover:text-cyan-400 hover:bg-cyan-500/[0.06] hover:scale-[1.04] active:scale-[0.97] transition-all duration-200"
+                      className="px-[12px] py-[6px] rounded-full border border-white/[0.08] text-white/50 text-[12px] font-medium hover:border-[rgba(0,180,255,0.4)] hover:text-cyan-400 hover:bg-[rgba(0,180,255,0.08)] hover:scale-[1.04] active:scale-[0.97] transition-all duration-200"
                     >
                       {a.label}
                     </motion.button>
@@ -636,7 +656,8 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
       </div>
 
       {/* ── Input ── */}
-      <div className="px-4 py-3.5 border-t border-white/[0.05] flex items-center gap-2.5 shrink-0">
+      <div className="px-[14px] py-3 border-t border-white/[0.07] flex items-center gap-2.5 shrink-0">
+        {/* Input field: 44px height, deep navy bg */}
         <input
           ref={inputRef}
           type="text"
@@ -644,14 +665,15 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage(input)}
           placeholder="Ask about projects, skills, DSA..."
-          className="flex-1 bg-white/[0.03] border border-white/[0.07] rounded-xl px-4 py-[11px] text-[13px] text-white placeholder-white/20 outline-none focus:border-cyan-500/25 focus:bg-white/[0.05] transition-all leading-none"
+          className="flex-1 h-[44px] bg-[rgba(18,28,48,0.9)] border border-white/[0.08] rounded-xl px-4 text-[13px] text-white placeholder-white/40 outline-none focus:border-cyan-500/40 focus:bg-[rgba(18,28,48,1)] transition-all"
         />
+        {/* Send button: 44×44, cyan gradient */}
         <button
           onClick={() => sendMessage(input)}
           disabled={!input.trim() || typing}
-          className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center hover:scale-[1.06] hover:shadow-[0_0_12px_rgba(34,211,238,0.3)] active:scale-[0.95] disabled:opacity-25 disabled:hover:scale-100 disabled:hover:shadow-none transition-all duration-200 shrink-0"
+          className="w-[44px] h-[44px] rounded-xl bg-gradient-to-br from-[#00b4ff] to-[#007bff] flex items-center justify-center hover:scale-[1.05] hover:shadow-[0_6px_20px_rgba(0,120,255,0.4)] active:scale-[0.95] disabled:opacity-25 disabled:hover:scale-100 disabled:hover:shadow-none transition-all duration-200 shrink-0"
         >
-          <Send size={14} className="text-white translate-x-[1px]" />
+          <Send size={15} className="text-white translate-x-[1px]" />
         </button>
       </div>
     </motion.div>

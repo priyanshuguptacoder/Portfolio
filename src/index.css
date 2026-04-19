@@ -186,50 +186,94 @@
   z-index: 1;
 }
 
-/* ── Featured (center) card — slightly stronger, still dark ── */
-.stats-card-featured {
-  box-shadow:
-    0 12px 40px rgba(0, 0, 0, 0.6),
-    inset 0 0 12px rgba(0, 120, 255, 0.06);
-  animation: floatSoft 5s ease-in-out infinite;
+/* ── Featured (center) card — always-on rich animation, darker + more alive ── */
+
+/* Rotating corner glow — sweeps around the border */
+@keyframes cornerSweep {
+  0%   { background-position: 0% 0%;   }
+  25%  { background-position: 100% 0%; }
+  50%  { background-position: 100% 100%; }
+  75%  { background-position: 0% 100%; }
+  100% { background-position: 0% 0%;   }
 }
 
+/* Pulsing inner depth — card breathes darker/lighter */
+@keyframes depthPulse {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 1;   }
+}
+
+/* Featured card base */
+.stats-card-featured {
+  background: rgba(6, 12, 26, 0.95);   /* darker than side cards */
+  box-shadow:
+    0 16px 50px rgba(0, 0, 0, 0.7),
+    inset 0 0 20px rgba(0, 100, 220, 0.07);
+  /* Float on its own 4.5s cycle — offset from side cards */
+  animation: floatSoft 4.5s ease-in-out infinite;
+  animation-delay: 0.25s;
+}
+
+/* Animated border — faster + brighter than side cards */
 .stats-card-featured::before {
-  opacity: 0.8;
-  animation-duration: 3s;
   background: linear-gradient(
     120deg,
-    rgba(0, 180, 255, 0.18),
-    rgba(0, 120, 255, 0.65),
-    rgba(0, 180, 255, 0.18)
+    rgba(0, 140, 255, 0.08),
+    rgba(0, 180, 255, 0.75),
+    rgba(0, 220, 255, 0.20),
+    rgba(0, 120, 255, 0.75),
+    rgba(0, 140, 255, 0.08)
   );
-  background-size: 200% 200%;
+  background-size: 300% 300%;
+  animation: borderMove 2.5s linear infinite;  /* faster = more alive */
+  opacity: 0.9;
 }
 
-/* ── Hover boost ── */
+/* Inner depth layer — breathes to give life */
+.stats-card-featured::after {
+  background: linear-gradient(
+    180deg,
+    rgba(0, 120, 255, 0.04) 0%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
+  animation: depthPulse 3s ease-in-out infinite;
+}
+
+/* Disable hover transform on featured — it's always animated, hover is redundant */
 @media (hover: hover) {
-  .stats-card:hover {
+  .stats-card-featured:hover {
+    transform: none;
+    box-shadow:
+      0 16px 50px rgba(0, 0, 0, 0.7),
+      inset 0 0 20px rgba(0, 100, 220, 0.07);
+    animation-play-state: running;  /* keep running on hover */
+  }
+
+  .stats-card-featured:hover::before {
+    opacity: 0.9;
+    animation-duration: 2.5s;  /* unchanged */
+  }
+}
+
+/* ── Hover boost — side cards only ── */
+@media (hover: hover) {
+  .stats-card:not(.stats-card-featured):hover {
     transform: translateY(-8px) scale(1.03);
     box-shadow: 0 20px 60px rgba(0, 120, 255, 0.18);
     animation-play-state: paused;
   }
 
-  .stats-card:hover::before {
+  .stats-card:not(.stats-card-featured):hover::before {
     opacity: 1;
     animation-duration: 2s;
   }
-
-  .stats-card-featured:hover {
-    box-shadow: 0 20px 60px rgba(0, 120, 255, 0.22);
-  }
 }
-
-/* Icon float */
+/* ── Icon float ── */
 .stats-icon {
   animation: iconFloat 3s ease-in-out infinite;
 }
 
-/* Mobile */
+/* Mobile — disable all animations */
 @media (max-width: 767px) {
   .stats-card,
   .stats-card-featured {
@@ -238,6 +282,10 @@
   .stats-card::before {
     animation: none !important;
     opacity: 0.3;
+  }
+  .stats-card-featured::before {
+    animation: none !important;
+    opacity: 0.5;
   }
   .stats-icon {
     animation: none !important;
@@ -251,9 +299,10 @@
   .stats-icon {
     animation: none !important;
   }
-  .stats-card::before {
+  .stats-card::before,
+  .stats-card-featured::before {
     animation: none !important;
-    opacity: 0.18;
+    opacity: 0.2;
   }
 }
 

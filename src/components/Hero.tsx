@@ -128,7 +128,7 @@ const Hero = () => {
                   Web Developer
                 </p>
                 {/* Line 2 */}
-                <p className="text-sm sm:text-base font-normal text-white/65 leading-snug">
+                <p className="text-sm sm:text-base font-medium text-white/65 leading-snug">
                   DSA
                   <span className="text-white/30 mx-2">·</span>
                   <span className="font-semibold text-cyan-400">300+ Problems (LeetCode)</span>
@@ -243,7 +243,7 @@ const Hero = () => {
               >
                 {/* Staggered float: card1=0s, card2=0.5s, card3=1s */}
                 <div
-                  className="stats-card h-full"
+                  className={`stats-card h-full ${s.isDominant ? "stats-card-featured" : ""}`}
                   style={{ animationDelay: `${i * 0.5}s` }}
                 >
                   <div className="relative z-10 p-8 flex flex-col items-center text-center h-full">

@@ -120,52 +120,44 @@
   50%      { transform: translateY(-2px); }
 }
 
-/* ── Stats card: always-on animated border + float + glow ── */
+/* ── Stats card: dark premium animated border system ── */
 
-/* Border flow keyframe */
-@keyframes borderFlow {
+@keyframes borderMove {
   0%   { background-position: 0% 50%; }
   100% { background-position: 200% 50%; }
 }
 
-/* Soft float for stats cards */
 @keyframes floatSoft {
   0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-3px); }
+  50%       { transform: translateY(-2px); }
 }
 
+/* ── Base card ── */
 .stats-card {
   position: relative;
-  overflow: hidden;
   background: rgba(10, 18, 32, 0.9);
-  border-radius: 24px;
-  /* Thin static base border — masked animated border sits on top */
+  border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  /* Subtle inner glow — no outer blob */
-  box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.4),
-    inset 0 0 10px rgba(0, 120, 255, 0.05);
-  /* Always-on float */
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
   animation: floatSoft 6s ease-in-out infinite;
   transition:
-    transform   0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow  0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    transform  0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Animated border via mask technique — sharp, not blobby */
+/* Animated border — mask technique, sharp 1px line only */
 .stats-card::before {
   content: "";
   position: absolute;
-  inset: -1px;
+  inset: 0;
   border-radius: inherit;
   padding: 1px;
   background: linear-gradient(
     120deg,
-    rgba(0, 180, 255, 0.15),
-    rgba(0, 120, 255, 0.55),
-    rgba(0, 200, 255, 0.15),
-    rgba(0, 120, 255, 0.55),
-    rgba(0, 180, 255, 0.15)
+    rgba(0, 180, 255, 0.12),
+    rgba(0, 120, 255, 0.50),
+    rgba(0, 180, 255, 0.12)
   );
   background-size: 200% 200%;
   -webkit-mask:
@@ -173,38 +165,52 @@
     linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  animation: borderFlow 4s linear infinite;
-  opacity: 0.6;
+  animation: borderMove 5s linear infinite;
+  opacity: 0.5;
   pointer-events: none;
   z-index: 2;
 }
 
-/* Light sweep on hover */
+/* Inner depth gradient — dark, no glow */
 .stats-card::after {
   content: "";
   position: absolute;
   inset: 0;
+  border-radius: inherit;
   background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255, 255, 255, 0.06),
-    transparent
+    180deg,
+    rgba(255, 255, 255, 0.02) 0%,
+    rgba(0, 0, 0, 0.28) 100%
   );
-  opacity: 0;
-  transform: translateX(-100%);
   pointer-events: none;
   z-index: 1;
-  transition: opacity 0.3s ease;
 }
 
-/* Hover: lift + scale + faster border + sweep */
+/* ── Featured (center) card — slightly stronger, still dark ── */
+.stats-card-featured {
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.6),
+    inset 0 0 12px rgba(0, 120, 255, 0.06);
+  animation: floatSoft 5s ease-in-out infinite;
+}
+
+.stats-card-featured::before {
+  opacity: 0.8;
+  animation-duration: 3s;
+  background: linear-gradient(
+    120deg,
+    rgba(0, 180, 255, 0.18),
+    rgba(0, 120, 255, 0.65),
+    rgba(0, 180, 255, 0.18)
+  );
+  background-size: 200% 200%;
+}
+
+/* ── Hover boost ── */
 @media (hover: hover) {
   .stats-card:hover {
-    transform: translateY(-8px) scale(1.04);
-    box-shadow:
-      0 20px 60px rgba(0, 120, 255, 0.22),
-      0 8px 24px rgba(0, 0, 0, 0.5),
-      inset 0 0 12px rgba(0, 120, 255, 0.07);
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 20px 60px rgba(0, 120, 255, 0.18);
     animation-play-state: paused;
   }
 
@@ -213,10 +219,8 @@
     animation-duration: 2s;
   }
 
-  .stats-card:hover::after {
-    opacity: 1;
-    transform: translateX(100%);
-    transition: transform 0.6s ease, opacity 0.3s ease;
+  .stats-card-featured:hover {
+    box-shadow: 0 20px 60px rgba(0, 120, 255, 0.22);
   }
 }
 
@@ -225,14 +229,15 @@
   animation: iconFloat 3s ease-in-out infinite;
 }
 
-/* Mobile: disable always-on animations */
+/* Mobile */
 @media (max-width: 767px) {
-  .stats-card {
+  .stats-card,
+  .stats-card-featured {
     animation: none !important;
   }
   .stats-card::before {
     animation: none !important;
-    opacity: 0.35;
+    opacity: 0.3;
   }
   .stats-icon {
     animation: none !important;
@@ -242,12 +247,13 @@
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .stats-card,
+  .stats-card-featured,
   .stats-icon {
     animation: none !important;
   }
   .stats-card::before {
     animation: none !important;
-    opacity: 0.2;
+    opacity: 0.18;
   }
 }
 

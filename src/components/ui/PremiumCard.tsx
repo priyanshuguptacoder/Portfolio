@@ -17,10 +17,10 @@ export const PremiumCard = ({ children, className, isActive, ...props }: CardPro
         !isActive && [
           "border border-white/5",
           "shadow-[0_0_8px_rgba(0,120,255,0.03)]",
-          "transition-all duration-300 ease-out",
+          "transition-all duration-[250ms] ease-out",
           "translate-y-0",
           // Hover micro-float + scale + glow
-          "md:hover:-translate-y-[5px] md:hover:scale-[1.025] md:hover:z-20",
+          "md:hover:-translate-y-[6px] md:hover:scale-[1.03] md:hover:z-20",
           "md:hover:border-[#00b4ff]/30",
           "md:hover:shadow-[0_0_14px_rgba(0,120,255,0.12),0_0_40px_rgba(0,120,255,0.06)]",
         ],
@@ -39,7 +39,7 @@ export const PremiumCard = ({ children, className, isActive, ...props }: CardPro
         "[&_p]:transition-colors [&_p]:duration-300 [&_p]:ease-out md:hover:[&_p]:text-white/80",
         
         // Hover transition for featured card
-        isActive && "transition-[transform,filter] duration-300 ease-out md:hover:-translate-y-[5px] md:hover:scale-[1.025] md:hover:z-20",
+        isActive && "transition-[transform,filter] duration-[250ms] ease-out md:hover:-translate-y-[6px] md:hover:scale-[1.03] md:hover:z-20",
         
         className
       )}

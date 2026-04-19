@@ -57,51 +57,54 @@
 
 /* ── Premium Card: Featured Animations ──────────────────────── */
 
-@keyframes card-border-shift {
+@keyframes card-border-flow {
   0%   { background-position: 0% 50%; }
   100% { background-position: 200% 50%; }
 }
 
-@keyframes card-glow-pulse {
-  0%, 100% { --glow-opacity: 0.10; }
-  50%      { --glow-opacity: 0.18; }
+@keyframes card-glow-breathe {
+  0%, 100% { opacity: 0.18; }
+  50%      { opacity: 0.28; }
 }
 
 @keyframes card-micro-float {
   0%, 100% { transform: translateY(0px); }
-  50%      { transform: translateY(-3px); }
+  50%      { transform: translateY(-4px); }
 }
 
 /* Featured card wrapper */
 .premium-card-featured {
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   background:
     linear-gradient(#0b1220, #0b1220) padding-box,
     linear-gradient(120deg,
-      rgba(0,180,255,0.45),
-      rgba(0,100,255,0.20),
-      rgba(0,180,255,0.45),
-      rgba(0,100,255,0.20),
-      rgba(0,180,255,0.45)
+      rgba(0, 200, 255, 0.9),
+      rgba(0, 120, 255, 0.5),
+      rgba(0, 200, 255, 0.9),
+      rgba(0, 120, 255, 0.5),
+      rgba(0, 200, 255, 0.9)
     ) border-box;
-  background-size: 200% 100%;
+  background-size: 200% 200%;
   animation:
-    card-border-shift 5s linear infinite,
+    card-border-flow 4s linear infinite,
     card-micro-float 4s ease-in-out infinite;
   box-shadow:
-    0 0 20px rgba(0, 140, 255, 0.10),
-    0 0 50px rgba(0, 140, 255, 0.04);
+    0 0 30px rgba(0, 180, 255, 0.35),
+    0 0 80px rgba(0, 120, 255, 0.18);
+  filter: drop-shadow(0 0 40px rgba(0, 120, 255, 0.15));
 }
 
-/* Glow breathing via pseudo-element to avoid layout reflow */
+/* Glow breathing via pseudo-element — avoids layout reflow */
 .premium-card-featured::after {
   content: '';
   position: absolute;
-  inset: -1px;
-  border-radius: 24px;
-  box-shadow: 0 0 25px rgba(0, 140, 255, 0.12);
-  opacity: 0;
-  animation: card-glow-pulse 3s ease-in-out infinite;
+  inset: -2px;
+  border-radius: 26px;
+  box-shadow:
+    0 0 35px rgba(0, 180, 255, 0.25),
+    0 0 80px rgba(0, 120, 255, 0.12);
+  opacity: 0.18;
+  animation: card-glow-breathe 3s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
 }
@@ -109,9 +112,11 @@
 @media (prefers-reduced-motion: reduce) {
   .premium-card-featured {
     animation: none;
+    filter: none;
   }
   .premium-card-featured::after {
     animation: none;
+    opacity: 0.18;
   }
 }
 

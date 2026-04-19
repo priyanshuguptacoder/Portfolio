@@ -129,7 +129,7 @@ const Hero = () => {
                 </p>
                 {/* Line 2 */}
                 <p className="text-sm sm:text-base font-normal text-white/65 leading-snug">
-                  Data Structures &amp; Algorithms
+                  DSA
                   <span className="text-white/30 mx-2">·</span>
                   <span className="font-semibold text-cyan-400">300+ Problems (LeetCode)</span>
                   <span className="text-white/30 mx-2">·</span>

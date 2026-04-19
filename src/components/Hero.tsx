@@ -137,7 +137,7 @@ const Hero = () => {
                 variants={itemVariants}
                 className="text-base sm:text-lg text-white/55 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed font-light"
               >
-                Computer Science undergraduate focused on backend systems, data structures, and scalable application development. Solved 280+ problems with strong coverage across arrays, graphs, DP, and greedy.
+                Backend-focused developer building scalable systems and APIs. Solved 280+ DSA problems on LeetCode and actively improving through competitive programming on Codeforces.
               </motion.p>
 
               {/* CTAs */}

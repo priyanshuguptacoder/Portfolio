@@ -99,7 +99,7 @@ const About = () => {
                       <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-white/10 group-last:h-4">
                         <div className="absolute top-4 -left-1 w-2.5 h-2.5 rounded-full bg-cyan-500 shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
                       </div>
-                      <PremiumCard className="p-6 transition-all duration-300 group-hover:-translate-x-1">
+                      <PremiumCard className="p-6">
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                           <h4 className="font-bold text-white text-lg leading-tight">{edu.degree}</h4>
                           <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest bg-cyan-400/10 px-2 py-1 rounded border border-cyan-400/20 w-fit">

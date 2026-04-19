@@ -8,98 +8,157 @@ const EMAIL = "mailto:priyanshuguptanitian9696@gmail.com";
 interface ResponseData {
   lines: string[];
   showCta?: boolean;
+  intent?: string;
 }
 
-const RESPONSES: Record<string, ResponseData> = {
-  greeting: {
-    lines: [
-      "Hey - I can walk you through Priyanshu's work, projects, and problem-solving background.",
-      "Want a quick overview or looking for something specific?"
+// ── Helper: pick a random item from an array ──────────────────────────────────
+function randomPick<T>(arr: T[]): T {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+// ── Context-aware follow-up lines ─────────────────────────────────────────────
+function getFollowUp(intent: string): string | null {
+  const map: Record<string, string[]> = {
+    projects:          ["Want to explore one of his projects in detail?", "Want to dig into his strongest project?"],
+    projects_detailed: ["Want to see his full tech stack?", "Want to check his problem-solving stats too?"],
+    dsa:               ["Want to see his LeetCode or Codeforces stats?", "Want to see how he applies this in real projects?"],
+    skills:            ["Want a breakdown of his tech stack in action?", "Want to see how he uses these in his projects?"],
+    contact:           ["Want me to open his contact section?", "Ready to reach out? His email is above."],
+    about:             ["Want to see his projects or problem-solving stats?", "Want to know his tech stack?"],
+    internship:        ["Want to grab his email?", "Want to see his projects first?"],
+    resume:            ["Want to explore his projects instead?", "Want to see his tech stack?"],
+  };
+  const options = map[intent];
+  return options ? randomPick(options) : null;
+}
+
+// ── RESPONSES with variation arrays ──────────────────────────────────────────
+const RESPONSE_VARIANTS: Record<string, string[][]> = {
+  greeting: [
+    [
+      "Hey — I can walk you through Priyanshu's work, projects, and problem-solving background.",
+      "Want a quick overview or looking for something specific?",
     ],
-  },
-  identity: {
-    lines: [
-      "I'm Priyanshu's portfolio assistant - I help you quickly explore his work, projects, and problem-solving background.",
-      "Ask me anything about his projects, skills, or how to reach him."
+    [
+      "Hi there! I'm here to help you explore Priyanshu's portfolio.",
+      "Ask me about his projects, skills, or how to reach him.",
     ],
-  },
-  about: {
-    lines: [
+    [
+      "Hey! Looking for something specific, or want a quick tour of Priyanshu's work?",
+    ],
+  ],
+  identity: [
+    [
+      "I'm Priyanshu's portfolio assistant — I help you explore his work, projects, and problem-solving background.",
+    ],
+    [
+      "I'm Priyanshu's portfolio assistant — I help you explore his work, projects, and problem-solving background.",
+    ],
+  ],
+  about: [
+    [
       "Priyanshu is a backend-focused developer. He's solved 280+ DSA problems and actively improves through competitive programming on Codeforces.",
       "Most of his work focuses on building scalable APIs and real-world systems.",
-      "Want to see his projects or problem-solving stats?"
     ],
-  },
-  projects_overview: {
-    lines: [
-      "He builds backend-focused applications with API design and clean architecture.",
-      "Want me to show his strongest project?"
+    [
+      "He's a backend developer with 280+ solved DSA problems and a strong focus on scalable system design.",
+      "Competitive programming on Codeforces keeps his problem-solving sharp.",
     ],
-  },
-  projects_detailed: {
-    lines: [
-      "His strongest work is the Competitive Programming Tracker - REST API sync pipelines, streak logic, and a scalable Node.js/MongoDB backend.",
-      "Want to see his tech stack or problem-solving stats?"
+  ],
+  projects: [
+    [
+      "He builds backend-focused applications with clean API design and scalable architecture.",
+      "His standout project is the Competitive Programming Tracker — REST API sync, streak logic, Node.js/MongoDB.",
     ],
-    showCta: true,
-  },
-  dsa: {
-    lines: [
+    [
+      "His projects center on backend systems — API design, data pipelines, and real-world scalability.",
+      "The Competitive Programming Tracker is his strongest showcase.",
+    ],
+  ],
+  projects_detailed: [
+    [
+      "His strongest work is the Competitive Programming Tracker — REST API sync pipelines, streak logic, and a scalable Node.js/MongoDB backend.",
+    ],
+    [
+      "The Competitive Programming Tracker stands out: REST API sync, streak tracking, and a clean Node.js/MongoDB architecture.",
+    ],
+  ],
+  dsa: [
+    [
       "280+ problems on LeetCode with strong coverage across arrays, graphs, DP, and greedy. Contest rating: 1469.",
       "Actively building speed and accuracy through Codeforces contests.",
-      "Want to see his projects or tech stack?"
     ],
-  },
-  skills: {
-    lines: [
-      "Focused on backend development - Node.js, Express, MongoDB - with strong DSA fundamentals.",
+    [
+      "LeetCode: 280+ problems solved, contest rating 1469. Focus areas: arrays, graphs, DP, greedy.",
+      "He also competes on Codeforces to sharpen speed under pressure.",
+    ],
+  ],
+  skills: [
+    [
+      "Focused on backend development — Node.js, Express, MongoDB — with strong DSA fundamentals.",
       "He prioritizes scalable architecture over surface-level features.",
-      "Want to see how he applies this in his projects?"
     ],
-  },
-  internship: {
-    lines: [
-      "Yes - he's actively open to backend-focused internships and available immediately.",
+    [
+      "Core stack: Node.js, Express, MongoDB. Strong DSA foundation with 280+ problems solved.",
+      "He builds for scale, not just functionality.",
+    ],
+  ],
+  internship: [
+    [
+      "Yes — he's actively open to backend-focused internships and available immediately.",
       "Looking for teams building scalable or impactful backend systems.",
-      "Want to grab his email?"
     ],
-  },
-  contact: {
-    lines: [
-      "Email him directly at priyanshuguptanitian9696@gmail.com - he usually responds within 24 hours.",
-      "No forms, no friction."
+    [
+      "He's open to backend internships and available now.",
+      "Ideal fit: teams working on scalable APIs or real-world backend systems.",
     ],
-    showCta: true,
-  },
-  resume: {
-    lines: [
+  ],
+  contact: [
+    [
+      "Email him directly at priyanshuguptanitian9696@gmail.com — he usually responds within 24 hours.",
+      "No forms, no friction.",
+    ],
+    [
+      "Best way to reach him: priyanshuguptanitian9696@gmail.com. Typically replies within a day.",
+    ],
+  ],
+  resume: [
+    [
       "You can download his resume from the About section, or email him for the latest version.",
-      "Want to explore his projects instead?"
     ],
-  },
+    [
+      "His resume is in the About section. For the freshest copy, just email him.",
+    ],
+  ],
 };
 
-const FALLBACKS: ResponseData[] = [
-  {
-    lines: [
-      "I can walk you through his projects, backend work, or problem-solving stats.",
-      "What are you curious about?"
-    ],
-  },
-  {
-    lines: [
-      "Try asking about his projects, LeetCode stats, tech stack, or how to reach him.",
-    ],
-  },
-  {
-    lines: [
-      "Not sure I caught that - here's what I know well: projects, skills, DSA stats, and contact info.",
-    ],
-  },
+// Build RESPONSES from variants (picks first variant as default; randomPick used at call time)
+const RESPONSES: Record<string, ResponseData> = {
+  greeting:          { lines: RESPONSE_VARIANTS.greeting[0],          intent: "greeting"          },
+  identity:          { lines: RESPONSE_VARIANTS.identity[0],          intent: "identity"           },
+  about:             { lines: RESPONSE_VARIANTS.about[0],             intent: "about"              },
+  projects:          { lines: RESPONSE_VARIANTS.projects[0],          intent: "projects"           },
+  projects_detailed: { lines: RESPONSE_VARIANTS.projects_detailed[0], intent: "projects_detailed", showCta: true },
+  dsa:               { lines: RESPONSE_VARIANTS.dsa[0],               intent: "dsa"                },
+  skills:            { lines: RESPONSE_VARIANTS.skills[0],            intent: "skills"             },
+  internship:        { lines: RESPONSE_VARIANTS.internship[0],        intent: "internship"         },
+  contact:           { lines: RESPONSE_VARIANTS.contact[0],           intent: "contact",           showCta: true },
+  resume:            { lines: RESPONSE_VARIANTS.resume[0],            intent: "resume"             },
+};
+
+const FALLBACK_VARIANTS: string[][] = [
+  [
+    "I can walk you through his projects, backend work, or problem-solving stats.",
+  ],
+  [
+    "Try asking about projects, DSA, or contact — or use the quick actions below.",
+  ],
 ];
 
-// Intent detection
-let fallbackIndex = 0;
+// ── Conversation memory ───────────────────────────────────────────────────────
+let lastIntent: string | null = null;
+let fallbackCount = 0;
+let lastResponse: string | null = null;
 
 function normalize(input: string): string {
   return input
@@ -109,43 +168,81 @@ function normalize(input: string): string {
     .trim();
 }
 
+function buildResponse(intentKey: string, showCta?: boolean): ResponseData {
+  lastIntent = intentKey;
+  fallbackCount = 0;
+  const variants = RESPONSE_VARIANTS[intentKey] ?? [RESPONSES[intentKey]?.lines ?? []];
+  const lines = randomPick(variants);
+  const followUp = getFollowUp(intentKey);
+  const allLines = followUp ? [...lines, followUp] : lines;
+  return { lines: allLines, showCta: showCta ?? RESPONSES[intentKey]?.showCta, intent: intentKey };
+}
+
 function matchResponse(input: string): ResponseData {
   const q = normalize(input);
   const has = (...tokens: string[]) => tokens.some(t => q.includes(t));
 
-  if (has("hello", "hey", "howdy", "sup") || q === "hi")
-    return RESPONSES.greeting;
+  // ── Follow-up / continuation detection ──────────────────────────────────────
+  const isFollowUp = has("more", "details", "detail", "explain", "tell more", "elaborate", "go on", "continue", "expand");
+  if (isFollowUp && lastIntent && lastIntent !== "greeting" && lastIntent !== "identity") {
+    return buildResponse(lastIntent);
+  }
 
-  if (has("who are you", "what are you", "what can you do", "your name", "what your name", "whats your name", "who is this"))
-    return RESPONSES.identity;
+  // ── Greeting ─────────────────────────────────────────────────────────────────
+  if (has("hello", "hey", "howdy", "sup", "hii", "helo") || q === "hi" || q === "yo")
+    return buildResponse("greeting");
 
-  if (has("who is priyanshu", "tell me about", "about him", "about priyanshu", "what does he do", "what he do", "introduce"))
-    return RESPONSES.about;
+  // ── Identity — must come before generic "name" checks ────────────────────────
+  if (
+    has("who are you", "what are you", "what can you do") ||
+    has("your name", "what your name", "whats your name", "ur name", "wat ur name") ||
+    has("who is this", "introduce yourself")
+  )
+    return buildResponse("identity");
 
+  // ── About Priyanshu ──────────────────────────────────────────────────────────
+  if (has("who is priyanshu", "tell me about", "about him", "abt him", "about priyanshu", "what does he do", "what he do", "introduce"))
+    return buildResponse("about");
+
+  // ── Projects ─────────────────────────────────────────────────────────────────
   if (has("best project", "strongest", "top project", "main project") || (has("project") && has("detail")))
-    return RESPONSES.projects_detailed;
+    return buildResponse("projects_detailed");
 
   if (has("project", "work", "built", "build", "system", "api", "portfolio"))
-    return RESPONSES.projects_overview;
+    return buildResponse("projects");
 
-  if (has("dsa", "leetcode", "leet code", "codeforces", "code forces", "algorithm", "contest", "competitive", "problem solv", "solved"))
-    return RESPONSES.dsa;
+  // ── DSA / Competitive Programming ────────────────────────────────────────────
+  if (has("dsa", "leetcode", "leet code", "codeforces", "code forces", "algorithm", "contest", "competitive", "problem solv", "solved", "rating"))
+    return buildResponse("dsa");
 
+  // ── Skills / Tech Stack ───────────────────────────────────────────────────────
   if (has("skill", "tech", "stack", "language", "node", "mongo", "backend", "frontend", "database", "express", "tool"))
-    return RESPONSES.skills;
+    return buildResponse("skills");
 
+  // ── Internship / Hiring ───────────────────────────────────────────────────────
   if (has("intern", "available", "hire", "hiring", "job", "role", "open to", "looking for"))
-    return RESPONSES.internship;
+    return buildResponse("internship");
 
+  // ── Contact ───────────────────────────────────────────────────────────────────
   if (has("contact", "email", "reach", "connect", "mail", "touch"))
-    return RESPONSES.contact;
+    return buildResponse("contact");
 
+  // ── Resume ────────────────────────────────────────────────────────────────────
   if (has("resume", "cv", "download"))
-    return RESPONSES.resume;
+    return buildResponse("resume");
 
-  const fb = FALLBACKS[fallbackIndex % FALLBACKS.length];
-  fallbackIndex++;
-  return fb;
+  // ── Fallback ──────────────────────────────────────────────────────────────────
+  const fbLines = FALLBACK_VARIANTS[Math.min(fallbackCount, FALLBACK_VARIANTS.length - 1)];
+  fallbackCount++;
+  // Don't repeat the same fallback text consecutively
+  const fbText = fbLines[0];
+  if (fbText === lastResponse) {
+    const alt = FALLBACK_VARIANTS[FALLBACK_VARIANTS.length - 1];
+    lastResponse = alt[0];
+    return { lines: alt };
+  }
+  lastResponse = fbText;
+  return { lines: fbLines };
 }
 
 // Types
@@ -259,6 +356,9 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
     setInput("");
     setIsTyping(true);
 
+    // Dynamic delay: feels natural — longer inputs get slightly more "thinking" time
+    const delay = Math.min(800, 300 + text.length * 10);
+
     setTimeout(() => {
       const data = matchResponse(text);
       setIsTyping(false);
@@ -266,7 +366,7 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
         ...prev,
         { id: idRef.current++, role: "bot" as const, lines: data.lines, showCta: data.showCta, showActions: true },
       ]);
-    }, 450 + Math.random() * 200);
+    }, delay);
   };
 
   return (

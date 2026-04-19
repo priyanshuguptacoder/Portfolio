@@ -55,28 +55,141 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Premium Card: Featured Animations ──────────────────────── */
+/* ─────────────────────────────────────────────────────────────
+   PREMIUM CARD SYSTEM — High-Quality Animation Layer
+   All transforms use GPU-composited properties only (transform + opacity).
+   No layout shifts. No blur explosions.
+───────────────────────────────────────────────────────────── */
 
-@keyframes card-border-flow {
-  0%   { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
+/* 1. Idle float — all standard cards */
+@keyframes subtleFloat {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(-3px); }
+  100% { transform: translateY(0px); }
 }
 
-@keyframes card-glow-breathe {
-  0%, 100% { opacity: 0.18; }
-  50%      { opacity: 0.28; }
-}
-
+/* 2. Featured card: stronger float cadence */
 @keyframes card-micro-float {
   0%, 100% { transform: translateY(0px); }
   50%      { transform: translateY(-4px); }
 }
 
-/* Featured card wrapper */
+/* 3. Featured card: controlled glow pulse — no halo explosion */
+@keyframes glowPulseStrong {
+  0%, 100% {
+    box-shadow:
+      0 8px 30px rgba(0, 0, 0, 0.4),
+      0 0 12px rgba(0, 120, 255, 0.10);
+  }
+  50% {
+    box-shadow:
+      0 10px 40px rgba(0, 0, 0, 0.45),
+      0 0 24px rgba(0, 120, 255, 0.16);
+  }
+}
+
+/* 4. Animated border gradient flow */
+@keyframes card-border-flow {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* 5. Glow layer breathe */
+@keyframes card-glow-breathe {
+  0%, 100% { opacity: 0.15; }
+  50%      { opacity: 0.25; }
+}
+
+/* ── Standard card: idle float + light sweep + border glow ── */
+.premium-card {
+  position: relative;
+  overflow: hidden;
+  /* Depth gradient background */
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.025) 0%,
+    rgba(10, 18, 32, 0.9) 40%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  /* Idle float — very smooth, 6s cycle */
+  animation: subtleFloat 6s ease-in-out infinite;
+  /* Snappy hover transition */
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Light sweep pseudo-element */
+.premium-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 60%
+  );
+  opacity: 0;
+  transform: translateX(-120%);
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Border glow overlay */
+.premium-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(0, 180, 255, 0.25),
+    transparent
+  );
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Hover: lift + scale + sweep + border glow */
+@media (hover: hover) {
+  .premium-card:hover {
+    transform: translateY(-8px) scale(1.035);
+    box-shadow:
+      0 18px 60px rgba(0, 120, 255, 0.22),
+      0 8px 24px rgba(0, 0, 0, 0.4);
+    border-color: rgba(0, 180, 255, 0.5) !important;
+    /* Pause idle float on hover so it doesn't fight the lift */
+    animation-play-state: paused;
+  }
+
+  .premium-card:hover::before {
+    opacity: 1;
+    transform: translateX(120%);
+    transition: transform 0.7s ease, opacity 0.3s ease;
+  }
+
+  .premium-card:hover::after {
+    opacity: 1;
+  }
+}
+
+/* ── Featured card: animated border + stronger float + glow pulse ── */
 .premium-card-featured {
+  position: relative;
+  overflow: hidden;
   border: 2px solid transparent;
   background:
-    linear-gradient(#0b1220, #0b1220) padding-box,
+    linear-gradient(
+      180deg,
+      rgba(8, 16, 35, 0.95) 0%,
+      rgba(8, 16, 35, 0.85) 100%
+    ) padding-box,
     linear-gradient(120deg,
       rgba(0, 200, 255, 0.9),
       rgba(0, 120, 255, 0.5),
@@ -85,38 +198,139 @@
       rgba(0, 200, 255, 0.9)
     ) border-box;
   background-size: 200% 200%;
+  /* Featured: stronger float (5s) + glow pulse (4s) */
   animation:
     card-border-flow 4s linear infinite,
-    card-micro-float 4s ease-in-out infinite;
-  box-shadow:
-    0 0 30px rgba(0, 180, 255, 0.35),
-    0 0 80px rgba(0, 120, 255, 0.18);
-  filter: drop-shadow(0 0 40px rgba(0, 120, 255, 0.15));
+    card-micro-float 5s ease-in-out infinite,
+    glowPulseStrong 4s ease-in-out infinite;
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Glow breathing via pseudo-element — avoids layout reflow */
+/* Featured light sweep */
+.premium-card-featured::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.07) 50%,
+    transparent 60%
+  );
+  opacity: 0;
+  transform: translateX(-120%);
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Featured glow breathing layer */
 .premium-card-featured::after {
   content: '';
   position: absolute;
   inset: -2px;
   border-radius: 26px;
   box-shadow:
-    0 0 35px rgba(0, 180, 255, 0.25),
-    0 0 80px rgba(0, 120, 255, 0.12);
-  opacity: 0.18;
+    0 0 28px rgba(0, 180, 255, 0.2),
+    0 0 60px rgba(0, 120, 255, 0.10);
+  opacity: 0.15;
   animation: card-glow-breathe 3s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .premium-card-featured {
-    animation: none;
-    filter: none;
+@media (hover: hover) {
+  .premium-card-featured:hover {
+    transform: translateY(-8px) scale(1.035);
+    animation-play-state: paused;
   }
+
+  .premium-card-featured:hover::before {
+    opacity: 1;
+    transform: translateX(120%);
+    transition: transform 0.7s ease, opacity 0.3s ease;
+  }
+}
+
+/* ── Skills card variant ── */
+.skills-card {
+  position: relative;
+  overflow: hidden;
+  animation: subtleFloat 6s ease-in-out infinite;
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.skills-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.07) 50%,
+    transparent 60%
+  );
+  opacity: 0;
+  transform: translateX(-120%);
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+}
+
+@media (hover: hover) {
+  .skills-card:hover {
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 16px 50px rgba(0, 120, 255, 0.18), 0 6px 20px rgba(0, 0, 0, 0.4);
+    animation-play-state: paused;
+  }
+
+  .skills-card:hover::before {
+    opacity: 1;
+    transform: translateX(120%);
+    transition: transform 0.7s ease, opacity 0.3s ease;
+  }
+}
+
+/* ── Skills dominant card ── */
+.skills-card-dominant {
+  animation:
+    subtleFloat 5s ease-in-out infinite,
+    glowPulseStrong 4s ease-in-out infinite;
+}
+
+/* ── Mobile: disable idle float, reduce hover ── */
+@media (max-width: 767px) {
+  .premium-card,
+  .premium-card-featured,
+  .skills-card,
+  .skills-card-dominant {
+    animation: none !important;
+  }
+
+  .premium-card:hover,
+  .skills-card:hover {
+    transform: scale(1.01) !important;
+    box-shadow: 0 8px 24px rgba(0, 120, 255, 0.12) !important;
+  }
+}
+
+/* ── Reduced motion: kill all animations ── */
+@media (prefers-reduced-motion: reduce) {
+  .premium-card,
+  .premium-card-featured,
+  .skills-card,
+  .skills-card-dominant {
+    animation: none !important;
+    transition: none !important;
+  }
+
   .premium-card-featured::after {
     animation: none;
-    opacity: 0.18;
+    opacity: 0.15;
   }
 }
 

@@ -122,31 +122,28 @@ const Hero = () => {
               {/* Role */}
               <motion.p
                 variants={itemVariants}
-                className="text-base sm:text-[17px] font-bold text-white/80 mb-7 leading-[1.7] tracking-normal"
+                className="text-base sm:text-[17px] font-bold text-white mb-7 leading-[1.7] tracking-normal"
               >
-                <span className="text-white">CSE '29 @ NIT Jalandhar</span>
+                CSE '29 @ NIT Jalandhar
                 <span className="text-white/40 mx-1.5">·</span>
-                <span>Web Developer</span>
+                Web Developer
                 <span className="text-white/40 mx-1.5">·</span>
-                <span>Data Structures &amp; Algorithms</span>
+                Data Structures &amp; Algorithms
                 <span className="text-white/40 mx-1.5">·</span>
-                <span className="text-cyan-400">300+ Problems (LeetCode)</span>
+                300+ Problems (LeetCode)
                 <span className="text-white/40 mx-1.5">·</span>
-                <span>Competitive Programmer</span>
+                Competitive Programmer
               </motion.p>
 
               {/* Description */}
               <motion.p
                 variants={itemVariants}
-                className="text-[15px] sm:text-base text-white/45 max-w-[600px] mx-auto lg:mx-0 mb-10 leading-[1.8] font-normal"
+                className="text-[15px] sm:text-base text-white/70 max-w-[600px] mx-auto lg:mx-0 mb-10 leading-[1.8] font-semibold"
               >
                 Web developer focused on building scalable and efficient applications.{" "}
-                CSE undergraduate at{" "}
-                <span className="text-white/70 font-medium">NIT Jalandhar</span>{" "}
-                with strong foundations in Data Structures and Algorithms —{" "}
-                <span className="text-cyan-400/90 font-medium">300+ problems solved on LeetCode</span>.{" "}
-                Competitive programmer actively solving problems on{" "}
-                <span className="text-white/70 font-medium">Codeforces</span>.
+                CSE undergraduate at NIT Jalandhar with strong foundations in Data Structures and Algorithms —{" "}
+                300+ problems solved on LeetCode.{" "}
+                Competitive programmer actively solving problems on Codeforces.
               </motion.p>
 
               {/* CTAs */}
@@ -162,7 +159,7 @@ const Hero = () => {
                 </MagneticButton>
                 <MagneticButton
                   href="#contact"
-                  className="px-8 py-4 rounded-full font-bold text-sm border border-white/10 text-white/70 hover:border-cyan-500/40 hover:text-white hover:bg-cyan-500/5 hover:shadow-[0_0_20px_rgba(34,211,238,0.1)] transition-all duration-300 hover:scale-105 active:scale-95"
+                  className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-4 rounded-full font-bold text-sm hover:scale-105 hover:shadow-[0_0_28px_rgba(34,211,238,0.35)] active:scale-95 transition-all duration-300"
                 >
                   Let's Connect
                 </MagneticButton>

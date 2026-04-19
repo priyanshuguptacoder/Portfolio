@@ -2,6 +2,8 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import profileImg from "@/assets/profile.jpg";
 import { Code2, Trophy, Server, ExternalLink, Zap } from "lucide-react";
+import { MagneticButton } from "@/components/ui/MagneticButton";
+import { ParallaxLayer } from "@/components/ui/ParallaxLayer";
 
 
 const stats = [
@@ -9,8 +11,11 @@ const stats = [
     icon: Server,
     value: 5,
     suffix: "+",
-    label: "Backend Systems & APIs Built",
+    label: "BACKEND SYSTEMS & APIS",
     detail: "Scalable APIs & Optimized Databases",
+    extraInfo: "Projects available on GitHub with clean backend architecture and API design",
+    linkText: "View GitHub ↗",
+    linkUrl: "https://github.com/priyanshuguptacoder"
   },
   {
     icon: Code2,
@@ -144,18 +149,18 @@ const Hero = () => {
                 transition={{ duration: 0.5, delay: 0.48 }}
                 className="flex flex-wrap gap-4 justify-center lg:justify-start"
               >
-                <a
+                <MagneticButton
                   href="#projects"
                   className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-4 rounded-full font-bold text-sm hover:scale-105 hover:shadow-[0_0_28px_rgba(34,211,238,0.35)] active:scale-95 transition-all duration-300"
                 >
                   Explore Projects
-                </a>
-                <a
+                </MagneticButton>
+                <MagneticButton
                   href="#contact"
                   className="px-8 py-4 rounded-full font-bold text-sm border border-white/10 text-white/70 hover:border-cyan-500/40 hover:text-white hover:bg-cyan-500/5 hover:shadow-[0_0_20px_rgba(34,211,238,0.1)] transition-all duration-300 hover:scale-105 active:scale-95"
                 >
                   Let's Connect
-                </a>
+                </MagneticButton>
               </motion.div>
             </div>
 
@@ -167,7 +172,7 @@ const Hero = () => {
               className="relative shrink-0"
             >
               {/* Ambient glow */}
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-500/10 blur-[100px] rounded-full scale-125" />
+              <ParallaxLayer multiplier={20} className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-500/10 blur-[100px] rounded-full scale-125 transition-all duration-[10000ms] animate-pulse" />
 
               {/* Image card */}
               <div
@@ -274,8 +279,8 @@ const Hero = () => {
 
       {/* COMPETITIVE & ALGORITHMIC PROWESS */}
       <section className="py-32 relative overflow-hidden bg-white/[0.01] border-y border-white/5">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/8 blur-[120px] rounded-full pointer-events-none" />
-        <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-purple-500/6 blur-[100px] rounded-full pointer-events-none" />
+        <ParallaxLayer multiplier={15} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/8 blur-[120px] rounded-full pointer-events-none" />
+        <ParallaxLayer multiplier={10} className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-purple-500/6 blur-[100px] rounded-full pointer-events-none" />
 
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center mb-16">

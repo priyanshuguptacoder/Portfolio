@@ -1,7 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import profileImg from "@/assets/profile.jpg";
-import { Code2, Trophy, Server, ExternalLink } from "lucide-react";
+import { Code2, Trophy, Server, ExternalLink, Zap } from "lucide-react";
 
 
 const stats = [
@@ -9,23 +9,29 @@ const stats = [
     icon: Server,
     value: 5,
     suffix: "+",
-    label: "Backend Systems Built",
+    label: "Backend Systems & APIs Built",
     detail: "Scalable APIs & Optimized Databases",
   },
   {
     icon: Code2,
-    value: 250,
+    value: 280,
     suffix: "+",
-    label: "Problems Solved",
-    detail: "Consistent DSA practice & pattern mastery",
+    label: "LEETCODE PROBLEMS SOLVED",
+    detail: "Strong coverage across core DSA topics with consistent problem solving.",
+    extraInfo: "Contest Rating: 1469 • Top ~55%",
+    linkText: "View Profile ↗",
+    linkUrl: "https://leetcode.com/u/invisiblemanfromheart/",
     isDominant: true,
   },
   {
     icon: Trophy,
-    value: 5,
-    prefix: "Top ",
-    label: "Contest Performance",
-    detail: "Consistent High Ranking in Global Contests",
+    value: 25,
+    suffix: "+",
+    label: "CODEFORCES PROBLEMS",
+    detail: "Building competitive programming fundamentals with focus on speed and implementation.",
+    extraInfo: "Rating: 366 (Newbie) • Early Stage • Improving Rapidly",
+    linkText: "View Profile ↗",
+    linkUrl: "https://codeforces.com/profile/priyanshuguptacoder"
   },
 ];
 
@@ -118,7 +124,7 @@ const Hero = () => {
                 transition={{ duration: 0.5, delay: 0.28 }}
                 className="text-xl sm:text-2xl font-bold text-white/90 mb-6 tracking-tight"
               >
-                Problem Solver &amp; Full-Stack Developer
+                Backend-Focused Developer | 280+ DSA Problems Solved | Competitive Programmer
               </motion.p>
 
               {/* Description */}
@@ -128,8 +134,7 @@ const Hero = () => {
                 transition={{ duration: 0.5, delay: 0.38 }}
                 className="text-base sm:text-lg text-white/55 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed font-light"
               >
-                Full-Stack Developer and competitive programmer with strong DSA fundamentals,
-                experienced in building scalable web applications and backend systems using modern tech stacks.
+                Computer Science undergraduate focused on backend systems, data structures, and scalable application development. Solved 280+ problems with strong coverage across arrays, graphs, DP, and greedy.
               </motion.p>
 
               {/* CTAs */}
@@ -189,7 +194,7 @@ const Hero = () => {
                 style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.4)" }}
               >
                 <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Problems Solved</p>
-                <p className="text-2xl font-black text-white">250<span className="text-cyan-400">+</span></p>
+                <p className="text-2xl font-black text-white">280<span className="text-cyan-400">+</span></p>
               </motion.div>
 
               {/* Second floating badge */}
@@ -237,10 +242,24 @@ const Hero = () => {
                   <div className={`text-4xl sm:text-5xl font-black mb-2 tracking-tighter transition-colors duration-300 ${
                     s.isDominant ? "text-white" : "text-white/80 group-hover:text-white"
                   }`}>
-                    <CountUp end={s.value} prefix={s.prefix} suffix={s.suffix} />
+                    <CountUp end={s.value} suffix={s.suffix} />
                   </div>
                   <h3 className="text-[11px] font-bold text-white/80 mb-2 uppercase tracking-[0.2em]">{s.label}</h3>
-                  <p className="text-xs text-white/40 leading-relaxed font-light group-hover:text-white/70 transition-colors">{s.detail}</p>
+                  <p className="text-xs text-white/40 leading-relaxed font-light group-hover:text-white/70 transition-colors mb-4">{s.detail}</p>
+                  
+                  {s.extraInfo && (
+                    <p className="text-sm font-semibold text-cyan-400 mt-auto mb-3">{s.extraInfo}</p>
+                  )}
+                  {s.linkUrl && (
+                    <a 
+                      href={s.linkUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-auto inline-flex items-center gap-1.5 text-[11px] font-bold text-white/60 hover:text-cyan-400 transition-colors border border-white/10 hover:border-cyan-400/50 rounded-full px-4 py-1.5 z-20"
+                    >
+                      {s.linkText}
+                    </a>
+                  )}
                 </div>
                 
                 {/* Extra glow for dominant card */}
@@ -253,79 +272,133 @@ const Hero = () => {
         </div>
       </section>
 
-      {/* PROBLEM SOLVING & CONSISTENCY */}
+      {/* COMPETITIVE & ALGORITHMIC PROWESS */}
       <section className="py-32 relative overflow-hidden bg-white/[0.01] border-y border-white/5">
-        {/* Ambient background glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/8 blur-[120px] rounded-full pointer-events-none" />
         <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-purple-500/6 blur-[100px] rounded-full pointer-events-none" />
 
-        <div className="container mx-auto px-6 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <p className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-6 font-bold">Metrics</p>
-            <h2 className="font-heading text-4xl sm:text-5xl font-black text-white mb-20">
-              Problem Solving & Consistency
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="text-center mb-16">
+            <p className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-4 font-bold">Metrics</p>
+            <h2 className="font-heading text-4xl sm:text-5xl font-black text-white">
+              Algorithmic Proficiency
             </h2>
+          </div>
 
-            {/* Hero Number */}
+          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* BLOCK 1: LEETCODE */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-              className="relative inline-block mb-4"
+              className="bg-[#0b1220]/60 backdrop-blur-md rounded-3xl p-8 lg:p-12 border border-white/10 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500 flex flex-col"
             >
-              <div className="absolute inset-0 bg-cyan-500/10 blur-2xl rounded-full scale-150 pointer-events-none" />
-              <div className="relative text-7xl md:text-8xl font-bold tracking-tight bg-gradient-to-r from-cyan-400 to-blue-500 text-transparent bg-clip-text drop-shadow-[0_0_20px_rgba(34,211,238,0.3)]">
-                <CountUp end={250} suffix="+" />
+              <div className="absolute inset-0 bg-cyan-400/5 opacity-0 group-hover:opacity-100 transition-opacity blur-2xl" />
+              <div className="relative z-10 flex-1">
+                <h3 className="text-2xl font-black text-white mb-2">LeetCode Performance</h3>
+                <p className="text-sm text-white/50 mb-8 leading-relaxed font-light">
+                  Consistent DSA practice with focus on pattern recognition and interview-level problem solving.
+                </p>
+
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+                  <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
+                    <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Solved</p>
+                    <p className="text-3xl font-black text-white">280<span className="text-cyan-400">+</span></p>
+                  </div>
+                  <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
+                    <p className="text-[10px] font-mono text-green-400/80 uppercase tracking-widest mb-1">Easy</p>
+                    <p className="text-2xl font-bold text-green-400">110+</p>
+                  </div>
+                  <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
+                    <p className="text-[10px] font-mono text-yellow-400/80 uppercase tracking-widest mb-1">Medium</p>
+                    <p className="text-2xl font-bold text-yellow-400">160+</p>
+                  </div>
+                  <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
+                    <p className="text-[10px] font-mono text-red-400/80 uppercase tracking-widest mb-1">Hard</p>
+                    <p className="text-2xl font-bold text-red-400">17+</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-3 gap-4 mb-8">
+                  <div>
+                    <p className="text-xs text-white/40 mb-1">Contest Rating</p>
+                    <p className="text-lg font-bold text-white/80">1469</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-white/40 mb-1">Global Ranking</p>
+                    <p className="text-lg font-bold text-white/80">Top ~55%</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-white/40 mb-1">Active Days</p>
+                    <p className="text-lg font-bold text-white/80">80+</p>
+                  </div>
+                </div>
+                
+                {/* CONSISTENCY SIGNAL */}
+                <div className="mb-8 p-4 bg-blue-500/10 border border-blue-500/20 rounded-2xl">
+                  <h4 className="text-xs font-black text-blue-400 uppercase tracking-widest mb-2 flex items-center gap-2">
+                    <Zap size={14} /> Consistency & Discipline
+                  </h4>
+                  <ul className="text-xs text-white/60 space-y-1 font-light list-inside list-disc">
+                    <li>Regular daily problem solving</li>
+                    <li>Long streak maintenance</li>
+                  </ul>
+                </div>
               </div>
+              
+              <a
+                href="https://leetcode.com/u/invisiblemanfromheart/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-full gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-cyan-500/10 text-white font-bold text-sm border border-white/10 hover:border-cyan-500/50 transition-all group mt-auto"
+              >
+                View LeetCode Profile <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-cyan-400" />
+              </a>
             </motion.div>
 
-            <p className="text-lg md:text-xl font-medium text-white/80 mb-6 uppercase tracking-wide">
-              Problems Solved
-            </p>
+            {/* BLOCK 2: CODEFORCES */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-[#0b1220]/60 backdrop-blur-md rounded-3xl p-8 lg:p-12 border border-white/10 relative overflow-hidden group hover:border-blue-500/30 transition-all duration-500 flex flex-col"
+            >
+              <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity blur-2xl" />
+              <div className="relative z-10 flex-1">
+                <h3 className="text-2xl font-black text-white mb-2">Competitive Programming<br/><span className="text-lg text-white/60">(Codeforces)</span></h3>
+                <p className="text-sm text-white/50 mb-8 leading-relaxed font-light">
+                  Focusing on improving speed, implementation, and contest performance under pressure.
+                </p>
 
-            <p className="text-sm md:text-base text-white/50 max-w-xl mx-auto leading-relaxed font-light mb-16">
-              Consistent problem solving across data structures, algorithms, and real-world patterns.
-            </p>
-
-            {/* Difficulty Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto mt-10 mb-16">
-              {difficultyStats.map((ds, i) => (
-                <motion.div
-                  key={ds.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1, duration: 0.5 }}
-                  className="group relative p-6 rounded-2xl border border-white/10 bg-[#0b1220]/60 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)]"
-                >
-                  <div className="relative z-10">
-                    <p className="text-sm tracking-widest uppercase text-white/40 mb-3">
-                      {ds.label}
-                    </p>
-                    <div className={`text-3xl md:text-4xl font-semibold ${ds.color} transition-transform duration-300 group-hover:scale-110`}>
-                      <CountUp end={ds.value} />
+                <div className="grid grid-cols-2 gap-4 mb-8">
+                  <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col items-center justify-center text-center">
+                    <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-2">Solved</p>
+                    <p className="text-5xl font-black text-white">25<span className="text-blue-400">+</span></p>
+                  </div>
+                  <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col justify-center space-y-4">
+                    <div>
+                      <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rating</p>
+                      <p className="text-2xl font-bold text-gray-400">366</p>
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rank</p>
+                      <p className="text-xl font-bold text-gray-300">Newbie</p>
                     </div>
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                </div>
+              </div>
 
-            <a
-              href="https://leetcode.com/u/invisiblemanfromheart/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-sm font-medium text-cyan-400 hover:text-white hover:underline transition-colors group"
-            >
-              <span>View Full Profile</span>
-              <ExternalLink size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </a>
-          </motion.div>
+              <a
+                href="https://codeforces.com/profile/priyanshuguptacoder"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center w-full gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-blue-500/10 text-white font-bold text-sm border border-white/10 hover:border-blue-500/50 transition-all group mt-auto"
+              >
+                View Codeforces Profile <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-blue-400" />
+              </a>
+            </motion.div>
+          </div>
         </div>
       </section>
     </>

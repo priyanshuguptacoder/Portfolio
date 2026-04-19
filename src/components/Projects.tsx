@@ -65,7 +65,7 @@ const ProjectCard = ({
       {/* Core */}
       <div className="mt-6">
         <p className="text-xs text-white/40 uppercase mb-3">
-          Core Implementations
+          Key Work
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -138,16 +138,13 @@ const Projects = () => (
       <ProjectCard
         title="Competitive Programming Tracker"
         isFeatured={true}
-        problem="Developers lack a unified system to track performance across platforms like LeetCode and Codeforces."
-        solution="Built a full-stack system with API-based syncing, streak tracking, and analytics dashboard."
-        impact="Improved consistency and preparation through centralized tracking."
+        problem="No unified system to track performance across platforms."
+        solution="Built full-stack app with API-based syncing and analytics dashboard."
+        impact="Improved consistency and centralized tracking."
         coreFocus={[
-          "Cross-platform integration",
-          "Streak tracking logic",
-          "REST API sync pipelines",
-          "MongoDB schema design",
-          "Analytics dashboard",
-          "Scalable backend"
+          "Designed backend APIs (Node.js / Express)",
+          "Built database schema (MongoDB)",
+          "Implemented core analytics and streak logic"
         ]}
         tech={["React", "Node.js", "Express", "MongoDB"]}
         github="https://github.com/priyanshuguptacoder/LeetCode-Tracker"
@@ -161,12 +158,9 @@ const Projects = () => (
         solution="Built a role-based system with secure authentication and centralized data."
         impact="Reduced admin workload and improved efficiency."
         coreFocus={[
-          "JWT authentication",
-          "Database operations",
-          "Resource management",
-          "File uploads",
-          "Request handling",
-          "Audit logs"
+          "Designed backend APIs (Node.js)",
+          "Built database schema (MongoDB)",
+          "Implemented secure multi-role OAuth authentication"
         ]}
         tech={["React Native", "Node.js", "MongoDB"]}
         github="https://github.com/priyanshuguptaiit99/hostelpriyanshu"

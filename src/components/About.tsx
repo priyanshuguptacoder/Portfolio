@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Download, Trophy, Server, Award, Code2, BookOpen, GraduationCap, Medal, Brain } from "lucide-react";
+import { Download, Trophy, Server, Award, Code2, BookOpen, GraduationCap, Medal, Brain, Zap } from "lucide-react";
 
 const education = [
   {
@@ -31,9 +31,9 @@ const skillsSummary = [
 ];
 
 const coreStrengths = [
-  { title: "Data Structures & Algorithms", detail: "250+ problems solved across patterns", icon: Code2 },
-  { title: "Backend Development", detail: "APIs, authentication, database design", icon: Server },
-  { title: "System Thinking", detail: "Scalable architecture and optimization mindset", icon: Brain },
+  { title: "Backend system design and API efficiency", icon: Server },
+  { title: "Data structures & algorithmic problem solving", icon: Code2 },
+  { title: "Competitive programming for speed and precision", icon: Zap },
 ];
 
 const About = () => {
@@ -42,7 +42,7 @@ const About = () => {
   const tabs = [
     { id: "skills", label: "Skills", icon: Code2 },
     { id: "education", label: "Education", icon: GraduationCap },
-    { id: "strengths", label: "Core Strengths", icon: Award },
+    { id: "strengths", label: "What I Focus On", icon: Award },
   ];
 
   return (
@@ -54,9 +54,7 @@ const About = () => {
             <p className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-4 font-bold">Engineering Background</p>
             <h2 className="font-heading text-4xl sm:text-5xl font-black text-white mb-8">About Me</h2>
             <p className="text-white/50 text-base sm:text-lg leading-relaxed font-light max-w-2xl mx-auto">
-              I am a Computer Science undergraduate focused on backend systems, problem solving, and scalable application development.
-              I build real-world applications with efficient APIs, optimized database design, and clean architecture.
-              I have solved 250+ problems on LeetCode, strengthening my understanding of data structures, algorithms, and system thinking.
+              I build backend systems and focus on writing efficient, scalable APIs. Alongside development, I consistently practice data structures and algorithms and actively improve problem-solving speed through competitive programming.
             </p>
           </div>
 
@@ -146,7 +144,6 @@ const About = () => {
                       </div>
                       <div>
                         <h4 className="font-bold text-white text-sm mb-1">{s.title}</h4>
-                        <p className="text-white/50 text-[11px] leading-relaxed">{s.detail}</p>
                       </div>
                     </div>
                   ))}

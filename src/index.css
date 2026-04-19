@@ -55,101 +55,68 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ── Premium Card: Refined Animation System ─────────────────── */
+/* ── Premium Card: Featured Animations ──────────────────────── */
 
-/* Subtle idle float — barely noticeable, 2px max */
-@keyframes card-idle-float {
+@keyframes card-border-flow {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes card-glow-breathe {
+  0%, 100% { opacity: 0.18; }
+  50%      { opacity: 0.28; }
+}
+
+@keyframes card-micro-float {
   0%, 100% { transform: translateY(0px); }
-  50%      { transform: translateY(-2px); }
+  50%      { transform: translateY(-4px); }
 }
 
-/* Very soft glow pulse — 0.08 to 0.14 opacity range */
-@keyframes card-glow-pulse {
-  0%, 100% { opacity: 0.08; }
-  50%      { opacity: 0.14; }
-}
-
-/* Light sweep — translateX driven for performance */
-@keyframes card-light-sweep {
-  0%   { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-/* ── Featured card (center / active) ──
-   Slightly brighter border, gentle idle motion, soft glow.
-   NOT loud — barely noticeable. */
+/* Featured card wrapper */
 .premium-card-featured {
-  border-color: rgba(255, 255, 255, 0.10) !important;
-  animation: card-idle-float 4s ease-in-out infinite;
-  will-change: transform;
+  border: 2px solid transparent;
+  background:
+    linear-gradient(#0b1220, #0b1220) padding-box,
+    linear-gradient(120deg,
+      rgba(0, 200, 255, 0.9),
+      rgba(0, 120, 255, 0.5),
+      rgba(0, 200, 255, 0.9),
+      rgba(0, 120, 255, 0.5),
+      rgba(0, 200, 255, 0.9)
+    ) border-box;
+  background-size: 200% 200%;
+  animation:
+    card-border-flow 4s linear infinite,
+    card-micro-float 4s ease-in-out infinite;
+  box-shadow:
+    0 0 30px rgba(0, 180, 255, 0.35),
+    0 0 80px rgba(0, 120, 255, 0.18);
+  filter: drop-shadow(0 0 40px rgba(0, 120, 255, 0.15));
 }
 
-/* Soft glow pulse via pseudo — transform/opacity only */
+/* Glow breathing via pseudo-element — avoids layout reflow */
 .premium-card-featured::after {
   content: '';
   position: absolute;
-  inset: -1px;
-  border-radius: 25px;
-  box-shadow: 0 0 18px rgba(0, 120, 255, 0.10);
-  opacity: 0.08;
-  animation: card-glow-pulse 4s ease-in-out infinite;
+  inset: -2px;
+  border-radius: 26px;
+  box-shadow:
+    0 0 35px rgba(0, 180, 255, 0.25),
+    0 0 80px rgba(0, 120, 255, 0.12);
+  opacity: 0.18;
+  animation: card-glow-breathe 3s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
 }
 
-/* ── Light sweep overlay ──
-   Moves across card on hover for a premium reflective feel */
-.premium-card-sweep {
-  overflow: hidden;
-  transition: opacity 0.28s ease-out;
-}
-
-.premium-card-sweep::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.05) 50%,
-    transparent 100%
-  );
-  transform: translateX(-100%);
-  pointer-events: none;
-}
-
-.group\/card:hover .premium-card-sweep::after {
-  animation: card-light-sweep 0.6s ease-out forwards;
-}
-
-/* ── Mobile: disable scale & idle animation for performance ── */
-@media (max-width: 767px) {
-  .premium-card-featured {
-    animation: none;
-  }
-  .premium-card-featured::after {
-    animation: none;
-    opacity: 0.08;
-  }
-  .premium-card-sweep {
-    display: none;
-  }
-}
-
-/* ── Reduced motion preference ── */
 @media (prefers-reduced-motion: reduce) {
   .premium-card-featured {
     animation: none;
+    filter: none;
   }
   .premium-card-featured::after {
     animation: none;
-    opacity: 0.08;
-  }
-  .premium-card-sweep::after {
-    animation: none !important;
+    opacity: 0.18;
   }
 }
 

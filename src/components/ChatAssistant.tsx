@@ -19,30 +19,49 @@ const RESPONSES: Record<string, ResponseData> = {
   },
   identity: {
     lines: [
-      "I'm Priyanshu’s portfolio assistant — I help you quickly explore his work, projects, and problem-solving background.",
+      "I'm Priyanshu's portfolio assistant - I help you quickly explore his work, projects, and problem-solving background.",
+      "Ask me anything about his projects, skills, or how to reach him."
     ],
   },
   about: {
     lines: [
-      "Priyanshu is a backend-focused developer. He’s solved 280+ DSA problems and actively improves through competitive programming on Codeforces.",
-      "Most of his work focuses on building scalable APIs and real-world systems."
+      "Priyanshu is a backend-focused developer. He's solved 280+ DSA problems and actively improves through competitive programming on Codeforces.",
+      "Most of his work focuses on building scalable APIs and real-world systems.",
+      "Want to see his projects or problem-solving stats?"
     ],
   },
-  projects: {
+  projects_overview: {
     lines: [
       "He builds backend-focused applications with API design and clean architecture.",
-      "Want me to show his best project?"
+      "Want me to show his strongest project?"
     ],
+  },
+  projects_detailed: {
+    lines: [
+      "His strongest work is the Competitive Programming Tracker - REST API sync pipelines, streak logic, and a scalable Node.js/MongoDB backend.",
+      "Want to see his tech stack or problem-solving stats?"
+    ],
+    showCta: true,
   },
   dsa: {
     lines: [
-      "He has solved 280+ problems on LeetCode and is actively improving on Codeforces.",
-      "Strong focus on patterns, consistency, and contest performance."
+      "280+ problems on LeetCode with strong coverage across arrays, graphs, DP, and greedy. Contest rating: 1469.",
+      "Actively building speed and accuracy through Codeforces contests.",
+      "Want to see his projects or tech stack?"
     ],
   },
   skills: {
     lines: [
-      "Focused on backend development, APIs, databases, and strong DSA fundamentals."
+      "Focused on backend development - Node.js, Express, MongoDB - with strong DSA fundamentals.",
+      "He prioritizes scalable architecture over surface-level features.",
+      "Want to see how he applies this in his projects?"
+    ],
+  },
+  internship: {
+    lines: [
+      "Yes - he's actively open to backend-focused internships and available immediately.",
+      "Looking for teams building scalable or impactful backend systems.",
+      "Want to grab his email?"
     ],
   },
   contact: {
@@ -51,87 +70,82 @@ const RESPONSES: Record<string, ResponseData> = {
       "No forms, no friction."
     ],
     showCta: true,
-  }
+  },
+  resume: {
+    lines: [
+      "You can download his resume from the About section, or email him for the latest version.",
+      "Want to explore his projects instead?"
+    ],
+  },
 };
 
-const FOLLOW_UP = "Want to see his projects or problem-solving stats?";
-
-const QUICK_ACTIONS = [
-  { label: "🚀 View Projects", key: "projects" },
-  { label: "🧠 Problem Solving", key: "dsa" },
-  { label: "⚙️ Tech Stack", key: "skills" },
-  { label: "📩 Contact", key: "contact" },
+const FALLBACKS: ResponseData[] = [
+  {
+    lines: [
+      "I can walk you through his projects, backend work, or problem-solving stats.",
+      "What are you curious about?"
+    ],
+  },
+  {
+    lines: [
+      "Try asking about his projects, LeetCode stats, tech stack, or how to reach him.",
+    ],
+  },
+  {
+    lines: [
+      "Not sure I caught that - here's what I know well: projects, skills, DSA stats, and contact info.",
+    ],
+  },
 ];
 
-// Normalize and match
-let fallbackCount = 0;
+// Intent detection
+let fallbackIndex = 0;
 
 function normalize(input: string): string {
   return input
     .toLowerCase()
-    .trim()
     .replace(/[^a-z0-9\s]/g, "")
-    .replace(/\s+/g, " ");
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function matchResponse(input: string): ResponseData {
   const q = normalize(input);
   const has = (...tokens: string[]) => tokens.some(t => q.includes(t));
 
-  // Identity/Name
-  if (has("name", "who are you", "who is this", "what is your name", "whats your name", "who are u")) {
-    fallbackCount = 0;
+  if (has("hello", "hey", "howdy", "sup") || q === "hi")
+    return RESPONSES.greeting;
+
+  if (has("who are you", "what are you", "what can you do", "your name", "what your name", "whats your name", "who is this"))
     return RESPONSES.identity;
-  }
 
-  // About
-  if (has("about", "who is priyanshu", "tell me about", "bio", "background", "introduce")) {
-    fallbackCount = 0;
+  if (has("who is priyanshu", "tell me about", "about him", "about priyanshu", "what does he do", "what he do", "introduce"))
     return RESPONSES.about;
-  }
 
-  // Projects
-  if (has("project", "built", "build", "portfolio", "work", "apps", "application")) {
-    fallbackCount = 0;
-    return RESPONSES.projects;
-  }
+  if (has("best project", "strongest", "top project", "main project") || (has("project") && has("detail")))
+    return RESPONSES.projects_detailed;
 
-  // DSA
-  if (has("leetcode", "codeforces", "dsa", "problem", "solve", "solving", "stat", "rating", "contest")) {
-    fallbackCount = 0;
+  if (has("project", "work", "built", "build", "system", "api", "portfolio"))
+    return RESPONSES.projects_overview;
+
+  if (has("dsa", "leetcode", "leet code", "codeforces", "code forces", "algorithm", "contest", "competitive", "problem solv", "solved"))
     return RESPONSES.dsa;
-  }
 
-  // Skills
-  if (has("skill", "tech", "stack", "language", "node", "backend", "mongo", "javascript", "typescript")) {
-    fallbackCount = 0;
+  if (has("skill", "tech", "stack", "language", "node", "mongo", "backend", "frontend", "database", "express", "tool"))
     return RESPONSES.skills;
-  }
 
-  // Contact
-  if (has("contact", "email", "reach", "reach him", "hire", "hire him", "touch", "mail")) {
-    fallbackCount = 0;
+  if (has("intern", "available", "hire", "hiring", "job", "role", "open to", "looking for"))
+    return RESPONSES.internship;
+
+  if (has("contact", "email", "reach", "connect", "mail", "touch"))
     return RESPONSES.contact;
-  }
 
-  // Fallback system with state awareness
-  fallbackCount++;
-  
-  if (fallbackCount > 1) {
-    return {
-      lines: [
-        "I'm still learning! Try searching for 'projects', 'DSA', or 'contact'.",
-        "Or use the quick actions below to navigate."
-      ]
-    };
-  }
+  if (has("resume", "cv", "download"))
+    return RESPONSES.resume;
 
-  return {
-    lines: [
-      "I can walk you through his projects, backend work, or problem-solving stats.",
-      "What are you curious about?"
-    ]
-  };
+  const fb = FALLBACKS[fallbackIndex % FALLBACKS.length];
+  fallbackIndex++;
+  return fb;
 }
 
 // Types
@@ -143,6 +157,13 @@ interface Message {
   showCta?: boolean;
   showActions?: boolean;
 }
+
+const QUICK_ACTIONS = [
+  { label: "View Projects", key: "projects" },
+  { label: "Problem Solving", key: "dsa" },
+  { label: "Tech Stack", key: "skills" },
+  { label: "Contact", key: "contact" },
+];
 
 // Sub-components
 const BotMessage = ({ msg }: { msg: Message }) => (
@@ -215,6 +236,7 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
         "Hey - I can walk you through Priyanshu's work, projects, and problem-solving background.",
         "Want a quick overview or looking for something specific?"
       ],
+      showCta: false,
       showActions: true,
     },
   ]);
@@ -240,22 +262,9 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
     setTimeout(() => {
       const data = matchResponse(text);
       setIsTyping(false);
-      
-      // Add follow-up if it's not a fallback and not the identity response (or actually user said follow up on all)
-      const finalLines = [...data.lines];
-      if (fallbackCount === 0) {
-        finalLines.push(FOLLOW_UP);
-      }
-
       setMessages((prev) => [
         ...prev,
-        { 
-          id: idRef.current++, 
-          role: "bot" as const, 
-          lines: finalLines, 
-          showCta: data.showCta, 
-          showActions: true 
-        },
+        { id: idRef.current++, role: "bot" as const, lines: data.lines, showCta: data.showCta, showActions: true },
       ]);
     }, 450 + Math.random() * 200);
   };

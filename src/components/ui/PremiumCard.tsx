@@ -10,45 +10,50 @@ export const PremiumCard = ({ children, className, isActive, ...props }: CardPro
   return (
     <div
       className={cn(
-        "group/card relative rounded-[24px]",
-        "bg-[#020617]",
-        
-        // ── Default cards: clean, static, hover-only ──
-        !isActive && [
-          "border border-white/5",
-          "shadow-[0_0_8px_rgba(0,120,255,0.03)]",
-          "transition-all duration-[250ms] ease-out",
-          "translate-y-0",
-          // Hover micro-float + scale + glow
-          "md:hover:-translate-y-[6px] md:hover:scale-[1.03] md:hover:z-20",
-          "md:hover:border-[#00b4ff]/30",
-          "md:hover:shadow-[0_0_14px_rgba(0,120,255,0.12),0_0_40px_rgba(0,120,255,0.06)]",
-        ],
-        
-        // ── Featured card: animated gradient border + float + glow ──
+        "group/card relative rounded-[24px] overflow-hidden",
+
+        // ── Clean base style (all cards) ──
+        "border border-white/[0.06]",
+        "transition-all duration-[280ms] ease-out",
+        "translate-y-0",
+
+        // ── Featured card class ──
         isActive && "premium-card-featured",
-        
-        // Active click compression (both)
+
+        // ── Premium hover animation (all cards) ──
+        "md:hover:-translate-y-[6px] md:hover:scale-[1.025] md:hover:z-20",
+        "md:hover:border-white/[0.15]",
+        "md:hover:shadow-[0_12px_45px_rgba(0,120,255,0.18)]",
+
+        // Active click compression
         "active:scale-[0.98]",
-        
-        // Sibling dimming
-        "opacity-100 md:group-hover/cards:opacity-90 md:hover:!opacity-100",
-        
+
         // Text contrast cascade on hover
         "[&_h3]:transition-colors [&_h3]:duration-300 [&_h3]:ease-out md:hover:[&_h3]:text-white",
         "[&_p]:transition-colors [&_p]:duration-300 [&_p]:ease-out md:hover:[&_p]:text-white/80",
-        
-        // Hover transition for featured card
-        isActive && "transition-[transform,filter] duration-[250ms] ease-out md:hover:-translate-y-[6px] md:hover:scale-[1.03] md:hover:z-20",
-        
+
         className
       )}
+      style={{
+        background: "linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.2)), rgba(10, 18, 32, 0.9)",
+        boxShadow: isActive
+          ? "0 8px 30px rgba(0,0,0,0.4), 0 0 18px rgba(0,120,255,0.10)"
+          : "0 8px 30px rgba(0,0,0,0.4)",
+      }}
       {...props}
     >
+      {/* Light sweep overlay — premium reflective effect on hover */}
+      <div
+        className="premium-card-sweep pointer-events-none absolute inset-0 z-[5] opacity-0 md:group-hover/card:opacity-100"
+        aria-hidden="true"
+      />
+
       {/* Structural depth panel */}
       <div className={cn(
         "absolute inset-[1px] rounded-[23px] pointer-events-none transition-colors duration-300",
-        isActive ? "bg-[rgba(8,16,35,0.7)] md:group-hover/card:bg-[rgba(8,16,35,0.5)]" : "bg-[rgba(10,20,40,0.6)] md:group-hover/card:bg-[rgba(10,20,40,0.4)]"
+        isActive
+          ? "bg-[rgba(8,16,35,0.5)] md:group-hover/card:bg-[rgba(8,16,35,0.35)]"
+          : "bg-[rgba(10,20,40,0.5)] md:group-hover/card:bg-[rgba(10,20,40,0.35)]"
       )} />
 
       {/* Content */}

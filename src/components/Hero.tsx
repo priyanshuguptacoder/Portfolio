@@ -230,7 +230,7 @@ const Hero = () => {
                 key={s.label}
                 variants={itemVariants}
               >
-                <PremiumCard isActive={s.isDominant} className={`h-full ${!s.isDominant && i === 2 ? "opacity-75 grayscale md:hover:opacity-100 md:hover:grayscale-0" : ""}`}>
+                <PremiumCard isActive={s.isDominant} className="h-full">
                   <div className="p-8 flex flex-col items-center text-center h-full">
                     <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-colors duration-300 ${
                       s.isDominant ? "bg-cyan-500/10 text-cyan-400 group-hover/card:bg-cyan-500/20" : "bg-white/5 text-white/40 group-hover/card:bg-cyan-500/20 group-hover/card:text-cyan-400"

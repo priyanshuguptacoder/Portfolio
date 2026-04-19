@@ -119,31 +119,35 @@ const Hero = () => {
                 </span>
               </motion.h1>
 
-              {/* Role */}
-              <motion.p
-                variants={itemVariants}
-                className="text-base sm:text-[17px] font-bold text-white mb-7 leading-[1.7] tracking-normal"
-              >
-                CSE '29 @ NIT Jalandhar
-                <span className="text-white/40 mx-1.5">·</span>
-                Web Developer
-                <span className="text-white/40 mx-1.5">·</span>
-                Data Structures &amp; Algorithms
-                <span className="text-white/40 mx-1.5">·</span>
-                300+ Problems (LeetCode)
-                <span className="text-white/40 mx-1.5">·</span>
-                Competitive Programmer
-              </motion.p>
+              {/* Role — 2-line structure */}
+              <motion.div variants={itemVariants} className="mb-5">
+                {/* Line 1 */}
+                <p className="text-base sm:text-lg font-medium text-white leading-snug mb-1.5">
+                  CSE '29 @ NIT Jalandhar
+                  <span className="text-white/30 mx-2">·</span>
+                  Web Developer
+                </p>
+                {/* Line 2 */}
+                <p className="text-sm sm:text-base font-normal text-white/65 leading-snug">
+                  Data Structures &amp; Algorithms
+                  <span className="text-white/30 mx-2">·</span>
+                  <span className="font-semibold text-cyan-400">300+ Problems (LeetCode)</span>
+                  <span className="text-white/30 mx-2">·</span>
+                  Competitive Programmer
+                </p>
+              </motion.div>
 
               {/* Description */}
               <motion.p
                 variants={itemVariants}
-                className="text-[15px] sm:text-base text-white/70 max-w-[600px] mx-auto lg:mx-0 mb-10 leading-[1.8] font-semibold"
+                className="text-sm sm:text-[15px] text-white/55 max-w-[580px] mx-auto lg:mx-0 mb-10 leading-[1.75] font-normal"
               >
-                Web developer focused on building scalable and efficient applications.{" "}
-                CSE undergraduate at NIT Jalandhar with strong foundations in Data Structures and Algorithms —{" "}
-                300+ problems solved on LeetCode.{" "}
-                Competitive programmer actively solving problems on Codeforces.
+                Web developer focused on building scalable and efficient applications.
+                CSE undergraduate at NIT Jalandhar with strong foundations in Data Structures and Algorithms.
+                Solved{" "}
+                <span className="text-white/80 font-medium">300+ problems on LeetCode</span>
+                {" "}and actively competing on{" "}
+                <span className="text-white/80 font-medium">Codeforces</span>.
               </motion.p>
 
               {/* CTAs */}
@@ -235,23 +239,19 @@ const Hero = () => {
               <motion.div
                 key={s.label}
                 variants={itemVariants}
+                className="h-full"
               >
-                {/* Staggered float delay: 0s, 0.5s, 1s */}
+                {/* Staggered float: card1=0s, card2=0.5s, card3=1s */}
                 <div
-                  className="h-full stats-card rounded-[24px] border border-white/[0.06]"
-                  style={{ animationDelay: `${i * 0.5}s, ${i * 0.5}s` }}
+                  className="stats-card h-full"
+                  style={{ animationDelay: `${i * 0.5}s` }}
                 >
-                  <PremiumCard
-                    isActive={s.isDominant}
-                    className="h-full"
-                    style={{ animation: "none", background: "transparent", border: "none", boxShadow: "none" }}
-                  >
-                  <div className="p-8 flex flex-col items-center text-center h-full">
+                  <div className="relative z-10 p-8 flex flex-col items-center text-center h-full">
                     <div
                       className={`stats-icon w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-colors duration-300 ${
                         s.isDominant
-                          ? "bg-cyan-500/10 text-cyan-400 group-hover/card:bg-cyan-500/20"
-                          : "bg-white/[0.06] text-white/70 group-hover/card:bg-cyan-500/20 group-hover/card:text-cyan-400"
+                          ? "bg-cyan-500/10 text-cyan-400"
+                          : "bg-white/[0.06] text-white/70"
                       }`}
                       style={{ animationDelay: `${i * 0.3}s` }}
                     >
@@ -261,7 +261,7 @@ const Hero = () => {
                       <CountUp end={s.value} suffix={s.suffix} />
                     </div>
                     <h3 className="text-[11px] font-bold text-white/80 mb-2 uppercase tracking-[0.2em]">{s.label}</h3>
-                    <p className="text-xs text-white/40 leading-relaxed font-light group-hover/card:text-white/70 transition-colors duration-300 mb-4">{s.detail}</p>
+                    <p className="text-xs text-white/40 leading-relaxed font-light mb-4">{s.detail}</p>
 
                     {s.extraInfo && (
                       <p className="text-sm font-semibold text-cyan-400 mt-auto mb-3">{s.extraInfo}</p>
@@ -277,7 +277,6 @@ const Hero = () => {
                       </a>
                     )}
                   </div>
-                  </PremiumCard>
                 </div>
               </motion.div>
             ))}

@@ -120,51 +120,107 @@
   50%      { transform: translateY(-2px); }
 }
 
-/* ── Stats card: always-on float + glow + border shimmer ── */
+/* ── Stats card: always-on animated border + float + glow ── */
+
+/* Border flow keyframe */
+@keyframes borderFlow {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Soft float for stats cards */
+@keyframes floatSoft {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-3px); }
+}
+
 .stats-card {
   position: relative;
   overflow: hidden;
-  animation:
-    subtleFloat 6s ease-in-out infinite,
-    glowPulse   5s ease-in-out infinite;
+  background: rgba(10, 18, 32, 0.9);
+  border-radius: 24px;
+  /* Thin static base border — masked animated border sits on top */
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  /* Subtle inner glow — no outer blob */
+  box-shadow:
+    0 8px 30px rgba(0, 0, 0, 0.4),
+    inset 0 0 10px rgba(0, 120, 255, 0.05);
+  /* Always-on float */
+  animation: floatSoft 6s ease-in-out infinite;
   transition:
     transform   0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow  0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow  0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Border shimmer overlay */
+/* Animated border via mask technique — sharp, not blobby */
+.stats-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    120deg,
+    rgba(0, 180, 255, 0.15),
+    rgba(0, 120, 255, 0.55),
+    rgba(0, 200, 255, 0.15),
+    rgba(0, 120, 255, 0.55),
+    rgba(0, 180, 255, 0.15)
+  );
+  background-size: 200% 200%;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: borderFlow 4s linear infinite;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Light sweep on hover */
 .stats-card::after {
   content: "";
   position: absolute;
   inset: 0;
-  border-radius: inherit;
   background: linear-gradient(
     120deg,
-    transparent 0%,
-    rgba(0, 180, 255, 0.18) 50%,
-    transparent 100%
+    transparent,
+    rgba(255, 255, 255, 0.06),
+    transparent
   );
-  background-size: 200% 200%;
-  opacity: 0.15;
-  animation: card-border-flow 6s linear infinite;
+  opacity: 0;
+  transform: translateX(-100%);
   pointer-events: none;
   z-index: 1;
+  transition: opacity 0.3s ease;
 }
 
-/* Hover: lift + scale + glow boost */
+/* Hover: lift + scale + faster border + sweep */
 @media (hover: hover) {
   .stats-card:hover {
-    transform: translateY(-6px) scale(1.03);
+    transform: translateY(-8px) scale(1.04);
     box-shadow:
-      0 18px 50px rgba(0, 120, 255, 0.18),
-      0 8px 24px rgba(0, 0, 0, 0.45);
-    border-color: rgba(0, 180, 255, 0.4) !important;
+      0 20px 60px rgba(0, 120, 255, 0.22),
+      0 8px 24px rgba(0, 0, 0, 0.5),
+      inset 0 0 12px rgba(0, 120, 255, 0.07);
     animation-play-state: paused;
+  }
+
+  .stats-card:hover::before {
+    opacity: 1;
+    animation-duration: 2s;
+  }
+
+  .stats-card:hover::after {
+    opacity: 1;
+    transform: translateX(100%);
+    transition: transform 0.6s ease, opacity 0.3s ease;
   }
 }
 
-/* Icon float — applied via class on icon wrapper */
+/* Icon float */
 .stats-icon {
   animation: iconFloat 3s ease-in-out infinite;
 }
@@ -174,9 +230,9 @@
   .stats-card {
     animation: none !important;
   }
-  .stats-card::after {
+  .stats-card::before {
     animation: none !important;
-    opacity: 0.08;
+    opacity: 0.35;
   }
   .stats-icon {
     animation: none !important;
@@ -189,9 +245,9 @@
   .stats-icon {
     animation: none !important;
   }
-  .stats-card::after {
+  .stats-card::before {
     animation: none !important;
-    opacity: 0;
+    opacity: 0.2;
   }
 }
 

@@ -127,17 +127,26 @@ const Hero = () => {
               {/* Role */}
               <motion.p
                 variants={itemVariants}
-                className="text-xl sm:text-2xl font-bold text-white/90 mb-6 tracking-tight"
+                className="text-base sm:text-lg font-semibold text-white/75 mb-6 tracking-tight leading-relaxed"
               >
-                Backend-Focused Developer | 280+ DSA Problems Solved | Competitive Programmer
+                <span className="text-white font-bold">CSE '29 @ NIT Jalandhar</span>
+                {" "}·{" "}Web Developer
+                {" "}·{" "}Data Structures & Algorithms
+                {" "}·{" "}<span className="text-white font-bold">300+ Problems (LeetCode)</span>
+                {" "}·{" "}Competitive Programmer
               </motion.p>
 
               {/* Description */}
               <motion.p
                 variants={itemVariants}
-                className="text-base sm:text-lg text-white/55 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed font-light"
+                className="text-base sm:text-[17px] text-white/50 max-w-[600px] mx-auto lg:mx-0 mb-10 leading-[1.75] font-light"
               >
-                Backend-focused developer building scalable systems and APIs. Solved 280+ DSA problems on LeetCode and actively improving through competitive programming on Codeforces.
+                Web developer focused on building scalable and efficient applications.{" "}
+                CSE undergraduate at{" "}
+                <span className="text-white/75 font-medium">NIT Jalandhar</span>{" "}
+                with strong foundations in Data Structures and Algorithms —{" "}
+                <span className="text-white/75 font-medium">300+ problems solved on LeetCode</span>.{" "}
+                Competitive programmer actively solving problems on Codeforces.
               </motion.p>
 
               {/* CTAs */}
@@ -230,15 +239,15 @@ const Hero = () => {
                 key={s.label}
                 variants={itemVariants}
               >
-                <PremiumCard isActive={s.isDominant} className={`h-full ${!s.isDominant && i === 2 ? "opacity-75 grayscale md:hover:opacity-100 md:hover:grayscale-0" : ""}`}>
+                <PremiumCard isActive={s.isDominant} className="h-full">
                   <div className="p-8 flex flex-col items-center text-center h-full">
                     <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-colors duration-300 ${
-                      s.isDominant ? "bg-cyan-500/10 text-cyan-400 group-hover/card:bg-cyan-500/20" : "bg-white/5 text-white/40 group-hover/card:bg-cyan-500/20 group-hover/card:text-cyan-400"
+                      s.isDominant ? "bg-cyan-500/10 text-cyan-400 group-hover/card:bg-cyan-500/20" : "bg-white/[0.06] text-white/70 group-hover/card:bg-cyan-500/20 group-hover/card:text-cyan-400"
                     }`}>
                       <s.icon size={22} />
                     </div>
                     <div className={`text-4xl sm:text-5xl font-black mb-2 tracking-tighter transition-colors duration-300 ${
-                      s.isDominant ? "text-white" : "text-white/80 group-hover/card:text-white"
+                      s.isDominant ? "text-white" : "text-white group-hover/card:text-white"
                     }`}>
                       <CountUp end={s.value} suffix={s.suffix} />
                     </div>

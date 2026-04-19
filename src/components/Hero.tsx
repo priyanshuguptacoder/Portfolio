@@ -122,15 +122,15 @@ const Hero = () => {
               {/* Role */}
               <motion.p
                 variants={itemVariants}
-                className="text-base sm:text-[17px] font-medium text-white/65 mb-7 leading-[1.7] tracking-normal"
+                className="text-base sm:text-[17px] font-bold text-white/80 mb-7 leading-[1.7] tracking-normal"
               >
-                <span className="font-semibold text-white">CSE '29 @ NIT Jalandhar</span>
+                <span className="text-white">CSE '29 @ NIT Jalandhar</span>
                 <span className="text-white/40 mx-1.5">·</span>
                 <span>Web Developer</span>
                 <span className="text-white/40 mx-1.5">·</span>
                 <span>Data Structures &amp; Algorithms</span>
                 <span className="text-white/40 mx-1.5">·</span>
-                <span className="font-semibold text-cyan-400">300+ Problems (LeetCode)</span>
+                <span className="text-cyan-400">300+ Problems (LeetCode)</span>
                 <span className="text-white/40 mx-1.5">·</span>
                 <span>Competitive Programmer</span>
               </motion.p>

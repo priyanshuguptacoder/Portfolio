@@ -203,30 +203,33 @@
   50%       { opacity: 1;   }
 }
 
-/* Featured card base */
+/* Featured card base — lighter background, bigger presence */
 .stats-card-featured {
-  background: rgba(6, 12, 26, 0.95);
-  /* Thick 2px border via box-shadow outline trick — always visible */
+  background: rgba(10, 20, 40, 0.88);  /* lighter than side cards, not pitch black */
+  border-radius: 20px;
+  /* Permanent thick visible blue outline */
   box-shadow:
-    0 0 0 2px rgba(0, 180, 255, 0.55),
-    0 16px 50px rgba(0, 0, 0, 0.7),
-    inset 0 0 20px rgba(0, 100, 220, 0.07);
+    0 0 0 2px rgba(0, 180, 255, 0.60),
+    0 20px 60px rgba(0, 0, 0, 0.55),
+    inset 0 0 30px rgba(0, 120, 255, 0.06);
   animation: floatSoft 4.5s ease-in-out infinite;
   animation-delay: 0.25s;
+  /* Scale up slightly — bigger than side cards */
+  transform: scale(1.04);
 }
 
-/* Animated border — thick, fast, bright */
+/* Animated border — thick 2px, bright cyan, fast sweep like LeetCode card */
 .stats-card-featured::before {
   background: linear-gradient(
     120deg,
-    rgba(0, 140, 255, 0.10),
-    rgba(0, 200, 255, 1.00),
-    rgba(0, 120, 255, 0.20),
-    rgba(0, 200, 255, 1.00),
-    rgba(0, 140, 255, 0.10)
+    rgba(0, 140, 255, 0.15),
+    rgba(0, 210, 255, 1.00),
+    rgba(0, 120, 255, 0.25),
+    rgba(0, 210, 255, 1.00),
+    rgba(0, 140, 255, 0.15)
   );
   background-size: 300% 300%;
-  padding: 2px;          /* thick 2px animated border */
+  padding: 2px;
   animation: borderMove 2s linear infinite;
   opacity: 1;
 }
@@ -241,14 +244,14 @@
   animation: depthPulse 3s ease-in-out infinite;
 }
 
-/* No hover transform on featured — always animated */
+/* No hover transform on featured — always animated, scale stays */
 @media (hover: hover) {
   .stats-card-featured:hover {
-    transform: none;
+    transform: scale(1.04);  /* keep the bigger size, no lift */
     box-shadow:
-      0 0 0 2px rgba(0, 180, 255, 0.55),
-      0 16px 50px rgba(0, 0, 0, 0.7),
-      inset 0 0 20px rgba(0, 100, 220, 0.07);
+      0 0 0 2px rgba(0, 180, 255, 0.60),
+      0 20px 60px rgba(0, 0, 0, 0.55),
+      inset 0 0 30px rgba(0, 120, 255, 0.06);
     animation-play-state: running;
   }
 
@@ -276,11 +279,14 @@
   animation: iconFloat 3s ease-in-out infinite;
 }
 
-/* Mobile — disable all animations */
+/* Mobile — disable animations but keep scale */
 @media (max-width: 767px) {
   .stats-card,
   .stats-card-featured {
     animation: none !important;
+  }
+  .stats-card-featured {
+    transform: scale(1.04);  /* keep bigger on mobile too */
   }
   .stats-card::before {
     animation: none !important;
@@ -288,7 +294,7 @@
   }
   .stats-card-featured::before {
     animation: none !important;
-    opacity: 0.5;
+    opacity: 0.7;
   }
   .stats-icon {
     animation: none !important;

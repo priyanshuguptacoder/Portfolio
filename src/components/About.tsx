@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Download, Trophy, Server, Award, Code2, BookOpen, GraduationCap, Medal, Brain, Zap } from "lucide-react";
+import { PremiumCard } from "@/components/ui/PremiumCard";
 
 const education = [
   {
@@ -91,7 +92,7 @@ const About = () => {
                       <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-white/10 group-last:h-4">
                         <div className="absolute top-4 -left-1 w-2.5 h-2.5 rounded-full bg-cyan-500 shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
                       </div>
-                      <div className="glass rounded-2xl p-6 transition-all duration-300 hover:border-cyan-500/30 group-hover:-translate-x-1">
+                      <PremiumCard className="p-6 transition-all duration-300 group-hover:-translate-x-1">
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
                           <h4 className="font-bold text-white text-lg leading-tight">{edu.degree}</h4>
                           <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest bg-cyan-400/10 px-2 py-1 rounded border border-cyan-400/20 w-fit">
@@ -100,7 +101,7 @@ const About = () => {
                         </div>
                         <p className="text-white/80 font-medium text-sm mb-2">{edu.institution}</p>
                         <p className="text-white/40 text-xs font-light leading-relaxed">{edu.details}</p>
-                      </div>
+                      </PremiumCard>
                     </div>
                   ))}
                 </motion.div>
@@ -115,7 +116,7 @@ const About = () => {
                   className="grid sm:grid-cols-2 gap-4"
                 >
                   {skillsSummary.map((skill, i) => (
-                    <div key={i} className="glass rounded-2xl p-6 transition-all duration-300 hover:border-cyan-500/20">
+                    <PremiumCard key={i} className="p-6">
                       <h4 className="text-cyan-400 font-mono text-[10px] tracking-widest uppercase mb-4 font-bold">{skill.category}</h4>
                       <div className="flex flex-wrap gap-2">
                         {skill.items.map((item) => (
@@ -124,7 +125,7 @@ const About = () => {
                           </span>
                         ))}
                       </div>
-                    </div>
+                    </PremiumCard>
                   ))}
                 </motion.div>
               )}
@@ -138,14 +139,14 @@ const About = () => {
                   className="grid sm:grid-cols-2 gap-4"
                 >
                   {coreStrengths.map((s, i) => (
-                    <div key={i} className="glass rounded-2xl p-6 transition-all duration-300 hover:border-cyan-500/20 flex gap-4">
+                    <PremiumCard key={i} className="p-6 flex gap-4 h-full flex-col sm:flex-row">
                       <div className="w-10 h-10 rounded-xl bg-cyan-400/10 flex items-center justify-center shrink-0">
                         <s.icon size={20} className="text-cyan-400" />
                       </div>
-                      <div>
+                      <div className="flex items-center">
                         <h4 className="font-bold text-white text-sm mb-1">{s.title}</h4>
                       </div>
-                    </div>
+                    </PremiumCard>
                   ))}
                 </motion.div>
               )}

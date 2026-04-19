@@ -4,6 +4,7 @@ import profileImg from "@/assets/profile.jpg";
 import { Code2, Trophy, Server, ExternalLink, Zap } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ParallaxLayer } from "@/components/ui/ParallaxLayer";
+import { PremiumCard } from "@/components/ui/PremiumCard";
 
 
 const stats = [
@@ -230,47 +231,37 @@ const Hero = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`group relative p-[1px] rounded-3xl transition-all duration-500 ${
-                  s.isDominant 
-                    ? "md:scale-110 z-10 bg-gradient-to-br from-cyan-500 to-blue-600 shadow-[0_0_40px_-5px_rgba(34,211,238,0.3)]" 
-                    : "bg-white/5 hover:bg-white/10"
-                }`}
               >
-                <div className={`bg-[#020617] rounded-[23px] p-8 h-full flex flex-col items-center text-center transition-all duration-300 ${
-                  !s.isDominant && i === 2 ? "opacity-60 grayscale hover:opacity-100 hover:grayscale-0" : ""
-                }`}>
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 ${
-                    s.isDominant ? "bg-cyan-500/20 text-cyan-400" : "bg-white/5 text-white/40"
-                  }`}>
-                    <s.icon size={22} />
+                <PremiumCard isActive={s.isDominant} className={`h-full ${!s.isDominant && i === 2 ? "opacity-75 grayscale md:hover:opacity-100 md:hover:grayscale-0" : ""}`}>
+                  <div className="p-8 flex flex-col items-center text-center h-full">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-colors duration-300 ${
+                      s.isDominant ? "bg-cyan-500/10 text-cyan-400 group-hover/card:bg-cyan-500/20" : "bg-white/5 text-white/40 group-hover/card:bg-cyan-500/20 group-hover/card:text-cyan-400"
+                    }`}>
+                      <s.icon size={22} />
+                    </div>
+                    <div className={`text-4xl sm:text-5xl font-black mb-2 tracking-tighter transition-colors duration-300 ${
+                      s.isDominant ? "text-white" : "text-white/80 group-hover/card:text-white"
+                    }`}>
+                      <CountUp end={s.value} suffix={s.suffix} />
+                    </div>
+                    <h3 className="text-[11px] font-bold text-white/80 mb-2 uppercase tracking-[0.2em]">{s.label}</h3>
+                    <p className="text-xs text-white/40 leading-relaxed font-light group-hover/card:text-white/70 transition-colors duration-300 mb-4">{s.detail}</p>
+                    
+                    {s.extraInfo && (
+                      <p className="text-sm font-semibold text-cyan-400 mt-auto mb-3">{s.extraInfo}</p>
+                    )}
+                    {s.linkUrl && (
+                      <a 
+                        href={s.linkUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-auto inline-flex items-center gap-1.5 text-[11px] font-bold text-white/60 hover:text-cyan-400 transition-colors duration-300 border border-white/10 hover:border-cyan-400/50 rounded-full px-4 py-1.5 z-20"
+                      >
+                        {s.linkText}
+                      </a>
+                    )}
                   </div>
-                  <div className={`text-4xl sm:text-5xl font-black mb-2 tracking-tighter transition-colors duration-300 ${
-                    s.isDominant ? "text-white" : "text-white/80 group-hover:text-white"
-                  }`}>
-                    <CountUp end={s.value} suffix={s.suffix} />
-                  </div>
-                  <h3 className="text-[11px] font-bold text-white/80 mb-2 uppercase tracking-[0.2em]">{s.label}</h3>
-                  <p className="text-xs text-white/40 leading-relaxed font-light group-hover:text-white/70 transition-colors mb-4">{s.detail}</p>
-                  
-                  {s.extraInfo && (
-                    <p className="text-sm font-semibold text-cyan-400 mt-auto mb-3">{s.extraInfo}</p>
-                  )}
-                  {s.linkUrl && (
-                    <a 
-                      href={s.linkUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-auto inline-flex items-center gap-1.5 text-[11px] font-bold text-white/60 hover:text-cyan-400 transition-colors border border-white/10 hover:border-cyan-400/50 rounded-full px-4 py-1.5 z-20"
-                    >
-                      {s.linkText}
-                    </a>
-                  )}
-                </div>
-                
-                {/* Extra glow for dominant card */}
-                {s.isDominant && (
-                  <div className="absolute inset-0 bg-cyan-400/20 blur-2xl rounded-full -z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                )}
+                </PremiumCard>
               </motion.div>
             ))}
           </div>
@@ -296,10 +287,10 @@ const Hero = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-[#0b1220]/60 backdrop-blur-md rounded-3xl p-8 lg:p-12 border border-white/10 relative overflow-hidden group hover:border-cyan-500/30 transition-all duration-500 flex flex-col"
+              className="flex flex-col"
             >
-              <div className="absolute inset-0 bg-cyan-400/5 opacity-0 group-hover:opacity-100 transition-opacity blur-2xl" />
-              <div className="relative z-10 flex-1">
+              <PremiumCard className="flex-1 h-full flex flex-col p-8 lg:p-12 group/card">
+                <div className="relative z-10 flex-1 flex flex-col">
                 <h3 className="text-2xl font-black text-white mb-2">LeetCode Performance</h3>
                 <p className="text-sm text-white/50 mb-8 leading-relaxed font-light">
                   Consistent DSA practice with focus on pattern recognition and interview-level problem solving.
@@ -359,6 +350,7 @@ const Hero = () => {
               >
                 View LeetCode Profile <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-cyan-400" />
               </a>
+              </PremiumCard>
             </motion.div>
 
             {/* BLOCK 2: CODEFORCES */}
@@ -367,10 +359,10 @@ const Hero = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="bg-[#0b1220]/60 backdrop-blur-md rounded-3xl p-8 lg:p-12 border border-white/10 relative overflow-hidden group hover:border-blue-500/30 transition-all duration-500 flex flex-col"
+              className="flex flex-col"
             >
-              <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity blur-2xl" />
-              <div className="relative z-10 flex-1">
+              <PremiumCard className="flex-1 h-full flex flex-col p-8 lg:p-12 group/card">
+                <div className="relative z-10 flex-1 flex flex-col">
                 <h3 className="text-2xl font-black text-white mb-2">Competitive Programming<br/><span className="text-lg text-white/60">(Codeforces)</span></h3>
                 <p className="text-sm text-white/50 mb-8 leading-relaxed font-light">
                   Focusing on improving speed, implementation, and contest performance under pressure.
@@ -402,6 +394,7 @@ const Hero = () => {
               >
                 View Codeforces Profile <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-blue-400" />
               </a>
+              </PremiumCard>
             </motion.div>
           </div>
         </div>

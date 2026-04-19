@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { PremiumCard } from "@/components/ui/PremiumCard";
 
 interface ProjectProps {
   title: string;
@@ -31,7 +32,7 @@ const ProjectCard = ({
     viewport={{ once: true }}
     className="mb-10"
   >
-    <div className="bg-[#020617]/80 border border-white/10 rounded-2xl p-5 sm:p-8 backdrop-blur-xl">
+    <PremiumCard className="p-5 sm:p-8">
       
       {/* Header */}
       <div className="mb-6">
@@ -117,7 +118,7 @@ const ProjectCard = ({
           </MagneticButton>
         </div>
       </div>
-    </div>
+    </PremiumCard>
   </motion.div>
 );
 

@@ -10,6 +10,12 @@ const LeetCodeIcon = ({ size = 28 }: { size?: number }) => (
   </svg>
 );
 
+const CodeforcesIcon = ({ size = 28 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4.5 7.5C5.328 7.5 6 8.172 6 9v10.5c0 .828-.672 1.5-1.5 1.5h-3C.672 21 0 20.328 0 19.5V9C0 8.172.672 7.5 1.5 7.5h3zm9-4.5c.828 0 1.5.672 1.5 1.5v15c0 .828-.672 1.5-1.5 1.5h-3c-.828 0-1.5-.672-1.5-1.5v-15c0-.828.672-1.5 1.5-1.5h3zm9 7.5c.828 0 1.5.672 1.5 1.5v7.5c0 .828-.672 1.5-1.5 1.5h-3c-.828 0-1.5-.672-1.5-1.5v-7.5c0-.828.672-1.5 1.5-1.5h3z"/>
+  </svg>
+);
+
 // ─── Social Link Config ───────────────────────────────────────────────────────
 const socials = [
   {
@@ -35,6 +41,14 @@ const socials = [
     hoverColor: "group-hover:text-orange-400",
     borderGlow: "hover:border-orange-400/50 hover:shadow-[0_0_20px_rgba(251,146,60,0.2)]",
     bgGlow: "rgba(251,146,60,0.06)",
+  },
+  {
+    label: "Codeforces",
+    href: "https://codeforces.com/profile/priyanshuguptacoder",
+    icon: <CodeforcesIcon size={24} />,
+    hoverColor: "group-hover:text-red-400",
+    borderGlow: "hover:border-red-400/50 hover:shadow-[0_0_20px_rgba(248,113,113,0.2)]",
+    bgGlow: "rgba(248,113,113,0.06)",
   },
 ];
 
@@ -73,7 +87,7 @@ const SocialIcon = ({
         aria-label={label}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className={`group relative flex items-center justify-center w-12 h-12 rounded-xl border border-white/10 bg-[#0b1220] text-white/30 backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-110 active:scale-95 ${borderGlow} ${hoverColor}`}
+        className={`group relative flex items-center justify-center w-12 h-12 rounded-xl border border-white/10 bg-[#0b1220] text-white/30 backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-105 active:scale-95 ${borderGlow} ${hoverColor}`}
         style={{
           boxShadow: hovered ? undefined : "0 4px 24px rgba(0,0,0,0.3)",
           background: hovered

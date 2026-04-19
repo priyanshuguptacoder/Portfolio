@@ -246,7 +246,7 @@ const Hero = () => {
                   className={`stats-card h-full ${s.isDominant ? "stats-card-featured" : ""}`}
                   style={{ animationDelay: `${i * 0.5}s` }}
                 >
-                  <div className="relative z-10 p-8 flex flex-col items-center text-center h-full">
+                  <div className={`relative p-8 flex flex-col items-center text-center h-full ${s.isDominant ? "z-[2]" : "z-10"}`}>
                     <div
                       className={`stats-icon w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-colors duration-300 ${
                         s.isDominant

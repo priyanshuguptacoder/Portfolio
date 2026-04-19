@@ -203,61 +203,67 @@
   50%       { opacity: 1;   }
 }
 
-/* Featured card base — lighter background, bigger presence */
+/* Featured card base — blurred glow border technique */
 .stats-card-featured {
-  background: rgba(10, 20, 40, 0.88);  /* lighter than side cards, not pitch black */
-  border-radius: 20px;
-  /* Permanent thick visible blue outline */
-  box-shadow:
-    0 0 0 2px rgba(0, 180, 255, 0.60),
-    0 20px 60px rgba(0, 0, 0, 0.55),
-    inset 0 0 30px rgba(0, 120, 255, 0.06);
+  background: #020617;
+  border-radius: 18px;
+  border: none;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
   animation: floatSoft 4.5s ease-in-out infinite;
   animation-delay: 0.25s;
-  /* Scale up slightly — bigger than side cards */
-  transform: scale(1.04);
+  transform: scale(1.06);   /* bigger than side cards */
 }
 
-/* Animated border — thick 2px, bright cyan, fast sweep like LeetCode card */
+/* Blurred glowing animated border — flows around the card */
 .stats-card-featured::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 22px;
   background: linear-gradient(
     120deg,
-    rgba(0, 140, 255, 0.15),
-    rgba(0, 210, 255, 1.00),
-    rgba(0, 120, 255, 0.25),
-    rgba(0, 210, 255, 1.00),
-    rgba(0, 140, 255, 0.15)
+    #020617,
+    #0f172a,
+    #1e3a5f,
+    #38bdf8,
+    #0ea5e9,
+    #1e3a5f,
+    #020617
   );
   background-size: 300% 300%;
-  padding: 2px;
-  animation: borderMove 2s linear infinite;
-  opacity: 1;
+  animation: borderMove 3s linear infinite;
+  filter: blur(4px);
+  opacity: 0.95;
+  z-index: 0;
+  /* Override mask from base .stats-card::before */
+  -webkit-mask: none;
+  mask: none;
+  padding: 0;
 }
 
-/* Inner depth layer — breathes */
+/* Inner mask — dark fill that reveals only the glowing edge */
 .stats-card-featured::after {
-  background: linear-gradient(
-    180deg,
-    rgba(0, 120, 255, 0.04) 0%,
-    rgba(0, 0, 0, 0.45) 100%
-  );
-  animation: depthPulse 3s ease-in-out infinite;
+  content: "";
+  position: absolute;
+  inset: 3px;
+  background: #020617;
+  border-radius: 16px;
+  z-index: 1;
+  animation: none;
 }
 
-/* No hover transform on featured — always animated, scale stays */
+/* No hover transform — always animated */
 @media (hover: hover) {
   .stats-card-featured:hover {
-    transform: scale(1.04);  /* keep the bigger size, no lift */
-    box-shadow:
-      0 0 0 2px rgba(0, 180, 255, 0.60),
-      0 20px 60px rgba(0, 0, 0, 0.55),
-      inset 0 0 30px rgba(0, 120, 255, 0.06);
+    transform: scale(1.06);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.55);
     animation-play-state: running;
   }
 
   .stats-card-featured:hover::before {
-    opacity: 1;
-    animation-duration: 2s;
+    opacity: 0.95;
+    animation-duration: 3s;
   }
 }
 
@@ -286,7 +292,7 @@
     animation: none !important;
   }
   .stats-card-featured {
-    transform: scale(1.04);  /* keep bigger on mobile too */
+    transform: scale(1.06);
   }
   .stats-card::before {
     animation: none !important;
@@ -295,6 +301,7 @@
   .stats-card-featured::before {
     animation: none !important;
     opacity: 0.7;
+    filter: blur(4px);
   }
   .stats-icon {
     animation: none !important;

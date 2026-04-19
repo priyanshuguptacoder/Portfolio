@@ -16,8 +16,8 @@ export const PremiumCard = ({ children, className, isActive, ...props }: CardPro
         "border border-white/[0.06]",
         "active:scale-[0.98]",
 
-        // ── Sibling dimming when a sibling is hovered ──────────────────────
-        "opacity-100 md:group-hover/cards:opacity-90 md:hover:!opacity-100",
+        // ── Sibling dimming — removed, all cards stay fully visible ──────────
+        "opacity-100",
 
         // ── Text contrast cascade on hover ─────────────────────────────────
         "[&_h3]:transition-colors [&_h3]:duration-300 [&_h3]:ease-out md:hover:[&_h3]:text-white",

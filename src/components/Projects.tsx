@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { PremiumCard } from "@/components/ui/PremiumCard";
+import { sectionVariants, itemVariants } from "@/lib/animations";
 
 interface ProjectProps {
   title: string;
@@ -27,9 +28,7 @@ const ProjectCard = ({
   isFeatured
 }: ProjectProps) => (
   <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
+    variants={itemVariants}
     className="mb-10"
   >
     <PremiumCard className="p-5 sm:p-8">
@@ -123,18 +122,24 @@ const ProjectCard = ({
 );
 
 const Projects = () => (
-  <section id="projects" className="py-20">
-    <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
+  <section id="projects" className="py-20 relative overflow-hidden">
+    <motion.div 
+      className="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={sectionVariants}
+    >
       
       {/* Heading */}
-      <div className="text-center mb-16">
+      <motion.div variants={itemVariants} className="text-center mb-16">
         <p className="text-cyan-400 text-xs uppercase mb-2">
           Engineering Portfolio
         </p>
         <h2 className="text-3xl sm:text-4xl font-bold text-white">
           System Architecture
         </h2>
-      </div>
+      </motion.div>
 
       {/* Project 1 */}
       <ProjectCard
@@ -169,7 +174,7 @@ const Projects = () => (
         live="https://hostel-management-system-hqg0.onrender.com"
       />
 
-    </div>
+    </motion.div>
   </section>
 );
 

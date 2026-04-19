@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Download, Trophy, Server, Award, Code2, BookOpen, GraduationCap, Medal, Brain, Zap } from "lucide-react";
 import { PremiumCard } from "@/components/ui/PremiumCard";
+import { sectionVariants, itemVariants } from "@/lib/animations";
 
 const education = [
   {
@@ -50,17 +51,23 @@ const About = () => {
     <>
       {/* ABOUT SECTION */}
       <section id="about" className="py-32 relative overflow-hidden">
-        <div className="container mx-auto px-6 max-w-4xl">
-          <div className="text-center mb-16 px-4">
+        <motion.div 
+          className="container mx-auto px-6 max-w-4xl relative z-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={sectionVariants}
+        >
+          <motion.div variants={itemVariants} className="text-center mb-16 px-4">
             <p className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-4 font-bold">Engineering Background</p>
             <h2 className="font-heading text-4xl sm:text-5xl font-black text-white mb-8">About Me</h2>
             <p className="text-white/50 text-base sm:text-lg leading-relaxed font-light max-w-2xl mx-auto">
               I build backend systems and focus on writing efficient, scalable APIs. Alongside development, I consistently practice data structures and algorithms and actively improve problem-solving speed through competitive programming.
             </p>
-          </div>
+          </motion.div>
 
           {/* TAB SYSTEM */}
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
+          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-2 mb-12">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
@@ -75,9 +82,9 @@ const About = () => {
                 {tab.label}
               </button>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="relative min-h-[400px]">
+          <motion.div variants={itemVariants} className="relative min-h-[400px]">
             <AnimatePresence mode="wait">
               {activeTab === "education" && (
                 <motion.div
@@ -151,26 +158,27 @@ const About = () => {
                 </motion.div>
               )}
             </AnimatePresence>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* RESUME SECTION */}
       <section className="py-40 relative overflow-hidden bg-white/[0.01] border-y border-white/5">
         <div className="container mx-auto px-6 max-w-3xl text-center">
           <motion.div
-             initial={{ opacity: 0, y: 20 }}
-             whileInView={{ opacity: 1, y: 0 }}
-             viewport={{ once: true }}
+             initial="hidden"
+             whileInView="visible"
+             viewport={{ once: true, margin: "-100px" }}
+             variants={sectionVariants}
           >
-            <p className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-6 font-bold">Documentation</p>
-            <h2 className="font-heading text-4xl sm:text-5xl font-black text-white mb-6 tracking-tighter">
+            <motion.p variants={itemVariants} className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-6 font-bold">Documentation</motion.p>
+            <motion.h2 variants={itemVariants} className="font-heading text-4xl sm:text-5xl font-black text-white mb-6 tracking-tighter">
               Download Resume
-            </h2>
-            <p className="text-lg text-white/40 mb-12 max-w-md mx-auto font-light leading-relaxed">
+            </motion.h2>
+            <motion.p variants={itemVariants} className="text-lg text-white/40 mb-12 max-w-md mx-auto font-light leading-relaxed">
               A concise overview of my technical skills, projects, and experience.
-            </p>
-            <div className="flex flex-col items-center gap-3">
+            </motion.p>
+            <motion.div variants={itemVariants} className="flex flex-col items-center gap-3">
               <a
                 href="/resume.pdf"
                 download
@@ -181,7 +189,7 @@ const About = () => {
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 blur-xl transition-opacity" />
               </a>
               <span className="text-[10px] font-mono uppercase tracking-widest text-white/40">Updated Recently</span>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>

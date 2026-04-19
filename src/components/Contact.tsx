@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useState } from "react";
+import { sectionVariants, itemVariants } from "@/lib/animations";
 
 // ─── Custom LeetCode SVG (official logo style) ───────────────────────────────
 const LeetCodeIcon = ({ size = 28 }: { size?: number }) => (
@@ -127,26 +128,26 @@ const Contact = () => (
 
     <div className="container mx-auto px-6 max-w-3xl text-center relative z-10">
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={sectionVariants}
       >
-        <p className="text-cyan-400 font-mono text-[10px] tracking-[0.4em] uppercase mb-6 font-bold">
+        <motion.p variants={itemVariants} className="text-cyan-400 font-mono text-[10px] tracking-[0.4em] uppercase mb-6 font-bold">
           CONNECT
-        </p>
-        <h2 className="font-heading text-5xl sm:text-7xl font-black text-white mb-8 leading-tight tracking-tighter">
+        </motion.p>
+        <motion.h2 variants={itemVariants} className="font-heading text-5xl sm:text-7xl font-black text-white mb-8 leading-tight tracking-tighter">
           Let's Build Something{" "}
           <span className="bg-gradient-to-r from-blue-400 to-cyan-400 text-transparent bg-clip-text">
             Meaningful
           </span>
-        </h2>
-        <p className="text-lg text-white/40 mb-16 max-w-xl mx-auto leading-relaxed font-light">
+        </motion.h2>
+        <motion.p variants={itemVariants} className="text-lg text-white/40 mb-16 max-w-xl mx-auto leading-relaxed font-light">
           I'm actively looking for backend internships and impactful projects. If you're building
           something interesting, let's connect.
-        </p>
+        </motion.p>
 
-        <div className="flex flex-col items-center gap-14">
+        <motion.div variants={itemVariants} className="flex flex-col items-center gap-14">
           {/* Primary CTA */}
           <a
             href="mailto:priyanshuguptanitian9696@gmail.com"
@@ -165,7 +166,7 @@ const Contact = () => (
               <SocialIcon key={s.label} {...s} delay={i * 0.1} />
             ))}
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </div>
   </section>

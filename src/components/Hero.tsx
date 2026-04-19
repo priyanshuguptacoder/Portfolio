@@ -5,6 +5,7 @@ import { Code2, Trophy, Server, ExternalLink, Zap } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ParallaxLayer } from "@/components/ui/ParallaxLayer";
 import { PremiumCard } from "@/components/ui/PremiumCard";
+import { sectionVariants, itemVariants } from "@/lib/animations";
 
 
 const stats = [
@@ -83,13 +84,17 @@ const Hero = () => {
           <div className="flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-20">
 
             {/* ── LEFT: TEXT CONTENT ─────────────────────── */}
-            <div className="flex-1 text-center lg:text-left max-w-2xl mx-auto lg:mx-0">
+            <motion.div 
+              className="flex-1 text-center lg:text-left max-w-2xl mx-auto lg:mx-0"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-100px" }}
+              variants={sectionVariants}
+            >
 
               {/* Status pill */}
               <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+                variants={itemVariants}
                 className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-8"
               >
                 <span className="relative flex h-2 w-2">
@@ -103,9 +108,7 @@ const Hero = () => {
 
               {/* Greeting */}
               <motion.p
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
+                variants={itemVariants}
                 className="text-lg text-white/50 font-light mb-3 tracking-wide"
               >
                 Hello, I'm
@@ -113,9 +116,7 @@ const Hero = () => {
 
               {/* Name */}
               <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.18, ease: [0.25, 0.1, 0, 1] }}
+                variants={itemVariants}
                 className="font-heading text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] mb-5"
               >
                 <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 text-transparent bg-clip-text drop-shadow-[0_0_30px_rgba(34,211,238,0.25)]">
@@ -125,9 +126,7 @@ const Hero = () => {
 
               {/* Role */}
               <motion.p
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.28 }}
+                variants={itemVariants}
                 className="text-xl sm:text-2xl font-bold text-white/90 mb-6 tracking-tight"
               >
                 Backend-Focused Developer | 280+ DSA Problems Solved | Competitive Programmer
@@ -135,9 +134,7 @@ const Hero = () => {
 
               {/* Description */}
               <motion.p
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.38 }}
+                variants={itemVariants}
                 className="text-base sm:text-lg text-white/55 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed font-light"
               >
                 Computer Science undergraduate focused on backend systems, data structures, and scalable application development. Solved 280+ problems with strong coverage across arrays, graphs, DP, and greedy.
@@ -145,9 +142,7 @@ const Hero = () => {
 
               {/* CTAs */}
               <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.48 }}
+                variants={itemVariants}
                 className="flex flex-wrap gap-4 justify-center lg:justify-start"
               >
                 <MagneticButton
@@ -163,7 +158,7 @@ const Hero = () => {
                   Let's Connect
                 </MagneticButton>
               </motion.div>
-            </div>
+            </motion.div>
 
             {/* ── RIGHT: PROFILE IMAGE ───────────────────── */}
             <motion.div
@@ -223,14 +218,17 @@ const Hero = () => {
       {/* PROOF OF WORK */}
       <section className="py-24 relative overflow-hidden">
         <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <motion.div 
+            className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={sectionVariants}
+          >
             {stats.map((s, i) => (
               <motion.div
                 key={s.label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                variants={itemVariants}
               >
                 <PremiumCard isActive={s.isDominant} className={`h-full ${!s.isDominant && i === 2 ? "opacity-75 grayscale md:hover:opacity-100 md:hover:grayscale-0" : ""}`}>
                   <div className="p-8 flex flex-col items-center text-center h-full">
@@ -264,7 +262,7 @@ const Hero = () => {
                 </PremiumCard>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -273,20 +271,24 @@ const Hero = () => {
         <ParallaxLayer multiplier={15} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/8 blur-[120px] rounded-full pointer-events-none" />
         <ParallaxLayer multiplier={10} className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-purple-500/6 blur-[100px] rounded-full pointer-events-none" />
 
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="text-center mb-16">
+        <motion.div 
+          className="container mx-auto px-6 relative z-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={sectionVariants}
+        >
+          <motion.div variants={itemVariants} className="text-center mb-16">
             <p className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-4 font-bold">Metrics</p>
             <h2 className="font-heading text-4xl sm:text-5xl font-black text-white">
               Algorithmic Proficiency
             </h2>
-          </div>
+          </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {/* BLOCK 1: LEETCODE */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              variants={itemVariants}
               className="flex flex-col"
             >
               <PremiumCard className="flex-1 h-full flex flex-col p-8 lg:p-12 group/card">
@@ -355,10 +357,7 @@ const Hero = () => {
 
             {/* BLOCK 2: CODEFORCES */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+              variants={itemVariants}
               className="flex flex-col"
             >
               <PremiumCard className="flex-1 h-full flex flex-col p-8 lg:p-12 group/card">
@@ -397,7 +396,7 @@ const Hero = () => {
               </PremiumCard>
             </motion.div>
           </div>
-        </div>
+        </motion.div>
       </section>
     </>
   );

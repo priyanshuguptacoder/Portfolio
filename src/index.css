@@ -61,20 +61,34 @@
    No layout shifts. No blur explosions.
 ───────────────────────────────────────────────────────────── */
 
-/* 1. Idle float — all standard cards */
+/* 1. Idle float — all standard cards (4px travel, 6s cycle) */
 @keyframes subtleFloat {
   0%   { transform: translateY(0px); }
-  50%  { transform: translateY(-3px); }
+  50%  { transform: translateY(-4px); }
   100% { transform: translateY(0px); }
 }
 
-/* 2. Featured card: stronger float cadence */
+/* 2. Featured card: slightly stronger float */
 @keyframes card-micro-float {
   0%, 100% { transform: translateY(0px); }
-  50%      { transform: translateY(-4px); }
+  50%      { transform: translateY(-5px); }
 }
 
-/* 3. Featured card: controlled glow pulse — no halo explosion */
+/* 3. Soft glow breathing — all cards */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow:
+      0 8px 30px rgba(0, 0, 0, 0.4),
+      0 0 8px  rgba(0, 120, 255, 0.06);
+  }
+  50% {
+    box-shadow:
+      0 8px 30px rgba(0, 0, 0, 0.4),
+      0 0 16px rgba(0, 120, 255, 0.10);
+  }
+}
+
+/* 4. Featured card: stronger glow pulse */
 @keyframes glowPulseStrong {
   0%, 100% {
     box-shadow:
@@ -88,16 +102,97 @@
   }
 }
 
-/* 4. Animated border gradient flow */
+/* 5. Animated border gradient flow */
 @keyframes card-border-flow {
   0%   { background-position: 0% 50%; }
   100% { background-position: 200% 50%; }
 }
 
-/* 5. Glow layer breathe */
+/* 6. Glow layer breathe */
 @keyframes card-glow-breathe {
   0%, 100% { opacity: 0.15; }
   50%      { opacity: 0.25; }
+}
+
+/* 7. Icon micro-float */
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-2px); }
+}
+
+/* ── Stats card: always-on float + glow + border shimmer ── */
+.stats-card {
+  position: relative;
+  overflow: hidden;
+  animation:
+    subtleFloat 6s ease-in-out infinite,
+    glowPulse   5s ease-in-out infinite;
+  transition:
+    transform   0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow  0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Border shimmer overlay */
+.stats-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(0, 180, 255, 0.18) 50%,
+    transparent 100%
+  );
+  background-size: 200% 200%;
+  opacity: 0.15;
+  animation: card-border-flow 6s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Hover: lift + scale + glow boost */
+@media (hover: hover) {
+  .stats-card:hover {
+    transform: translateY(-6px) scale(1.03);
+    box-shadow:
+      0 18px 50px rgba(0, 120, 255, 0.18),
+      0 8px 24px rgba(0, 0, 0, 0.45);
+    border-color: rgba(0, 180, 255, 0.4) !important;
+    animation-play-state: paused;
+  }
+}
+
+/* Icon float — applied via class on icon wrapper */
+.stats-icon {
+  animation: iconFloat 3s ease-in-out infinite;
+}
+
+/* Mobile: disable always-on animations */
+@media (max-width: 767px) {
+  .stats-card {
+    animation: none !important;
+  }
+  .stats-card::after {
+    animation: none !important;
+    opacity: 0.08;
+  }
+  .stats-icon {
+    animation: none !important;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .stats-card,
+  .stats-icon {
+    animation: none !important;
+  }
+  .stats-card::after {
+    animation: none !important;
+    opacity: 0;
+  }
 }
 
 /* ── Standard card: idle float + light sweep + border glow ── */

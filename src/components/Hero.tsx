@@ -42,11 +42,6 @@ const stats = [
   },
 ];
 
-const difficultyStats = [
-  { label: "Easy", value: 104, color: "text-green-400" },
-  { label: "Medium", value: 140, color: "text-yellow-400" },
-  { label: "Hard", value: 16, color: "text-red-400" },
-];
 
 const CountUp = ({ end, prefix = "", suffix = "", duration = 2 }: { end: number; prefix?: string; suffix?: string; duration?: number }) => {
   const [count, setCount] = useState(0);
@@ -127,26 +122,31 @@ const Hero = () => {
               {/* Role */}
               <motion.p
                 variants={itemVariants}
-                className="text-base sm:text-lg font-semibold text-white/75 mb-6 tracking-tight leading-relaxed"
+                className="text-base sm:text-[17px] font-medium text-white/65 mb-7 leading-[1.7] tracking-normal"
               >
-                <span className="text-white font-bold">CSE '29 @ NIT Jalandhar</span>
-                {" "}·{" "}Web Developer
-                {" "}·{" "}Data Structures & Algorithms
-                {" "}·{" "}<span className="text-white font-bold">300+ Problems (LeetCode)</span>
-                {" "}·{" "}Competitive Programmer
+                <span className="font-semibold text-white">CSE '29 @ NIT Jalandhar</span>
+                <span className="text-white/40 mx-1.5">·</span>
+                <span>Web Developer</span>
+                <span className="text-white/40 mx-1.5">·</span>
+                <span>Data Structures &amp; Algorithms</span>
+                <span className="text-white/40 mx-1.5">·</span>
+                <span className="font-semibold text-cyan-400">300+ Problems (LeetCode)</span>
+                <span className="text-white/40 mx-1.5">·</span>
+                <span>Competitive Programmer</span>
               </motion.p>
 
               {/* Description */}
               <motion.p
                 variants={itemVariants}
-                className="text-base sm:text-[17px] text-white/50 max-w-[600px] mx-auto lg:mx-0 mb-10 leading-[1.75] font-light"
+                className="text-[15px] sm:text-base text-white/45 max-w-[600px] mx-auto lg:mx-0 mb-10 leading-[1.8] font-normal"
               >
                 Web developer focused on building scalable and efficient applications.{" "}
                 CSE undergraduate at{" "}
-                <span className="text-white/75 font-medium">NIT Jalandhar</span>{" "}
+                <span className="text-white/70 font-medium">NIT Jalandhar</span>{" "}
                 with strong foundations in Data Structures and Algorithms —{" "}
-                <span className="text-white/75 font-medium">300+ problems solved on LeetCode</span>.{" "}
-                Competitive programmer actively solving problems on Codeforces.
+                <span className="text-cyan-400/90 font-medium">300+ problems solved on LeetCode</span>.{" "}
+                Competitive programmer actively solving problems on{" "}
+                <span className="text-white/70 font-medium">Codeforces</span>.
               </motion.p>
 
               {/* CTAs */}
@@ -239,26 +239,38 @@ const Hero = () => {
                 key={s.label}
                 variants={itemVariants}
               >
-                <PremiumCard isActive={s.isDominant} className="h-full">
+                {/* Staggered float delay: 0s, 0.5s, 1s */}
+                <div
+                  className="h-full stats-card rounded-[24px] border border-white/[0.06]"
+                  style={{ animationDelay: `${i * 0.5}s, ${i * 0.5}s` }}
+                >
+                  <PremiumCard
+                    isActive={s.isDominant}
+                    className="h-full"
+                    style={{ animation: "none", background: "transparent", border: "none", boxShadow: "none" }}
+                  >
                   <div className="p-8 flex flex-col items-center text-center h-full">
-                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-colors duration-300 ${
-                      s.isDominant ? "bg-cyan-500/10 text-cyan-400 group-hover/card:bg-cyan-500/20" : "bg-white/[0.06] text-white/70 group-hover/card:bg-cyan-500/20 group-hover/card:text-cyan-400"
-                    }`}>
+                    <div
+                      className={`stats-icon w-12 h-12 rounded-xl flex items-center justify-center mb-6 transition-colors duration-300 ${
+                        s.isDominant
+                          ? "bg-cyan-500/10 text-cyan-400 group-hover/card:bg-cyan-500/20"
+                          : "bg-white/[0.06] text-white/70 group-hover/card:bg-cyan-500/20 group-hover/card:text-cyan-400"
+                      }`}
+                      style={{ animationDelay: `${i * 0.3}s` }}
+                    >
                       <s.icon size={22} />
                     </div>
-                    <div className={`text-4xl sm:text-5xl font-black mb-2 tracking-tighter transition-colors duration-300 ${
-                      s.isDominant ? "text-white" : "text-white group-hover/card:text-white"
-                    }`}>
+                    <div className="text-4xl sm:text-5xl font-black mb-2 tracking-tighter text-white">
                       <CountUp end={s.value} suffix={s.suffix} />
                     </div>
                     <h3 className="text-[11px] font-bold text-white/80 mb-2 uppercase tracking-[0.2em]">{s.label}</h3>
                     <p className="text-xs text-white/40 leading-relaxed font-light group-hover/card:text-white/70 transition-colors duration-300 mb-4">{s.detail}</p>
-                    
+
                     {s.extraInfo && (
                       <p className="text-sm font-semibold text-cyan-400 mt-auto mb-3">{s.extraInfo}</p>
                     )}
                     {s.linkUrl && (
-                      <a 
+                      <a
                         href={s.linkUrl}
                         target="_blank"
                         rel="noopener noreferrer"
@@ -268,7 +280,8 @@ const Hero = () => {
                       </a>
                     )}
                   </div>
-                </PremiumCard>
+                  </PremiumCard>
+                </div>
               </motion.div>
             ))}
           </motion.div>

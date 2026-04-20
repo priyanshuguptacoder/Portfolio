@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { PremiumCard } from "@/components/ui/PremiumCard";
-import { sectionVariants, itemVariants } from "@/lib/animations";
+import { sectionVariants, itemVariants, cardVariants } from "@/lib/animations";
 
 interface ProjectProps {
   title: string;
@@ -28,7 +28,7 @@ const ProjectCard = ({
   isFeatured
 }: ProjectProps) => (
   <motion.div
-    variants={itemVariants}
+    variants={cardVariants}
     className="mb-10"
   >
     <PremiumCard className="p-5 sm:p-8">

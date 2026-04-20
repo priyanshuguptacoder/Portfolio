@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useState } from "react";
-import { sectionVariants, itemVariants } from "@/lib/animations";
+import { sectionVariants, itemVariants, headingVariants } from "@/lib/animations";
 
 // ─── Custom LeetCode SVG (official logo style) ───────────────────────────────
 const LeetCodeIcon = ({ size = 28 }: { size?: number }) => (
@@ -136,7 +136,7 @@ const Contact = () => (
         <motion.p variants={itemVariants} className="text-cyan-400 font-mono text-[10px] tracking-[0.4em] uppercase mb-6 font-bold">
           CONNECT
         </motion.p>
-        <motion.h2 variants={itemVariants} className="font-heading text-5xl sm:text-7xl font-black text-white mb-8 leading-tight tracking-tighter">
+        <motion.h2 variants={headingVariants} className="font-heading text-5xl sm:text-7xl font-black text-white mb-8 leading-tight tracking-tighter">
           Let's Build Something{" "}
           <span className="bg-gradient-to-r from-blue-400 to-cyan-400 text-transparent bg-clip-text">
             Meaningful

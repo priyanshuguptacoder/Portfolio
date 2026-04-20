@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Download, Trophy, Server, Award, Code2, BookOpen, GraduationCap, Medal, Brain, Zap } from "lucide-react";
 import { PremiumCard } from "@/components/ui/PremiumCard";
-import { sectionVariants, itemVariants } from "@/lib/animations";
+import { sectionVariants, itemVariants, cardVariants, headingVariants } from "@/lib/animations";
 
 const education = [
   {
@@ -58,7 +58,7 @@ const About = () => {
           viewport={{ once: true, margin: "-100px" }}
           variants={sectionVariants}
         >
-          <motion.div variants={itemVariants} className="text-center mb-16 px-4">
+          <motion.div variants={headingVariants} className="text-center mb-16 px-4">
             <p className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-4 font-bold">Engineering Background</p>
             <h2 className="font-heading text-4xl sm:text-5xl font-black text-white mb-8">About Me</h2>
             <p className="text-white/50 text-base sm:text-lg leading-relaxed font-light max-w-2xl mx-auto">
@@ -95,7 +95,14 @@ const About = () => {
                   className="space-y-6"
                 >
                   {education.map((edu, i) => (
-                    <div key={i} className="group relative pl-8 py-2">
+                    <motion.div
+                      key={i}
+                      variants={cardVariants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{ delay: i * 0.1 }}
+                      className="group relative pl-8 py-2"
+                    >
                       <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-white/10 group-last:h-4">
                         <div className="absolute top-4 -left-1 w-2.5 h-2.5 rounded-full bg-cyan-500 shadow-[0_0_10px_rgba(34,211,238,0.8)]" />
                       </div>
@@ -109,7 +116,7 @@ const About = () => {
                         <p className="text-white/80 font-medium text-sm mb-2">{edu.institution}</p>
                         <p className="text-white/40 text-xs font-light leading-relaxed">{edu.details}</p>
                       </PremiumCard>
-                    </div>
+                    </motion.div>
                   ))}
                 </motion.div>
               )}

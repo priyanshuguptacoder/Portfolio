@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Server, Layout, Brain, Wrench } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { sectionVariants, itemVariants, cardVariants, fastStaggerVariants } from "@/lib/animations";
 
 const categories = [
   {
@@ -31,24 +32,30 @@ const categories = [
 
 const Skills = () => (
   <section id="skills" className="py-32 relative overflow-hidden">
-    <div className="container mx-auto px-6">
-      <div className="text-center mb-24">
+    <motion.div
+      className="container mx-auto px-6"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px" }}
+      variants={sectionVariants}
+    >
+      <motion.div variants={itemVariants} className="text-center mb-24">
         <p className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-4 font-bold">
           Capabilities
         </p>
         <h2 className="font-heading text-4xl sm:text-5xl font-black text-white">
           Technical Arsenal
         </h2>
-      </div>
+      </motion.div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto items-stretch">
+      <motion.div
+        className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto items-stretch"
+        variants={fastStaggerVariants}
+      >
         {categories.map((c, i) => (
           <motion.div
             key={c.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
+            variants={cardVariants}
             className={cn(
               // Wrapper: gradient border shell
               "group relative rounded-3xl h-full",
@@ -109,8 +116,8 @@ const Skills = () => (
             </div>
           </motion.div>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   </section>
 );
 

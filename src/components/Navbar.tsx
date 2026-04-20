@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const navLinks = [
-  { label: "About", href: "#about" },
+  { label: "About",    href: "#about"    },
   { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Contact", href: "#contact" },
+  { label: "Skills",   href: "#skills"   },
+  { label: "Contact",  href: "#contact"  },
 ];
 
 const Navbar = () => {
-  const [active, setActive] = useState("");
-  const [scrolled, setScrolled] = useState(false);
+  const [active, setActive]       = useState("");
+  const [scrolled, setScrolled]   = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const location = useLocation();
+  const location  = useLocation();
+  const navigate  = useNavigate();
+  const isHome    = location.pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -21,6 +23,7 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
+    if (!isHome) return;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -34,7 +37,25 @@ const Navbar = () => {
       if (el) observer.observe(el);
     });
     return () => observer.disconnect();
-  }, []);
+  }, [isHome]);
+
+  // Handle nav link clicks — smooth scroll on home, navigate+scroll from other pages
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setMobileOpen(false);
+    if (isHome) {
+      // Already on home — just smooth scroll
+      const el = document.querySelector(href);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // Navigate to home then scroll after page loads
+      navigate("/");
+      setTimeout(() => {
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 300);
+    }
+  };
 
   return (
     <nav
@@ -47,12 +68,13 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between py-5 px-6">
 
         {/* Logo */}
-        <a
-          href="#"
+        {/* Logo — always navigates to portfolio homepage */}
+        <Link
+          to="/"
           className="font-heading text-xl font-black bg-gradient-to-r from-cyan-400 to-blue-500 text-transparent bg-clip-text tracking-tighter hover:opacity-80 transition-opacity"
         >
           PG.
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-10">
@@ -60,8 +82,9 @@ const Navbar = () => {
             <a
               key={l.href}
               href={l.href}
+              onClick={(e) => handleNavClick(e, l.href)}
               className={`relative text-sm font-semibold tracking-wide transition-all duration-300 group pb-0.5 ${
-                active === l.href
+                isHome && active === l.href
                   ? "text-white"
                   : "text-white/40 hover:text-white/80"
               }`}
@@ -69,7 +92,7 @@ const Navbar = () => {
               {l.label}
               <span
                 className={`absolute left-0 -bottom-1 h-[1.5px] bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300 ${
-                  active === l.href ? "w-full" : "w-0 group-hover:w-full"
+                  isHome && active === l.href ? "w-full" : "w-0 group-hover:w-full"
                 }`}
               />
             </a>
@@ -126,9 +149,9 @@ const Navbar = () => {
             <a
               key={l.href}
               href={l.href}
-              onClick={() => setMobileOpen(false)}
+              onClick={(e) => handleNavClick(e, l.href)}
               className={`block py-3 text-sm font-semibold transition-colors ${
-                active === l.href ? "text-cyan-400" : "text-white/50 hover:text-white"
+                isHome && active === l.href ? "text-cyan-400" : "text-white/50 hover:text-white"
               }`}
             >
               {l.label}

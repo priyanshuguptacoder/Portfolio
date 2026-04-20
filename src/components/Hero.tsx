@@ -196,29 +196,6 @@ const Hero = () => {
                 <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#020617]/50 to-transparent" />
               </div>
 
-              {/* Floating badge */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.7, duration: 0.5 }}
-                className="absolute -right-4 top-8 bg-[#0b1220]/90 backdrop-blur-md border border-white/10 rounded-2xl px-4 py-3 hidden lg:block"
-                style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.4)" }}
-              >
-                <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Problems Solved</p>
-                <p className="text-2xl font-black text-white">280<span className="text-cyan-400">+</span></p>
-              </motion.div>
-
-              {/* Second floating badge */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.85, duration: 0.5 }}
-                className="absolute -left-4 bottom-10 bg-[#0b1220]/90 backdrop-blur-md border border-white/10 rounded-2xl px-4 py-3 hidden lg:block"
-                style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.4)" }}
-              >
-                <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">NIT Jalandhar</p>
-                <p className="text-sm font-bold text-white">B.Tech CSE</p>
-              </motion.div>
             </motion.div>
 
           </div>

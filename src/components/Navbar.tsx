@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -11,6 +12,7 @@ const Navbar = () => {
   const [active, setActive] = useState("");
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -73,6 +75,23 @@ const Navbar = () => {
             </a>
           ))}
 
+          {/* Blog link */}
+          <Link
+            to="/blog"
+            className={`relative text-sm font-semibold tracking-wide transition-all duration-300 group pb-0.5 ${
+              location.pathname.startsWith("/blog")
+                ? "text-white"
+                : "text-white/40 hover:text-white/80"
+            }`}
+          >
+            Blog
+            <span
+              className={`absolute left-0 -bottom-1 h-[1.5px] bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300 ${
+                location.pathname.startsWith("/blog") ? "w-full" : "w-0 group-hover:w-full"
+              }`}
+            />
+          </Link>
+
           {/* CTA Button — last position */}
           <a
             href="mailto:priyanshuguptanitian9696@gmail.com"
@@ -123,6 +142,13 @@ const Navbar = () => {
           >
             Consult Me →
           </a>
+          <Link
+            to="/blog"
+            onClick={() => setMobileOpen(false)}
+            className="block py-3 text-sm font-semibold text-white/50 hover:text-white transition-colors"
+          >
+            Blog
+          </Link>
         </div>
       )}
     </nav>

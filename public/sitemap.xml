@@ -38,5 +38,74 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <!-- Blog listing page -->
+  <url>
+    <loc>https://priyanshuportfoliogupta.vercel.app/blog</loc>
+    <lastmod>2025-04-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog articles -->
+  <url>
+    <loc>https://priyanshuportfoliogupta.vercel.app/blog/3sum-solution-leetcode-15</loc>
+    <lastmod>2025-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://priyanshuportfoliogupta.vercel.app/blog/sliding-window-technique-explained</loc>
+    <lastmod>2025-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://priyanshuportfoliogupta.vercel.app/blog/how-i-solved-300-leetcode-problems</loc>
+    <lastmod>2025-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://priyanshuportfoliogupta.vercel.app/blog/two-pointer-technique-guide</loc>
+    <lastmod>2025-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://priyanshuportfoliogupta.vercel.app/blog/scalable-backend-nodejs-mongodb</loc>
+    <lastmod>2025-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://priyanshuportfoliogupta.vercel.app/blog/top-20-leetcode-array-problems</loc>
+    <lastmod>2025-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://priyanshuportfoliogupta.vercel.app/blog/hashmaps-solve-dsa-problems</loc>
+    <lastmod>2025-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://priyanshuportfoliogupta.vercel.app/blog/rest-api-design-best-practices</loc>
+    <lastmod>2025-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://priyanshuportfoliogupta.vercel.app/blog/time-complexity-explained</loc>
+    <lastmod>2025-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://priyanshuportfoliogupta.vercel.app/blog/system-design-url-shortener</loc>
+    <lastmod>2025-04-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 
 </urlset>

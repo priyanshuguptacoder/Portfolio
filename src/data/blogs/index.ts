@@ -55,14 +55,14 @@ The tricky part: no duplicate triplets in the output.
 The naive approach uses three nested loops — O(n³) time. For n = 3000 (LeetCode's constraint), that's 27 billion operations. It will TLE every time.
 
 
-```cpp
+\`\`\`cpp
 // Brute force — DO NOT submit
 for (int i = 0; i < n; i++)
   for (int j = i+1; j < n; j++)
     for (int k = j+1; k < n; k++)
       if (nums[i] + nums[j] + nums[k] == 0)
         // store result
-```
+\`\`\`
 
 You need a smarter approach.
 
@@ -87,7 +87,7 @@ Skip duplicates after finding a valid triplet
 ## Code
 
 
-```cpp
+\`\`\`cpp
 vector<vector<int>> threeSum(vector<int>& nums) {
     vector<vector<int>> res;
     sort(nums.begin(), nums.end());
@@ -116,7 +116,7 @@ vector<vector<int>> threeSum(vector<int>& nums) {
     }
     return res;
 }
-```
+\`\`\`
 
 
 ## Dry Run
@@ -205,7 +205,7 @@ Variable window — window size changes based on a condition
 
 Problem: Maximum Sum Subarray of Size K
 
-```cpp
+\`\`\`cpp
 int maxSumSubarray(vector<int>& nums, int k) {
     int n = nums.size();
     int windowSum = 0, maxSum = 0;
@@ -224,7 +224,7 @@ int maxSumSubarray(vector<int>& nums, int k) {
     }
     return maxSum;
 }
-```
+\`\`\`
 
 Key insight: windowSum += nums[i] - nums[i-k] is the core slide operation.
 
@@ -233,7 +233,7 @@ Key insight: windowSum += nums[i] - nums[i-k] is the core slide operation.
 
 Problem: Longest Substring Without Repeating Characters (LeetCode 3)
 
-```cpp
+\`\`\`cpp
 int lengthOfLongestSubstring(string s) {
     unordered_map<char, int> freq;
     int left = 0, maxLen = 0;
@@ -251,7 +251,7 @@ int lengthOfLongestSubstring(string s) {
     }
     return maxLen;
 }
-```
+\`\`\`
 
 Template: expand right, shrink left when condition breaks.
 
@@ -259,7 +259,7 @@ Pattern 3: Minimum Window Substring (LeetCode 76)
 This is the hardest sliding window problem. You need the smallest window in s containing all characters of t.
 
 
-```cpp
+\`\`\`cpp
 string minWindow(string s, string t) {
     unordered_map<char, int> need, window;
     for (char c : t) need[c]++;
@@ -287,7 +287,7 @@ string minWindow(string s, string t) {
     }
     return minLen == INT_MAX ? "" : s.substr(start, minLen);
 }
-```
+\`\`\`
 
 
 ## When to Use Sliding Window
@@ -480,7 +480,7 @@ You need to compare elements from both ends
 You're merging or partitioning
 Problem 1: Two Sum II – Sorted Array (LeetCode 167)
 
-```cpp
+\`\`\`cpp
 vector<int> twoSum(vector<int>& nums, int target) {
     int left = 0, right = nums.size() - 1;
 
@@ -492,13 +492,13 @@ vector<int> twoSum(vector<int>& nums, int target) {
     }
     return {};
 }
-```
+\`\`\`
 
 Why it works: Array is sorted. If sum is too small, move left pointer right. If too large, move right pointer left.
 
 Problem 2: Container With Most Water (LeetCode 11)
 
-```cpp
+\`\`\`cpp
 int maxArea(vector<int>& height) {
     int left = 0, right = height.size() - 1;
     int maxWater = 0;
@@ -513,13 +513,13 @@ int maxArea(vector<int>& height) {
     }
     return maxWater;
 }
-```
+\`\`\`
 
 Key insight: Moving the taller side inward can never increase area. Always move the shorter side.
 
 Problem 3: Valid Palindrome (LeetCode 125)
 
-```cpp
+\`\`\`cpp
 bool isPalindrome(string s) {
     int left = 0, right = s.size() - 1;
 
@@ -533,11 +533,11 @@ bool isPalindrome(string s) {
     }
     return true;
 }
-```
+\`\`\`
 
 Problem 4: Remove Duplicates from Sorted Array (LeetCode 26)
 
-```cpp
+\`\`\`cpp
 int removeDuplicates(vector<int>& nums) {
     int slow = 0;
 
@@ -549,7 +549,7 @@ int removeDuplicates(vector<int>& nums) {
     }
     return slow + 1;
 }
-```
+\`\`\`
 
 This is the slow-fast pointer variant — one pointer tracks the write position, the other scans ahead.
 
@@ -638,7 +638,7 @@ This is the MVC pattern — Models, Controllers, Routes separated cleanly.
 ## Step 1: Setup
 
 
-```cpp
+\`\`\`cpp
 npm init -y
 npm install express mongoose dotenv bcryptjs jsonwebtoken cors helmet
 npm install -D nodemon
@@ -659,13 +659,13 @@ app.use('/api/auth', require('./routes/auth'));
 app.use('/api/problems', require('./routes/problems'));
 
 module.exports = app;
-```
+\`\`\`
 
 
 ## Step 2: Database Connection
 
 
-```cpp
+\`\`\`cpp
 // config/db.js
 const mongoose = require('mongoose');
 
@@ -680,13 +680,13 @@ const connectDB = async () => {
 };
 
 module.exports = connectDB;
-```
+\`\`\`
 
 
 ## Step 3: User Model with Password Hashing
 
 
-```cpp
+\`\`\`cpp
 // models/User.js
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
@@ -710,13 +710,13 @@ userSchema.methods.comparePassword = async function(candidatePassword) {
 };
 
 module.exports = mongoose.model('User', userSchema);
-```
+\`\`\`
 
 
 ## Step 4: JWT Authentication Middleware
 
 
-```cpp
+\`\`\`cpp
 // middleware/auth.js
 const jwt = require('jsonwebtoken');
 
@@ -735,13 +735,13 @@ module.exports = (req, res, next) => {
         res.status(401).json({ message: 'Invalid token' });
     }
 };
-```
+\`\`\`
 
 
 ## Step 5: Problem Model and Controller
 
 
-```cpp
+\`\`\`cpp
 // models/Problem.js
 const mongoose = require('mongoose');
 
@@ -750,45 +750,45 @@ const problemSchema = new mongoose.Schema({
     title: { type: String, required: true },
     platform: { type: String, enum: ['LeetCode', 'Codeforces', 'HackerRank'] },
     difficulty: { type: String, enum: ['Easy', 'Medium', 'Hard'] },
-```
+\`\`\`
 
     tags: [String],
 
-```cpp
+\`\`\`cpp
     solvedAt: { type: Date, default: Date.now },
-```
+\`\`\`
 
     notes: String
 
-```cpp
+\`\`\`cpp
 });
 
 // Index for faster queries
 problemSchema.index({ user: 1, solvedAt: -1 });
 
 module.exports = mongoose.model('Problem', problemSchema);
-```
+\`\`\`
 
 
 ## Step 6: Error Handling Middleware
 
 
-```cpp
+\`\`\`cpp
 // middleware/errorHandler.js
 module.exports = (err, req, res, next) => {
     console.error(err.stack);
 
     const statusCode = err.statusCode || 500;
     res.status(statusCode).json({
-```
+\`\`\`
 
         success: false,
         message: err.message || 'Internal Server Error'
 
-```cpp
+\`\`\`cpp
     });
 };
-```
+\`\`\`
 
 Centralized error handling keeps controllers clean.
 
@@ -852,13 +852,13 @@ Greedy — local optimal leads to global optimal
 1. Two Sum (LeetCode 1) Pattern: HashMap. Store complement as you iterate.
 
 
-```cpp
+\`\`\`cpp
 unordered_map<int,int> mp;
 for (int i = 0; i < nums.size(); i++) {
     if (mp.count(target - nums[i])) return {mp[target-nums[i]], i};
     mp[nums[i]] = i;
 }
-```
+\`\`\`
 
 2. Best Time to Buy and Sell Stock (LeetCode 121) Pattern: Track minimum price seen so far.
 
@@ -878,10 +878,10 @@ for (int i = 0; i < nums.size(); i++) {
 8. Product of Array Except Self (LeetCode 238) Pattern: Prefix and suffix product arrays. No division allowed.
 
 
-```cpp
+\`\`\`cpp
 // Left pass: prefix products
 // Right pass: multiply suffix products
-```
+\`\`\`
 
 9. Maximum Product Subarray (LeetCode 152) Pattern: Track both max and min (negative × negative = positive).
 
@@ -896,7 +896,7 @@ for (int i = 0; i < nums.size(); i++) {
 14. Subarray Sum Equals K (LeetCode 560) Pattern: Prefix sum + HashMap. Count subarrays with sum = k.
 
 
-```cpp
+\`\`\`cpp
 unordered_map<int,int> mp;
 mp[0] = 1;
 int sum = 0, count = 0;
@@ -905,7 +905,7 @@ for (int num : nums) {
     count += mp[sum - k];
     mp[sum]++;
 }
-```
+\`\`\`
 
 15. Longest Consecutive Sequence (LeetCode 128) Pattern: HashSet. For each number, only start counting if num-1 not in set.
 
@@ -921,7 +921,7 @@ for (int num : nums) {
 
 
 
-```cpp
+\`\`\`cpp
 int left = 0, right = n-1, leftMax = 0, rightMax = 0, water = 0;
 while (left < right) {
     if (nums[left] < nums[right]) {
@@ -932,7 +932,7 @@ while (left < right) {
         water += rightMax - nums[right--];
     }
 }
-```
+\`\`\`
 `.trim(),
     relatedSlugs: ["two-pointer-technique-guide", "sliding-window-technique-explained", "hashmaps-solve-dsa-problems"],
   },
@@ -964,11 +964,11 @@ Understanding when and how to use a HashMap is the difference between a brute fo
 A HashMap (unordered_map in C++) gives you:
 
 
-```cpp
+\`\`\`cpp
 O(1) average insert
 O(1) average lookup
 O(1) average delete
-```
+\`\`\`
 
 The core idea: trade space for time. Store information as you iterate so you don't need to iterate again.
 
@@ -978,7 +978,7 @@ The core idea: trade space for time. Store information as you iterate so you don
 Problem: Two Sum (LeetCode 1)
 
 
-```cpp
+\`\`\`cpp
 vector<int> twoSum(vector<int>& nums, int target) {
     unordered_map<int, int> seen; // value → index
 
@@ -992,7 +992,7 @@ vector<int> twoSum(vector<int>& nums, int target) {
     }
     return {};
 }
-```
+\`\`\`
 
 Why it works: For each element, you check if its complement was already seen. One pass, O(n).
 
@@ -1002,7 +1002,7 @@ Why it works: For each element, you check if its complement was already seen. On
 Problem: Valid Anagram (LeetCode 242)
 
 
-```cpp
+\`\`\`cpp
 bool isAnagram(string s, string t) {
     if (s.size() != t.size()) return false;
 
@@ -1015,7 +1015,7 @@ bool isAnagram(string s, string t) {
     }
     return true;
 }
-```
+\`\`\`
 
 Use this whenever: you need to count occurrences and compare them.
 
@@ -1027,7 +1027,7 @@ Problem: Subarray Sum Equals K (LeetCode 560)
 This is where HashMaps get really powerful. You want to count subarrays with sum exactly equal to k.
 
 
-```cpp
+\`\`\`cpp
 int subarraySum(vector<int>& nums, int k) {
     unordered_map<int, int> prefixCount;
     prefixCount[0] = 1; // empty subarray has sum 0
@@ -1045,7 +1045,7 @@ int subarraySum(vector<int>& nums, int k) {
     }
     return count;
 }
-```
+\`\`\`
 
 Key insight: If prefixSum[j] - prefixSum[i] == k, then subarray [i+1, j] sums to k. The HashMap stores how many times each prefix sum has occurred.
 
@@ -1055,7 +1055,7 @@ Key insight: If prefixSum[j] - prefixSum[i] == k, then subarray [i+1, j] sums to
 Problem: Group Anagrams (LeetCode 49)
 
 
-```cpp
+\`\`\`cpp
 vector<vector<string>> groupAnagrams(vector<string>& strs) {
     unordered_map<string, vector<string>> groups;
 
@@ -1071,7 +1071,7 @@ vector<vector<string>> groupAnagrams(vector<string>& strs) {
 
     return result;
 }
-```
+\`\`\`
 
 Pattern: Use a computed property as the HashMap key to group similar items.
 
@@ -1083,7 +1083,7 @@ Problem: Longest Subarray with Equal 0s and 1s
 Replace 0s with -1s, then find longest subarray with sum 0 using prefix sum + HashMap storing first occurrence.
 
 
-```cpp
+\`\`\`cpp
 int findMaxLength(vector<int>& nums) {
     unordered_map<int, int> firstSeen;
     firstSeen[0] = -1; // prefix sum 0 seen at index -1
@@ -1095,16 +1095,16 @@ int findMaxLength(vector<int>& nums) {
 
         if (firstSeen.count(sum))
             maxLen = max(maxLen, i - firstSeen[sum]);
-```
+\`\`\`
 
         else
 
-```cpp
+\`\`\`cpp
             firstSeen[sum] = i; // only store first occurrence
     }
     return maxLen;
 }
-```
+\`\`\`
 
 
 ## When NOT to Use HashMap
@@ -1173,11 +1173,11 @@ This guide covers the principles that separate amateur APIs from professional on
 ## What Makes a REST API "RESTful"
 
 
-```cpp
+\`\`\`cpp
 REST (Representational State Transfer) has six constraints. The ones that matter most in practice:
 
 Stateless — each request contains all information needed; server stores no session state
-```
+\`\`\`
 
 Uniform Interface — consistent URL structure and HTTP methods
 Client-Server separation — frontend and backend are independent
@@ -1215,33 +1215,33 @@ Most beginners return 200 for everything and put the error in the body. Don't.
 422 Unprocessable   → validation failed
 500 Internal Error  → server-side bug
 
-```cpp
+\`\`\`cpp
 // Good error response
 res.status(404).json({
-```
+\`\`\`
 
     success: false,
     message: 'User not found',
     code: 'USER_NOT_FOUND'
 
-```cpp
+\`\`\`cpp
 });
 
 // Good success response
 res.status(201).json({
-```
+\`\`\`
 
     success: true,
 
-```cpp
+\`\`\`cpp
     data: { user },
-```
+\`\`\`
 
     message: 'User created successfully'
 
-```cpp
+\`\`\`cpp
 });
-```
+\`\`\`
 
 
 ## Rule 3: Version Your API
@@ -1251,11 +1251,11 @@ Always version from day one. You will need to make breaking changes eventually.
 /api/v1/users
 /api/v2/users
 
-```cpp
+\`\`\`cpp
 // app.js
 app.use('/api/v1', require('./routes/v1'));
 app.use('/api/v2', require('./routes/v2'));
-```
+\`\`\`
 
 
 ## Rule 4: Consistent Response Structure
@@ -1263,36 +1263,36 @@ app.use('/api/v2', require('./routes/v2'));
 Every response should follow the same shape. Frontend developers will thank you.
 
 
-```cpp
+\`\`\`cpp
 // utils/apiResponse.js
 const successResponse = (res, data, message = 'Success', statusCode = 200) => {
     return res.status(statusCode).json({
-```
+\`\`\`
 
         success: true,
         message,
         data,
         timestamp: new Date().toISOString()
 
-```cpp
+\`\`\`cpp
     });
 };
 
 const errorResponse = (res, message, statusCode = 500, code = null) => {
     return res.status(statusCode).json({
-```
+\`\`\`
 
         success: false,
         message,
         code,
         timestamp: new Date().toISOString()
 
-```cpp
+\`\`\`cpp
     });
 };
 
 module.exports = { successResponse, errorResponse };
-```
+\`\`\`
 
 
 ## Rule 5: Input Validation
@@ -1300,7 +1300,7 @@ module.exports = { successResponse, errorResponse };
 Never trust client input. Validate everything before it touches your database.
 
 
-```cpp
+\`\`\`cpp
 // Using express-validator
 const { body, validationResult } = require('express-validator');
 
@@ -1313,18 +1313,18 @@ const validateUser = [
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(422).json({
-```
+\`\`\`
 
                 success: false,
                 errors: errors.array()
 
-```cpp
+\`\`\`cpp
             });
         }
         next();
     }
 ];
-```
+\`\`\`
 
 
 ## Rule 6: Pagination for List Endpoints
@@ -1332,7 +1332,7 @@ const validateUser = [
 Never return all records. Always paginate.
 
 
-```cpp
+\`\`\`cpp
 // GET /api/v1/problems?page=1&limit=20&sort=-createdAt
 const getProblems = async (req, res) => {
     const page = parseInt(req.query.page) || 1;
@@ -1341,42 +1341,42 @@ const getProblems = async (req, res) => {
 
     const [problems, total] = await Promise.all([
         Problem.find({ user: req.user.id })
-```
+\`\`\`
 
             .sort(req.query.sort || '-createdAt')
             .skip(skip)
             .limit(limit),
 
-```cpp
+\`\`\`cpp
         Problem.countDocuments({ user: req.user.id })
     ]);
 
     res.json({
-```
+\`\`\`
 
         success: true,
         data: problems,
 
-```cpp
+\`\`\`cpp
         pagination: {
-```
+\`\`\`
 
             page,
             limit,
             total,
             pages: Math.ceil(total / limit)
 
-```cpp
+\`\`\`cpp
         }
     });
 };
-```
+\`\`\`
 
 
 ## Rule 7: Security Basics
 
 
-```cpp
+\`\`\`cpp
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 
@@ -1386,15 +1386,15 @@ app.use(helmet());
 // Rate limiting — prevent brute force
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-```
+\`\`\`
 
     max: 100,
     message: 'Too many requests, please try again later'
 
-```cpp
+\`\`\`cpp
 });
 app.use('/api/', limiter);
-```
+\`\`\`
 
 
 ## Common Mistakes
@@ -1444,7 +1444,7 @@ We use Big O notation to express this. Big O describes the worst case.
 The operation takes the same time regardless of input size.
 
 
-```cpp
+\`\`\`cpp
 // Array access — always one operation
 int getFirst(vector<int>& nums) {
     return nums[0]; // O(1)
@@ -1454,7 +1454,7 @@ int getFirst(vector<int>& nums) {
 unordered_map<int,int> mp;
 mp[5] = 10;
 int val = mp[5]; // O(1)
-```
+\`\`\`
 
 Real examples: array indexing, HashMap get/set, stack push/pop.
 
@@ -1464,7 +1464,7 @@ Real examples: array indexing, HashMap get/set, stack push/pop.
 Input is halved at each step. Extremely fast even for large inputs.
 
 
-```cpp
+\`\`\`cpp
 // Binary search — halves search space each iteration
 int binarySearch(vector<int>& nums, int target) {
     int left = 0, right = nums.size() - 1;
@@ -1478,7 +1478,7 @@ int binarySearch(vector<int>& nums, int target) {
     }
     return -1;
 }
-```
+\`\`\`
 
 For n = 1,000,000: only ~20 iterations. That's the power of O(log n).
 
@@ -1490,7 +1490,7 @@ Real examples: binary search, balanced BST operations, heap operations.
 You visit each element once.
 
 
-```cpp
+\`\`\`cpp
 // Find maximum — one pass
 int findMax(vector<int>& nums) {
     int maxVal = nums[0];
@@ -1498,7 +1498,7 @@ int findMax(vector<int>& nums) {
         maxVal = max(maxVal, num);
     return maxVal;
 }
-```
+\`\`\`
 
 Real examples: linear search, single-pass array problems, HashMap building.
 
@@ -1508,7 +1508,7 @@ Real examples: linear search, single-pass array problems, HashMap building.
 Sorting algorithms. The most common complexity for "efficient" solutions.
 
 
-```cpp
+\`\`\`cpp
 // Merge sort — divide and conquer
 void mergeSort(vector<int>& nums, int left, int right) {
     if (left >= right) return;
@@ -1519,7 +1519,7 @@ void mergeSort(vector<int>& nums, int left, int right) {
     merge(nums, left, mid, right);   // O(n)
 }
 // Total: T(n) = 2T(n/2) + O(n) → O(n log n)
-```
+\`\`\`
 
 Real examples: std::sort, merge sort, heap sort, many divide-and-conquer problems.
 
@@ -1529,7 +1529,7 @@ Real examples: std::sort, merge sort, heap sort, many divide-and-conquer problem
 Nested loops over the input. Acceptable for n ≤ 1000, too slow for n ≥ 10,000.
 
 
-```cpp
+\`\`\`cpp
 // Bubble sort
 void bubbleSort(vector<int>& nums) {
     int n = nums.size();
@@ -1538,7 +1538,7 @@ void bubbleSort(vector<int>& nums) {
             if (nums[j] > nums[j+1])
                 swap(nums[j], nums[j+1]);
 }
-```
+\`\`\`
 
 Real examples: brute force pair finding, naive string matching, selection sort.
 
@@ -1548,7 +1548,7 @@ Real examples: brute force pair finding, naive string matching, selection sort.
 Doubles with each additional element. Only feasible for very small inputs (n ≤ 20).
 
 
-```cpp
+\`\`\`cpp
 // All subsets — exponential
 void subsets(vector<int>& nums, int i, vector<int>& current,
              vector<vector<int>>& result) {
@@ -1563,7 +1563,7 @@ void subsets(vector<int>& nums, int i, vector<int>& current,
     current.pop_back();
     subsets(nums, i+1, current, result);
 }
-```
+\`\`\`
 
 
 ## Reading Constraints to Determine Required Complexity
@@ -1571,9 +1571,9 @@ void subsets(vector<int>& nums, int i, vector<int>& current,
 This is the practical skill that matters in interviews:
 
 
-```cpp
+\`\`\`cpp
 n (input size)	Required complexity
-```
+\`\`\`
 
 n ≤ 10	O(n!), O(2ⁿ) acceptable
 n ≤ 20	O(2ⁿ) acceptable
@@ -1590,7 +1590,7 @@ When you see n ≤ 10⁵ on LeetCode, your solution must be O(n log n) or better
 Same notation, but measures memory usage instead of time.
 
 
-```cpp
+\`\`\`cpp
 // O(1) space — no extra memory
 int sum = 0;
 for (int num : nums) sum += num;
@@ -1606,7 +1606,7 @@ int factorial(int n) {
     if (n <= 1) return 1;
     return n * factorial(n-1); // n stack frames
 }
-```
+\`\`\`
 
 
 ## Common Mistakes
@@ -1681,20 +1681,20 @@ Read: 11,600 req/s × 500 bytes = ~5.8 MB/s
 
 POST /api/v1/shorten
 
-```cpp
+\`\`\`cpp
 Body: { "longUrl": "https://example.com/very/long/path", "customAlias": "mylink", "expiresAt": "2026-01-01" }
 Response: { "shortUrl": "https://short.ly/abc123", "shortCode": "abc123" }
 
 GET /{shortCode}
-```
+\`\`\`
 
 Response: 301 Redirect to longUrl
 
 
-```cpp
+\`\`\`cpp
 GET /api/v1/analytics/{shortCode}
 Response: { "clicks": 1234, "createdAt": "...", "lastAccessed": "..." }
-```
+\`\`\`
 
 Use 301 (Permanent Redirect) for SEO benefit — browsers cache it. Use 302 (Temporary Redirect) if you need to track every click — browsers won't cache it.
 
@@ -1705,20 +1705,20 @@ This is the core algorithm. You need a unique 6–8 character code for each URL.
 
 Option A: MD5/SHA256 Hash
 
-```cpp
+\`\`\`cpp
 const crypto = require('crypto');
 
 function generateShortCode(longUrl) {
     const hash = crypto.createHash('md5').update(longUrl).digest('hex');
     return hash.substring(0, 7); // take first 7 chars
 }
-```
+\`\`\`
 
 Problem: Collisions. Two different URLs could produce the same 7-char prefix. Solution: Check DB, append counter if collision exists.
 
 Option B: Base62 Encoding of Auto-Increment ID
 
-```cpp
+\`\`\`cpp
 const BASE62 = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
 function toBase62(num) {
@@ -1729,13 +1729,13 @@ function toBase62(num) {
     }
     return result.padStart(7, '0');
 }
-```
+\`\`\`
 
 Advantage: No collisions — each ID is unique. Disadvantage: Sequential IDs are predictable. Use a distributed ID generator (like Snowflake) to avoid this.
 
 Option C: Random String + Collision Check
 
-```cpp
+\`\`\`cpp
 function generateCode(length = 7) {
     const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     let code = '';
@@ -1744,7 +1744,7 @@ function generateCode(length = 7) {
     return code;
 }
 // Check DB, regenerate if collision
-```
+\`\`\`
 
 62⁷ = ~3.5 trillion combinations. Collision probability is negligible.
 
@@ -1761,11 +1761,11 @@ CREATE TABLE urls (
     expires_at  TIMESTAMP,
     click_count BIGINT DEFAULT 0
 
-```cpp
+\`\`\`cpp
 );
 
 CREATE INDEX idx_short_code ON urls(short_code);
-```
+\`\`\`
 
 Why index on short_code? Every redirect does a lookup by short code. Without an index, that's a full table scan — O(n). With an index, it's O(log n).
 
@@ -1777,7 +1777,7 @@ SQL vs NoSQL? For this use case, either works. SQL gives you ACID guarantees. No
 Redirects are read-heavy. Cache the most accessed short codes in Redis.
 
 
-```cpp
+\`\`\`cpp
 const redis = require('redis');
 const client = redis.createClient();
 
@@ -1797,7 +1797,7 @@ async function redirect(shortCode) {
 
     return url.longUrl;
 }
-```
+\`\`\`
 
 Cache hit rate: With 20% of URLs getting 80% of traffic (Pareto principle), caching the top 20% eliminates 80% of DB reads.
 
@@ -1836,7 +1836,7 @@ Solution: Use a distributed ID generator like Twitter's Snowflake — generates 
 Track clicks without slowing down redirects.
 
 
-```cpp
+\`\`\`cpp
 async function redirect(shortCode, req) {
     const longUrl = await getLongUrl(shortCode); // fast path
 
@@ -1846,7 +1846,7 @@ async function redirect(shortCode, req) {
 
     return longUrl;
 }
-```
+\`\`\`
 
 For high-volume analytics, write to a message queue (Kafka, RabbitMQ) and process asynchronously.
 
@@ -1856,9 +1856,9 @@ For high-volume analytics, write to a message queue (Kafka, RabbitMQ) and proces
 Operation	Time Complexity
 Shorten URL	O(1) — hash/encode + DB write
 
-```cpp
+\`\`\`cpp
 Redirect	O(1) — cache hit; O(log n) — DB lookup with index
-```
+\`\`\`
 
 Analytics query	O(log n) — indexed query
 

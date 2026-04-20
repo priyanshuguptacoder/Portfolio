@@ -32,7 +32,20 @@ const Index = () => {
   }, []);
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden" style={{ background: "linear-gradient(180deg, #020617 0%, #020617 60%, #030a1a 100%)" }}>
+    <main
+      className="relative min-h-screen overflow-x-hidden"
+      style={{ background: "linear-gradient(180deg, #020617 0%, #020617 60%, #030a1a 100%)" }}
+    >
+      {/* Hidden SEO text — crawlable by Google, invisible to users */}
+      <div className="sr-only" aria-hidden="false">
+        <h1>Priyanshu Gupta — Backend Developer at NIT Jalandhar</h1>
+        <p>
+          Backend-focused web developer and CSE undergraduate at National Institute of Technology, Jalandhar.
+          Specializes in building scalable Node.js APIs, Express backends, and MongoDB databases.
+          Solved 300+ Data Structures and Algorithms problems on LeetCode with a contest rating of 1469.
+          Active competitive programmer on Codeforces. Open to backend internships.
+        </p>
+      </div>
 
       {/* Cursor-reactive glow (layer 0) */}
       <CursorGlow />

@@ -189,7 +189,10 @@ const Hero = () => {
               >
                 <img
                   src={profileImg}
-                  alt="Priyanshu Gupta — Full-Stack Developer"
+                  alt="Priyanshu Gupta — Backend Developer at NIT Jalandhar"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                   className="w-full h-full object-cover brightness-105"
                 />
                 {/* Subtle bottom fade for grounding */}

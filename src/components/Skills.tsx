@@ -31,7 +31,7 @@ const categories = [
 ];
 
 const Skills = () => (
-  <section id="skills" className="py-32 relative overflow-hidden">
+  <section id="skills" className="py-32 relative overflow-hidden" aria-label="Technical Skills of Priyanshu Gupta">
     <motion.div
       className="container mx-auto px-6"
       initial="hidden"

@@ -50,7 +50,7 @@ const About = () => {
   return (
     <>
       {/* ABOUT SECTION */}
-      <section id="about" className="py-32 relative overflow-hidden">
+      <section id="about" className="py-32 relative overflow-hidden" aria-label="About Priyanshu Gupta">
         <motion.div 
           className="container mx-auto px-6 max-w-4xl relative z-10"
           initial="hidden"

@@ -121,7 +121,7 @@ const SocialIcon = ({
 
 // ─── CONTACT SECTION ─────────────────────────────────────────────────────────
 const Contact = () => (
-  <section id="contact" className="py-40 relative overflow-hidden">
+  <section id="contact" className="py-40 relative overflow-hidden" aria-label="Contact Priyanshu Gupta">
     {/* Ambient glows */}
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-500/8 blur-[140px] rounded-full pointer-events-none" />
     <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-purple-500/8 blur-[100px] rounded-full pointer-events-none" />

@@ -14,8 +14,9 @@
     <!-- ── Canonical ───────────────────────────────────────────────── -->
     <link rel="canonical" href="https://www.priyanshuguptaportfolio.online/" />
 
-    <!-- ── Favicon ─────────────────────────────────────────────────── -->
+    <!-- ── Favicon & Web App Identity ──────────────────────────────── -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
 
     <!-- ── Open Graph ──────────────────────────────────────────────── -->
     <meta property="og:type" content="website" />
@@ -71,16 +72,27 @@
           "@type": "WebSite",
           "@id": "https://www.priyanshuguptaportfolio.online/#website",
           "url": "https://www.priyanshuguptaportfolio.online/",
-          "name": "Priyanshu Gupta — Backend Developer Portfolio",
+          "name": "Priyanshu Gupta Portfolio",
+          "alternateName": "Priyanshu Gupta",
           "description": "Portfolio of Priyanshu Gupta, Backend Developer at NIT Jalandhar specializing in Node.js, REST APIs, and DSA.",
           "author": { "@id": "https://www.priyanshuguptaportfolio.online/#person" },
-          "inLanguage": "en-US"
+          "publisher": { "@id": "https://www.priyanshuguptaportfolio.online/#person" },
+          "inLanguage": "en-US",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": {
+              "@type": "EntryPoint",
+              "urlTemplate": "https://www.priyanshuguptaportfolio.online/blog?q={search_term_string}"
+            },
+            "query-input": "required name=search_term_string"
+          }
         },
         {
           "@type": "ProfilePage",
           "@id": "https://www.priyanshuguptaportfolio.online/#profilepage",
           "url": "https://www.priyanshuguptaportfolio.online/",
-          "name": "Priyanshu Gupta — Backend Developer",
+          "name": "Priyanshu Gupta — Backend Developer Portfolio",
+          "isPartOf": { "@id": "https://www.priyanshuguptaportfolio.online/#website" },
           "about": { "@id": "https://www.priyanshuguptaportfolio.online/#person" },
           "mainEntity": { "@id": "https://www.priyanshuguptaportfolio.online/#person" }
         }

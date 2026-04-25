@@ -1,16 +1,4 @@
 User-agent: *
 Allow: /
 
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
-Sitemap: https://priyanshuportfoliogupta.vercel.app/sitemap.xml
+Sitemap: https://www.priyanshuguptaportfolio.online/sitemap.xml

@@ -15,7 +15,7 @@ const LINKS = {
   codeforces: "https://codeforces.com/profile/priyanshuguptacoder",
   github: "https://github.com/priyanshuguptacoder",
   linkedin: "https://linkedin.com/in/priyanshuguptacoder",
-  portfolio: "https://priyanshuportfoliogupta.vercel.app",
+  portfolio: "https://www.priyanshuguptaportfolio.online",
   email: "priyanshuguptanitian9696@gmail.com",
 };
 

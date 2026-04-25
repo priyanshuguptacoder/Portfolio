@@ -33,7 +33,7 @@ const BlogDetailPage = () => {
     setMeta("description", blog.metaDescription);
     setMeta("og:title", blog.seoTitle, true);
     setMeta("og:description", blog.metaDescription, true);
-    setMeta("og:url", `https://priyanshuportfoliogupta.vercel.app/blog/${blog.slug}`, true);
+    setMeta("og:url", `https://www.priyanshuguptaportfolio.online/blog/${blog.slug}`, true);
     setMeta("twitter:title", blog.seoTitle);
     setMeta("twitter:description", blog.metaDescription);
 

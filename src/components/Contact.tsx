@@ -3,6 +3,7 @@ import { Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { useState } from "react";
 import { sectionVariants, itemVariants, headingVariants } from "@/lib/animations";
+import { trackContactClick, trackGitHubClick } from "@/lib/analytics";
 
 // ─── Custom LeetCode SVG (official logo style) ───────────────────────────────
 const LeetCodeIcon = ({ size = 28 }: { size?: number }) => (
@@ -153,6 +154,7 @@ const Contact = () => (
             href="mailto:priyanshuguptanitian9696@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackContactClick("email")}
             className="group relative bg-gradient-to-r from-blue-500 to-cyan-500 px-14 py-5 rounded-full font-black text-base text-white transition-all duration-400 hover:scale-105 active:scale-95 shadow-xl shadow-blue-500/20 hover:shadow-cyan-400/30 flex items-center gap-3"
           >
             <Mail size={20} />

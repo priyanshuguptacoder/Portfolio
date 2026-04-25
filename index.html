@@ -91,6 +91,22 @@
     <!-- ── Preconnect for performance ───────────────────────────────── -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- ── Google Analytics GA4 ─────────────────────────────────────── -->
+    <!-- Preconnect to GA domains for faster script load -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="dns-prefetch" href="https://www.google-analytics.com" />
+    <!-- GA4 loader — async so it never blocks render -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LC5HXJDS39"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-LC5HXJDS39', {
+        send_page_view: true,
+        anonymize_ip: true
+      });
+    </script>
   </head>
 
   <body class="dark">

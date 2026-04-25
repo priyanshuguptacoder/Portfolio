@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Download, Trophy, Server, Award, Code2, BookOpen, GraduationCap, Medal, Brain, Zap } from "lucide-react";
 import { PremiumCard } from "@/components/ui/PremiumCard";
 import { sectionVariants, itemVariants, cardVariants, headingVariants } from "@/lib/animations";
+import { trackResumeDownload } from "@/lib/analytics";
 
 const education = [
   {
@@ -189,6 +190,7 @@ const About = () => {
               <a
                 href="/resume.pdf"
                 download
+                onClick={trackResumeDownload}
                 className="group relative inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-white text-black font-black text-sm transition-all duration-500 hover:scale-105 active:scale-95 shadow-2xl shadow-white/10"
               >
                 <Download size={18} className="group-hover:-translate-y-0.5 transition-transform" /> 

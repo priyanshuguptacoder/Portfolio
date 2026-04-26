@@ -15,30 +15,30 @@ const stats = [
     suffix: "+",
     label: "BACKEND SYSTEMS & APIS",
     detail: "Scalable APIs & Optimized Databases",
-    extraInfo: "Projects available on GitHub with clean backend architecture and API design",
-    linkText: "View GitHub ↗",
-    linkUrl: "https://github.com/priyanshuguptacoder"
+    extraInfo: "Projects on GitHub with clean backend architecture and API design",
+    linkText: "View GitHub",
+    linkUrl: "#"
   },
   {
     icon: Code2,
-    value: 280,
+    value: 300,
     suffix: "+",
     label: "LEETCODE PROBLEMS SOLVED",
     detail: "Strong coverage across core DSA topics with consistent problem solving.",
-    extraInfo: "Contest Rating: 1469 • Top ~55%",
-    linkText: "View Profile ↗",
-    linkUrl: "https://leetcode.com/u/invisiblemanfromheart/",
+    extraInfo: "Contest Rating: 1453 • Top 61%",
+    linkText: "View Profile",
+    linkUrl: "#",
     isDominant: true,
   },
   {
     icon: Trophy,
-    value: 25,
+    value: 30,
     suffix: "+",
-    label: "CODEFORCES PROBLEMS",
+    label: "PROBLEMS SOLVED (CODEFORCES)",
     detail: "Building competitive programming fundamentals with focus on speed and implementation.",
-    extraInfo: "Rating: 366 (Newbie) • Early Stage • Improving Rapidly",
-    linkText: "View Profile ↗",
-    linkUrl: "https://codeforces.com/profile/priyanshuguptacoder"
+    extraInfo: "Rating: 629 (Newbie) • Improving Rapidly",
+    linkText: "View Profile",
+    linkUrl: "#"
   },
 ];
 
@@ -97,7 +97,7 @@ const Hero = () => {
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
                 </span>
                 <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest">
-                  Open to Internships
+                  Open to Backend Internship
                 </span>
               </motion.div>
 
@@ -125,15 +125,15 @@ const Hero = () => {
                 <p className="text-base sm:text-lg font-medium text-white leading-snug mb-1.5">
                   CSE '29 @ NIT Jalandhar
                   <span className="text-white/30 mx-2">·</span>
-                  Web Developer
+                  Backend-Focused Software Engineer
                 </p>
                 {/* Line 2 */}
                 <p className="text-sm sm:text-base font-medium text-white/65 leading-snug">
-                  DSA
+                  Scalable APIs
                   <span className="text-white/30 mx-2">·</span>
-                  <span className="font-semibold text-cyan-400">300+ Problems (LeetCode)</span>
+                  Data Structures
                   <span className="text-white/30 mx-2">·</span>
-                  Competitive Programmer
+                  Problem Solving
                 </p>
               </motion.div>
 
@@ -142,12 +142,9 @@ const Hero = () => {
                 variants={itemVariants}
                 className="text-sm sm:text-[15px] text-white/55 max-w-[580px] mx-auto lg:mx-0 mb-10 leading-[1.75] font-normal"
               >
-                Web developer focused on building scalable and efficient applications.
-                CSE undergraduate at NIT Jalandhar with strong foundations in Data Structures and Algorithms.
-                Solved{" "}
-                <span className="text-white/80 font-medium">300+ problems on LeetCode</span>
-                {" "}and actively competing on{" "}
-                <span className="text-white/80 font-medium">Codeforces</span>.
+                Building scalable backend systems using Node.js, Express and MongoDB.
+                Solved 300+ LeetCode problems and actively improving through contests.
+                Open to Backend Internship Opportunities.
               </motion.p>
 
               {/* CTAs */}
@@ -159,13 +156,19 @@ const Hero = () => {
                   href="#projects"
                   className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-4 rounded-full font-bold text-sm hover:scale-105 hover:shadow-[0_0_28px_rgba(34,211,238,0.35)] active:scale-95 transition-all duration-300"
                 >
-                  Explore Projects
+                  View Projects
                 </MagneticButton>
                 <MagneticButton
                   href="#contact"
                   className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-4 rounded-full font-bold text-sm hover:scale-105 hover:shadow-[0_0_28px_rgba(34,211,238,0.35)] active:scale-95 transition-all duration-300"
                 >
-                  Let's Connect
+                  Contact Me
+                </MagneticButton>
+                <MagneticButton
+                  href="/resume.pdf"
+                  className="bg-white/10 border border-white/20 text-white px-8 py-4 rounded-full font-bold text-sm hover:scale-105 hover:bg-white/15 active:scale-95 transition-all duration-300"
+                >
+                  Resume
                 </MagneticButton>
               </motion.div>
             </motion.div>
@@ -249,8 +252,6 @@ const Hero = () => {
                     {s.linkUrl && (
                       <a
                         href={s.linkUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
                         className="mt-auto inline-flex items-center gap-2 text-[12px] font-semibold rounded-full px-5 py-2 z-20 transition-all duration-300 group/link bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-cyan-500/40 text-cyan-300 hover:from-blue-500/35 hover:to-cyan-500/35 hover:border-cyan-400/70 hover:text-white hover:shadow-[0_0_18px_rgba(0,180,255,0.3)]"
                       >
                         {s.linkText.replace(" ↗", "")}
@@ -303,15 +304,15 @@ const Hero = () => {
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
                   <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                     <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Solved</p>
-                    <p className="text-3xl font-black text-white">280<span className="text-cyan-400">+</span></p>
+                    <p className="text-3xl font-black text-white">300<span className="text-cyan-400">+</span></p>
                   </div>
                   <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                     <p className="text-[10px] font-mono text-green-400/80 uppercase tracking-widest mb-1">Easy</p>
-                    <p className="text-2xl font-bold text-green-400">110+</p>
+                    <p className="text-2xl font-bold text-green-400">117+</p>
                   </div>
                   <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                     <p className="text-[10px] font-mono text-yellow-400/80 uppercase tracking-widest mb-1">Medium</p>
-                    <p className="text-2xl font-bold text-yellow-400">160+</p>
+                    <p className="text-2xl font-bold text-yellow-400">166+</p>
                   </div>
                   <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                     <p className="text-[10px] font-mono text-red-400/80 uppercase tracking-widest mb-1">Hard</p>
@@ -322,11 +323,11 @@ const Hero = () => {
                 <div className="grid grid-cols-3 gap-4 mb-8">
                   <div>
                     <p className="text-xs text-white/40 mb-1">Contest Rating</p>
-                    <p className="text-lg font-bold text-white/80">1469</p>
+                    <p className="text-lg font-bold text-white/80">1453</p>
                   </div>
                   <div>
                     <p className="text-xs text-white/40 mb-1">Global Ranking</p>
-                    <p className="text-lg font-bold text-white/80">Top ~55%</p>
+                    <p className="text-lg font-bold text-white/80">Top 61%</p>
                   </div>
                   <div>
                     <p className="text-xs text-white/40 mb-1">Active Days</p>
@@ -334,22 +335,23 @@ const Hero = () => {
                   </div>
                 </div>
                 
-                {/* CONSISTENCY SIGNAL */}
+                {/* TOPIC CHIPS */}
                 <div className="mb-8 p-4 bg-blue-500/10 border border-blue-500/20 rounded-2xl">
-                  <h4 className="text-xs font-black text-blue-400 uppercase tracking-widest mb-2 flex items-center gap-2">
-                    <Zap size={14} /> Consistency & Discipline
+                  <h4 className="text-xs font-black text-blue-400 uppercase tracking-widest mb-3 flex items-center gap-2">
+                    <Zap size={14} /> Strong Topic Coverage
                   </h4>
-                  <ul className="text-xs text-white/60 space-y-1 font-light list-inside list-disc">
-                    <li>Regular daily problem solving</li>
-                    <li>Long streak maintenance</li>
-                  </ul>
+                  <div className="flex flex-wrap gap-2">
+                    {["Arrays", "Trees", "Graphs", "Dynamic Programming", "Binary Search", "Sliding Window"].map((t) => (
+                      <span key={t} className="text-[11px] px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/60">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
               
               <a
-                href="https://leetcode.com/u/invisiblemanfromheart/"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
                 className="inline-flex items-center justify-center w-full gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-cyan-500/10 text-white font-bold text-sm border border-white/10 hover:border-cyan-500/50 transition-all group mt-auto"
               >
                 View LeetCode Profile <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-cyan-400" />
@@ -372,12 +374,12 @@ const Hero = () => {
                 <div className="grid grid-cols-2 gap-4 mb-8">
                   <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col items-center justify-center text-center">
                     <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-2">Solved</p>
-                    <p className="text-5xl font-black text-white">25<span className="text-blue-400">+</span></p>
+                    <p className="text-5xl font-black text-white">30<span className="text-blue-400">+</span></p>
                   </div>
                   <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col justify-center space-y-4">
                     <div>
                       <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rating</p>
-                      <p className="text-2xl font-bold text-gray-400">366</p>
+                      <p className="text-2xl font-bold text-gray-400">629</p>
                     </div>
                     <div>
                       <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rank</p>
@@ -388,9 +390,7 @@ const Hero = () => {
               </div>
 
               <a
-                href="https://codeforces.com/profile/priyanshuguptacoder"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="#"
                 className="inline-flex items-center justify-center w-full gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-blue-500/10 text-white font-bold text-sm border border-white/10 hover:border-blue-500/50 transition-all group mt-auto"
               >
                 View Codeforces Profile <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-blue-400" />

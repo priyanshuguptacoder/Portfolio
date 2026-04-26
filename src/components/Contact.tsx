@@ -22,7 +22,7 @@ const CodeforcesIcon = ({ size = 28 }: { size?: number }) => (
 const socials = [
   {
     label: "GitHub",
-    href: "https://github.com/priyanshuguptacoder",
+    href: "#",
     icon: <FaGithub size={24} />,
     hoverColor: "group-hover:text-white",
     borderGlow: "hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.12)]",
@@ -30,7 +30,7 @@ const socials = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/priyanshu-gupta-b98689376/",
+    href: "#",
     icon: <FaLinkedin size={24} />,
     hoverColor: "group-hover:text-blue-400",
     borderGlow: "hover:border-blue-400/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]",
@@ -38,7 +38,7 @@ const socials = [
   },
   {
     label: "LeetCode",
-    href: "https://leetcode.com/u/invisiblemanfromheart/",
+    href: "#",
     icon: <LeetCodeIcon size={24} />,
     hoverColor: "group-hover:text-orange-400",
     borderGlow: "hover:border-orange-400/50 hover:shadow-[0_0_20px_rgba(251,146,60,0.2)]",
@@ -46,7 +46,7 @@ const socials = [
   },
   {
     label: "Codeforces",
-    href: "https://codeforces.com/profile/priyanshuguptacoder",
+    href: "#",
     icon: <CodeforcesIcon size={24} />,
     hoverColor: "group-hover:text-red-400",
     borderGlow: "hover:border-red-400/50 hover:shadow-[0_0_20px_rgba(248,113,113,0.2)]",
@@ -84,8 +84,6 @@ const SocialIcon = ({
     >
       <a
         href={href}
-        target="_blank"
-        rel="noopener noreferrer"
         aria-label={label}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
@@ -138,22 +136,19 @@ const Contact = () => (
           CONNECT
         </motion.p>
         <motion.h2 variants={headingVariants} className="font-heading text-5xl sm:text-7xl font-black text-white mb-8 leading-tight tracking-tighter">
-          Let's Build Something{" "}
+          Let’s Build Scalable{" "}
           <span className="bg-gradient-to-r from-blue-400 to-cyan-400 text-transparent bg-clip-text">
-            Meaningful
+            Systems Together
           </span>
         </motion.h2>
         <motion.p variants={itemVariants} className="text-lg text-white/40 mb-16 max-w-xl mx-auto leading-relaxed font-light">
-          I'm actively looking for backend internships and impactful projects. If you're building
-          something interesting, let's connect.
+          Currently looking for backend internships and impactful engineering opportunities.
         </motion.p>
 
         <motion.div variants={itemVariants} className="flex flex-col items-center gap-14">
           {/* Primary CTA */}
           <a
-            href="mailto:priyanshuguptanitian9696@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#"
             onClick={() => trackContactClick("email")}
             className="group relative bg-gradient-to-r from-blue-500 to-cyan-500 px-14 py-5 rounded-full font-black text-base text-white transition-all duration-400 hover:scale-105 active:scale-95 shadow-xl shadow-blue-500/20 hover:shadow-cyan-400/30 flex items-center gap-3"
           >

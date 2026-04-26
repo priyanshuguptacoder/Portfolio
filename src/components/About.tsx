@@ -27,10 +27,17 @@ const education = [
 ];
 
 const skillsSummary = [
-  { category: "Backend Engineering", items: ["Node.js", "Express", "MongoDB", "REST APIs"] },
-  { category: "Problem Solving & DSA", items: ["Data Structures", "Algorithms", "Problem Solving"] },
-  { category: "Frontend Support", items: ["React", "JavaScript", "Tailwind CSS", "HTML/CSS"] },
-  { category: "Tools & Workflow", items: ["Git", "GitHub", "Postman", "VS Code"] },
+  { category: "Backend Development", items: ["Node.js", "Express", "MongoDB", "REST APIs", "JWT Auth", "Database Design"] },
+  { category: "Problem Solving & DSA", items: ["C++", "Data Structures", "Algorithms", "Competitive Programming"] },
+  { category: "Frontend Development", items: ["React", "JavaScript", "Tailwind CSS", "HTML/CSS"] },
+  { category: "Developer Tools", items: ["Git", "GitHub", "Postman", "VS Code"] },
+];
+
+const achievementsList = [
+  "300+ LeetCode Problems Solved",
+  "LeetCode Contest Rating 1453",
+  "Codeforces Rating 629",
+  "NIT Jalandhar CSE '29"
 ];
 
 const coreStrengths = [
@@ -46,6 +53,7 @@ const About = () => {
     { id: "skills", label: "Skills", icon: Code2 },
     { id: "education", label: "Education", icon: GraduationCap },
     { id: "strengths", label: "What I Focus On", icon: Award },
+    { id: "achievements", label: "Achievements", icon: Trophy },
   ];
 
   return (
@@ -161,6 +169,25 @@ const About = () => {
                       <div className="flex items-center">
                         <h4 className="font-bold text-white text-sm mb-1">{s.title}</h4>
                       </div>
+                    </PremiumCard>
+                  ))}
+                </motion.div>
+              )}
+
+              {activeTab === "achievements" && (
+                <motion.div
+                  key="achievements"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className="grid sm:grid-cols-2 gap-4"
+                >
+                  {achievementsList.map((achievement, i) => (
+                    <PremiumCard key={i} className="p-6 flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-cyan-400/10 flex items-center justify-center shrink-0">
+                        <Trophy size={18} className="text-cyan-400" />
+                      </div>
+                      <h4 className="font-bold text-white text-sm">{achievement}</h4>
                     </PremiumCard>
                   ))}
                 </motion.div>

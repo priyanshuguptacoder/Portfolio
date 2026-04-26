@@ -98,22 +98,18 @@ const ProjectCard = ({
         <div className="flex gap-3">
           <MagneticButton
             href={github}
-            target="_blank"
-            rel="noopener noreferrer"
             className="flex-1 sm:flex-none text-center border border-white/20 text-white px-4 py-2 rounded-lg text-sm transition-transform hover:bg-white/5 hover:scale-105 active:scale-95"
           >
             <Github size={14} className="inline mr-1" />
-            Code
+            GitHub
           </MagneticButton>
 
           <MagneticButton
             href={live}
-            target="_blank"
-            rel="noopener noreferrer"
             className="flex-1 sm:flex-none text-center bg-white text-black px-4 py-2 rounded-lg text-sm transition-transform hover:bg-cyan-400 hover:scale-105 active:scale-95 shadow-lg shadow-white/5"
           >
             <ExternalLink size={14} className="inline mr-1" />
-            Live
+            Live Demo
           </MagneticButton>
         </div>
       </div>
@@ -137,7 +133,7 @@ const Projects = () => (
           Engineering Portfolio
         </p>
         <h2 className="text-3xl sm:text-4xl font-bold text-white">
-          System Architecture
+          Featured Backend Projects
         </h2>
       </motion.div>
 
@@ -145,33 +141,33 @@ const Projects = () => (
       <ProjectCard
         title="Competitive Programming Tracker"
         isFeatured={true}
-        problem="No unified system to track performance across platforms."
-        solution="Built full-stack app with API-based syncing and analytics dashboard."
-        impact="Improved consistency and centralized tracking."
+        problem="Tracking coding progress across platforms is fragmented."
+        solution="Built a full-stack tracking platform with API syncing, analytics dashboard and streak monitoring."
+        impact="Improved centralized progress visibility and consistency."
         coreFocus={[
           "Designed backend APIs (Node.js / Express)",
           "Built database schema (MongoDB)",
           "Implemented core analytics and streak logic"
         ]}
         tech={["React", "Node.js", "Express", "MongoDB"]}
-        github="https://github.com/priyanshuguptacoder/LeetCode-Tracker"
-        live="https://competativeprogrammingtrackerpriyanshu.vercel.app/"
+        github="#"
+        live="#"
       />
 
       {/* Project 2 */}
       <ProjectCard
         title="Hostel OS"
-        problem="Manual hostel management causes inefficiency and fragmented data."
-        solution="Built a role-based system with secure authentication and centralized data."
-        impact="Reduced admin workload and improved efficiency."
+        problem="Manual hostel management causes inefficiency."
+        solution="Built secure role-based management system with centralized data handling and JWT auth."
+        impact="Reduced workflow complexity through automation."
         coreFocus={[
           "Designed backend APIs (Node.js)",
           "Built database schema (MongoDB)",
           "Implemented secure multi-role OAuth authentication"
         ]}
-        tech={["React Native", "Node.js", "MongoDB"]}
-        github="https://github.com/priyanshuguptaiit99/hostelpriyanshu"
-        live="https://hostel-management-system-hqg0.onrender.com"
+        tech={["Node.js", "Express", "MongoDB", "JWT"]}
+        github="#"
+        live="#"
       />
 
     </motion.div>

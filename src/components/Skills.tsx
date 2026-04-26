@@ -6,25 +6,25 @@ import { sectionVariants, itemVariants, cardVariants, fastStaggerVariants } from
 const categories = [
   {
     icon: Server,
-    title: "Backend Engineering",
-    items: ["Node.js", "Express", "MongoDB", "REST APIs"],
+    title: "Backend Development",
+    items: ["Node.js", "Express", "MongoDB", "REST APIs", "JWT Auth", "Database Design"],
     isDominant: true,
   },
   {
     icon: Brain,
     title: "Problem Solving & DSA",
-    items: ["Data Structures", "Algorithms", "Problem Solving"],
+    items: ["C++", "Data Structures", "Algorithms", "Competitive Programming"],
     isDominant: false,
   },
   {
     icon: Layout,
-    title: "Frontend Support",
+    title: "Frontend Development",
     items: ["React", "JavaScript", "Tailwind CSS", "HTML/CSS"],
     isDominant: false,
   },
   {
     icon: Wrench,
-    title: "Tools & Workflow",
+    title: "Developer Tools",
     items: ["Git", "GitHub", "Postman", "VS Code"],
     isDominant: false,
   },

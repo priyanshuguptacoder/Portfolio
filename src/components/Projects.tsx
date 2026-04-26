@@ -101,7 +101,7 @@ const ProjectCard = ({
             className="flex-1 sm:flex-none text-center border border-white/20 text-white px-4 py-2 rounded-lg text-sm transition-transform hover:bg-white/5 hover:scale-105 active:scale-95"
           >
             <Github size={14} className="inline mr-1" />
-            GitHub
+            View Code
           </MagneticButton>
 
           <MagneticButton
@@ -150,8 +150,8 @@ const Projects = () => (
           "Implemented core analytics and streak logic"
         ]}
         tech={["React", "Node.js", "Express", "MongoDB"]}
-        github="#"
-        live="#"
+        github="https://github.com/priyanshuguptacoder/LeetCode-Tracker"
+        live="https://competativeprogrammingtrackerpriyanshu.vercel.app/"
       />
 
       {/* Project 2 */}
@@ -166,8 +166,8 @@ const Projects = () => (
           "Implemented secure multi-role OAuth authentication"
         ]}
         tech={["Node.js", "Express", "MongoDB", "JWT"]}
-        github="#"
-        live="#"
+        github="https://github.com/priyanshuguptaiit99/hostelpriyanshu"
+        live="https://hostel-management-system-hqg0.onrender.com"
       />
 
     </motion.div>

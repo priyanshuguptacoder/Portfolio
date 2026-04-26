@@ -17,7 +17,7 @@ const stats = [
     detail: "Scalable APIs & Optimized Databases",
     extraInfo: "Projects on GitHub with clean backend architecture and API design",
     linkText: "View GitHub",
-    linkUrl: "#"
+    linkUrl: "https://github.com/priyanshugptacoder"
   },
   {
     icon: Code2,
@@ -163,12 +163,6 @@ const Hero = () => {
                   className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-4 rounded-full font-bold text-sm hover:scale-105 hover:shadow-[0_0_28px_rgba(34,211,238,0.35)] active:scale-95 transition-all duration-300"
                 >
                   Contact Me
-                </MagneticButton>
-                <MagneticButton
-                  href="/resume.pdf"
-                  className="bg-white/10 border border-white/20 text-white px-8 py-4 rounded-full font-bold text-sm hover:scale-105 hover:bg-white/15 active:scale-95 transition-all duration-300"
-                >
-                  Resume
                 </MagneticButton>
               </motion.div>
             </motion.div>

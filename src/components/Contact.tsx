@@ -22,7 +22,7 @@ const CodeforcesIcon = ({ size = 28 }: { size?: number }) => (
 const socials = [
   {
     label: "GitHub",
-    href: "#",
+    href: "https://github.com/priyanshuguptacoder",
     icon: <FaGithub size={24} />,
     hoverColor: "group-hover:text-white",
     borderGlow: "hover:border-white/40 hover:shadow-[0_0_20px_rgba(255,255,255,0.12)]",
@@ -30,7 +30,7 @@ const socials = [
   },
   {
     label: "LinkedIn",
-    href: "#",
+    href: "https://www.linkedin.com/in/priyanshu-gupta-b98689376/",
     icon: <FaLinkedin size={24} />,
     hoverColor: "group-hover:text-blue-400",
     borderGlow: "hover:border-blue-400/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]",

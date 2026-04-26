@@ -84,6 +84,7 @@ const SocialIcon = ({
     >
       <a
         href={href}
+        {...(href !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         aria-label={label}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
@@ -148,7 +149,7 @@ const Contact = () => (
         <motion.div variants={itemVariants} className="flex flex-col items-center gap-14">
           {/* Primary CTA */}
           <a
-            href="#"
+            href="mailto:priyanshuguptanitian9696@gmail.com"
             onClick={() => trackContactClick("email")}
             className="group relative bg-gradient-to-r from-blue-500 to-cyan-500 px-14 py-5 rounded-full font-black text-base text-white transition-all duration-400 hover:scale-105 active:scale-95 shadow-xl shadow-blue-500/20 hover:shadow-cyan-400/30 flex items-center gap-3"
           >

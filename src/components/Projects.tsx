@@ -98,6 +98,7 @@ const ProjectCard = ({
         <div className="flex gap-3">
           <MagneticButton
             href={github}
+            {...(github !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             className="flex-1 sm:flex-none text-center border border-white/20 text-white px-4 py-2 rounded-lg text-sm transition-transform hover:bg-white/5 hover:scale-105 active:scale-95"
           >
             <Github size={14} className="inline mr-1" />
@@ -106,6 +107,7 @@ const ProjectCard = ({
 
           <MagneticButton
             href={live}
+            {...(live !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             className="flex-1 sm:flex-none text-center bg-white text-black px-4 py-2 rounded-lg text-sm transition-transform hover:bg-cyan-400 hover:scale-105 active:scale-95 shadow-lg shadow-white/5"
           >
             <ExternalLink size={14} className="inline mr-1" />

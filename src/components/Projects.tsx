@@ -153,7 +153,7 @@ const Projects = () => (
         ]}
         tech={["React", "Node.js", "Express", "MongoDB"]}
         github="https://github.com/priyanshuguptacoder/LeetCode-Tracker"
-        live="https://competativeprogrammingtrackerpriyanshu.vercel.app/"
+        live="#"
       />
 
       {/* Project 2 */}

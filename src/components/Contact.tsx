@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { SiCodechef } from "react-icons/si";
 import { useState } from "react";
 import { sectionVariants, itemVariants, headingVariants } from "@/lib/animations";
 import { trackContactClick, trackGitHubClick } from "@/lib/analytics";
@@ -15,6 +16,12 @@ const LeetCodeIcon = ({ size = 28 }: { size?: number }) => (
 const CodeforcesIcon = ({ size = 28 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
     <path d="M4.5 7.5C5.328 7.5 6 8.172 6 9v10.5c0 .828-.672 1.5-1.5 1.5h-3C.672 21 0 20.328 0 19.5V9C0 8.172.672 7.5 1.5 7.5h3zm9-4.5c.828 0 1.5.672 1.5 1.5v15c0 .828-.672 1.5-1.5 1.5h-3c-.828 0-1.5-.672-1.5-1.5v-15c0-.828.672-1.5 1.5-1.5h3zm9 7.5c.828 0 1.5.672 1.5 1.5v7.5c0 .828-.672 1.5-1.5 1.5h-3c-.828 0-1.5-.672-1.5-1.5v-7.5c0-.828.672-1.5 1.5-1.5h3z"/>
+  </svg>
+);
+
+const AtCoderIcon = ({ size = 28 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M11.998 2.5 4.5 21h3.11l1.33-3.5h6.12L16.39 21h3.11L11.998 2.5zm-2.02 11.5L12 8.4 14.02 14H9.978z" />
   </svg>
 );
 
@@ -51,6 +58,22 @@ const socials = [
     hoverColor: "group-hover:text-red-400",
     borderGlow: "hover:border-red-400/50 hover:shadow-[0_0_20px_rgba(248,113,113,0.2)]",
     bgGlow: "rgba(248,113,113,0.06)",
+  },
+  {
+    label: "CodeChef",
+    href: "#",
+    icon: <SiCodechef size={24} />,
+    hoverColor: "group-hover:text-orange-400",
+    borderGlow: "hover:border-orange-400/50 hover:shadow-[0_0_20px_rgba(251,146,60,0.2)]",
+    bgGlow: "rgba(251,146,60,0.06)",
+  },
+  {
+    label: "AtCoder",
+    href: "#",
+    icon: <AtCoderIcon size={24} />,
+    hoverColor: "group-hover:text-blue-400",
+    borderGlow: "hover:border-blue-400/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]",
+    bgGlow: "rgba(59,130,246,0.06)",
   },
 ];
 

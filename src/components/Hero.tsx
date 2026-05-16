@@ -128,14 +128,16 @@ const Hero = () => {
                   Web Developer
                 </p>
                 {/* Line 2 */}
-                <p className="text-sm sm:text-base font-medium text-white/65 leading-snug">
-                  
-                 <span className="text-white/30 mx-2">·</span>
-                  Data Structures and Algorithms
-                  <span className="text-white/30 mx-2">·</span>
-                  Competitive Programming
-                  <span className="text-white/30 mx-2">·</span>
-                  Problem Solving
+                <p className="text-sm sm:text-base font-medium text-white/65 leading-snug flex flex-wrap items-center gap-2 sm:gap-3">
+                  <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-white/75 backdrop-blur-md transition-all duration-300 hover:border-cyan-300/40 hover:bg-white/10 hover:text-white hover:shadow-[0_0_18px_rgba(34,211,238,0.25)]">
+                    Data Structures and Algorithms
+                  </span>
+                  <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-white/75 backdrop-blur-md transition-all duration-300 hover:border-cyan-300/40 hover:bg-white/10 hover:text-white hover:shadow-[0_0_18px_rgba(34,211,238,0.25)]">
+                    Competitive Programming
+                  </span>
+                  <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-white/75 backdrop-blur-md transition-all duration-300 hover:border-cyan-300/40 hover:bg-white/10 hover:text-white hover:shadow-[0_0_18px_rgba(34,211,238,0.25)]">
+                    Problem Solving
+                  </span>
                 </p>
               </motion.div>
 

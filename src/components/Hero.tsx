@@ -381,6 +381,24 @@ const Hero = () => {
                       </div>
                     </div>
                   </div>
+
+                  <div className="bg-white/5 rounded-2xl p-4 border border-white/5 mb-8">
+                    <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-3">CodeChef</p>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      <div>
+                        <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rating</p>
+                        <p className="text-lg font-bold text-white/80">1428</p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rank</p>
+                        <p className="text-lg font-bold text-white/80">Div 3</p>
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Highest Rating</p>
+                        <p className="text-lg font-bold text-white/80">1428</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <a

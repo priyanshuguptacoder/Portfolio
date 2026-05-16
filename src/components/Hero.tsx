@@ -130,12 +130,12 @@ const Hero = () => {
                 {/* Line 2 */}
                 <p className="text-sm sm:text-base font-medium text-white/65 leading-snug">
                   
-                 <span className="text-white/30 mx-2">·</span>
-                  Data Structures and Algorithms
-                  <span className="text-white/30 mx-2">·</span>
-                  Competitive Programming
-                  <span className="text-white/30 mx-2">·</span>
-                  Problem Solving
+                 <span className="text-white/60 font-semibold mx-2">·</span>
+                 Data Structures and Algorithms
+                  <span className="text-white/60 font-semibold mx-2">·</span>
+                 Competitive Programming
+                  <span className="text-white/60 font-semibold mx-2">·</span>
+                 Problem Solving
                 </p>
               </motion.div>
 

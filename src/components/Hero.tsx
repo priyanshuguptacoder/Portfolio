@@ -11,7 +11,7 @@ import { sectionVariants, itemVariants } from "@/lib/animations";
 const stats = [
   {
     icon: Server,
-    value: 421,
+    value: 420,
     suffix: "+",
     label: "TOTAL QUESTIONS SOLVED",
     detail: "Combined problem solving across coding platforms",
@@ -125,11 +125,11 @@ const Hero = () => {
                 <p className="text-base sm:text-lg font-medium text-white leading-snug mb-1.5">
                   CSE '29 @ NIT Jalandhar
                   <span className="text-white/30 mx-2">·</span>
-                  Backend-Focused Software Engineer
+                  Web Developer
                 </p>
                 {/* Line 2 */}
                 <p className="text-sm sm:text-base font-medium text-white/65 leading-snug">
-                  Scalable APIs
+                  
                   <span className="text-white/30 mx-2">·</span>
                   Data Structures
                   <span className="text-white/30 mx-2">·</span>
@@ -142,9 +142,9 @@ const Hero = () => {
                 variants={itemVariants}
                 className="text-sm sm:text-[15px] text-white/55 max-w-[580px] mx-auto lg:mx-0 mb-10 leading-[1.75] font-normal"
               >
-                Building scalable backend systems using Node.js, Express and MongoDB.
-                Solved 300+ LeetCode problems and actively improving through contests.
-                Open to Backend Internship Opportunities.
+                Building scalable systems using React, JavaScript.
+                Solved 335+ LeetCode problems and actively improving through contests.
+                Open to Internship Opportunities.
               </motion.p>
 
               {/* CTAs */}

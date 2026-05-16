@@ -8,7 +8,7 @@ const categories = [
     icon: Server,
     title: "Backend Development",
     items: ["Node.js", "Express", "MongoDB", "REST APIs", "JWT Auth", "Database Design"],
-    isDominant: true,
+    isDominant: false,
   },
   {
     icon: Brain,

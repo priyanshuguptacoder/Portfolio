@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { SiAtcoder, SiCodechef } from "react-icons/si";
 import { useState } from "react";
 import { sectionVariants, itemVariants, headingVariants } from "@/lib/animations";
 import { trackContactClick, trackGitHubClick } from "@/lib/analytics";
@@ -51,6 +52,22 @@ const socials = [
     hoverColor: "group-hover:text-red-400",
     borderGlow: "hover:border-red-400/50 hover:shadow-[0_0_20px_rgba(248,113,113,0.2)]",
     bgGlow: "rgba(248,113,113,0.06)",
+  },
+  {
+    label: "CodeChef",
+    href: "#",
+    icon: <SiCodechef size={24} />,
+    hoverColor: "group-hover:text-orange-400",
+    borderGlow: "hover:border-orange-400/50 hover:shadow-[0_0_20px_rgba(251,146,60,0.2)]",
+    bgGlow: "rgba(251,146,60,0.06)",
+  },
+  {
+    label: "AtCoder",
+    href: "#",
+    icon: <SiAtcoder size={24} />,
+    hoverColor: "group-hover:text-blue-400",
+    borderGlow: "hover:border-blue-400/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]",
+    bgGlow: "rgba(59,130,246,0.06)",
   },
 ];
 

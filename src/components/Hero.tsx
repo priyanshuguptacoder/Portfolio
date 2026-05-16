@@ -11,13 +11,13 @@ import { sectionVariants, itemVariants } from "@/lib/animations";
 const stats = [
   {
     icon: Server,
-    value: 5,
+    value: 421,
     suffix: "+",
-    label: "BACKEND SYSTEMS & APIS",
-    detail: "Scalable APIs & Optimized Databases",
-    extraInfo: "Projects on GitHub with clean backend architecture and API design",
-    linkText: "View GitHub",
-    linkUrl: "https://github.com/priyanshuguptacoder"
+    label: "TOTAL QUESTIONS SOLVED",
+    detail: "Combined problem solving across coding platforms",
+    extraInfo: "LeetCode • Codeforces • CodeChef • AtCoder",
+    linkText: "View Codolio",
+    linkUrl: "#"
   },
   {
     icon: Code2,

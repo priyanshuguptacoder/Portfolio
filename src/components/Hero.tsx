@@ -325,7 +325,7 @@ const Hero = () => {
                     </div>
                     <div>
                       <p className="text-xs text-white/40 mb-1">Active Days</p>
-                      <p className="text-lg font-bold text-white/80">80+</p>
+                      <p className="text-lg font-bold text-white/80">110+</p>
                     </div>
                   </div>
 
@@ -360,7 +360,7 @@ const Hero = () => {
             >
               <PremiumCard className="flex-1 h-full flex flex-col p-8 lg:p-12 group/card">
                 <div className="relative z-10 flex-1 flex flex-col">
-                  <h3 className="text-2xl font-black text-white mb-2">Competitive Programming<br /><span className="text-lg text-white/60">(Codeforces)</span></h3>
+                  <h3 className="text-2xl font-black text-white mb-2">Competitive Programming<br /><span className="text-lg text-white/60">(Codeforces, CodeChef)</span></h3>
                   <p className="text-sm text-white/50 mb-8 leading-relaxed font-light">
                     Focusing on improving speed, implementation, and contest performance under pressure.
                   </p>
@@ -386,8 +386,8 @@ const Hero = () => {
                     <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-3">CodeChef</p>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                       <div>
-                        <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rating</p>
-                        <p className="text-lg font-bold text-white/80">1428</p>
+                        <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Stars</p>
+                        <p className="text-lg font-bold text-white/80">⭐️⭐️</p>
                       </div>
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rank</p>
@@ -395,7 +395,7 @@ const Hero = () => {
                       </div>
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Highest Rating</p>
-                        <p className="text-lg font-bold text-white/80">1428</p>
+                        <p className="text-lg font-bold text-white/80"></p>
                       </div>
                     </div>
                   </div>

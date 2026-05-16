@@ -395,7 +395,7 @@ const Hero = () => {
                       </div>
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Highest Rating</p>
-                        <p className="text-lg font-bold text-white/80"></p>
+                        <p className="text-lg font-bold text-white/80">1428+</p>
                       </div>
                     </div>
                   </div>

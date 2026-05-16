@@ -10,16 +10,6 @@ import { sectionVariants, itemVariants } from "@/lib/animations";
 
 const stats = [
   {
-    icon: Server,
-    value: 420,
-    suffix: "+",
-    label: "TOTAL QUESTIONS SOLVED",
-    detail: "Combined problem solving across coding platforms",
-    extraInfo: "LeetCode • Codeforces • CodeChef • AtCoder",
-    linkText: "View Codolio",
-    linkUrl: "#"
-  },
-  {
     icon: Code2,
     value: 335,
     suffix: "+",
@@ -27,6 +17,16 @@ const stats = [
     detail: "Strong coverage across core DSA topics with consistent problem solving.",
     extraInfo: "Contest Rating: 1565 • Top 30%",
     linkText: "View Profile",
+    linkUrl: "#"
+  },
+  {
+    icon: Server,
+    value: 420,
+    suffix: "+",
+    label: "TOTAL QUESTIONS SOLVED",
+    detail: "Combined problem solving across coding platforms",
+    extraInfo: "LeetCode • Codeforces • CodeChef • AtCoder",
+    linkText: "View Codolio",
     linkUrl: "#",
     isDominant: true,
   },

@@ -36,7 +36,7 @@ const stats = [
     suffix: "+",
     label: "PROBLEMS SOLVED (CODEFORCES)",
     detail: "Building competitive programming fundamentals with focus on speed and implementation.",
-    extraInfo: "Rating: 1000+ (Newbie) • Improving Rapidly",
+    extraInfo: "Rating: 1002 (Newbie) • Improving Rapidly",
     linkText: "View Profile",
     linkUrl: "#"
   },

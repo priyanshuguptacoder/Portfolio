@@ -21,22 +21,22 @@ const stats = [
   },
   {
     icon: Code2,
-    value: 300,
+    value: 335,
     suffix: "+",
     label: "LEETCODE PROBLEMS SOLVED",
     detail: "Strong coverage across core DSA topics with consistent problem solving.",
-    extraInfo: "Contest Rating: 1453 • Top 61%",
+    extraInfo: "Contest Rating: 1565 • Top 30%",
     linkText: "View Profile",
     linkUrl: "#",
     isDominant: true,
   },
   {
     icon: Trophy,
-    value: 30,
+    value: 75,
     suffix: "+",
     label: "PROBLEMS SOLVED (CODEFORCES)",
     detail: "Building competitive programming fundamentals with focus on speed and implementation.",
-    extraInfo: "Rating: 629 (Newbie) • Improving Rapidly",
+    extraInfo: "Rating: 1000+ (Newbie) • Improving Rapidly",
     linkText: "View Profile",
     linkUrl: "#"
   },
@@ -298,30 +298,30 @@ const Hero = () => {
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                       <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Solved</p>
-                      <p className="text-3xl font-black text-white">300<span className="text-cyan-400">+</span></p>
+                      <p className="text-3xl font-black text-white">335<span className="text-cyan-400">+</span></p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                       <p className="text-[10px] font-mono text-green-400/80 uppercase tracking-widest mb-1">Easy</p>
-                      <p className="text-2xl font-bold text-green-400">117+</p>
+                      <p className="text-2xl font-bold text-green-400">130+</p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                       <p className="text-[10px] font-mono text-yellow-400/80 uppercase tracking-widest mb-1">Medium</p>
-                      <p className="text-2xl font-bold text-yellow-400">166+</p>
+                      <p className="text-2xl font-bold text-yellow-400">187+</p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                       <p className="text-[10px] font-mono text-red-400/80 uppercase tracking-widest mb-1">Hard</p>
-                      <p className="text-2xl font-bold text-red-400">17+</p>
+                      <p className="text-2xl font-bold text-red-400">18+</p>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-3 gap-4 mb-8">
                     <div>
                       <p className="text-xs text-white/40 mb-1">Contest Rating</p>
-                      <p className="text-lg font-bold text-white/80">1453</p>
+                      <p className="text-lg font-bold text-white/80">1565+</p>
                     </div>
                     <div>
                       <p className="text-xs text-white/40 mb-1">Global Ranking</p>
-                      <p className="text-lg font-bold text-white/80">Top 61%</p>
+                      <p className="text-lg font-bold text-white/80">Top 30%</p>
                     </div>
                     <div>
                       <p className="text-xs text-white/40 mb-1">Active Days</p>
@@ -368,12 +368,12 @@ const Hero = () => {
                   <div className="grid grid-cols-2 gap-4 mb-8">
                     <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col items-center justify-center text-center">
                       <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-2">Solved</p>
-                      <p className="text-5xl font-black text-white">30<span className="text-blue-400">+</span></p>
+                      <p className="text-5xl font-black text-white">75<span className="text-blue-400">+</span></p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col justify-center space-y-4">
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rating</p>
-                        <p className="text-2xl font-bold text-gray-400">629</p>
+                        <p className="text-2xl font-bold text-gray-400">1000+</p>
                       </div>
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rank</p>

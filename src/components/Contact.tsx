@@ -126,7 +126,7 @@ const SocialIcon = ({
         aria-label={label}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className={`group relative flex items-center justify-center w-12 h-12 rounded-xl border border-white/10 bg-[#0b1220] text-white/30 backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-105 active:scale-95 ${borderGlow} ${hoverColor}`}
+        className={`group relative flex items-center justify-center w-10 h-10 rounded-xl border border-white/10 bg-[#0b1220] text-white/30 backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-105 active:scale-95 sm:w-12 sm:h-12 ${borderGlow} ${hoverColor}`}
         style={{
           boxShadow: hovered ? undefined : "0 4px 24px rgba(0,0,0,0.3)",
           background: hovered
@@ -197,7 +197,7 @@ const Contact = () => (
           </a>
 
           {/* Social Icons */}
-          <div className="flex items-end justify-center gap-8">
+          <div className="flex flex-wrap items-end justify-center gap-4 sm:gap-8 sm:flex-nowrap">
             {socials.map((s, i) => (
               <SocialIcon key={s.label} {...s} delay={i * 0.1} />
             ))}

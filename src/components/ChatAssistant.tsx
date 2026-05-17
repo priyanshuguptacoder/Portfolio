@@ -27,11 +27,13 @@ const LINKS = {
   linkedin: "#",
 };
 
+const INTERNSHIP_QUERY = "Are you open for internships?";
 const SWIPE_DOWN_THRESHOLD = 80;
 const SWIPE_HORIZONTAL_TOLERANCE = 40;
 const MAX_TYPING_DELAY = 900;
 const BASE_TYPING_DELAY = 260;
 const TYPING_DELAY_PER_CHAR = 12;
+const TYPING_DOT_DELAY = 150;
 
 // ── Quick Action Links ─────────────────────────────────────────────────────────
 const QUICK_ACTION_LINKS = [
@@ -54,7 +56,7 @@ const SUGGESTED_QUESTIONS = [
   { label: "Tell me about your projects", input: "Tell me about your projects" },
   { label: "What is your tech stack?", input: "What is your tech stack?" },
   { label: "Show coding profiles", input: "Show coding profiles" },
-  { label: "Are you available for internships?", input: "Are you available for internships?" },
+  { label: INTERNSHIP_QUERY, input: INTERNSHIP_QUERY },
   { label: "What backend technologies do you use?", input: "What backend technologies do you use?" },
   { label: "Tell me about DSA experience", input: "Tell me about DSA experience" },
 ];
@@ -271,7 +273,7 @@ const RESPONSES: Record<string, ResponseData[]> = {
   dsa: [
     {
       lines: [
-        "Solved 335+ LeetCode problems and actively participates in contests across Codeforces and CodeChef.",
+        "Has solved 335+ LeetCode problems and actively participates in contests across Codeforces and CodeChef.",
         "Strong emphasis on medium/hard problems and consistent contest practice.",
       ],
       actions: [
@@ -439,7 +441,7 @@ const FALLBACKS: ResponseData[] = [
 const DEFAULT_QUICK_REPLIES = [
   "Tell me about your projects",
   "What is your tech stack?",
-  "Are you available for internships?",
+  INTERNSHIP_QUERY,
 ];
 
 const CONTEXT_QUICK_REPLIES: Record<string, string[]> = {
@@ -447,7 +449,7 @@ const CONTEXT_QUICK_REPLIES: Record<string, string[]> = {
   identity: [
     "Tell me about your projects",
     "What backend technologies do you use?",
-    "Are you available for internships?",
+    INTERNSHIP_QUERY,
   ],
   about: ["Tell me about your projects", "Tell me about DSA experience", "Show coding profiles"],
   projects: [
@@ -455,15 +457,15 @@ const CONTEXT_QUICK_REPLIES: Record<string, string[]> = {
     "Tell me about Hostel Management System",
     "What is your tech stack?",
   ],
-  tracker: ["What is your tech stack?", "Show coding profiles", "Are you available for internships?"],
-  hostel: ["What backend technologies do you use?", "Show coding profiles", "Are you available for internships?"],
+  tracker: ["What is your tech stack?", "Show coding profiles", INTERNSHIP_QUERY],
+  hostel: ["What backend technologies do you use?", "Show coding profiles", INTERNSHIP_QUERY],
   skills: ["What backend technologies do you use?", "Show coding profiles", "Tell me about your projects"],
-  tech: ["Tell me about your projects", "Tell me about DSA experience", "Are you available for internships?"],
-  dsa: ["Show coding profiles", "Tell me about DSA experience", "Are you available for internships?"],
-  profiles: ["Tell me about your projects", "What is your tech stack?", "Are you available for internships?"],
+  tech: ["Tell me about your projects", "Tell me about DSA experience", INTERNSHIP_QUERY],
+  dsa: ["Show coding profiles", "Tell me about DSA experience", INTERNSHIP_QUERY],
+  profiles: ["Tell me about your projects", "What is your tech stack?", INTERNSHIP_QUERY],
   internship: ["Contact", "Resume", "Tell me about your projects"],
   resume: ["Contact", "Show coding profiles", "Tell me about your projects"],
-  contact: ["Are you available for internships?", "Tell me about your projects", "Show coding profiles"],
+  contact: [INTERNSHIP_QUERY, "Tell me about your projects", "Show coding profiles"],
   achievements: ["Tell me about your projects", "Show coding profiles", "What is your tech stack?"],
 };
 
@@ -624,7 +626,7 @@ const ActionButton = ({ action }: { action: Action }) => {
   if (action.scrollTo) {
     return (
       <button
-        onClick={() => handleScroll(action.scrollTo!)}
+        onClick={() => action.scrollTo && handleScroll(action.scrollTo)}
         className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-white/65 text-[11px] font-medium hover:border-[rgba(0,180,255,0.4)] hover:text-cyan-300 hover:bg-[rgba(0,180,255,0.08)] hover:scale-[1.03] active:scale-[0.97] transition-all"
       >
         {action.label}
@@ -740,7 +742,7 @@ const BotMessage = ({
               </p>
             </div>
             <button
-              onClick={() => onQuickReply("Are you open for internships?")}
+              onClick={() => onQuickReply(INTERNSHIP_QUERY)}
               className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-gradient-to-r from-cyan-500/80 to-blue-500/80 text-[12px] font-semibold text-white hover:shadow-[0_0_20px_rgba(34,211,238,0.35)] hover:scale-[1.02] active:scale-[0.98] transition-all"
             >
               Open For Internship
@@ -823,7 +825,7 @@ const MiniTyping = () => {
           <span
             key={i}
             className="w-1.5 h-1.5 rounded-full bg-cyan-300/70 animate-pulse motion-reduce:animate-none"
-            style={reduceMotion ? undefined : { animationDelay: `${i * 150}ms` }}
+            style={reduceMotion ? undefined : { animationDelay: `${i * TYPING_DOT_DELAY}ms` }}
           />
         ))}
       </div>
@@ -1002,7 +1004,12 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
             type="text"
             value={input}
             onChange={(event) => setInput(event.target.value)}
-            onKeyDown={(event) => event.key === "Enter" && sendMessage(input)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                event.preventDefault();
+                sendMessage(input);
+              }
+            }}
             placeholder="Ask about projects, tech stack, internships..."
             className="flex-1 h-[44px] bg-[rgba(18,28,48,0.9)] border border-white/[0.08] rounded-xl px-4 text-[12px] sm:text-[13px] text-white placeholder-white/40 outline-none focus:border-cyan-500/40 focus:bg-[rgba(18,28,48,1)] transition-all"
             aria-label="Ask about Priyanshu"

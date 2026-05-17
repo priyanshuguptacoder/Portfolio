@@ -25,6 +25,13 @@ const AtCoderIcon = ({ size = 28 }: { size?: number }) => (
   </svg>
 );
 
+const CodolioIcon = ({ size = 28 }: { size?: number }) => (
+  <svg
+    width={size} height={size} viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5 3C3.895 3 3 3.895 3 5v14c0 1.105.895 2 2 2h14c1.105 0 2-.895 2-2V5c0-1.105-.895-2-2-2H5zm2 4h3v10H7V7zm7 0h3v10h-3V7z" />
+  </svg>
+);
+
 // ─── Social Link Config ───────────────────────────────────────────────────────
 const socials = [
   {
@@ -39,6 +46,14 @@ const socials = [
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/priyanshu-gupta-b98689376/",
     icon: <FaLinkedin size={24} />,
+    hoverColor: "group-hover:text-blue-400",
+    borderGlow: "hover:border-blue-400/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]",
+    bgGlow: "rgba(59,130,246,0.06)",
+  },
+  {
+    label: "Codolio",
+    href: "https://codolio.com/profile/priyanshuguptacoder/",
+    icon: <CodolioIcon size={24} />,
     hoverColor: "group-hover:text-blue-400",
     borderGlow: "hover:border-blue-400/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]",
     bgGlow: "rgba(59,130,246,0.06)",
@@ -166,7 +181,7 @@ const Contact = () => (
           </span>
         </motion.h2>
         <motion.p variants={itemVariants} className="text-lg text-white/40 mb-16 max-w-xl mx-auto leading-relaxed font-light">
-          Currently looking for backend internships and impactful engineering opportunities.
+          Currently looking for internships and impactful engineering opportunities.
         </motion.p>
 
         <motion.div variants={itemVariants} className="flex flex-col items-center gap-14">

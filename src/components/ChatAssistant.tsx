@@ -1,5 +1,12 @@
-import { useEffect, useRef, useState, type RefObject, type TouchEvent } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type MouseEvent,
+  type RefObject,
+  type TouchEvent,
+} from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ChevronRight, ExternalLink, MessageCircle, Send, X } from "lucide-react";
 
 // ── Profile Data ──────────────────────────────────────────────────────────────
@@ -19,6 +26,12 @@ const LINKS = {
   github: "#",
   linkedin: "#",
 };
+
+const SWIPE_DOWN_THRESHOLD = 80;
+const SWIPE_HORIZONTAL_TOLERANCE = 40;
+const MAX_TYPING_DELAY = 900;
+const BASE_TYPING_DELAY = 260;
+const TYPING_DELAY_PER_CHAR = 12;
 
 // ── Quick Action Links ─────────────────────────────────────────────────────────
 const QUICK_ACTION_LINKS = [
@@ -141,6 +154,12 @@ function handleScroll(id: string) {
   const el = document.getElementById(id);
   if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
+
+const isPlaceholderHref = (href?: string) => !href || href === "#";
+
+const handlePlaceholderClick = (event: MouseEvent<HTMLAnchorElement>, href?: string) => {
+  if (isPlaceholderHref(href)) event.preventDefault();
+};
 
 // ── Response Bank ─────────────────────────────────────────────────────────────
 const RESPONSES: Record<string, ResponseData[]> = {
@@ -537,7 +556,7 @@ const SectionDivider = ({ label }: { label: string }) => (
 const QuickActionLink = ({ label, href }: { label: string; href: string }) => (
   <a
     href={href}
-    onClick={(event) => href === "#" && event.preventDefault()}
+    onClick={(event) => handlePlaceholderClick(event, href)}
     className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-[11px] sm:text-[12px] text-white/70 font-medium hover:border-cyan-400/40 hover:text-cyan-200 hover:bg-cyan-500/10 hover:shadow-[0_0_16px_rgba(34,211,238,0.2)] transition-all"
   >
     {label}
@@ -585,7 +604,7 @@ const ProfileCard = ({
 }) => (
   <a
     href={href}
-    onClick={(event) => href === "#" && event.preventDefault()}
+    onClick={(event) => handlePlaceholderClick(event, href)}
     className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] px-3 py-3 transition-all hover:border-cyan-400/40 hover:bg-white/[0.04]"
   >
     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-[radial-gradient(circle_at_top,_rgba(34,211,238,0.18),_transparent_70%)]" />
@@ -614,11 +633,11 @@ const ActionButton = ({ action }: { action: Action }) => {
     );
   }
 
-  const isPlaceholder = action.url === "#" || !action.url;
+  const isPlaceholder = isPlaceholderHref(action.url);
   return (
     <a
       href={action.url ?? "#"}
-      onClick={(event) => isPlaceholder && event.preventDefault()}
+      onClick={(event) => handlePlaceholderClick(event, action.url)}
       target={isPlaceholder ? undefined : "_blank"}
       rel={isPlaceholder ? undefined : "noopener noreferrer"}
       className="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] text-white/65 text-[11px] font-medium hover:border-[rgba(0,180,255,0.4)] hover:text-cyan-300 hover:bg-[rgba(0,180,255,0.08)] hover:scale-[1.03] active:scale-[0.97] transition-all"
@@ -793,20 +812,24 @@ const TypingIndicator = () => (
   </motion.div>
 );
 
-const MiniTyping = () => (
-  <div className="flex items-center gap-2 text-[11px] text-cyan-200/70">
-    <span className="uppercase tracking-[0.25em] text-[9px] text-cyan-200/60">AI</span>
-    <div className="flex items-center gap-1">
-      {[0, 1, 2].map((i) => (
-        <span
-          key={i}
-          className="w-1.5 h-1.5 rounded-full bg-cyan-300/70 animate-pulse motion-reduce:animate-none"
-          style={{ animationDelay: `${i * 150}ms` }}
-        />
-      ))}
+const MiniTyping = () => {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <div className="flex items-center gap-2 text-[11px] text-cyan-200/70">
+      <span className="uppercase tracking-[0.25em] text-[9px] text-cyan-200/60">AI</span>
+      <div className="flex items-center gap-1">
+        {[0, 1, 2].map((i) => (
+          <span
+            key={i}
+            className="w-1.5 h-1.5 rounded-full bg-cyan-300/70 animate-pulse motion-reduce:animate-none"
+            style={reduceMotion ? undefined : { animationDelay: `${i * 150}ms` }}
+          />
+        ))}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 // ── Chat Panel ────────────────────────────────────────────────────────────────
 const ChatPanel = ({ onClose }: { onClose: () => void }) => {
@@ -863,7 +886,7 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
     const touch = event.touches[0];
     const deltaY = touch.clientY - touchStart.current.y;
     const deltaX = Math.abs(touch.clientX - touchStart.current.x);
-    if (deltaY > 80 && deltaX < 40) {
+    if (deltaY > SWIPE_DOWN_THRESHOLD && deltaX < SWIPE_HORIZONTAL_TOLERANCE) {
       touchStart.current = null;
       onClose();
     }
@@ -889,7 +912,7 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
     setInput("");
     setTyping(true);
 
-    const delay = Math.min(900, 260 + trimmed.length * 12);
+    const delay = Math.min(MAX_TYPING_DELAY, BASE_TYPING_DELAY + trimmed.length * TYPING_DELAY_PER_CHAR);
 
     setTimeout(() => {
       const res = matchResponse(trimmed, intentStackRef.current, fallbackCountRef);

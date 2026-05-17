@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type TouchEvent } from "react";
+import { useEffect, useRef, useState, type RefObject, type TouchEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronRight, ExternalLink, MessageCircle, Send, X } from "lucide-react";
 
@@ -121,10 +121,6 @@ type Message = {
   variant?: "welcome";
   timestamp: string;
 };
-
-// ── Intelligence State ────────────────────────────────────────────────────────
-const intentStack: string[] = [];
-let fallbackCount = 0;
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 const formatTimestamp = () =>
@@ -453,14 +449,18 @@ const CONTEXT_QUICK_REPLIES: Record<string, string[]> = {
 };
 
 // ── Intent Matcher ────────────────────────────────────────────────────────────
-function matchResponse(input: string): MatchedResponse {
+function matchResponse(
+  input: string,
+  intentStack: string[],
+  fallbackCountRef: { current: number }
+): MatchedResponse {
   const q = normalize(input);
   const has = (...tokens: string[]) => tokens.some((t) => q.includes(t));
 
   const setIntent = (intent: string): MatchedResponse => {
     intentStack.push(intent);
     if (intentStack.length > 6) intentStack.shift();
-    fallbackCount = 0;
+    fallbackCountRef.current = 0;
     return { ...pick(RESPONSES[intent]), intent };
   };
 
@@ -520,8 +520,8 @@ function matchResponse(input: string): MatchedResponse {
   if (has("achievement", "percentile", "buildathon", "forge", "award"))
     return setIntent("achievements");
 
-  const fb = FALLBACKS[Math.min(fallbackCount, FALLBACKS.length - 1)];
-  fallbackCount += 1;
+  const fb = FALLBACKS[Math.min(fallbackCountRef.current, FALLBACKS.length - 1)];
+  fallbackCountRef.current += 1;
   return { ...fb, intent: "fallback" };
 }
 
@@ -800,7 +800,7 @@ const MiniTyping = () => (
       {[0, 1, 2].map((i) => (
         <span
           key={i}
-          className="w-1.5 h-1.5 rounded-full bg-cyan-300/70 animate-pulse"
+          className="w-1.5 h-1.5 rounded-full bg-cyan-300/70 animate-pulse motion-reduce:animate-none"
           style={{ animationDelay: `${i * 150}ms` }}
         />
       ))}
@@ -832,6 +832,8 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
   const bottomRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const idRef = useRef(1);
+  const intentStackRef = useRef<string[]>([]);
+  const fallbackCountRef = useRef(0);
   const touchStart = useRef<{ y: number; x: number } | null>(null);
 
   useEffect(() => {
@@ -890,7 +892,7 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
     const delay = Math.min(900, 260 + trimmed.length * 12);
 
     setTimeout(() => {
-      const res = matchResponse(trimmed);
+      const res = matchResponse(trimmed, intentStackRef.current, fallbackCountRef);
       setTyping(false);
       setMessages((prev) => [
         ...prev,
@@ -997,8 +999,17 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
 };
 
 // ── Chat Button ───────────────────────────────────────────────────────────────
-const ChatButton = ({ onClick, isOpen }: { onClick: () => void; isOpen: boolean }) => (
+const ChatButton = ({
+  onClick,
+  isOpen,
+  buttonRef,
+}: {
+  onClick: () => void;
+  isOpen: boolean;
+  buttonRef: RefObject<HTMLButtonElement>;
+}) => (
   <motion.button
+    ref={buttonRef}
     onClick={onClick}
     whileHover={{ scale: 1.06 }}
     whileTap={{ scale: 0.94 }}
@@ -1043,11 +1054,25 @@ const ChatButton = ({ onClick, isOpen }: { onClick: () => void; isOpen: boolean 
 // ── Main Export ───────────────────────────────────────────────────────────────
 export default function ChatAssistant() {
   const [isOpen, setIsOpen] = useState(false);
+  const chatButtonRef = useRef<HTMLButtonElement>(null);
+
+  const handleClose = () => {
+    setIsOpen(false);
+    setTimeout(() => chatButtonRef.current?.focus(), 80);
+  };
+
+  const handleToggle = () => {
+    if (isOpen) {
+      handleClose();
+    } else {
+      setIsOpen(true);
+    }
+  };
 
   return (
     <>
-      <AnimatePresence>{isOpen && <ChatPanel onClose={() => setIsOpen(false)} />}</AnimatePresence>
-      <ChatButton onClick={() => setIsOpen((prev) => !prev)} isOpen={isOpen} />
+      <AnimatePresence>{isOpen && <ChatPanel onClose={handleClose} />}</AnimatePresence>
+      <ChatButton onClick={handleToggle} isOpen={isOpen} buttonRef={chatButtonRef} />
     </>
   );
 }

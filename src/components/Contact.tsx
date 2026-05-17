@@ -113,20 +113,20 @@ const SocialIcon = ({
   const [hovered, setHovered] = useState(false);
 
   return (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay, duration: 0.5, ease: "easeOut" }}
-          className="relative flex flex-col items-center gap-3"
-        >
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay, duration: 0.5, ease: "easeOut" }}
+      className="relative flex flex-col items-center gap-3"
+    >
       <a
         href={href}
         {...(href !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         aria-label={label}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-          className={`group relative flex items-center justify-center w-10 h-10 rounded-xl border border-white/10 bg-[#0b1220] text-white/30 backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-105 active:scale-95 sm:w-12 sm:h-12 ${borderGlow} ${hoverColor}`}
+        className={`group relative flex items-center justify-center w-10 h-10 rounded-xl border border-white/10 bg-[#0b1220] text-white/30 backdrop-blur-sm transition-all duration-300 ease-out hover:-translate-y-1.5 hover:scale-105 active:scale-95 sm:w-12 sm:h-12 ${borderGlow} ${hoverColor}`}
         style={{
           boxShadow: hovered ? undefined : "0 4px 24px rgba(0,0,0,0.3)",
           background: hovered

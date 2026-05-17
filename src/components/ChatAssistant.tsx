@@ -6,7 +6,7 @@ import {
   type RefObject,
   type TouchEvent,
 } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { ChevronRight, ExternalLink, MessageCircle, Send, X } from "lucide-react";
 
 // ── Profile Data ──────────────────────────────────────────────────────────────
@@ -691,7 +691,9 @@ const BotMessage = ({
               }
             >
               {msg.variant === "welcome" && i === 0 ? (
-                <span className="chat-typewriter">{line}</span>
+                <span className="chat-typewriter" aria-live="polite">
+                  {line}
+                </span>
               ) : (
                 line
               )}
@@ -814,24 +816,20 @@ const TypingIndicator = () => (
   </motion.div>
 );
 
-const MiniTyping = () => {
-  const reduceMotion = useReducedMotion();
-
-  return (
-    <div className="flex items-center gap-2 text-[11px] text-cyan-200/70">
-      <span className="uppercase tracking-[0.25em] text-[9px] text-cyan-200/60">AI</span>
-      <div className="flex items-center gap-1">
-        {[0, 1, 2].map((i) => (
-          <span
-            key={i}
-            className="w-1.5 h-1.5 rounded-full bg-cyan-300/70 animate-pulse motion-reduce:animate-none"
-            style={reduceMotion ? undefined : { animationDelay: `${i * TYPING_DOT_DELAY}ms` }}
-          />
-        ))}
-      </div>
+const MiniTyping = () => (
+  <div className="flex items-center gap-2 text-[11px] text-cyan-200/70">
+    <span className="uppercase tracking-[0.25em] text-[9px] text-cyan-200/60">AI</span>
+    <div className="flex items-center gap-1">
+      {[0, 1, 2].map((i) => (
+        <span
+          key={i}
+          className="w-1.5 h-1.5 rounded-full bg-cyan-300/70 animate-pulse motion-reduce:animate-none"
+          style={{ animationDelay: `${i * TYPING_DOT_DELAY}ms` }}
+        />
+      ))}
     </div>
-  );
-};
+  </div>
+);
 
 // ── Chat Panel ────────────────────────────────────────────────────────────────
 const ChatPanel = ({ onClose }: { onClose: () => void }) => {
@@ -964,11 +962,13 @@ const ChatPanel = ({ onClose }: { onClose: () => void }) => {
             <p className="text-[15px] font-semibold text-white leading-none">Priyanshu AI Assistant</p>
             <p className="text-[11px] text-cyan-200/70 mt-1">{PROFILE.title}</p>
             <div className="flex items-center gap-2 mt-2">
-              <span className="relative flex h-2 w-2">
+              <span className="relative flex h-2 w-2" aria-label="Online">
                 <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
               </span>
-              <p className="text-[10px] text-white/60">Online</p>
+              <p className="text-[10px] text-white/60" role="status" aria-live="polite">
+                Online
+              </p>
             </div>
           </div>
         </div>

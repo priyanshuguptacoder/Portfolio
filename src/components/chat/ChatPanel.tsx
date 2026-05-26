@@ -155,7 +155,7 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
 
       {/* Messages Area */}
       <div
-        className="relative z-10 flex-1 overflow-y-auto overscroll-contain px-4 sm:px-5 pt-3 pb-1 space-y-0"
+        className="relative z-10 shrink overflow-y-auto overscroll-contain px-4 sm:px-5 pt-3 pb-1 space-y-0"
         aria-live="polite"
         style={{ scrollbarWidth: "none" }}
       >

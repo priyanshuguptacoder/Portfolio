@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { SiCodechef, SiGeeksforgeeks } from "react-icons/si";
+import { SiCodechef } from "react-icons/si";
 import { useState } from "react";
 import { sectionVariants, itemVariants, headingVariants } from "@/lib/animations";
 import { trackContactClick, trackGitHubClick } from "@/lib/analytics";
@@ -81,14 +81,6 @@ const socials = [
     hoverColor: "group-hover:text-blue-400",
     borderGlow: "hover:border-blue-400/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]",
     bgGlow: "rgba(59,130,246,0.06)",
-  },
-  {
-    label: "GeeksForGeeks",
-    href: "https://www.geeksforgeeks.org/profile/thealgoedge",
-    icon: <SiGeeksforgeeks size={24} />,
-    hoverColor: "group-hover:text-green-400",
-    borderGlow: "hover:border-green-400/50 hover:shadow-[0_0_20px_rgba(34,197,94,0.2)]",
-    bgGlow: "rgba(34,197,94,0.06)",
   },
   {
     label: "Codolio",

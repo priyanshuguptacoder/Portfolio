@@ -25,7 +25,6 @@ const LINKS = {
   codechef: "https://www.codechef.com/users/priyanshu9696",
   atcoder: "https://atcoder.jp/users/TheAlgoEdge",
   codolio: "https://codolio.com/profile/priyanshuguptacoder",
-  gfg: "https://www.geeksforgeeks.org/profile/thealgoedge",
   github: "https://github.com/priyanshuguptacoder",
   // TODO: replace with real LinkedIn URL when available
   linkedin: "" as string,
@@ -68,13 +67,6 @@ const CODING_PROFILES = [
     short: "AT",
     href: LINKS.atcoder,
     accent: "from-emerald-400/30 via-teal-400/20 to-green-300/30",
-  },
-  {
-    label: "GeeksForGeeks",
-    info: "DSA & articles",
-    short: "GFG",
-    href: LINKS.gfg,
-    accent: "from-green-500/30 via-lime-400/20 to-emerald-300/30",
   },
   {
     label: "Codolio",
@@ -374,15 +366,6 @@ const RESPONSES: Record<string, ResponseData[]> = {
       actions: [{ label: "AtCoder", url: LINKS.atcoder }],
     },
   ],
-  gfg: [
-    {
-      lines: [
-        "GeeksForGeeks profile covers DSA problem-solving and written explanations.",
-        "Used for concept reinforcement and contributing to the platform's article base.",
-      ],
-      actions: [{ label: "GeeksForGeeks", url: LINKS.gfg }],
-    },
-  ],
   codolio: [
     {
       lines: [
@@ -511,7 +494,6 @@ const CONTEXT_QUICK_REPLIES: Record<string, string[]> = {
   codeforces: ["Tell me about LeetCode", "Show coding profiles", "Tell me about your projects"],
   codechef: ["Show coding profiles", "Tell me about DSA experience", "Tell me about your projects"],
   atcoder: ["Show coding profiles", "Tell me about DSA experience", "Tell me about your projects"],
-  gfg: ["Show coding profiles", "Tell me about your projects", "Tell me about DSA experience"],
   codolio: ["Show coding profiles", "Tell me about your projects", "What is your tech stack?"],
   github: ["Tell me about your projects", "What is your tech stack?", "Show coding profiles"],
   linkedin: ["Tell me about your projects", "Show coding profiles", INTERNSHIP_QUERY],
@@ -600,8 +582,6 @@ function matchResponse(
     return setIntent("codechef");
   if (has("atcoder", "at coder", "at rating"))
     return setIntent("atcoder");
-  if (has("geeksforgeeks", "geeks for geeks", "gfg"))
-    return setIntent("gfg");
   if (has("codolio"))
     return setIntent("codolio");
 

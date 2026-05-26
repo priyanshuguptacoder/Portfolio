@@ -710,6 +710,7 @@ const ActionButton = ({ action }: { action: Action }) => {
   }
 
   const isPlaceholder = isPlaceholderHref(action.url);
+  if (!action.url) return null;
   return (
     <a
       href={action.url}

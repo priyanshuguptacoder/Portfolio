@@ -328,7 +328,7 @@ const Hero = () => {
                       <p className="text-lg font-bold text-white/80">Top 30%</p>
                     </div>
                     <div>
-                      <p className="text-xs text-white/40 mb-1">Attended</p>
+                      <p className="text-xs text-white/40 mb-1">Contests Attended</p>
                       <p className="text-lg font-bold text-white/80">10</p>
                     </div>
                   </div>

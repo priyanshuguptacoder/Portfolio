@@ -101,7 +101,7 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
       exit={{ opacity: 0, y: 20, scale: 0.95, filter: "blur(4px)" }}
       transition={{ type: "spring", damping: 26, stiffness: 260, mass: 0.8 }}
       style={{ transformOrigin: "bottom right" }}
-      className="fixed bottom-8 sm:bottom-10 right-4 sm:right-6 w-[92vw] sm:w-[380px] h-auto max-h-[min(600px,80vh)] flex flex-col z-50 rounded-[24px] overflow-hidden border border-white/[0.12] bg-[rgba(10,14,24,0.75)] shadow-[0_24px_50px_rgba(0,0,0,0.5),_0_0_24px_rgba(34,211,238,0.08)] backdrop-blur-3xl"
+      className="fixed bottom-8 sm:bottom-10 right-4 sm:right-6 w-[92vw] sm:w-[380px] h-[75vh] sm:h-[600px] max-h-[85vh] flex flex-col z-50 rounded-[24px] overflow-hidden border border-white/[0.12] bg-[rgba(10,14,24,0.75)] shadow-[0_24px_50px_rgba(0,0,0,0.5),_0_0_24px_rgba(34,211,238,0.08)] backdrop-blur-3xl"
     >
       {/* Noise Texture Overlay */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
@@ -151,19 +151,22 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
 
       {/* Messages Area */}
       <div
-        className="relative z-10 shrink min-h-0 overflow-y-auto overscroll-contain px-4 sm:px-5 pt-4 pb-2 space-y-0"
+        className="relative z-10 flex-1 min-h-0 overflow-y-auto overscroll-contain px-4 sm:px-5 pt-4 pb-2 flex flex-col"
         aria-live="polite"
         style={{ scrollbarWidth: "none" }}
       >
-        {messages.map((msg) =>
-          msg.role === "bot" ? (
+        <div className="flex-1 min-h-[40px]" /> {/* Flexible spacer to push messages down */}
+        <div className="flex flex-col justify-end space-y-0 mt-auto">
+          {messages.map((msg) =>
+            msg.role === "bot" ? (
             <BotMessage key={msg.id} msg={msg} onQuickReply={sendMessage} />
           ) : (
             <UserMessage key={msg.id} msg={msg} />
           )
-        )}
-        {typing && <ThinkingState />}
-        <div ref={bottomRef} className="h-1" />
+          )}
+          {typing && <ThinkingState />}
+          <div ref={bottomRef} className="h-2 shrink-0" />
+        </div>
       </div>
 
       {/* Edge Lighting Bottom Separator */}

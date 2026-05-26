@@ -52,7 +52,7 @@ const socials = [
   },
   {
     label: "LeetCode",
-    href: "#",
+    href: "https://leetcode.com/u/invisiblemanfromheart/",
     icon: <LeetCodeIcon size={24} />,
     hoverColor: "group-hover:text-orange-400",
     borderGlow: "hover:border-orange-400/50 hover:shadow-[0_0_20px_rgba(251,146,60,0.2)]",
@@ -60,7 +60,7 @@ const socials = [
   },
   {
     label: "Codeforces",
-    href: "#",
+    href: "https://codeforces.com/profile/priyanshuguptacoder",
     icon: <CodeforcesIcon size={24} />,
     hoverColor: "group-hover:text-red-400",
     borderGlow: "hover:border-red-400/50 hover:shadow-[0_0_20px_rgba(248,113,113,0.2)]",
@@ -68,7 +68,7 @@ const socials = [
   },
   {
     label: "CodeChef",
-    href: "#",
+    href: "https://www.codechef.com/users/priyanshu9696",
     icon: <SiCodechef size={24} />,
     hoverColor: "group-hover:text-orange-400",
     borderGlow: "hover:border-orange-400/50 hover:shadow-[0_0_20px_rgba(251,146,60,0.2)]",
@@ -76,7 +76,7 @@ const socials = [
   },
   {
     label: "AtCoder",
-    href: "#",
+    href: "https://atcoder.jp/users/TheAlgoEdge",
     icon: <AtCoderIcon size={24} />,
     hoverColor: "group-hover:text-blue-400",
     borderGlow: "hover:border-blue-400/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]",
@@ -84,7 +84,7 @@ const socials = [
   },
   {
     label: "Codolio",
-    href: "#",
+    href: "https://codolio.com/profile/priyanshuguptacoder",
     icon: <CodolioIcon size={24} />,
     hoverColor: "group-hover:text-blue-400",
     borderGlow: "hover:border-blue-400/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]",

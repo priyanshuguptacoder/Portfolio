@@ -328,23 +328,23 @@ Deque-based sliding window — for sliding window maximum (LeetCode 239)
   {
     id: 3,
     slug: "how-i-solved-300-leetcode-problems",
-    title: "How I Solved 300+ LeetCode Problems – Strategy That Actually Works",
-    seoTitle: "How I Solved 300+ LeetCode Problems – My Strategy",
-    metaDescription: "The exact strategy I used to solve 300+ LeetCode problems. Pattern-based learning, topic order, and consistency tips that actually work.",
-    description: "The exact pattern-based strategy behind solving 300+ LeetCode problems. Covers study order, the 3-step problem approach, and how to review effectively.",
+    title: "How I Solved 360+ LeetCode Problems – Strategy That Actually Works",
+    seoTitle: "How I Solved 360+ LeetCode Problems – My Strategy",
+    metaDescription: "The exact strategy I used to solve 360+ LeetCode problems. Pattern-based learning, topic order, and consistency tips that actually work.",
+    description: "The exact pattern-based strategy behind solving 360+ LeetCode problems. Covers study order, the 3-step problem approach, and how to review effectively.",
     date: "2025-04-20",
     readTime: "10 min read",
     tags: ["DSA", "LeetCode", "Strategy", "Competitive Programming"],
     content: `
-# How I Solved 300+ LeetCode Problems – Strategy That Actually Works
+# How I Solved 360+ LeetCode Problems – Strategy That Actually Works
 
-How I Solved 300+ LeetCode Problems – Strategy That Actually Works
+How I Solved 360+ LeetCode Problems – Strategy That Actually Works
 
 ## Introduction
 
 Most people approach LeetCode wrong. They open a random hard problem, get stuck in 10 minutes, read the solution, feel bad, and repeat. After 50 problems they feel like they've learned nothing.
 
-I solved 300+ problems with a contest rating of 1469 on LeetCode. Here's the exact approach that made the difference — not grinding, but deliberate pattern-based learning.
+I solved 360+ problems with a contest rating of 1565+ on LeetCode. Here's the exact approach that made the difference — not grinding, but deliberate pattern-based learning.
 
 
 ## The Core Principle: Patterns Over Problems

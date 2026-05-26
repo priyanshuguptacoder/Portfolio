@@ -39,7 +39,7 @@ const BlogDetailPage = () => {
 
     // Cleanup on unmount
     return () => {
-      document.title = "Priyanshu Gupta | Backend Developer · NIT Jalandhar · 300+ LeetCode";
+      document.title = "Priyanshu Gupta | Backend Developer · NIT Jalandhar · 360+ LeetCode";
     };
   }, [blog]);
 

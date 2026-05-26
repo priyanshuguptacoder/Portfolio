@@ -34,9 +34,9 @@ const skillsSummary = [
 ];
 
 const achievementsList = [
-  "300+ LeetCode Problems Solved",
-  "LeetCode Contest Rating 1453",
-  "Codeforces Rating 629",
+  "360+ LeetCode Problems Solved",
+  "LeetCode Contest Rating 1565+",
+  "Codeforces Rating 1214+",
   "NIT Jalandhar CSE '29"
 ];
 

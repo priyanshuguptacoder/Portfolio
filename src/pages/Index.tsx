@@ -42,7 +42,7 @@ const Index = () => {
         <p>
           Backend-focused web developer and CSE undergraduate at National Institute of Technology, Jalandhar.
           Specializes in building scalable Node.js APIs, Express backends, and MongoDB databases.
-          Solved 300+ Data Structures and Algorithms problems on LeetCode with a contest rating of 1453.
+          Solved 360+ Data Structures and Algorithms problems on LeetCode with a contest rating of 1565+.
           Active competitive programmer on Codeforces. Open to backend internships.
         </p>
       </div>

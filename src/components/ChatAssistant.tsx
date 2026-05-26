@@ -19,10 +19,10 @@ const PROFILE = {
 const LINKS = {
   email: "priyanshuguptanitian9696@gmail.com",
   resume: "#",
-  leetcode: "#",
-  codeforces: "#",
-  codechef: "#",
-  codolio: "#",
+  leetcode: "https://leetcode.com/u/invisiblemanfromheart/",
+  codeforces: "https://codeforces.com/profile/priyanshuguptacoder",
+  codechef: "https://www.codechef.com/users/priyanshu9696",
+  codolio: "https://codolio.com/profile/priyanshuguptacoder",
   github: "#",
   linkedin: "#",
 };
@@ -43,10 +43,10 @@ const QUICK_ACTION_LINKS = [
   { label: "Resume", href: "#" },
   { label: "Contact", href: "#" },
   { label: "Open For Internship", href: "#" },
-  { label: "LeetCode", href: "#" },
-  { label: "Codeforces", href: "#" },
-  { label: "CodeChef", href: "#" },
-  { label: "Codolio", href: "#" },
+  { label: "LeetCode", href: LINKS.leetcode },
+  { label: "Codeforces", href: LINKS.codeforces },
+  { label: "CodeChef", href: LINKS.codechef },
+  { label: "Codolio", href: LINKS.codolio },
   { label: "GitHub", href: "#" },
   { label: "LinkedIn", href: "#" },
 ];
@@ -65,7 +65,7 @@ const SUGGESTED_QUESTIONS = [
 const CODING_PROFILES = [
   {
     label: "LeetCode",
-    info: "335+ solved",
+    info: "360+ solved",
     short: "LC",
     href: LINKS.leetcode,
     accent: "from-orange-400/30 via-rose-400/20 to-amber-300/30",
@@ -273,7 +273,7 @@ const RESPONSES: Record<string, ResponseData[]> = {
   dsa: [
     {
       lines: [
-        "Has solved 335+ LeetCode problems and actively participates in contests across Codeforces and CodeChef.",
+        "Has solved 360+ LeetCode problems and actively participates in contests across Codeforces and CodeChef.",
         "Strong emphasis on medium/hard problems and consistent contest practice.",
       ],
       actions: [
@@ -298,7 +298,7 @@ const RESPONSES: Record<string, ResponseData[]> = {
   leetcode: [
     {
       lines: [
-        "LeetCode: 335+ problems solved with focus on graphs, DP, and sliding window patterns.",
+        "LeetCode: 360+ problems solved with focus on graphs, DP, and sliding window patterns.",
         "Consistent practice with medium/hard problems and interview-style topics.",
       ],
       actions: [

@@ -151,7 +151,7 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
 
       {/* Messages Area */}
       <div
-        className="relative z-10 shrink overflow-y-auto overscroll-contain px-4 sm:px-5 pt-4 pb-2 space-y-0"
+        className="relative z-10 shrink min-h-0 overflow-y-auto overscroll-contain px-4 sm:px-5 pt-4 pb-2 space-y-0"
         aria-live="polite"
         style={{ scrollbarWidth: "none" }}
       >
@@ -166,8 +166,11 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
         <div ref={bottomRef} className="h-1" />
       </div>
 
+      {/* Edge Lighting Bottom Separator */}
+      <div className="relative z-20 h-px w-full bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent opacity-60 shrink-0" />
+
       {/* Input Area */}
-      <div className="relative z-10 shrink-0 pb-1">
+      <div className="relative z-10 shrink-0 px-1.5 sm:px-2 pb-1.5 pt-1.5">
         <ChatInput 
           input={input} 
           setInput={setInput} 

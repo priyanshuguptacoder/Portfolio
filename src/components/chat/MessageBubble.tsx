@@ -18,7 +18,7 @@ const SectionDivider = ({ label }: { label: string }) => (
 export const SuggestionChip = ({ label, onClick }: { label: string; onClick: () => void }) => (
   <button
     onClick={onClick}
-    className="inline-flex items-center px-3.5 py-1.5 rounded-full border border-white/[0.08] bg-white/[0.02] text-[11px] text-white/60 hover:text-white hover:border-cyan-400/40 hover:bg-cyan-500/[0.1] hover:shadow-[0_0_12px_rgba(34,211,238,0.15)] active:scale-[0.97] transition-all duration-200"
+    className="inline-flex items-center px-3 py-1.5 rounded-full border border-white/[0.1] bg-white/[0.03] text-[10px] font-medium text-white/70 hover:text-cyan-50 hover:border-cyan-400/50 hover:bg-cyan-500/[0.15] hover:shadow-[0_0_12px_rgba(34,211,238,0.2)] active:scale-[0.97] transition-all duration-300 ease-out"
   >
     {label}
   </button>
@@ -51,16 +51,16 @@ const ProfileCard = ({
     onClick={(e) => handlePlaceholderClick(e, href)}
     target={isPlaceholderHref(href) ? undefined : "_blank"}
     rel={isPlaceholderHref(href) ? undefined : "noopener noreferrer"}
-    className="group relative overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.02] px-3 py-2.5 transition-all duration-300 hover:border-cyan-400/40 hover:bg-white/[0.04] hover:-translate-y-0.5 hover:shadow-[0_4px_16px_rgba(34,211,238,0.1)]"
+    className="group relative overflow-hidden rounded-[10px] border border-white/[0.08] bg-white/[0.02] px-2.5 py-2 transition-all duration-300 hover:border-cyan-400/40 hover:bg-white/[0.04] hover:-translate-y-0.5 hover:shadow-[0_4px_16px_rgba(34,211,238,0.15)]"
   >
-    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.12),_transparent_70%)]" />
-    <div className="relative flex items-center gap-2.5">
-      <div className={`flex items-center justify-center w-9 h-9 rounded-lg bg-gradient-to-br ${accent}`}>
+    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.15),_transparent_70%)]" />
+    <div className="relative flex items-center gap-2">
+      <div className={`flex items-center justify-center w-7 h-7 rounded-md bg-gradient-to-br ${accent}`}>
         <ProfileIcon short={short} />
       </div>
       <div className="min-w-0">
-        <p className="text-[12px] font-semibold text-white/90 leading-none group-hover:text-white transition-colors">{label}</p>
-        <p className="text-[10px] text-white/45 mt-1 truncate">{info}</p>
+        <p className="text-[11px] font-semibold text-white/90 leading-none group-hover:text-white transition-colors">{label}</p>
+        <p className="text-[9px] text-white/45 mt-0.5 truncate">{info}</p>
       </div>
     </div>
   </a>
@@ -212,14 +212,14 @@ export const BotMessage = ({
           </div>
 
           {/* Internship CTA */}
-          <div className="mt-4 flex items-center justify-between gap-3 rounded-2xl border border-white/[0.08] bg-gradient-to-r from-[rgba(10,20,40,0.8)] to-[rgba(15,25,45,0.8)] px-4 py-3.5 backdrop-blur-sm group-hover:border-cyan-500/20 transition-colors">
+          <div className="mt-3 flex items-center justify-between gap-2 rounded-xl border border-white/[0.08] bg-gradient-to-r from-[rgba(10,20,40,0.8)] to-[rgba(15,25,45,0.8)] px-3 py-2.5 backdrop-blur-sm group-hover:border-cyan-500/30 transition-colors">
             <div>
-              <p className="text-[13px] font-semibold text-white leading-none">Open to internships</p>
-              <p className="text-[11px] text-white/50 mt-1 font-medium tracking-wide">Backend · SWE · Available now</p>
+              <p className="text-[11px] font-semibold text-white leading-none">Open to internships</p>
+              <p className="text-[9px] text-white/50 mt-0.5 font-medium tracking-wide">Backend · SWE</p>
             </div>
             <button
               onClick={() => onQuickReply(INTERNSHIP_QUERY)}
-              className="shrink-0 px-4 py-2 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 text-[11px] font-bold text-white shadow-[0_2px_12px_rgba(34,211,238,0.2)] hover:shadow-[0_4px_20px_rgba(34,211,238,0.4)] active:scale-[0.95] transition-all duration-200"
+              className="shrink-0 px-3 py-1.5 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 text-[10px] font-bold text-white shadow-[0_2px_8px_rgba(34,211,238,0.2)] hover:shadow-[0_4px_16px_rgba(34,211,238,0.4)] active:scale-[0.95] transition-all duration-200"
             >
               Learn more
             </button>

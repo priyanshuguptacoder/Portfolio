@@ -96,11 +96,12 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
       role="dialog"
       aria-modal="true"
       aria-label="Priyanshu AI Assistant"
-      initial={{ opacity: 0, y: 30, scale: 0.95, filter: "blur(10px)" }}
+      initial={{ opacity: 0, y: 40, scale: 0.9, filter: "blur(8px)" }}
       animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-      exit={{ opacity: 0, y: 20, scale: 0.95, filter: "blur(5px)" }}
-      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed bottom-[5.5rem] sm:bottom-24 right-4 sm:right-6 w-[93vw] sm:w-[440px] h-[85vh] sm:h-[680px] max-h-[85vh] flex flex-col z-50 rounded-[24px] overflow-hidden border border-white/[0.12] bg-[rgba(6,10,20,0.85)] shadow-[0_20px_40px_rgba(0,0,0,0.5),_0_0_40px_rgba(34,211,238,0.1)] backdrop-blur-2xl"
+      exit={{ opacity: 0, y: 20, scale: 0.95, filter: "blur(4px)" }}
+      transition={{ type: "spring", damping: 26, stiffness: 260, mass: 0.8 }}
+      style={{ transformOrigin: "bottom right" }}
+      className="fixed bottom-20 sm:bottom-24 right-4 sm:right-6 w-[92vw] sm:w-[380px] h-[75vh] sm:h-[580px] max-h-[75vh] flex flex-col z-50 rounded-[20px] overflow-hidden border border-white/[0.12] bg-[rgba(10,14,24,0.75)] shadow-[0_30px_60px_rgba(0,0,0,0.5),_0_0_30px_rgba(34,211,238,0.1)] backdrop-blur-3xl"
     >
       {/* Noise Texture Overlay */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />

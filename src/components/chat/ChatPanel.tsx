@@ -105,7 +105,7 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
       exit={{ opacity: 0, y: 20, scale: 0.95, filter: "blur(4px)" }}
       transition={{ type: "spring", damping: 26, stiffness: 260, mass: 0.8 }}
       style={{ transformOrigin: "bottom right" }}
-      className="fixed bottom-8 sm:bottom-12 right-4 sm:right-6 w-[92vw] sm:w-[390px] h-auto max-h-[min(600px,85vh)] flex flex-col z-50 rounded-[20px] overflow-hidden border border-white/[0.12] bg-[rgba(10,14,24,0.75)] shadow-[0_30px_60px_rgba(0,0,0,0.5),_0_0_30px_rgba(34,211,238,0.1)] backdrop-blur-3xl"
+      className="fixed bottom-8 sm:bottom-10 right-4 sm:right-6 w-[92vw] sm:w-[380px] h-auto max-h-[min(480px,80vh)] flex flex-col z-50 rounded-[20px] overflow-hidden border border-white/[0.12] bg-[rgba(10,14,24,0.75)] shadow-[0_24px_50px_rgba(0,0,0,0.5),_0_0_24px_rgba(34,211,238,0.08)] backdrop-blur-3xl"
     >
       {/* Noise Texture Overlay */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
@@ -121,7 +121,7 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
 
       {/* Header */}
       <div
-        className="relative z-10 flex items-center justify-between px-5 sm:px-6 py-4 border-b border-white/[0.08] bg-[rgba(6,10,20,0.6)] backdrop-blur-xl"
+        className="relative z-10 flex items-center justify-between px-4 sm:px-5 py-3 border-b border-white/[0.08] bg-[rgba(6,10,20,0.6)] backdrop-blur-xl"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -155,7 +155,7 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
 
       {/* Messages Area */}
       <div
-        className="relative z-10 flex-1 overflow-y-auto overscroll-contain px-5 sm:px-6 pt-4 pb-2 space-y-0"
+        className="relative z-10 flex-1 overflow-y-auto overscroll-contain px-4 sm:px-5 pt-3 pb-1 space-y-0"
         aria-live="polite"
         style={{ scrollbarWidth: "none" }}
       >

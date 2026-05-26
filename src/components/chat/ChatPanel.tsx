@@ -101,7 +101,7 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
       exit={{ opacity: 0, y: 20, scale: 0.95, filter: "blur(4px)" }}
       transition={{ type: "spring", damping: 26, stiffness: 260, mass: 0.8 }}
       style={{ transformOrigin: "bottom right" }}
-      className="fixed bottom-8 sm:bottom-12 right-4 sm:right-6 w-[92vw] sm:w-[380px] max-h-[55vh] sm:max-h-[70vh] flex flex-col z-50 rounded-[20px] overflow-hidden border border-white/[0.12] bg-[rgba(10,14,24,0.75)] shadow-[0_30px_60px_rgba(0,0,0,0.5),_0_0_30px_rgba(34,211,238,0.1)] backdrop-blur-3xl"
+      className="fixed bottom-8 sm:bottom-12 right-4 sm:right-6 w-[92vw] sm:w-[380px] h-auto max-h-[min(540px,80vh)] flex flex-col z-50 rounded-[20px] overflow-hidden border border-white/[0.12] bg-[rgba(10,14,24,0.75)] shadow-[0_30px_60px_rgba(0,0,0,0.5),_0_0_30px_rgba(34,211,238,0.1)] backdrop-blur-3xl"
     >
       {/* Noise Texture Overlay */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
@@ -163,14 +163,14 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
           )
         )}
         {typing && <ThinkingState />}
-        <div ref={bottomRef} className="h-4" />
+        <div ref={bottomRef} className="h-1" />
       </div>
 
       {/* Edge Lighting Bottom */}
       <div className="h-px w-full bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent z-20" />
 
       {/* Input Area */}
-      <div className="relative z-10 bg-[rgba(6,10,20,0.8)] backdrop-blur-xl shrink-0 pb-2">
+      <div className="relative z-10 bg-[rgba(6,10,20,0.8)] backdrop-blur-xl shrink-0">
         <ChatInput 
           input={input} 
           setInput={setInput} 

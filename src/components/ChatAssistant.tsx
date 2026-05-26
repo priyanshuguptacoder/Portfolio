@@ -712,7 +712,7 @@ const ActionButton = ({ action }: { action: Action }) => {
   const isPlaceholder = isPlaceholderHref(action.url);
   return (
     <a
-      href={action.url ?? "#"}
+      href={action.url}
       onClick={(e) => handlePlaceholderClick(e, action.url)}
       target={isPlaceholder ? undefined : "_blank"}
       rel={isPlaceholder ? undefined : "noopener noreferrer"}

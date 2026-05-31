@@ -97,7 +97,7 @@ const Hero = () => {
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
                 </span>
                 <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest">
-                  Open to Backend Internship
+                  Open to Internship
                 </span>
               </motion.div>
 
@@ -147,7 +147,7 @@ const Hero = () => {
                 className="text-sm sm:text-[15px] text-white/55 max-w-[580px] mx-auto lg:mx-0 mb-10 leading-[1.75] font-normal"
               >
                 Building scalable systems using React, JavaScript.
-                Solved 360+ LeetCode problems and actively improving through contests.
+                Solved 375+ LeetCode problems and actively improving through contests.
                 Open to Internship Opportunities.
               </motion.p>
 

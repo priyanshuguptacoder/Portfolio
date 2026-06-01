@@ -11,7 +11,7 @@ import { sectionVariants, itemVariants } from "@/lib/animations";
 const stats = [
   {
     icon: Code2,
-    value: 360,
+    value: 380,
     suffix: "+",
     label: "LEETCODE PROBLEMS SOLVED",
     detail: "Strong coverage across core DSA topics with consistent problem solving.",
@@ -21,7 +21,7 @@ const stats = [
   },
   {
     icon: Server,
-    value: 500,
+    value: 550,
     suffix: "+",
     label: "TOTAL QUESTIONS SOLVED",
     detail: "Combined problem solving across coding platforms",
@@ -32,7 +32,7 @@ const stats = [
   },
   {
     icon: Trophy,
-    value: 110,
+    value: 150,
     suffix: "+",
     label: "PROBLEMS SOLVED (CODEFORCES)",
     detail: "Building competitive programming fundamentals with focus on speed and implementation.",
@@ -147,7 +147,7 @@ const Hero = () => {
                 className="text-sm sm:text-[15px] text-white/55 max-w-[580px] mx-auto lg:mx-0 mb-10 leading-[1.75] font-normal"
               >
                 Building scalable systems using React, JavaScript.
-                Solved 375+ LeetCode problems and actively improving through contests.
+                Solved 550+ Problems and actively improving through contests.
                 Open to Internship Opportunities.
               </motion.p>
 

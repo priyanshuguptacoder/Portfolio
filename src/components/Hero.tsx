@@ -11,7 +11,7 @@ import { sectionVariants, itemVariants } from "@/lib/animations";
 const stats = [
   {
     icon: Code2,
-    value: 360,
+    value: 400,
     suffix: "+",
     label: "LEETCODE PROBLEMS SOLVED",
     detail: "Strong coverage across core DSA topics with consistent problem solving.",
@@ -21,18 +21,18 @@ const stats = [
   },
   {
     icon: Server,
-    value: 500,
+    value: 600,
     suffix: "+",
     label: "TOTAL QUESTIONS SOLVED",
     detail: "Combined problem solving across coding platforms",
-    extraInfo: "LeetCode • Codeforces • CodeChef • AtCoder (Rating 27)",
+    extraInfo: "LeetCode • Codeforces • CodeChef • AtCoder",
     linkText: "View Codolio",
     linkUrl: "https://codolio.com/profile/priyanshuguptacoder",
     isDominant: true,
   },
   {
     icon: Trophy,
-    value: 110,
+    value: 150,
     suffix: "+",
     label: "PROBLEMS SOLVED (CODEFORCES)",
     detail: "Building competitive programming fundamentals with focus on speed and implementation.",
@@ -97,7 +97,7 @@ const Hero = () => {
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
                 </span>
                 <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-widest">
-                  Open to Backend Internship
+                  Open to Internship
                 </span>
               </motion.div>
 
@@ -147,7 +147,7 @@ const Hero = () => {
                 className="text-sm sm:text-[15px] text-white/55 max-w-[580px] mx-auto lg:mx-0 mb-10 leading-[1.75] font-normal"
               >
                 Building scalable systems using React, JavaScript.
-                Solved 360+ LeetCode problems and actively improving through contests.
+                Solved 600+ Problems and actively improving through contests.
                 Open to Internship Opportunities.
               </motion.p>
 
@@ -302,19 +302,19 @@ const Hero = () => {
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                       <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Solved</p>
-                      <p className="text-3xl font-black text-white">360<span className="text-cyan-400">+</span></p>
+                      <p className="text-3xl font-black text-white">400<span className="text-cyan-400">+</span></p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                       <p className="text-[10px] font-mono text-green-400/80 uppercase tracking-widest mb-1">Easy</p>
-                      <p className="text-2xl font-bold text-green-400">144+</p>
+                      <p className="text-2xl font-bold text-green-400">165+</p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                       <p className="text-[10px] font-mono text-yellow-400/80 uppercase tracking-widest mb-1">Medium</p>
-                      <p className="text-2xl font-bold text-yellow-400">196+</p>
+                      <p className="text-2xl font-bold text-yellow-400">210+</p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                       <p className="text-[10px] font-mono text-red-400/80 uppercase tracking-widest mb-1">Hard</p>
-                      <p className="text-2xl font-bold text-red-400">20+</p>
+                      <p className="text-2xl font-bold text-red-400">25+</p>
                     </div>
                   </div>
 
@@ -329,7 +329,7 @@ const Hero = () => {
                     </div>
                     <div>
                       <p className="text-xs text-white/40 mb-1">Contests Attended</p>
-                      <p className="text-lg font-bold text-white/80">10</p>
+                      <p className="text-lg font-bold text-white/80">11</p>
                     </div>
                   </div>
 
@@ -339,7 +339,7 @@ const Hero = () => {
                       <Zap size={14} /> Strong Topic Coverage
                     </h4>
                     <div className="flex flex-wrap gap-2">
-                      {["Arrays", "Trees", "Graphs", "Dynamic Programming", "Binary Search", "Sliding Window"].map((t) => (
+                      {["Arrays", "Trees", "Graphs", "Linked List", "Stacks & Queues", "Binary Search", "Sliding Window"].map((t) => (
                         <span key={t} className="text-[11px] px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/60">
                           {t}
                         </span>
@@ -372,7 +372,7 @@ const Hero = () => {
                   <div className="grid grid-cols-2 gap-4 mb-8">
                     <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col items-center justify-center text-center">
                       <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-2">Solved</p>
-                      <p className="text-5xl font-black text-white">110<span className="text-blue-400">+</span></p>
+                      <p className="text-5xl font-black text-white">150<span className="text-blue-400">+</span></p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col justify-center space-y-4">
                       <div>

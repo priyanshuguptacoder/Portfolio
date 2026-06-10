@@ -135,7 +135,7 @@ const Projects = () => (
           Engineering Portfolio
         </p>
         <h2 className="text-3xl sm:text-4xl font-bold text-white">
-          Featured Backend Projects
+          Featured Development Projects
         </h2>
       </motion.div>
 
@@ -153,12 +153,12 @@ const Projects = () => (
         ]}
         tech={["React", "Node.js", "Express", "MongoDB"]}
         github="https://github.com/priyanshuguptacoder/LeetCode-Tracker"
-        live="#"
+        live="https://competativeprogrammingtrackerpriyanshu.vercel.app/"
       />
 
       {/* Project 2 */}
       <ProjectCard
-        title="Hostel OS"
+        title="Hostel And Mess Management"
         problem="Manual hostel management causes inefficiency."
         solution="Built secure role-based management system with centralized data handling and JWT auth."
         impact="Reduced workflow complexity through automation."

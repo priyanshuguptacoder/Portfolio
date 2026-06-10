@@ -11,7 +11,7 @@ import { sectionVariants, itemVariants } from "@/lib/animations";
 const stats = [
   {
     icon: Code2,
-    value: 380,
+    value: 400,
     suffix: "+",
     label: "LEETCODE PROBLEMS SOLVED",
     detail: "Strong coverage across core DSA topics with consistent problem solving.",
@@ -21,11 +21,11 @@ const stats = [
   },
   {
     icon: Server,
-    value: 550,
+    value: 600,
     suffix: "+",
     label: "TOTAL QUESTIONS SOLVED",
     detail: "Combined problem solving across coding platforms",
-    extraInfo: "LeetCode • Codeforces • CodeChef • AtCoder (Rating 27)",
+    extraInfo: "LeetCode • Codeforces • CodeChef • AtCoder",
     linkText: "View Codolio",
     linkUrl: "https://codolio.com/profile/priyanshuguptacoder",
     isDominant: true,
@@ -147,7 +147,7 @@ const Hero = () => {
                 className="text-sm sm:text-[15px] text-white/55 max-w-[580px] mx-auto lg:mx-0 mb-10 leading-[1.75] font-normal"
               >
                 Building scalable systems using React, JavaScript.
-                Solved 550+ Problems and actively improving through contests.
+                Solved 600+ Problems and actively improving through contests.
                 Open to Internship Opportunities.
               </motion.p>
 
@@ -302,19 +302,19 @@ const Hero = () => {
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                       <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Solved</p>
-                      <p className="text-3xl font-black text-white">380<span className="text-cyan-400">+</span></p>
+                      <p className="text-3xl font-black text-white">400<span className="text-cyan-400">+</span></p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                       <p className="text-[10px] font-mono text-green-400/80 uppercase tracking-widest mb-1">Easy</p>
-                      <p className="text-2xl font-bold text-green-400">158+</p>
+                      <p className="text-2xl font-bold text-green-400">165+</p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                       <p className="text-[10px] font-mono text-yellow-400/80 uppercase tracking-widest mb-1">Medium</p>
-                      <p className="text-2xl font-bold text-yellow-400">200+</p>
+                      <p className="text-2xl font-bold text-yellow-400">210+</p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                       <p className="text-[10px] font-mono text-red-400/80 uppercase tracking-widest mb-1">Hard</p>
-                      <p className="text-2xl font-bold text-red-400">22+</p>
+                      <p className="text-2xl font-bold text-red-400">25+</p>
                     </div>
                   </div>
 

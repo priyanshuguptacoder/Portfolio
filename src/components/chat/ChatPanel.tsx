@@ -151,9 +151,8 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
 
       {/* Messages Area */}
       <div
-        className="relative z-10 grow h-[1px] w-full min-h-0 overflow-y-auto overscroll-contain px-4 sm:px-5 pt-4 pb-2 flex flex-col"
+        className="relative z-10 grow h-[1px] w-full min-h-0 overflow-y-auto overscroll-contain px-4 sm:px-5 pt-4 pb-2 flex flex-col chat-scrollbar"
         aria-live="polite"
-        style={{ scrollbarWidth: "none" }}
       >
         <div className="grow min-h-[40px]" /> {/* Flexible spacer to push messages down */}
         <div className="flex flex-col justify-end space-y-0 mt-auto">
@@ -170,7 +169,7 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
       </div>
 
       {/* Edge Lighting Bottom Separator */}
-      <div className="relative z-20 h-px w-full bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent opacity-60 shrink-0 mt-auto" />
+      <div className="relative z-20 h-px w-full bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent opacity-60 shrink-0" />
 
       {/* Input Area */}
       <div className="relative z-10 shrink-0 px-1.5 sm:px-2 pb-1.5 pt-1.5 w-full">

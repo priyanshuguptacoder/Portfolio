@@ -47,6 +47,7 @@ export const ChatInput = ({
           style={{ scrollbarWidth: "none" }}
           rows={1}
           disabled={disabled}
+          aria-label="Ask the AI Assistant a question"
         />
         
         <motion.button

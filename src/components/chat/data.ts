@@ -72,6 +72,18 @@ export const RESPONSES: Record<string, ResponseData[]> = {
         "Projects, backend tech, or coding profiles — what interests you?",
       ],
     },
+    {
+      lines: [
+        "Hey there! 👋 I'm here to help you learn about Priyanshu's work and experience.",
+        "Ready to dive into projects, tech, or competitive programming?",
+      ],
+    },
+    {
+      lines: [
+        "Welcome to Priyanshu's portfolio!",
+        "I can help with anything — from backend architecture to DSA stats to connecting.",
+      ],
+    },
   ],
   identity: [
     {
@@ -111,6 +123,26 @@ export const RESPONSES: Record<string, ResponseData[]> = {
         { label: "Tech Stack", scrollTo: "skills" },
       ],
     },
+    {
+      lines: [
+        "Full-stack engineer specializing in backend systems. Currently at NIT Jalandhar (2025–2029).",
+        "Known for clean API design, smart problem-solving (both in code and DSA), and building systems that scale.",
+      ],
+      actions: [
+        { label: "See Projects", scrollTo: "projects" },
+        { label: "Tech & Skills", scrollTo: "skills" },
+      ],
+    },
+    {
+      lines: [
+        "Backend architect with a passion for competitive programming.",
+        "3 years of academic focus on system design, API optimization, and algorithmic problem-solving. Ready for real-world impact.",
+      ],
+      actions: [
+        { label: "Portfolio", scrollTo: "projects" },
+        { label: "Achievements", scrollTo: "about" },
+      ],
+    },
   ],
   education: [
     {
@@ -119,6 +151,20 @@ export const RESPONSES: Record<string, ResponseData[]> = {
         "JEE Mains 99.2 percentile · JEE Advanced qualified.",
       ],
       actions: [{ label: "Projects", scrollTo: "projects" }],
+    },
+    {
+      lines: [
+        "NIT Jalandhar — one of India's top engineering colleges.",
+        "JEE Mains 99.2 percentile (top 0.8% nationally) · Currently maintaining 8.3+ CGPA in rigorous CS curriculum.",
+      ],
+      actions: [{ label: "Achievements", scrollTo: "about" }, { label: "Projects", scrollTo: "projects" }],
+    },
+    {
+      lines: [
+        "Studying at NIT Jalandhar with focus on algorithms, system design, and backend architecture.",
+        "Strong entrance exam performance (JEE 99.2 percentile) backed by consistent academic excellence.",
+      ],
+      actions: [{ label: "See More", scrollTo: "about" }, { label: "Work", scrollTo: "projects" }],
     },
   ],
   projects: [
@@ -140,6 +186,26 @@ export const RESPONSES: Record<string, ResponseData[]> = {
       actions: [
         { label: "View Projects", scrollTo: "projects" },
         { label: "GitHub", url: LINKS.github },
+      ],
+    },
+    {
+      lines: [
+        "🎯 CP Tracker: Full MERN ecosystem with GraphQL for querying contest data, SM-2 scheduling, and analytics.",
+        "🏢 Hostel System: Production REST API with role-based auth, complaint management, and admin reporting.",
+      ],
+      actions: [
+        { label: "Explore Both", scrollTo: "projects" },
+        { label: "GitHub Repos", url: LINKS.github },
+      ],
+    },
+    {
+      lines: [
+        "Both projects showcase real-world backend patterns: database optimization, security (JWT/RBAC), API design.",
+        "Deployed, tested, and built to handle actual workflows — not just toy examples.",
+      ],
+      actions: [
+        { label: "View All", scrollTo: "projects" },
+        { label: "Code", url: LINKS.github },
       ],
     },
   ],
@@ -198,6 +264,26 @@ export const RESPONSES: Record<string, ResponseData[]> = {
         { label: "Projects", scrollTo: "projects" },
       ],
     },
+    {
+      lines: [
+        "Specialized in backend systems: API design, database optimization, authentication, error handling.",
+        "Can architect and deploy a production API from scratch — database schema to deployment.",
+      ],
+      actions: [
+        { label: "See Skills", scrollTo: "skills" },
+        { label: "Projects", scrollTo: "projects" },
+      ],
+    },
+    {
+      lines: [
+        "Deep skills in: Scalable backend APIs, database design, security (JWT/RBAC), and competitive algorithm solving.",
+        "Full-stack capable but backend-focused — that's where the expertise shines.",
+      ],
+      actions: [
+        { label: "Full List", scrollTo: "skills" },
+        { label: "Experience", scrollTo: "projects" },
+      ],
+    },
   ],
   tech: [
     {
@@ -218,6 +304,26 @@ export const RESPONSES: Record<string, ResponseData[]> = {
       actions: [
         { label: "Projects", scrollTo: "projects" },
         { label: "Skills", scrollTo: "skills" },
+      ],
+    },
+    {
+      lines: [
+        "Backend-first: Node.js ecosystem (Express, JWT, MongoDB drivers). Frontend with React + Tailwind.",
+        "GraphQL for flexible querying · REST for standard CRUD · Both production-tested.",
+      ],
+      actions: [
+        { label: "See in Projects", scrollTo: "projects" },
+        { label: "Full Skill Set", scrollTo: "skills" },
+      ],
+    },
+    {
+      lines: [
+        "Framework choices optimized for real-world scenarios: Express for simplicity, MongoDB for flexibility.",
+        "Every layer has security, validation, and error handling — not shortcuts.",
+      ],
+      actions: [
+        { label: "Projects", scrollTo: "projects" },
+        { label: "Detailed Skills", scrollTo: "skills" },
       ],
     },
   ],
@@ -252,6 +358,26 @@ export const RESPONSES: Record<string, ResponseData[]> = {
       actions: [
         { label: "LeetCode", url: LINKS.leetcode },
         { label: "Show All Profiles", scrollTo: "about" },
+      ],
+    },
+    {
+      lines: [
+        "Competitive programming is a core strength. Problem-solving happens in code and on contest platforms daily.",
+        "Master of graph algorithms, dynamic programming, and optimization techniques.",
+      ],
+      actions: [
+        { label: "See Stats", scrollTo: "about" },
+        { label: "All Platforms", scrollTo: "about" },
+      ],
+    },
+    {
+      lines: [
+        "360+ problems solved across multiple platforms — interview patterns, system design concepts, and optimization tricks all part of the arsenal.",
+        "Consistent top 30% performance on LeetCode, actively climbing ranks on Codeforces and CodeChef.",
+      ],
+      actions: [
+        { label: "Coding Profiles", scrollTo: "about" },
+        { label: "All Stats", scrollTo: "about" },
       ],
     },
   ],
@@ -360,6 +486,28 @@ export const RESPONSES: Record<string, ResponseData[]> = {
         { label: "Resume", url: LINKS.resume },
       ],
     },
+    {
+      lines: [
+        "Actively seeking internship opportunities in backend/full-stack development.",
+        "Can start immediately or plan for summer/winter breaks. Ready to contribute to real projects.",
+      ],
+      actions: [
+        { label: "Get in Touch", scrollTo: "contact" },
+        { label: "Email Me", url: `mailto:${LINKS.email}` },
+        { label: "Download Resume", url: LINKS.resume },
+      ],
+    },
+    {
+      lines: [
+        "Open for conversations about backend engineering roles — internships, freelance, or full-time.",
+        "Bring production-ready skills: API design, database optimization, security best practices.",
+      ],
+      actions: [
+        { label: "Contact Now", scrollTo: "contact" },
+        { label: "Send Email", url: `mailto:${LINKS.email}` },
+        { label: "My Resume", url: LINKS.resume },
+      ],
+    },
   ],
   resume: [
     {
@@ -369,6 +517,16 @@ export const RESPONSES: Record<string, ResponseData[]> = {
       actions: [
         { label: "Resume", url: LINKS.resume },
         { label: "Email", url: `mailto:${LINKS.email}` },
+      ],
+    },
+    {
+      lines: [
+        "Download the resume directly — complete overview of projects, skills, experience, and achievements.",
+        "Optimized for recruiters and technical teams.",
+      ],
+      actions: [
+        { label: "Download Now", url: LINKS.resume },
+        { label: "Contact", scrollTo: "contact" },
       ],
     },
   ],
@@ -383,6 +541,26 @@ export const RESPONSES: Record<string, ResponseData[]> = {
         { label: "Resume", url: LINKS.resume },
       ],
     },
+    {
+      lines: [
+        "Best way to reach: Direct email.",
+        `${LINKS.email} — Quick response guaranteed. Open to opportunities, questions, or conversations.`,
+      ],
+      actions: [
+        { label: "Send Email", url: `mailto:${LINKS.email}` },
+        { label: "Get Resume", url: LINKS.resume },
+      ],
+    },
+    {
+      lines: [
+        "Happy to chat about backend engineering, problem-solving, or opportunities.",
+        `Drop an email at ${LINKS.email} and I'll respond promptly.`,
+      ],
+      actions: [
+        { label: "Email Now", url: `mailto:${LINKS.email}` },
+        { label: "LinkedIn", url: LINKS.linkedin },
+      ],
+    },
   ],
   achievements: [
     {
@@ -391,6 +569,16 @@ export const RESPONSES: Record<string, ResponseData[]> = {
         "Top 5 at FORGE Buildathon. LeetCode top 30% globally.",
       ],
       actions: [{ label: "About", scrollTo: "about" }],
+    },
+    {
+      lines: [
+        "National-level exam excellence: JEE Mains 99.2 percentile (among top 0.8% of ~1.2M test-takers).",
+        "FORGE Buildathon recognition + consistent competitive programming top-tier performance.",
+      ],
+      actions: [
+        { label: "See Profile", scrollTo: "about" },
+        { label: "More", scrollTo: "about" },
+      ],
     },
   ],
 };
@@ -447,37 +635,37 @@ export const FALLBACKS: ResponseData[] = [
 ];
 
 export const CONTEXT_QUICK_REPLIES: Record<string, string[]> = {
-  greeting: ["Tell me about your projects", "What is your tech stack?", "Open for internships?"],
-  identity: ["Tell me about your projects", "What backend technologies do you use?", "Show coding profiles"],
-  about: ["Tell me about your projects", "Tell me about DSA experience", "Show coding profiles"],
-  education: ["Tell me about your projects", "Show coding profiles", "What is your tech stack?"],
+  greeting: ["What are your main projects?", "Tell me about your tech stack", "Are you open for internships?"],
+  identity: ["What have you built?", "What technologies do you specialize in?", "How can I reach you?"],
+  about: ["Show me your projects", "What's your tech stack?", "Tell me about your DSA experience"],
+  education: ["What projects came from your studies?", "Tell me about your achievements", "What's your focus area?"],
   projects: [
-    "Tell me about Competitive Programming Tracker",
-    "Explain the Hostel Management System",
-    "What is your tech stack?",
+    "Dive deeper into CP Tracker",
+    "Tell me about the Hostel System",
+    "What technologies did you use?",
   ],
-  tracker: ["What technologies power this?", "Tell me about Hostel Management System", "Show all projects"],
-  hostel: ["What backend technologies do you use?", "Tell me about CP Tracker", "Show coding profiles"],
-  skills: ["Tell me about your projects", "Show coding profiles", "What backend technologies?"],
-  tech: ["Show me your projects", "Tell me about DSA experience", "How do you use these?"],
-  backend: ["Show your projects", "What is your tech stack?", "Coding profiles?"],
-  dsa: ["Show coding profiles", "What is your tech stack?", "Tell me about your backend work"],
-  profiles: ["Tell me about your projects", "What is your tech stack?", INTERNSHIP_QUERY],
-  leetcode: ["Show CodeForces rating", "Tell me about your projects", "What is your tech stack?"],
-  codeforces: ["Show LeetCode stats", "How does this compare to your other platforms?", "Tell me about your projects"],
-  codechef: ["Show coding profiles", "Tell me about DSA experience", "Compare your ratings"],
-  atcoder: ["Show coding profiles", "How do you prepare for contests?", "Tell me about your projects"],
-  codolio: ["See individual platform stats", "Tell me about your projects", "What is your tech stack?"],
-  github: ["Tell me about your projects", "What is your tech stack?", "Show coding profiles"],
-  linkedin: ["Tell me about your projects", "Open for internships?", "How to reach you?"],
-  internship: ["Tell me about your projects", "What is your tech stack?", "How to reach you?"],
-  resume: ["Tell me about your projects", "What is your tech stack?", "How to reach you?"],
-  contact: ["Tell me about your projects", "Show coding profiles", "What is your tech stack?"],
-  achievements: ["Tell me about your projects", "Show your DSA stats", "What is your tech stack?"],
+  tracker: ["How does the SM-2 algorithm work?", "What other projects have you done?", "Show your other work"],
+  hostel: ["What backend tech powers this?", "Tell me about your other project", "Show all work"],
+  skills: ["See these in action through projects", "What about competitive programming?", "Tell me more"],
+  tech: ["Which projects use these?", "What's most important to you?", "Any specialty areas?"],
+  backend: ["Show me your projects", "What about the frontend?", "Database design approach?"],
+  dsa: ["See your coding profiles", "How often do you practice?", "What's your approach?"],
+  profiles: ["Which is your main platform?", "What are your goals?", "See detailed stats"],
+  leetcode: ["How do you prepare?", "Check other platforms", "See all stats"],
+  codeforces: ["How does this compare to LeetCode?", "Your other platforms", "Next goals?"],
+  codechef: ["Compare with other platforms", "What's your strategy?", "See all profiles"],
+  atcoder: ["How often do you compete here?", "Your other platforms", "See all stats"],
+  codolio: ["View individual platform stats", "See detailed breakdown", "See all profiles"],
+  github: ["Which project is most impressive?", "See detailed repos", "View live demos"],
+  linkedin: ["Connect on other platforms", "See my work", "How to reach me?"],
+  internship: ["See my portfolio", "What's your tech stack?", "Get in touch?"],
+  resume: ["Want to reach out?", "See my projects", "What's your tech stack?"],
+  contact: ["Which project interests you most?", "Tell me about your work", "Any questions?"],
+  achievements: ["See what I've built", "Dive into the details", "What's next?"],
 };
 
 export const DEFAULT_QUICK_REPLIES = [
-  "Tell me about your projects",
-  "What is your tech stack?",
-  "Show coding profiles",
+  "What have you built?",
+  "What's your tech stack?",
+  "How can I reach you?",
 ];

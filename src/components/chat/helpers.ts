@@ -30,99 +30,107 @@ export function matchResponse(
 ): MatchedResponse {
   const q = normalize(input);
   const has = (...tokens: string[]) => tokens.some((t) => q.includes(t));
-  const containsKeywords = (keywords: string[]) => keywords.some(k => q.includes(k));
+  const countKeywords = (keywords: string[]) => keywords.filter(k => q.includes(k)).length;
+  const isQuestion = input.includes("?");
 
-  const setIntent = (intent: string): MatchedResponse => {
+  const setIntent = (intent: string, resetFallback = true): MatchedResponse => {
     intentStack.push(intent);
-    if (intentStack.length > 6) intentStack.shift();
-    fallbackCountRef.current = 0;
+    if (intentStack.length > 8) intentStack.shift();
+    if (resetFallback) fallbackCountRef.current = 0;
     return { ...pick(RESPONSES[intent]), intent };
   };
 
-  // Context-aware follow-ups
-  if (has("more", "details", "detail", "explain", "elaborate", "go on", "expand", "tell more", "continue", "deeper")) {
+  // Smart context-aware follow-ups with better detection
+  if (has("more", "details", "detail", "explain", "elaborate", "go on", "expand", "tell more", "continue", "deeper", "deeper dive", "more about")) {
     const ctx = intentStack[intentStack.length - 1];
-    if (ctx && RESPONSES[ctx]) return { ...pick(RESPONSES[ctx]), intent: ctx };
+    if (ctx && RESPONSES[ctx]) {
+      // Get a different response if available
+      const responses = RESPONSES[ctx];
+      if (responses.length > 1) {
+        return { ...responses[Math.floor(Math.random() * responses.length)], intent: ctx };
+      }
+      return { ...pick(responses), intent: ctx };
+    }
   }
 
-  // Greetings
-  if (has("hello", "hey", "hi", "howdy", "sup", "yo", "hii", "greetings", "hola") || q === "hi" || q === "hey")
+  // Greetings with personality
+  if (has("hello", "hey", "hi", "howdy", "sup", "yo", "hii", "greetings", "hola", "hey there", "heyy") || q === "hi" || q === "hey")
     return setIntent("greeting");
 
   // Identity
-  if (has("who are you", "what are you", "your name", "introduce yourself", "ur name", "who am i talking to"))
+  if (has("who are you", "what are you", "your name", "introduce yourself", "ur name", "who am i talking to", "what should i call you"))
     return setIntent("identity");
 
-  // About Priyanshu
-  if (has("who is priyanshu", "about him", "about priyanshu", "who is he", "what does he do", "tell me about yourself", "background", "intro"))
+  // About Priyanshu - prioritize
+  if (has("who is priyanshu", "about him", "about priyanshu", "who is he", "what does he do", "tell me about yourself", "background", "intro", "brief intro", "about"))
     return setIntent("about");
 
   // Education
-  if (has("education", "college", "nit", "jalandhar", "cgpa", "jee", "degree", "btech", "university", "academic", "study"))
+  if (has("education", "college", "nit", "jalandhar", "cgpa", "jee", "degree", "btech", "university", "academic", "study", "academics"))
     return setIntent("education");
 
-  // Projects - improved detection
-  if (has("tracker", "cp tracker", "competitive programming tracker", "graphql", "sm2", "sm-2", "spaced repetition", "cpt"))
+  // Projects - improved detection with specificity
+  if (has("tracker", "cp tracker", "competitive programming tracker", "graphql", "sm2", "sm-2", "spaced repetition", "cpt", "cp tracking"))
     return setIntent("tracker");
-  if (has("hostel", "hostel management", "hostel system", "room allocation", "hms"))
+  if (has("hostel", "hostel management", "hostel system", "room allocation", "hms", "student management"))
     return setIntent("hostel");
-  if (has("project", "projects", "work", "built", "builds", "portfolio", "what have you", "created", "development", "built"))
+  if (has("project", "projects", "work", "built", "builds", "portfolio", "what have you", "created", "development", "development work", "creation"))
     return setIntent("projects");
 
-  // Backend & Tech Stack
-  if (has("backend", "node", "express", "mongo", "mongodb", "rest api", "api", "api design", "server", "database", "db", "database design"))
+  // Backend & Tech Stack - more specific matching
+  if (has("backend", "nodejs", "node.js", "express", "mongo", "mongodb", "rest api", "graphql", "api", "api design", "server", "database", "db", "database design", "orm", "schema"))
     return setIntent("backend");
 
-  if (has("tech stack", "technology", "technologies", "stack", "framework", "tools", "what tech", "tech used", "languages", "libraries"))
+  if (has("tech stack", "technology", "technologies", "stack", "framework", "frameworks", "tools", "what tech", "tech used", "languages", "libraries", "techstack", "tech stack"))
     return setIntent("tech");
 
-  // Skills
-  if (has("skill", "skills", "what can you do", "what do you know", "expertise", "proficiency", "capable"))
+  // Skills - with better detection
+  if (has("skill", "skills", "what can you do", "what do you know", "expertise", "proficiency", "capable", "competency", "ability", "strength"))
     return setIntent("skills");
 
-  // DSA & Competitive Programming
-  if (has("dsa", "data structure", "algorithm", "competitive", "contest", "problem solv", "cp", "coding problems", "leetcode problems", "dp", "graph"))
+  // DSA & Competitive Programming - improved matching
+  if (has("dsa", "data structure", "data structures", "algorithm", "algorithms", "competitive", "contest", "problem solv", "cp", "coding problems", "leetcode problems", "dp", "dynamic programming", "graph", "greedy"))
     return setIntent("dsa");
 
-  // Individual platforms
-  if (has("leetcode", "leet code", "lc stats", "lc rating", "lc"))
+  // Individual platforms - specific matching
+  if (has("leetcode", "leet code", "lc stats", "lc rating", "lc", "leetcode profile", "leet"))
     return setIntent("leetcode");
-  if (has("codeforces", "code forces", "cf rating", "cf rank", "cf"))
+  if (has("codeforces", "code forces", "cf rating", "cf rank", "cf", "codeforces profile", "code force"))
     return setIntent("codeforces");
-  if (has("codechef", "code chef", "cc"))
+  if (has("codechef", "code chef", "cc", "codechef profile"))
     return setIntent("codechef");
-  if (has("atcoder", "at coder", "at rating", "atc"))
+  if (has("atcoder", "at coder", "at rating", "atc", "atcoder profile"))
     return setIntent("atcoder");
-  if (has("codolio", "codolio stats"))
+  if (has("codolio", "codolio stats", "unified stats"))
     return setIntent("codolio");
 
   // Profiles overview
-  if (has("coding profile", "profiles", "profile", "show profile", "all profiles", "platform", "competitive programming platforms", "cp profiles"))
+  if (has("coding profile", "profiles", "profile", "show profile", "all profiles", "platform", "competitive programming platforms", "cp profiles", "coding platforms", "all platforms"))
     return setIntent("profiles");
 
   // Social & External Links
-  if (has("github", "repo", "repository", "repos", "code", "source code", "open source"))
+  if (has("github", "repo", "repository", "repos", "code", "source code", "open source", "github profile"))
     return setIntent("github");
-  if (has("linkedin", "linked in", "professional", "professional network"))
+  if (has("linkedin", "linked in", "professional", "professional network", "linkedin profile"))
     return setIntent("linkedin");
 
-  // Internship & Hiring
-  if (has("hire", "hiring", "intern", "internship", "job", "role", "available", "open to", "opportunity", "work with", "recruit", "looking for", "employment"))
+  // Internship & Hiring - improved matching
+  if (has("hire", "hiring", "intern", "internship", "job", "role", "available", "open to", "opportunity", "work with", "recruit", "recruiting", "looking for", "employment", "position", "opening"))
     return setIntent("internship");
 
   // Resume & CV
-  if (has("resume", "cv", "download resume", "curriculum", "resume download", "download cv"))
+  if (has("resume", "cv", "download resume", "curriculum", "resume download", "download cv", "curriculum vitae", "cv download"))
     return setIntent("resume");
 
   // Contact
-  if (has("contact", "email", "reach", "connect", "mail", "get in touch", "how to reach", "contact info"))
+  if (has("contact", "email", "reach", "reach out", "connect", "mail", "get in touch", "how to reach", "contact info", "contact information", "get in touch"))
     return setIntent("contact");
 
   // Achievements
-  if (has("achievement", "percentile", "buildathon", "forge", "award", "rank", "accomplishment", "awards"))
+  if (has("achievement", "percentile", "buildathon", "forge", "award", "rank", "accomplishment", "awards", "achievement", "recognized"))
     return setIntent("achievements");
 
-  // Enhanced fallback selection
+  // Smart fallback with intelligent suggestions
   const fbIndex = Math.min(fallbackCountRef.current, FALLBACKS.length - 1);
   const fb = FALLBACKS[fbIndex];
   fallbackCountRef.current += 1;

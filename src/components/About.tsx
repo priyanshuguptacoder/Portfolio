@@ -34,9 +34,9 @@ const skillsSummary = [
 ];
 
 const achievementsList = [
-  "360+ LeetCode Problems Solved",
+  "400+ LeetCode Problems Solved",
   "LeetCode Contest Rating 1565+",
-  "Codeforces Rating 1214+",
+  "Codeforces Rating 1439+",
   "NIT Jalandhar CSE '29"
 ];
 
@@ -71,7 +71,7 @@ const About = () => {
             <p className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-4 font-bold">Engineering Background</p>
             <h2 className="font-heading text-4xl sm:text-5xl font-black text-white mb-8">About Me</h2>
             <p className="text-white/50 text-base sm:text-lg leading-relaxed font-light max-w-2xl mx-auto">
-              I build backend systems and focus on writing efficient, scalable APIs. Alongside development, I consistently practice data structures and algorithms and actively improve problem-solving speed through competitive programming.
+              Alongside development, I consistently practice data structures and algorithms and actively improve problem-solving speed through competitive programming.
             </p>
           </motion.div>
 

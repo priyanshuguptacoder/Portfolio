@@ -4,6 +4,7 @@ import { Download, Trophy, Server, Award, Code2, BookOpen, GraduationCap, Medal,
 import { PremiumCard } from "@/components/ui/PremiumCard";
 import { sectionVariants, itemVariants, cardVariants, headingVariants } from "@/lib/animations";
 import { trackResumeDownload } from "@/lib/analytics";
+import { STATS_LABELS } from "@/lib/portfolioStats";
 
 const education = [
   {
@@ -34,10 +35,10 @@ const skillsSummary = [
 ];
 
 const achievementsList = [
-  "400+ LeetCode Problems Solved",
-  "LeetCode Contest Rating 1565+",
-  "Codeforces Rating 1439+",
-  "NIT Jalandhar CSE '29"
+  STATS_LABELS.leetcodeProblems,
+  STATS_LABELS.leetcodeRating,
+  STATS_LABELS.codeforcesRating,
+  "NIT Jalandhar CSE '29",
 ];
 
 const coreStrengths = [

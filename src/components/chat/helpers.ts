@@ -84,6 +84,16 @@ export function matchResponse(
   if (has("tech stack", "technology", "technologies", "stack", "framework", "frameworks", "tools", "what tech", "tech used", "languages", "libraries", "techstack", "tech stack"))
     return setIntent("tech");
 
+  // Stats queries and updated counters
+  if (
+    (has("latest", "current", "updated", "now", "recent", "new") &&
+      has("rating", "stats", "problems", "profile", "count", "total")) ||
+    has("rating change", "rating changes", "current rating", "updated rating", "latest rating") ||
+    (has("total", "number of", "how many", "count", "problems solved", "solved problems", "total problems", "problem count") &&
+      has("problems", "leetcode", "dsa", "coding"))
+  )
+    return setIntent("stats");
+
   // Skills - with better detection
   if (has("skill", "skills", "what can you do", "what do you know", "expertise", "proficiency", "capable", "competency", "ability", "strength"))
     return setIntent("skills");

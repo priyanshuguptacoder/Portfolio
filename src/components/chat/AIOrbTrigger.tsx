@@ -28,7 +28,7 @@ export const AIOrbTrigger = ({
           ? { duration: 0.3, ease: [0.22, 1, 0.36, 1] }
           : { duration: 4, repeat: Infinity, ease: "easeInOut" }
       }
-      className={`fixed bottom-6 right-4 sm:right-6 w-14 h-14 rounded-full flex items-center justify-center z-50 transition-all duration-500 overflow-hidden ${
+      className={`group fixed bottom-6 right-4 sm:right-6 w-14 h-14 rounded-full flex items-center justify-center z-50 transition-all duration-500 overflow-visible ${
         isOpen
           ? "bg-white/[0.03] border border-white/[0.05] shadow-none"
           : "bg-[rgba(10,18,34,0.6)] backdrop-blur-md border border-cyan-500/30 shadow-[0_0_30px_rgba(34,211,238,0.15)] hover:shadow-[0_0_40px_rgba(34,211,238,0.3)] hover:border-cyan-400/50 hover:bg-[rgba(15,25,45,0.8)]"
@@ -77,6 +77,9 @@ export const AIOrbTrigger = ({
             />
             {/* Core highlight */}
             <div className="absolute w-3 h-3 rounded-full bg-white blur-[1px]" />
+            <span className="pointer-events-none absolute -bottom-5 left-1/2 -translate-x-1/2 rounded-full bg-slate-950/95 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.28em] text-cyan-200 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+              Chat
+            </span>
           </motion.div>
         )}
       </AnimatePresence>

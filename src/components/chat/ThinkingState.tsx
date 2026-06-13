@@ -7,7 +7,7 @@ export const ThinkingState = () => {
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       exit={{ opacity: 0, scale: 0.95, filter: "blur(4px)" }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="flex items-center gap-3 mb-6 ml-1"
+      className="flex items-center gap-3 mb-3 ml-1"
     >
       {/* AI Avatar Core */}
       <div className="relative w-7 h-7 rounded-full flex items-center justify-center shrink-0">

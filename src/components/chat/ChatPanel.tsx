@@ -15,8 +15,9 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
       role: "bot",
       variant: "welcome",
       content: [
-        `System initialized. I'm Priyanshu's AI assistant.`,
-        "Ask me about his backend projects, tech stack, DSA stats, or internship availability.",
+        "Hi there — I'm Priyanshu's AI portfolio assistant.",
+        "Ask me anything about his backend work, projects, coding profile, or internship availability.",
+        "I’ll surface the most relevant details and quick actions instantly.",
       ],
       timestamp: formatTimestamp(),
     },
@@ -106,7 +107,7 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
       exit={{ opacity: 0, y: 20, scale: 0.95, filter: "blur(4px)" }}
       transition={{ type: "spring", damping: 26, stiffness: 260, mass: 0.8 }}
       style={{ transformOrigin: "bottom right" }}
-      className="fixed bottom-8 sm:bottom-10 right-4 sm:right-6 w-[92vw] sm:w-[380px] h-[75vh] sm:h-[600px] max-h-[85vh] flex flex-col z-50 rounded-[24px] overflow-hidden border border-white/[0.12] bg-[rgba(10,14,24,0.75)] shadow-[0_24px_50px_rgba(0,0,0,0.5),_0_0_24px_rgba(34,211,238,0.08)] backdrop-blur-3xl"
+      className="chat-panel fixed bottom-4 sm:bottom-6 right-4 sm:right-6 w-[96vw] sm:w-[400px] h-[82vh] sm:h-[680px] max-h-[94vh] flex flex-col z-50 rounded-[28px] overflow-hidden border border-white/[0.1] bg-[rgba(8,12,20,0.96)] shadow-[0_28px_70px_rgba(0,0,0,0.55),_0_0_28px_rgba(34,211,238,0.12)] backdrop-blur-3xl"
     >
       {/* Noise Texture Overlay */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
@@ -156,33 +157,30 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
 
       {/* Messages Area */}
       <div
-        className="relative z-10 grow h-[1px] w-full min-h-0 overflow-y-auto overscroll-contain px-4 sm:px-5 pt-4 pb-2 flex flex-col chat-scrollbar"
+        className="relative z-10 flex-1 min-h-0 overflow-y-auto overscroll-contain px-4 sm:px-5 pt-5 pb-2 flex flex-col gap-3 chat-scrollbar"
         aria-live="polite"
       >
-        <div className="grow min-h-[40px]" /> {/* Flexible spacer to push messages down */}
-        <div className="flex flex-col justify-end space-y-0 mt-auto">
-          {messages.map((msg) =>
-            msg.role === "bot" ? (
+        {messages.map((msg) =>
+          msg.role === "bot" ? (
             <BotMessage key={msg.id} msg={msg} onQuickReply={sendMessage} />
           ) : (
             <UserMessage key={msg.id} msg={msg} />
           )
-          )}
-          {typing && <ThinkingState />}
-          <div ref={bottomRef} className="h-2 shrink-0" />
-        </div>
+        )}
+        {typing && <ThinkingState />}
+        <div ref={bottomRef} className="h-4 shrink-0" />
       </div>
 
       {/* Edge Lighting Bottom Separator */}
       <div className="relative z-20 h-px w-full bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent opacity-60 shrink-0" />
 
       {/* Input Area */}
-      <div className="relative z-10 shrink-0 px-1.5 sm:px-2 pb-1.5 pt-1.5 w-full">
+      <div className="relative z-10 shrink-0 px-3 pb-3 pt-3 w-full bg-[rgba(10,14,24,0.96)] border-t border-white/[0.08]">
         <ChatInput 
-          input={input} 
-          setInput={setInput} 
-          onSend={sendMessage} 
-          disabled={typing} 
+          input={input}
+          setInput={setInput}
+          onSend={sendMessage}
+          disabled={typing}
         />
       </div>
     </motion.div>

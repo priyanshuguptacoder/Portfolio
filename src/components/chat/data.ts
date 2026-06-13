@@ -1,30 +1,31 @@
 import { LINKS, INTERNSHIP_QUERY, type ResponseData } from "./types";
+import { PORTFOLIO_STATS, PROFILE_INFO } from "@/lib/portfolioStats";
 
 export const CODING_PROFILES = [
   {
     label: "LeetCode",
-    info: "360+ solved · Rating 1565+",
+    info: PROFILE_INFO.leetcode,
     short: "LC",
     href: LINKS.leetcode,
     accent: "from-orange-400/30 via-rose-400/20 to-amber-300/30",
   },
   {
     label: "Codeforces",
-    info: "Pupil · Rating 1214",
+    info: PROFILE_INFO.codeforces,
     short: "CF",
     href: LINKS.codeforces,
     accent: "from-sky-400/30 via-blue-400/20 to-cyan-300/30",
   },
   {
     label: "CodeChef",
-    info: "2★ · Rating 1506+",
+    info: PROFILE_INFO.codechef,
     short: "CC",
     href: LINKS.codechef,
     accent: "from-amber-400/30 via-orange-300/20 to-yellow-200/30",
   },
   {
     label: "AtCoder",
-    info: "Rating 27",
+    info: PROFILE_INFO.atcoder,
     short: "AT",
     href: LINKS.atcoder,
     accent: "from-emerald-400/30 via-teal-400/20 to-green-300/30",
@@ -49,6 +50,7 @@ export const SUGGESTED_QUESTIONS = [
   { label: "What have you built?", input: "Tell me about your projects" },
   { label: "Backend stack?", input: "What is your tech stack?" },
   { label: "Coding profiles", input: "Show coding profiles" },
+  { label: "Current stats?", input: "What are your latest coding stats?" },
   { label: "Open for internships?", input: INTERNSHIP_QUERY },
 ];
 
@@ -342,8 +344,8 @@ export const RESPONSES: Record<string, ResponseData[]> = {
   dsa: [
     {
       lines: [
-        "360+ LeetCode problems · Rating 1565+ · Top 30% globally.",
-        "Active on Codeforces (Pupil, 1214) and CodeChef (2★, 1506+). Consistent contest participation.",
+        `\u200b${PORTFOLIO_STATS.leetcode.problemsSolved}+ LeetCode problems solved · Rating ${PORTFOLIO_STATS.leetcode.rating}+ · Top 30% globally.`,
+        `Active on Codeforces (${PORTFOLIO_STATS.codeforces.tier}, ${PORTFOLIO_STATS.codeforces.rating}+) and CodeChef (${PORTFOLIO_STATS.codechef.stars}, ${PORTFOLIO_STATS.codechef.rating}+). Consistent contest participation.`,
       ],
       actions: [
         { label: "LeetCode", url: LINKS.leetcode },
@@ -353,7 +355,7 @@ export const RESPONSES: Record<string, ResponseData[]> = {
     {
       lines: [
         "Strong across graphs, DP, greedy, and sliding window patterns.",
-        "LeetCode Top 30% · Codeforces Pupil (1214) · CodeChef 2★ (1506+).",
+        `LeetCode Top 30% · Codeforces ${PORTFOLIO_STATS.codeforces.tier} (${PORTFOLIO_STATS.codeforces.rating}+) · CodeChef ${PORTFOLIO_STATS.codechef.stars} (${PORTFOLIO_STATS.codechef.rating}+)`,
       ],
       actions: [
         { label: "LeetCode", url: LINKS.leetcode },
@@ -372,8 +374,8 @@ export const RESPONSES: Record<string, ResponseData[]> = {
     },
     {
       lines: [
-        "360+ problems solved across multiple platforms — interview patterns, system design concepts, and optimization tricks all part of the arsenal.",
-        "Consistent top 30% performance on LeetCode, actively climbing ranks on Codeforces and CodeChef.",
+        `\u200b${PORTFOLIO_STATS.leetcode.problemsSolved}+ problems solved across platforms — interview patterns, system design concepts, and optimization tricks all part of the arsenal.`,
+        `Consistent top 30% performance on LeetCode, Codeforces ${PORTFOLIO_STATS.codeforces.rating}+, and CodeChef ${PORTFOLIO_STATS.codechef.rating}+.`,
       ],
       actions: [
         { label: "Coding Profiles", scrollTo: "about" },
@@ -381,24 +383,49 @@ export const RESPONSES: Record<string, ResponseData[]> = {
       ],
     },
   ],
+  stats: [
+    {
+      lines: [
+        `Latest portfolio snapshot: ${PORTFOLIO_STATS.leetcode.problemsSolved}+ total problems solved, LeetCode rating ${PORTFOLIO_STATS.leetcode.rating}+, Codeforces ${PORTFOLIO_STATS.codeforces.tier} ${PORTFOLIO_STATS.codeforces.rating}+, and CodeChef ${PORTFOLIO_STATS.codechef.stars} ${PORTFOLIO_STATS.codechef.rating}+.`,
+        "These are the current counts from the portfolio — total solved problems and live contest ratings.",
+      ],
+      actions: [
+        { label: "Coding Profiles", scrollTo: "about" },
+        { label: "View Resume", url: LINKS.resume },
+      ],
+    },
+    {
+      lines: [
+        `Updated totals: ${PORTFOLIO_STATS.leetcode.problemsSolved}+ problems solved across platforms, current Codeforces rating ${PORTFOLIO_STATS.codeforces.rating}+, and CodeChef rating ${PORTFOLIO_STATS.codechef.rating}+.`,
+        "I keep these stats aligned with the live portfolio data for the most accurate summary.",
+      ],
+      actions: [
+        { label: "See All Stats", scrollTo: "about" },
+        { label: "Coding Profiles", scrollTo: "about" },
+      ],
+    },
+  ],
   profiles: [
     {
-      lines: ["Active profiles across LeetCode, Codeforces, CodeChef, AtCoder, GFG, and GitHub."],
+      lines: [
+        `Active profiles across LeetCode, Codeforces, CodeChef, AtCoder, GFG, and GitHub.`,
+        `Latest ratings: LeetCode ${PORTFOLIO_STATS.leetcode.rating}+, Codeforces ${PORTFOLIO_STATS.codeforces.rating}+, CodeChef ${PORTFOLIO_STATS.codechef.rating}+.`,
+      ],
       showProfiles: true,
     },
   ],
   leetcode: [
     {
       lines: [
-        "LeetCode: 360+ solved · 144 Easy · 196 Medium · 20+ Hard.",
-        "Contest Rating 1565+ · Top 30% · Strong on graphs, DP, and sliding window.",
+        `LeetCode: ${PORTFOLIO_STATS.leetcode.problemsSolved}+ solved · Rating ${PORTFOLIO_STATS.leetcode.rating}+ · Strong on graphs, DP, and sliding window.`,
+        `Contest Rating ${PORTFOLIO_STATS.leetcode.rating}+ · Top 30% · Strong on graphs, DP, and sliding window.`,
       ],
       actions: [{ label: "LeetCode", url: LINKS.leetcode }],
     },
     {
       lines: [
-        "360+ problems solved with consistent medium/hard focus.",
-        "Rating 1565+ · Top 30% globally. Main platform for interview-pattern practice.",
+        `LeetCode: ${PORTFOLIO_STATS.leetcode.problemsSolved}+ problems solved with consistent medium/hard focus.`,
+        `Rating ${PORTFOLIO_STATS.leetcode.rating}+ · Top 30% globally. Main platform for interview-pattern practice.`,
       ],
       actions: [{ label: "LeetCode", url: LINKS.leetcode }],
     },
@@ -406,14 +433,14 @@ export const RESPONSES: Record<string, ResponseData[]> = {
   codeforces: [
     {
       lines: [
-        "Codeforces: Rating 1214 · Pupil · 110+ problems solved.",
+        `Codeforces: Rating ${PORTFOLIO_STATS.codeforces.rating}+ · ${PORTFOLIO_STATS.codeforces.tier} · active contest problem solving.`,
         "Regular contests — focused on implementation speed and constructive problems.",
       ],
       actions: [{ label: "Codeforces", url: LINKS.codeforces }],
     },
     {
       lines: [
-        "Pupil rank on Codeforces with 110+ problems. Active in Div. 2 and Div. 3 rounds.",
+        `Pupil rank on Codeforces with ${PORTFOLIO_STATS.codeforces.rating}+ rating. Active in Div. 2 and Div. 3 rounds.`,
       ],
       actions: [{ label: "Codeforces", url: LINKS.codeforces }],
     },
@@ -421,7 +448,7 @@ export const RESPONSES: Record<string, ResponseData[]> = {
   codechef: [
     {
       lines: [
-        "CodeChef: 2★ · Rating 1506+. Used alongside LeetCode for DSA breadth and contest prep.",
+        `CodeChef: ${PORTFOLIO_STATS.codechef.stars} · Rating ${PORTFOLIO_STATS.codechef.rating}+. Used alongside LeetCode for DSA breadth and contest prep.`,
       ],
       actions: [{ label: "CodeChef", url: LINKS.codechef }],
     },
@@ -429,7 +456,7 @@ export const RESPONSES: Record<string, ResponseData[]> = {
   atcoder: [
     {
       lines: [
-        "AtCoder: Rating 27 · building contest experience through regular participation.",
+        `AtCoder: Rating ${PORTFOLIO_STATS.atcoder.rating} · building contest experience through regular participation.`,
       ],
       actions: [{ label: "AtCoder", url: LINKS.atcoder }],
     },
@@ -662,6 +689,7 @@ export const CONTEXT_QUICK_REPLIES: Record<string, string[]> = {
   resume: ["Want to reach out?", "See my projects", "What's your tech stack?"],
   contact: ["Which project interests you most?", "Tell me about your work", "Any questions?"],
   achievements: ["See what I've built", "Dive into the details", "What's next?"],
+  stats: ["Show coding totals", "Compare platform ratings", "See all current stats"],
 };
 
 export const DEFAULT_QUICK_REPLIES = [

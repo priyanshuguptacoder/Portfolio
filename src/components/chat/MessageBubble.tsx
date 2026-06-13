@@ -152,7 +152,7 @@ export const BotMessage = ({
     initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
     transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-    className="flex justify-start mb-3 gap-3 group"
+    className="flex justify-start mb-2 gap-3 group"
   >
     {/* Avatar */}
     <div className="relative w-8 h-8 rounded-full bg-gradient-to-br from-cyan-400/20 to-blue-500/30 border border-cyan-400/30 flex items-center justify-center shrink-0 mt-1 overflow-hidden shadow-[0_0_15px_rgba(34,211,238,0.15)] group-hover:shadow-[0_0_20px_rgba(34,211,238,0.25)] transition-shadow duration-300">
@@ -163,23 +163,23 @@ export const BotMessage = ({
     <div className="max-w-[89%] sm:max-w-[85%] flex flex-col gap-2.5">
       {/* Bubble */}
       <div
-        className={`relative overflow-hidden rounded-2xl rounded-tl-sm px-4 py-3.5 text-[13px] leading-[1.65] ${
+        className={`relative overflow-hidden rounded-3xl rounded-tl-sm px-4 py-4 text-[14px] leading-[1.75] ${
           msg.variant === "welcome"
-            ? "border border-cyan-500/30 bg-[rgba(10,18,34,0.7)] backdrop-blur-md shadow-[0_4px_24px_rgba(34,211,238,0.08)]"
-            : "border border-white/[0.08] bg-[rgba(14,22,40,0.65)] backdrop-blur-md hover:border-white/[0.12] transition-colors duration-300"
+            ? "border border-cyan-500/30 bg-[rgba(10,18,34,0.75)] backdrop-blur-2xl shadow-[0_10px_40px_rgba(34,211,238,0.1)]"
+            : "border border-white/[0.08] bg-[rgba(14,22,40,0.8)] backdrop-blur-xl hover:border-white/[0.14] transition-all duration-300"
         }`}
       >
         {msg.variant === "welcome" && (
-          <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_top_left,_rgba(34,211,238,0.5),_transparent_60%)]" />
+          <div className="absolute inset-0 opacity-20 bg-[radial-gradient(ellipse_at_top_left,_rgba(34,211,238,0.4),_transparent_60%)]" />
         )}
         <div className="relative space-y-2">
           {msg.content.map((line, i) => (
             <motion.p
-              initial={{ opacity: 0, y: 5 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.15 + 0.1, duration: 0.4 }}
+              transition={{ delay: i * 0.12 + 0.05, duration: 0.35 }}
               key={i}
-              className={i === 0 ? "text-white/95 font-medium" : "text-white/75"}
+              className={i === 0 ? "text-white/95 font-semibold" : "text-white/75"}
             >
               {renderMessageContent(line)}
             </motion.p>
@@ -272,7 +272,7 @@ export const UserMessage = ({ msg }: { msg: Message }) => (
     initial={{ opacity: 0, y: 12, scale: 0.98, filter: "blur(4px)" }}
     animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-    className="flex justify-end mb-3"
+    className="flex justify-end mb-2"
   >
     <div className="max-w-[80%] sm:max-w-[72%] flex flex-col items-end gap-1.5">
       <div className="px-4 py-3 rounded-2xl rounded-tr-sm text-white/95 text-[13px] leading-[1.6] border border-cyan-500/30 bg-gradient-to-br from-[rgba(0,140,255,0.2)] to-[rgba(0,180,255,0.05)] shadow-[0_4px_16px_rgba(0,140,255,0.1)] backdrop-blur-md">

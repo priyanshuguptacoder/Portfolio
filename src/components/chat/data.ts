@@ -66,6 +66,12 @@ export const RESPONSES: Record<string, ResponseData[]> = {
         "I can walk you through projects, tech stack, or competitive programming history.",
       ],
     },
+    {
+      lines: [
+        "Welcome — Priyanshu's AI assistant here.",
+        "Projects, backend tech, or coding profiles — what interests you?",
+      ],
+    },
   ],
   identity: [
     {
@@ -78,6 +84,11 @@ export const RESPONSES: Record<string, ResponseData[]> = {
         "Built to give recruiters and collaborators a quick read on Priyanshu's work and background.",
       ],
     },
+    {
+      lines: [
+        "I'm here to help you explore Priyanshu's backend projects, competitive programming stats, and experience.",
+      ],
+    },
   ],
   about: [
     {
@@ -88,6 +99,16 @@ export const RESPONSES: Record<string, ResponseData[]> = {
       actions: [
         { label: "Projects", scrollTo: "projects" },
         { label: "Skills", scrollTo: "skills" },
+      ],
+    },
+    {
+      lines: [
+        "Backend developer from NIT Jalandhar focused on scalable REST/GraphQL APIs, Node.js architecture, and MongoDB optimization.",
+        "Strong in competitive programming (LeetCode 1565+ · Codeforces Pupil).",
+      ],
+      actions: [
+        { label: "Projects", scrollTo: "projects" },
+        { label: "Tech Stack", scrollTo: "skills" },
       ],
     },
   ],
@@ -392,36 +413,67 @@ export const FALLBACKS: ResponseData[] = [
       { label: "Coding Profiles", scrollTo: "about" },
     ],
   },
+  {
+    lines: [
+      "Not sure about that one. I cover his projects, backend experience, DSA contests, and how to connect.",
+      "What interests you most?",
+    ],
+    actions: [
+      { label: "Projects", scrollTo: "projects" },
+      { label: "DSA & Contests", scrollTo: "about" },
+      { label: "Internship", scrollTo: "about" },
+    ],
+  },
+  {
+    lines: [
+      "Hmm — that's outside my scope, but I'm great with backend tech, competitive programming, and project details.",
+    ],
+    actions: [
+      { label: "View Projects", scrollTo: "projects" },
+      { label: "Tech Stack", scrollTo: "skills" },
+      { label: "About", scrollTo: "about" },
+    ],
+  },
+  {
+    lines: [
+      "I focus on Priyanshu's technical background. Feel free to ask about his work, experience, or how to collaborate.",
+    ],
+    actions: [
+      { label: "Backend Experience", scrollTo: "skills" },
+      { label: "Let's Connect", scrollTo: "contact" },
+      { label: "View Resume", url: LINKS.resume },
+    ],
+  },
 ];
 
 export const CONTEXT_QUICK_REPLIES: Record<string, string[]> = {
-  greeting: ["Tell me about your projects", "What is your tech stack?", "Show coding profiles"],
+  greeting: ["Tell me about your projects", "What is your tech stack?", "Open for internships?"],
   identity: ["Tell me about your projects", "What backend technologies do you use?", "Show coding profiles"],
   about: ["Tell me about your projects", "Tell me about DSA experience", "Show coding profiles"],
   education: ["Tell me about your projects", "Show coding profiles", "What is your tech stack?"],
   projects: [
     "Tell me about Competitive Programming Tracker",
-    "Tell me about Hostel Management System",
+    "Explain the Hostel Management System",
     "What is your tech stack?",
   ],
-  tracker: ["What is your tech stack?", "Tell me about Hostel Management System", "Show coding profiles"],
-  hostel: ["What backend technologies do you use?", "Tell me about Competitive Programming Tracker", "Show coding profiles"],
-  skills: ["Tell me about your projects", "Show coding profiles", "What backend technologies do you use?"],
-  tech: ["Tell me about your projects", "Tell me about DSA experience", "Show coding profiles"],
-  backend: ["Tell me about your projects", "What is your tech stack?", "Show coding profiles"],
-  dsa: ["Show coding profiles", "Tell me about your projects", "What is your tech stack?"],
+  tracker: ["What technologies power this?", "Tell me about Hostel Management System", "Show all projects"],
+  hostel: ["What backend technologies do you use?", "Tell me about CP Tracker", "Show coding profiles"],
+  skills: ["Tell me about your projects", "Show coding profiles", "What backend technologies?"],
+  tech: ["Show me your projects", "Tell me about DSA experience", "How do you use these?"],
+  backend: ["Show your projects", "What is your tech stack?", "Coding profiles?"],
+  dsa: ["Show coding profiles", "What is your tech stack?", "Tell me about your backend work"],
   profiles: ["Tell me about your projects", "What is your tech stack?", INTERNSHIP_QUERY],
-  leetcode: ["Tell me about Codeforces", "Tell me about your projects", "Show coding profiles"],
-  codeforces: ["Tell me about LeetCode", "Show coding profiles", "Tell me about your projects"],
-  codechef: ["Show coding profiles", "Tell me about DSA experience", "Tell me about your projects"],
-  atcoder: ["Show coding profiles", "Tell me about DSA experience", "Tell me about your projects"],
-  codolio: ["Show coding profiles", "Tell me about your projects", "What is your tech stack?"],
+  leetcode: ["Show CodeForces rating", "Tell me about your projects", "What is your tech stack?"],
+  codeforces: ["Show LeetCode stats", "How does this compare to your other platforms?", "Tell me about your projects"],
+  codechef: ["Show coding profiles", "Tell me about DSA experience", "Compare your ratings"],
+  atcoder: ["Show coding profiles", "How do you prepare for contests?", "Tell me about your projects"],
+  codolio: ["See individual platform stats", "Tell me about your projects", "What is your tech stack?"],
   github: ["Tell me about your projects", "What is your tech stack?", "Show coding profiles"],
-  linkedin: ["Tell me about your projects", "Show coding profiles", INTERNSHIP_QUERY],
-  internship: ["Tell me about your projects", "What is your tech stack?", "Show coding profiles"],
-  resume: ["Tell me about your projects", "What is your tech stack?", INTERNSHIP_QUERY],
+  linkedin: ["Tell me about your projects", "Open for internships?", "How to reach you?"],
+  internship: ["Tell me about your projects", "What is your tech stack?", "How to reach you?"],
+  resume: ["Tell me about your projects", "What is your tech stack?", "How to reach you?"],
   contact: ["Tell me about your projects", "Show coding profiles", "What is your tech stack?"],
-  achievements: ["Tell me about your projects", "Show coding profiles", "What is your tech stack?"],
+  achievements: ["Tell me about your projects", "Show your DSA stats", "What is your tech stack?"],
 };
 
 export const DEFAULT_QUICK_REPLIES = [

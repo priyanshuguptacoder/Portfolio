@@ -69,7 +69,12 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
     setInput("");
     setTyping(true);
 
-    const delay = Math.min(MAX_TYPING_DELAY, BASE_TYPING_DELAY + trimmed.length * TYPING_DELAY_PER_CHAR);
+    // More natural typing simulation with variation
+    const baseDelay = 400;
+    const charDelay = 30;
+    const maxDelay = 2000;
+    const randomFactor = Math.random() * 200; // Add randomness for natural feel
+    const delay = Math.min(maxDelay, baseDelay + trimmed.length * charDelay + randomFactor);
 
     setTimeout(() => {
       const res = matchResponse(trimmed, intentStackRef.current, fallbackCountRef);

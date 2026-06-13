@@ -215,8 +215,8 @@ const About = () => {
             </motion.p>
             <motion.div variants={itemVariants} className="flex flex-col items-center gap-3">
               <a
-                href="/resume.pdf"
-                download
+                href="/Resume.pdf"
+                download="Resume.pdf"
                 onClick={trackResumeDownload}
                 className="group relative inline-flex items-center gap-3 px-10 py-5 rounded-2xl bg-white text-black font-black text-sm transition-all duration-500 hover:scale-105 active:scale-95 shadow-2xl shadow-white/10"
               >

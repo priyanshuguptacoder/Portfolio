@@ -21,7 +21,7 @@ const stats = [
   },
   {
     icon: Server,
-    value: 600,
+    value: 650,
     suffix: "+",
     label: "TOTAL QUESTIONS SOLVED",
     detail: "Combined problem solving across coding platforms",
@@ -36,7 +36,7 @@ const stats = [
     suffix: "+",
     label: "PROBLEMS SOLVED (CODEFORCES)",
     detail: "Building competitive programming fundamentals with focus on speed and implementation.",
-    extraInfo: "Rating: 1214+ (Pupil) • Improving Rapidly",
+    extraInfo: "Rating: 1439+ (Specialist) • Improving Rapidly",
     linkText: "View Profile",
     linkUrl: "https://codeforces.com/profile/priyanshuguptacoder"
   },
@@ -136,7 +136,7 @@ const Hero = () => {
                     Competitive Programming
                   </span>
                   <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-white/75 backdrop-blur-md transition-all duration-300 hover:border-cyan-300/40 hover:bg-white/10 hover:text-white hover:shadow-[0_0_18px_rgba(34,211,238,0.25)] sm:px-3 sm:py-1 sm:text-base">
-                    Problem Solving
+                    Web Developer
                   </span>
                 </p>
               </motion.div>
@@ -147,7 +147,7 @@ const Hero = () => {
                 className="text-sm sm:text-[15px] text-white/55 max-w-[580px] mx-auto lg:mx-0 mb-10 leading-[1.75] font-normal"
               >
                 Building scalable systems using React, JavaScript.
-                Solved 600+ Problems and actively improving through contests.
+                Solved 650+ Problems and actively improving through contests.
                 Open to Internship Opportunities.
               </motion.p>
 
@@ -190,7 +190,7 @@ const Hero = () => {
               >
                 <img
                   src={profileImg}
-                  alt="Priyanshu Gupta — Backend Developer at NIT Jalandhar"
+                  alt="Priyanshu Gupta — Web Developer at NIT Jalandhar"
                   loading="eager"
                   decoding="async"
                   fetchPriority="high"
@@ -377,11 +377,11 @@ const Hero = () => {
                     <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col justify-center space-y-4">
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rating</p>
-                        <p className="text-2xl font-bold text-gray-400">1214+</p>
+                        <p className="text-2xl font-bold text-gray-400">1439+</p>
                       </div>
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rank</p>
-                        <p className="text-xl font-bold text-gray-300">Pupil</p>
+                        <p className="text-xl font-bold text-gray-300">Specialist</p>
                       </div>
                     </div>
                   </div>

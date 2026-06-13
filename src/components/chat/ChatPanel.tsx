@@ -107,7 +107,7 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
       exit={{ opacity: 0, y: 20, scale: 0.95, filter: "blur(4px)" }}
       transition={{ type: "spring", damping: 26, stiffness: 260, mass: 0.8 }}
       style={{ transformOrigin: "bottom right" }}
-      className="chat-panel fixed bottom-4 sm:bottom-6 right-4 sm:right-6 w-[96vw] sm:w-[400px] h-[65vh] sm:h-[560px] max-h-[calc(100vh-32px)] flex flex-col z-50 rounded-[28px] overflow-hidden border border-white/[0.1] bg-[rgba(8,12,20,0.96)] shadow-[0_28px_70px_rgba(0,0,0,0.55),_0_0_28px_rgba(34,211,238,0.12)] backdrop-blur-3xl"
+      className="chat-panel fixed bottom-4 sm:bottom-6 right-4 sm:right-6 w-[96vw] sm:w-[400px] h-[60vh] sm:h-[520px] max-h-[calc(100vh-28px)] flex flex-col z-50 rounded-[28px] overflow-hidden border border-white/[0.1] bg-[rgba(8,12,20,0.96)] shadow-[0_28px_70px_rgba(0,0,0,0.55),_0_0_28px_rgba(34,211,238,0.12)] backdrop-blur-3xl"
     >
       {/* Noise Texture Overlay */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
@@ -155,7 +155,7 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
 
       {/* Messages Area */}
       <div
-        className="relative z-10 flex-1 min-h-0 overflow-y-auto overscroll-contain px-3 sm:px-4 pt-2.5 pb-0 flex flex-col gap-1.5 chat-scrollbar"
+        className="relative z-10 flex-1 min-h-0 overflow-y-auto overscroll-contain px-3 sm:px-4 pt-2 pb-0 flex flex-col gap-1 chat-scrollbar"
         aria-live="polite"
       >
         {messages.map((msg) =>
@@ -166,14 +166,14 @@ export const ChatPanel = ({ onClose }: { onClose: () => void }) => {
           )
         )}
         {typing && <ThinkingState />}
-        <div ref={bottomRef} className="h-1 shrink-0" />
+        <div ref={bottomRef} className="h-0.5 shrink-0" />
       </div>
 
       {/* Edge Lighting Bottom Separator */}
       <div className="relative z-20 h-px w-full bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent opacity-60 shrink-0" />
 
       {/* Input Area */}
-      <div className="relative z-10 shrink-0 px-3 pb-1 pt-1.5 w-full bg-[rgba(10,14,24,0.96)] border-t border-white/[0.08]">
+      <div className="relative z-10 shrink-0 px-3 pb-0 pt-1 w-full bg-[rgba(10,14,24,0.96)] border-t border-white/[0.08]">
         <ChatInput 
           input={input}
           setInput={setInput}

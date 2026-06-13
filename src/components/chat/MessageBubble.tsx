@@ -152,7 +152,7 @@ export const BotMessage = ({
     initial={{ opacity: 0, y: 12, filter: "blur(4px)" }}
     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
     transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-    className="flex justify-start mb-1.5 gap-2 group"
+    className="flex justify-start mb-1 gap-2 group"
   >
     {/* Avatar */}
     <div className="relative w-7 h-7 rounded-full bg-gradient-to-br from-cyan-400/25 to-blue-500/35 border border-cyan-400/35 flex items-center justify-center shrink-0 mt-0.5 overflow-hidden shadow-[0_0_10px_rgba(34,211,238,0.2)] group-hover:shadow-[0_0_16px_rgba(34,211,238,0.3)] transition-shadow duration-300">
@@ -195,7 +195,7 @@ export const BotMessage = ({
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
-          className="space-y-3 mt-1"
+          className="space-y-2 mt-0.5"
         >
           <SectionDivider label="Suggested" />
           <div className="flex flex-wrap gap-2">
@@ -272,7 +272,7 @@ export const UserMessage = ({ msg }: { msg: Message }) => (
     initial={{ opacity: 0, y: 12, scale: 0.98, filter: "blur(4px)" }}
     animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-    className="flex justify-end mb-1.5"
+    className="flex justify-end mb-1"
   >
     <div className="max-w-[80%] sm:max-w-[72%] flex flex-col items-end gap-1">
       <div className="px-3 py-2.5 rounded-2xl rounded-tr-sm text-white/95 text-[13px] leading-[1.6] border border-cyan-500/25 bg-gradient-to-br from-[rgba(0,140,255,0.2)] to-[rgba(0,180,255,0.05)] shadow-[0_2px_12px_rgba(0,140,255,0.08)] backdrop-blur-md">

@@ -21,7 +21,7 @@ const stats = [
   },
   {
     icon: Server,
-    value: 650,
+    value: 700,
     suffix: "+",
     label: "TOTAL QUESTIONS SOLVED",
     detail: "Combined problem solving across coding platforms",

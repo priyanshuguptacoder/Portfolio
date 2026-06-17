@@ -391,15 +391,15 @@ const Hero = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Stars</p>
-                        <p className="text-lg font-bold text-white/80">2★</p>
+                        <p className="text-lg font-bold text-white/80">3★</p>
                       </div>
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rank</p>
-                        <p className="text-lg font-bold text-white/80">Div 3</p>
+                        <p className="text-lg font-bold text-white/80">Div 2</p>
                       </div>
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rating</p>
-                        <p className="text-lg font-bold text-white/80">1506+</p>
+                        <p className="text-lg font-bold text-white/80">1604+</p>
                       </div>
                     </div>
                   </div>

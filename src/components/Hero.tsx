@@ -11,7 +11,7 @@ import { sectionVariants, itemVariants } from "@/lib/animations";
 const stats = [
   {
     icon: Code2,
-    value: 400,
+    value: 450,
     suffix: "+",
     label: "LEETCODE PROBLEMS SOLVED",
     detail: "Strong coverage across core DSA topics with consistent problem solving.",
@@ -21,7 +21,7 @@ const stats = [
   },
   {
     icon: Server,
-    value: 700,
+    value: 800,
     suffix: "+",
     label: "TOTAL QUESTIONS SOLVED",
     detail: "Combined problem solving across coding platforms",
@@ -32,7 +32,7 @@ const stats = [
   },
   {
     icon: Trophy,
-    value: 150,
+    value: 220,
     suffix: "+",
     label: "PROBLEMS SOLVED (CODEFORCES)",
     detail: "Building competitive programming fundamentals with focus on speed and implementation.",

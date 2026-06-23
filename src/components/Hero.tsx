@@ -147,7 +147,7 @@ const Hero = () => {
                 className="text-sm sm:text-[15px] text-white/55 max-w-[580px] mx-auto lg:mx-0 mb-10 leading-[1.75] font-normal"
               >
                 Building scalable systems using React, JavaScript.
-                Solved 650+ Problems and actively improving through contests.
+                Solved 800+ Problems and actively improving through contests.
                 Open to Internship Opportunities.
               </motion.p>
 

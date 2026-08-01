@@ -11,7 +11,7 @@ import { sectionVariants, itemVariants } from "@/lib/animations";
 const stats = [
   {
     icon: Code2,
-    value: 400,
+    value: 450,
     suffix: "+",
     label: "LEETCODE PROBLEMS SOLVED",
     detail: "Strong coverage across core DSA topics with consistent problem solving.",
@@ -21,7 +21,7 @@ const stats = [
   },
   {
     icon: Server,
-    value: 650,
+    value: 800,
     suffix: "+",
     label: "TOTAL QUESTIONS SOLVED",
     detail: "Combined problem solving across coding platforms",
@@ -32,7 +32,7 @@ const stats = [
   },
   {
     icon: Trophy,
-    value: 150,
+    value: 220,
     suffix: "+",
     label: "PROBLEMS SOLVED (CODEFORCES)",
     detail: "Building competitive programming fundamentals with focus on speed and implementation.",
@@ -147,7 +147,7 @@ const Hero = () => {
                 className="text-sm sm:text-[15px] text-white/55 max-w-[580px] mx-auto lg:mx-0 mb-10 leading-[1.75] font-normal"
               >
                 Building scalable systems using React, JavaScript.
-                Solved 650+ Problems and actively improving through contests.
+                Solved 800+ Problems and actively improving through contests.
                 Open to Internship Opportunities.
               </motion.p>
 
@@ -391,15 +391,15 @@ const Hero = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Stars</p>
-                        <p className="text-lg font-bold text-white/80">2★</p>
+                        <p className="text-lg font-bold text-white/80">3★</p>
                       </div>
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rank</p>
-                        <p className="text-lg font-bold text-white/80">Div 3</p>
+                        <p className="text-lg font-bold text-white/80">Div 2</p>
                       </div>
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rating</p>
-                        <p className="text-lg font-bold text-white/80">1506+</p>
+                        <p className="text-lg font-bold text-white/80">1604+</p>
                       </div>
                     </div>
                   </div>

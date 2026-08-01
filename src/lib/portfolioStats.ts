@@ -1,15 +1,15 @@
 export const PORTFOLIO_STATS = {
   leetcode: {
-    problemsSolved: 400,
-    rating: 1565,
+    problemsSolved: 550,
+    rating: 1850,
   },
   codeforces: {
-    rating: 1439,
-    tier: "Pupil",
+    rating: 1459,
+    tier: "Specialist",
   },
   codechef: {
-    rating: 1506,
-    stars: "2★",
+    rating: 1534,
+    stars: "3★",
   },
   atcoder: {
     rating: 27,

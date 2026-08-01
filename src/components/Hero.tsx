@@ -11,32 +11,32 @@ import { sectionVariants, itemVariants } from "@/lib/animations";
 const stats = [
   {
     icon: Code2,
-    value: 450,
+    value: 550,
     suffix: "+",
     label: "LEETCODE PROBLEMS SOLVED",
     detail: "Strong coverage across core DSA topics with consistent problem solving.",
-    extraInfo: "Contest Rating: 1565+ • Top 30%",
+    extraInfo: "Contest Rating: 1850+ • Top 6%",
     linkText: "View Profile",
     linkUrl: "https://leetcode.com/u/invisiblemanfromheart/"
   },
   {
     icon: Server,
-    value: 800,
+    value: 1000,
     suffix: "+",
     label: "TOTAL QUESTIONS SOLVED",
     detail: "Combined problem solving across coding platforms",
-    extraInfo: "LeetCode • Codeforces • CodeChef • AtCoder",
+    extraInfo: "LeetCode • Codeforces • CodeChef • AtCoder • GFG • HackerRank",
     linkText: "View Codolio",
     linkUrl: "https://codolio.com/profile/priyanshuguptacoder",
     isDominant: true,
   },
   {
     icon: Trophy,
-    value: 220,
+    value: 300,
     suffix: "+",
     label: "PROBLEMS SOLVED (CODEFORCES)",
     detail: "Building competitive programming fundamentals with focus on speed and implementation.",
-    extraInfo: "Rating: 1439+ (Specialist) • Improving Rapidly",
+    extraInfo: "Rating: 1459+ (Specialist) • Improving Rapidly",
     linkText: "View Profile",
     linkUrl: "https://codeforces.com/profile/priyanshuguptacoder"
   },
@@ -125,7 +125,7 @@ const Hero = () => {
                 <p className="text-base sm:text-lg font-medium text-white leading-snug mb-1.5">
                   CSE '29 @ NIT Jalandhar
                   <span className="text-white/30 mx-2">·</span>
-                  Web Developer
+                  Full-Stack Web Developer
                 </p>
                 {/* Line 2 */}
                 <p className="text-sm sm:text-base font-medium text-white/65 leading-snug flex flex-wrap items-center gap-1.5 sm:gap-3">
@@ -136,7 +136,7 @@ const Hero = () => {
                     Competitive Programming
                   </span>
                   <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-white/75 backdrop-blur-md transition-all duration-300 hover:border-cyan-300/40 hover:bg-white/10 hover:text-white hover:shadow-[0_0_18px_rgba(34,211,238,0.25)] sm:px-3 sm:py-1 sm:text-base">
-                    Web Developer
+                    Full-Stack Web Developer
                   </span>
                 </p>
               </motion.div>
@@ -146,8 +146,8 @@ const Hero = () => {
                 variants={itemVariants}
                 className="text-sm sm:text-[15px] text-white/55 max-w-[580px] mx-auto lg:mx-0 mb-10 leading-[1.75] font-normal"
               >
-                Building scalable systems using React, JavaScript.
-                Solved 800+ Problems and actively improving through contests.
+                Building scalable systems using React.js, Node.js, Express.js, MongoDB, GraphQL, JWT, Tailwind CSS.
+                Solved 1000+ Problems and actively improving through contests.
                 Open to Internship Opportunities.
               </motion.p>
 
@@ -302,34 +302,34 @@ const Hero = () => {
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                       <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Solved</p>
-                      <p className="text-3xl font-black text-white">400<span className="text-cyan-400">+</span></p>
+                      <p className="text-3xl font-black text-white">550<span className="text-cyan-400">+</span></p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                       <p className="text-[10px] font-mono text-green-400/80 uppercase tracking-widest mb-1">Easy</p>
-                      <p className="text-2xl font-bold text-green-400">165+</p>
+                      <p className="text-2xl font-bold text-green-400">210+</p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                       <p className="text-[10px] font-mono text-yellow-400/80 uppercase tracking-widest mb-1">Medium</p>
-                      <p className="text-2xl font-bold text-yellow-400">210+</p>
+                      <p className="text-2xl font-bold text-yellow-400">300+</p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
                       <p className="text-[10px] font-mono text-red-400/80 uppercase tracking-widest mb-1">Hard</p>
-                      <p className="text-2xl font-bold text-red-400">25+</p>
+                      <p className="text-2xl font-bold text-red-400">55+</p>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-3 gap-4 mb-8">
                     <div>
                       <p className="text-xs text-white/40 mb-1">Contest Rating</p>
-                      <p className="text-lg font-bold text-white/80">1565+</p>
+                      <p className="text-lg font-bold text-white/80">1850+</p>
                     </div>
                     <div>
                       <p className="text-xs text-white/40 mb-1">Global Ranking</p>
-                      <p className="text-lg font-bold text-white/80">Top 30%</p>
+                      <p className="text-lg font-bold text-white/80">Top 6%</p>
                     </div>
                     <div>
                       <p className="text-xs text-white/40 mb-1">Contests Attended</p>
-                      <p className="text-lg font-bold text-white/80">11</p>
+                      <p className="text-lg font-bold text-white/80">17</p>
                     </div>
                   </div>
 
@@ -339,7 +339,7 @@ const Hero = () => {
                       <Zap size={14} /> Strong Topic Coverage
                     </h4>
                     <div className="flex flex-wrap gap-2">
-                      {["Arrays", "Trees", "Graphs", "Linked List", "Stacks & Queues", "Binary Search", "Sliding Window"].map((t) => (
+                      {["Arrays", "Trees", "Graphs", "Linked List", "Stacks & Queues", "Binary Search", "Sliding Window", "Dynamic Programming"].map((t) => (
                         <span key={t} className="text-[11px] px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/60">
                           {t}
                         </span>
@@ -372,12 +372,12 @@ const Hero = () => {
                   <div className="grid grid-cols-2 gap-4 mb-8">
                     <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col items-center justify-center text-center">
                       <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-2">Solved</p>
-                      <p className="text-5xl font-black text-white">150<span className="text-blue-400">+</span></p>
+                      <p className="text-5xl font-black text-white">300<span className="text-blue-400">+</span></p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col justify-center space-y-4">
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rating</p>
-                        <p className="text-2xl font-bold text-gray-400">1439+</p>
+                        <p className="text-2xl font-bold text-gray-400">1459+</p>
                       </div>
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rank</p>
@@ -399,7 +399,7 @@ const Hero = () => {
                       </div>
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rating</p>
-                        <p className="text-lg font-bold text-white/80">1604+</p>
+                        <p className="text-lg font-bold text-white/80">1634+</p>
                       </div>
                     </div>
                   </div>

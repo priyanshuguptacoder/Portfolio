@@ -6,7 +6,7 @@ import { sectionVariants, itemVariants, cardVariants, fastStaggerVariants } from
 const categories = [
   {
     icon: Server,
-    title: "Backend Development",
+    title: "Full-Stack Developement",
     items: ["Node.js", "Express", "MongoDB", "REST APIs", "JWT Auth", "Database Design"],
     isDominant: false,
   },

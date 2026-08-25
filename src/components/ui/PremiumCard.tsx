@@ -74,7 +74,7 @@ export const PremiumCard = ({ children, className, isActive, ...props }: CardPro
       } as any}
       className={cn(
         "group/card relative rounded-[24px]",
-        "border border-white/[0.06]",
+        isActive ? "border-2 border-transparent" : "border-2 border-white/[0.1]",
         "active:scale-[0.98]",
         "opacity-100",
         "[&_h3]:transition-colors [&_h3]:duration-300 [&_h3]:ease-out md:hover:[&_h3]:text-white",

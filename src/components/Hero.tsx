@@ -387,9 +387,9 @@ const Hero = () => {
               <PremiumCard isActive={true} className="flex-1 h-full flex flex-col p-8 lg:p-12 group/card">
                 
                 {/* Knight Visual Moved Here (Left Side) */}
-                <div className="absolute top-12 right-6 w-24 h-24 pointer-events-none opacity-5 group-hover/card:opacity-15 transition-opacity duration-500 knight-parallax z-0">
+                <div className="absolute top-12 right-6 w-24 h-24 pointer-events-none opacity-[0.15] group-hover/card:opacity-40 transition-opacity duration-500 knight-parallax z-0">
                   <svg className="w-full h-full knight-visual" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 52 L20 12 L30 20 L40 12 L50 52" stroke="#00aaff" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                    <path d="M10 52 L20 12 L30 20 L40 12 L50 52" stroke="#00aaff" strokeWidth="4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
 

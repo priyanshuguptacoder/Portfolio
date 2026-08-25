@@ -125,9 +125,9 @@ const PremiumCursor = () => {
           ringRef.current.style.opacity = "0";
           glowRef.current.style.opacity = "0";
         } else if (cursorState === "hover") {
-          ringRef.current.className = "fixed top-0 left-0 pointer-events-none z-[99] flex items-center justify-center border border-cyan-400/60 rounded-full will-change-transform bg-cyan-400/10 backdrop-blur-sm cursor-ring-transition";
-          ringRef.current.style.width = "48px";
-          ringRef.current.style.height = "48px";
+          ringRef.current.className = "fixed top-0 left-0 pointer-events-none z-[99] flex items-center justify-center border-2 border-cyan-400/70 rounded-full will-change-transform bg-cyan-400/10 backdrop-blur-sm cursor-ring-transition";
+          ringRef.current.style.width = "96px";
+          ringRef.current.style.height = "96px";
           ringRef.current.style.opacity = "1";
 
           dotRef.current.style.opacity = "0";
@@ -139,18 +139,18 @@ const PremiumCursor = () => {
             labelRef.current.style.opacity = "0";
           }
         } else if (cursorState === "text") {
-          ringRef.current.className = "fixed top-0 left-0 pointer-events-none z-[99] bg-cyan-400/60 rounded-sm will-change-transform cursor-ring-transition";
-          ringRef.current.style.width = "2px";
-          ringRef.current.style.height = "24px";
+          ringRef.current.className = "fixed top-0 left-0 pointer-events-none z-[99] bg-cyan-400/80 rounded-sm will-change-transform cursor-ring-transition shadow-[0_0_12px_rgba(34,211,238,0.8)]";
+          ringRef.current.style.width = "4px";
+          ringRef.current.style.height = "36px";
           ringRef.current.style.border = "none";
           ringRef.current.style.opacity = "1";
 
           dotRef.current.style.opacity = "0";
           labelRef.current.style.opacity = "0";
         } else {
-          ringRef.current.className = "fixed top-0 left-0 pointer-events-none z-[99] border border-white/40 rounded-full flex items-center justify-center will-change-transform cursor-ring-transition";
-          ringRef.current.style.width = "32px";
-          ringRef.current.style.height = "32px";
+          ringRef.current.className = "fixed top-0 left-0 pointer-events-none z-[99] border-2 border-white/40 rounded-full flex items-center justify-center will-change-transform cursor-ring-transition";
+          ringRef.current.style.width = "64px";
+          ringRef.current.style.height = "64px";
           ringRef.current.style.backgroundColor = "transparent";
           ringRef.current.style.opacity = "1";
 
@@ -193,27 +193,27 @@ const PremiumCursor = () => {
         {[...Array(5)].map((_, i) => (
           <div
             key={i}
-            className="absolute top-0 left-0 w-1.5 h-1.5 bg-cyan-400 rounded-full will-change-transform"
+            className="absolute top-0 left-0 w-3.5 h-3.5 bg-cyan-400/80 rounded-full will-change-transform shadow-[0_0_8px_rgba(34,211,238,0.5)]"
             style={{ opacity: 0.4 - (i * 0.08), filter: `blur(${i}px)` }}
           />
         ))}
       </div>
 
-      {/* INNER DOT */}
+      {/* INNER DOT (3X SIZE) */}
       <div 
         ref={dotRef} 
-        className="fixed top-0 left-0 w-1.5 h-1.5 bg-cyan-400 rounded-full pointer-events-none z-[100] transition-opacity duration-200 will-change-transform"
+        className="fixed top-0 left-0 w-4.5 h-4.5 bg-cyan-400 rounded-full pointer-events-none z-[100] transition-opacity duration-200 will-change-transform shadow-[0_0_14px_rgba(34,211,238,0.9)]"
       />
       
-      {/* OUTER RING */}
+      {/* OUTER RING (3X SIZE) */}
       <div 
         ref={ringRef}
-        className="fixed top-0 left-0 pointer-events-none z-[99] border border-white/40 rounded-full flex items-center justify-center will-change-transform cursor-ring-transition"
-        style={{ width: '32px', height: '32px' }}
+        className="fixed top-0 left-0 pointer-events-none z-[99] border-2 border-white/40 rounded-full flex items-center justify-center will-change-transform cursor-ring-transition"
+        style={{ width: '64px', height: '64px' }}
       >
         <span 
           ref={labelRef} 
-          className="text-[8px] font-black tracking-widest text-white transition-opacity duration-200 opacity-0"
+          className="text-[11px] font-black tracking-widest text-white transition-opacity duration-200 opacity-0"
         />
       </div>
     </>

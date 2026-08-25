@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
 const navLinks = [
@@ -59,8 +60,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
+    <motion.nav
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500 ease-out ${
         scrolled
           ? "bg-[#020617]/80 backdrop-blur-xl border-b border-white/[0.06] shadow-[0_1px_24px_rgba(0,0,0,0.4)]"
           : "bg-transparent backdrop-blur-sm"
@@ -91,11 +95,15 @@ const Navbar = () => {
               }`}
             >
               {l.label}
-              <span
-                className={`absolute left-0 -bottom-1 h-[1.5px] bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300 ${
-                  isHome && active === l.href ? "w-full" : "w-0 group-hover:w-full"
-                }`}
-              />
+              {isHome && active === l.href ? (
+                <motion.span
+                  layoutId="navbar-indicator"
+                  className="absolute left-0 -bottom-1 h-[1.5px] w-full bg-gradient-to-r from-cyan-400 to-blue-500"
+                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                />
+              ) : (
+                <span className="absolute left-0 -bottom-1 h-[1.5px] w-0 bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300 group-hover:w-full" />
+              )}
             </MagneticButton>
           ))}
 
@@ -113,11 +121,15 @@ const Navbar = () => {
             }}
           >
             Blog
-            <span
-              className={`absolute left-0 -bottom-1 h-[1.5px] bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300 ${
-                location.pathname.startsWith("/blog") ? "w-full" : "w-0 group-hover:w-full"
-              }`}
-            />
+            {location.pathname.startsWith("/blog") ? (
+              <motion.span
+                layoutId="navbar-indicator"
+                className="absolute left-0 -bottom-1 h-[1.5px] w-full bg-gradient-to-r from-cyan-400 to-blue-500"
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              />
+            ) : (
+              <span className="absolute left-0 -bottom-1 h-[1.5px] w-0 bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-300 group-hover:w-full" />
+            )}
           </MagneticButton>
 
           {/* CTA Button — last position */}
@@ -179,7 +191,7 @@ const Navbar = () => {
           </Link>
         </div>
       )}
-    </nav>
+    </motion.nav>
   );
 };
 

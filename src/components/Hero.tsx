@@ -67,6 +67,72 @@ const CountUp = ({ end, prefix = "", suffix = "", duration = 2 }: { end: number;
   return <span ref={ref}>{prefix}{display}{suffix}</span>;
 };
 
+import { useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
+
+const InteractivePortrait = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const springConfig = { damping: 20, stiffness: 100, mass: 1 };
+  const rotateX = useSpring(useMotionTemplate`${y}deg`, springConfig);
+  const rotateY = useSpring(useMotionTemplate`${x}deg`, springConfig);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current || window.matchMedia("(pointer: coarse)").matches || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const rect = ref.current.getBoundingClientRect();
+    const localX = e.clientX - rect.left;
+    const localY = e.clientY - rect.top;
+    mouseX.set(localX);
+    mouseY.set(localY);
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    x.set(((localX - centerX) / centerX) * 3); // max 3 degrees
+    y.set(-((localY - centerY) / centerY) * 2); // max 2 degrees
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative z-10 w-64 h-64 lg:w-[320px] lg:h-[320px] rounded-3xl overflow-hidden group"
+      style={{
+        rotateX,
+        rotateY,
+        transformPerspective: 1000,
+        boxShadow: "0 0 0 1px rgba(255,255,255,0.07), 0 0 50px -12px rgba(34,211,238,0.25), 0 32px 64px -16px rgba(0,0,0,0.6)",
+        "--mouse-x": useMotionTemplate`${mouseX}px`,
+        "--mouse-y": useMotionTemplate`${mouseY}px`,
+      } as any}
+    >
+      <img
+        src={profileImg}
+        alt="Priyanshu Gupta — Web Developer at NIT Jalandhar"
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
+        className="w-full h-full object-cover brightness-105 transition-transform duration-700 group-hover:scale-105"
+      />
+      {/* Subtle light reflection on hover */}
+      <div 
+        className="pointer-events-none absolute inset-0 z-20 opacity-0 transition-opacity duration-500 group-hover:opacity-100 mix-blend-overlay"
+        style={{
+          background: "radial-gradient(200px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.15), transparent 60%)"
+        }}
+      />
+      <div className="absolute inset-x-0 bottom-0 h-1/3 z-10 bg-gradient-to-t from-[#020617]/50 to-transparent pointer-events-none" />
+    </motion.div>
+  );
+};
+
 const Hero = () => {
   return (
     <>
@@ -108,12 +174,14 @@ const Hero = () => {
 
               {/* Name */}
               <motion.h1
-                variants={itemVariants}
-                className="font-heading text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] mb-5"
+                className="font-heading text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] mb-5 flex flex-wrap justify-center lg:justify-start gap-3"
               >
-                <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 text-transparent bg-clip-text drop-shadow-[0_0_30px_rgba(34,211,238,0.25)]">
-                  Priyanshu Gupta
-                </span>
+                <motion.span variants={itemVariants} className="bg-gradient-to-r from-blue-400 to-cyan-400 text-transparent bg-clip-text drop-shadow-[0_0_30px_rgba(34,211,238,0.25)]">
+                  Priyanshu
+                </motion.span>
+                <motion.span variants={itemVariants} className="bg-gradient-to-r from-cyan-400 to-blue-500 text-transparent bg-clip-text drop-shadow-[0_0_30px_rgba(34,211,238,0.25)]">
+                  Gupta
+                </motion.span>
               </motion.h1>
 
               {/* Role — 2-line structure */}
@@ -188,23 +256,7 @@ const Hero = () => {
               <ParallaxLayer multiplier={0.5} zIndex={-1} className="absolute inset-0 bg-gradient-to-tr from-transparent to-blue-500/20 blur-[80px] rounded-full scale-125" />
               {/* Layer 3 - Foreground (Handled by the image card itself on hover, but we can wrap it slightly) */}
               <ParallaxLayer multiplier={0.8} zIndex={10}>
-              {/* Image card */}
-              <div
-                className="relative z-10 w-64 h-64 lg:w-[320px] lg:h-[320px] rounded-3xl overflow-hidden transition-transform duration-500 hover:scale-[1.03]"
-                style={{
-                  boxShadow: "0 0 0 1px rgba(255,255,255,0.07), 0 0 50px -12px rgba(34,211,238,0.25), 0 32px 64px -16px rgba(0,0,0,0.6)",
-                }}
-              >
-                <img
-                  src={profileImg}
-                  alt="Priyanshu Gupta — Web Developer at NIT Jalandhar"
-                  loading="eager"
-                  decoding="async"
-                  fetchPriority="high"
-                  className="w-full h-full object-cover brightness-105"
-                />
-                <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#020617]/50 to-transparent" />
-              </div>
+              <InteractivePortrait />
               </ParallaxLayer>
 
             </motion.div>
@@ -309,12 +361,12 @@ const Hero = () => {
                   <div className="grid grid-cols-2 gap-4 mb-8">
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5 flex flex-col items-center justify-center text-center">
                       <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Solved</p>
-                      <p className="text-4xl font-black text-white">{PORTFOLIO_STATS.leetcode.problemsSolved}<span className="text-cyan-400">+</span></p>
+                      <p className="text-4xl font-black text-white"><CountUp end={PORTFOLIO_STATS.leetcode.problemsSolved} /><span className="text-cyan-400">+</span></p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5 flex flex-col justify-center space-y-2">
                        <div>
                           <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Contest Rating</p>
-                          <p className="text-xl font-bold text-white/80">{PORTFOLIO_STATS.leetcode.rating}+</p>
+                          <p className="text-xl font-bold text-white/80"><CountUp end={PORTFOLIO_STATS.leetcode.rating} />+</p>
                        </div>
                        <div>
                           <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Global Ranking</p>
@@ -330,7 +382,7 @@ const Hero = () => {
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {["Arrays", "Trees", "Graphs", "Linked List", "Stacks & Queues", "Binary Search", "Sliding Window", "Dynamic Programming"].map((t) => (
-                        <span key={t} className="text-[11px] px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/60">
+                        <span key={t} className="text-[11px] px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/60 transition-transform duration-300 hover:-translate-y-1">
                           {t}
                         </span>
                       ))}
@@ -362,12 +414,12 @@ const Hero = () => {
                   <div className="grid grid-cols-2 gap-4 mb-8">
                     <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col items-center justify-center text-center">
                       <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-2">Solved</p>
-                      <p className="text-5xl font-black text-white">{PORTFOLIO_STATS.codeforces.problemsSolved}<span className="text-blue-400">+</span></p>
+                      <p className="text-5xl font-black text-white"><CountUp end={PORTFOLIO_STATS.codeforces.problemsSolved} /><span className="text-blue-400">+</span></p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col justify-center space-y-4">
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Codeforces Rating</p>
-                        <p className="text-2xl font-bold text-gray-400">{PORTFOLIO_STATS.codeforces.rating}+</p>
+                        <p className="text-2xl font-bold text-gray-400"><CountUp end={PORTFOLIO_STATS.codeforces.rating} />+</p>
                       </div>
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rank</p>
@@ -385,7 +437,7 @@ const Hero = () => {
                       </div>
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rating</p>
-                        <p className="text-lg font-bold text-white/80">{PORTFOLIO_STATS.codechef.rating}+</p>
+                        <p className="text-lg font-bold text-white/80"><CountUp end={PORTFOLIO_STATS.codechef.rating} />+</p>
                       </div>
                     </div>
                   </div>

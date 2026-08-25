@@ -4,7 +4,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://www.priyanshuguptaportfolio.online/</loc>
-    <lastmod>2025-04-20</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,7 +12,7 @@
   <!-- Blog listing -->
   <url>
     <loc>https://www.priyanshuguptaportfolio.online/blog</loc>
-    <lastmod>2025-04-20</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -20,61 +20,61 @@
   <!-- Blog articles -->
   <url>
     <loc>https://www.priyanshuguptaportfolio.online/blog/3sum-solution-leetcode-15</loc>
-    <lastmod>2025-04-20</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.priyanshuguptaportfolio.online/blog/sliding-window-technique-explained</loc>
-    <lastmod>2025-04-20</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.priyanshuguptaportfolio.online/blog/how-i-solved-300-leetcode-problems</loc>
-    <lastmod>2025-04-20</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.priyanshuguptaportfolio.online/blog/two-pointer-technique-guide</loc>
-    <lastmod>2025-04-20</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.priyanshuguptaportfolio.online/blog/scalable-backend-nodejs-mongodb</loc>
-    <lastmod>2025-04-20</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.priyanshuguptaportfolio.online/blog/top-20-leetcode-array-problems</loc>
-    <lastmod>2025-04-20</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.priyanshuguptaportfolio.online/blog/hashmaps-solve-dsa-problems</loc>
-    <lastmod>2025-04-20</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.priyanshuguptaportfolio.online/blog/rest-api-design-best-practices</loc>
-    <lastmod>2025-04-20</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.priyanshuguptaportfolio.online/blog/time-complexity-explained</loc>
-    <lastmod>2025-04-20</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.priyanshuguptaportfolio.online/blog/system-design-url-shortener</loc>
-    <lastmod>2025-04-20</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

@@ -39,7 +39,12 @@ const BlogDetailPage = () => {
 
     // Cleanup on unmount
     return () => {
-      document.title = "Priyanshu Gupta | Backend Developer · NIT Jalandhar · 360+ LeetCode";
+      document.title = "Priyanshu Gupta | Full-Stack Developer · NIT Jalandhar";
+      setMeta("description", "Priyanshu Gupta is a CSE undergraduate at NIT Jalandhar and full-stack web developer focused on backend development, DSA, competitive programming, and scalable web applications.");
+      setMeta("og:title", "Priyanshu Gupta | Full-Stack Developer · NIT Jalandhar", true);
+      setMeta("og:description", "Priyanshu Gupta is a CSE undergraduate at NIT Jalandhar and full-stack web developer focused on backend development, DSA, competitive programming, and scalable web applications.", true);
+      setMeta("twitter:title", "Priyanshu Gupta | Full-Stack Developer · NIT Jalandhar");
+      setMeta("twitter:description", "Priyanshu Gupta is a CSE undergraduate at NIT Jalandhar and full-stack web developer focused on backend development, DSA, competitive programming, and scalable web applications.");
     };
   }, [blog]);
 

@@ -295,7 +295,7 @@ const Hero = () => {
               variants={itemVariants}
               className="flex flex-col"
             >
-              <PremiumCard className="flex-1 h-full flex flex-col p-8 lg:p-12 group/card">
+              <PremiumCard isActive={true} className="flex-1 h-full flex flex-col p-8 lg:p-12 group/card">
                 <div className="relative z-10 flex-1 flex flex-col">
                   <h3 className="text-2xl font-black text-white mb-2">LeetCode Performance</h3>
                   <p className="text-sm text-white/50 mb-8 leading-relaxed font-light">
@@ -348,7 +348,7 @@ const Hero = () => {
               variants={itemVariants}
               className="flex flex-col"
             >
-              <PremiumCard className="flex-1 h-full flex flex-col p-8 lg:p-12 group/card">
+              <PremiumCard isActive={true} className="flex-1 h-full flex flex-col p-8 lg:p-12 group/card">
                 <div className="relative z-10 flex-1 flex flex-col">
                   <h3 className="text-2xl font-black text-white mb-2">Competitive Programming<br /><span className="text-lg text-white/60">(Codeforces, CodeChef)</span></h3>
                   <p className="text-sm text-white/50 mb-8 leading-relaxed font-light">

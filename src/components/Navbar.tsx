@@ -117,12 +117,12 @@ const Navbar = () => {
 
           {/* CTA Button — last position */}
           <a
-            href="mailto:priyanshuguptanitian9696@gmail.com"
+            href="/Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="relative px-5 py-2.5 rounded-full text-sm font-bold border border-white/10 text-white/70 hover:text-white hover:border-cyan-500/50 hover:shadow-[0_0_20px_rgba(34,211,238,0.15)] transition-all duration-300 hover:scale-105"
           >
-            Consult Me
+            Resume
           </a>
         </div>
 
@@ -158,12 +158,12 @@ const Navbar = () => {
             </a>
           ))}
           <a
-            href="mailto:priyanshuguptanitian9696@gmail.com"
+            href="/Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="block py-3 text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors"
           >
-            Consult Me →
+            Resume →
           </a>
           <Link
             to="/blog"

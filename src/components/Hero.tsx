@@ -6,42 +6,41 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ParallaxLayer } from "@/components/ui/ParallaxLayer";
 import { PremiumCard } from "@/components/ui/PremiumCard";
 import { sectionVariants, itemVariants } from "@/lib/animations";
-
+import { PORTFOLIO_STATS } from "@/lib/portfolioStats";
 
 const stats = [
   {
     icon: Code2,
-    value: 550,
+    value: PORTFOLIO_STATS.leetcode.problemsSolved,
     suffix: "+",
     label: "LEETCODE PROBLEMS SOLVED",
     detail: "Strong coverage across core DSA topics with consistent problem solving.",
-    extraInfo: "Contest Rating: 1850+ • Top 6%",
+    extraInfo: `Rating: ${PORTFOLIO_STATS.leetcode.rating} • ${PORTFOLIO_STATS.leetcode.tier} • Top ${PORTFOLIO_STATS.leetcode.topPercentage}`,
     linkText: "View Profile",
     linkUrl: "https://leetcode.com/u/invisiblemanfromheart/"
   },
   {
     icon: Server,
-    value: 1000,
+    value: PORTFOLIO_STATS.total.problemsSolved,
     suffix: "+",
     label: "TOTAL QUESTIONS SOLVED",
     detail: "Combined problem solving across coding platforms",
-    extraInfo: "LeetCode • Codeforces • CodeChef • AtCoder • GFG • HackerRank",
+    extraInfo: "LeetCode • Codeforces • CodeChef • AtCoder • GFG",
     linkText: "View Codolio",
     linkUrl: "https://codolio.com/profile/priyanshuguptacoder",
     isDominant: true,
   },
   {
     icon: Trophy,
-    value: 300,
+    value: PORTFOLIO_STATS.codeforces.problemsSolved,
     suffix: "+",
     label: "PROBLEMS SOLVED (CODEFORCES)",
     detail: "Building competitive programming fundamentals with focus on speed and implementation.",
-    extraInfo: "Rating: 1459+ (Specialist) • Improving Rapidly",
+    extraInfo: `Rating: ${PORTFOLIO_STATS.codeforces.rating} (${PORTFOLIO_STATS.codeforces.tier})`,
     linkText: "View Profile",
     linkUrl: "https://codeforces.com/profile/priyanshuguptacoder"
   },
 ];
-
 
 const CountUp = ({ end, prefix = "", suffix = "", duration = 2 }: { end: number; prefix?: string; suffix?: string; duration?: number }) => {
   const [count, setCount] = useState(0);
@@ -67,8 +66,6 @@ const CountUp = ({ end, prefix = "", suffix = "", duration = 2 }: { end: number;
   const display = Number.isInteger(end) ? Math.floor(count) : count.toFixed(1);
   return <span ref={ref}>{prefix}{display}{suffix}</span>;
 };
-
-
 
 const Hero = () => {
   return (
@@ -130,13 +127,13 @@ const Hero = () => {
                 {/* Line 2 */}
                 <p className="text-sm sm:text-base font-medium text-white/65 leading-snug flex flex-wrap items-center gap-1.5 sm:gap-3">
                   <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-white/75 backdrop-blur-md transition-all duration-300 hover:border-cyan-300/40 hover:bg-white/10 hover:text-white hover:shadow-[0_0_18px_rgba(34,211,238,0.25)] sm:px-3 sm:py-1 sm:text-base">
-                    Data Structures and Algorithms
+                    Backend Development
+                  </span>
+                  <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-white/75 backdrop-blur-md transition-all duration-300 hover:border-cyan-300/40 hover:bg-white/10 hover:text-white hover:shadow-[0_0_18px_rgba(34,211,238,0.25)] sm:px-3 sm:py-1 sm:text-base">
+                    Data Structures & Algorithms
                   </span>
                   <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-white/75 backdrop-blur-md transition-all duration-300 hover:border-cyan-300/40 hover:bg-white/10 hover:text-white hover:shadow-[0_0_18px_rgba(34,211,238,0.25)] sm:px-3 sm:py-1 sm:text-base">
                     Competitive Programming
-                  </span>
-                  <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-white/75 backdrop-blur-md transition-all duration-300 hover:border-cyan-300/40 hover:bg-white/10 hover:text-white hover:shadow-[0_0_18px_rgba(34,211,238,0.25)] sm:px-3 sm:py-1 sm:text-base">
-                    Full-Stack Web Developer
                   </span>
                 </p>
               </motion.div>
@@ -147,7 +144,7 @@ const Hero = () => {
                 className="text-sm sm:text-[15px] text-white/55 max-w-[580px] mx-auto lg:mx-0 mb-10 leading-[1.75] font-normal"
               >
                 Building scalable systems using React.js, Node.js, Express.js, MongoDB, GraphQL, JWT, Tailwind CSS.
-                Solved 1000+ Problems and actively improving through contests.
+                Solved {PORTFOLIO_STATS.total.problemsSolved}+ Problems and actively improving through contests.
                 Open to Internship Opportunities.
               </motion.p>
 
@@ -167,6 +164,12 @@ const Hero = () => {
                   className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-4 rounded-full font-bold text-sm hover:scale-105 hover:shadow-[0_0_28px_rgba(34,211,238,0.35)] active:scale-95 transition-all duration-300"
                 >
                   Contact Me
+                </MagneticButton>
+                <MagneticButton
+                  href="/Resume.pdf"
+                  className="bg-white/5 border border-white/10 text-white px-8 py-4 rounded-full font-bold text-sm hover:bg-white/10 hover:scale-105 hover:shadow-[0_0_28px_rgba(255,255,255,0.1)] active:scale-95 transition-all duration-300"
+                >
+                  Download Resume
                 </MagneticButton>
               </motion.div>
             </motion.div>
@@ -299,37 +302,20 @@ const Hero = () => {
                     Consistent DSA practice with focus on pattern recognition and interview-level problem solving.
                   </p>
 
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-                    <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
+                  <div className="grid grid-cols-2 gap-4 mb-8">
+                    <div className="bg-white/5 rounded-2xl p-4 border border-white/5 flex flex-col items-center justify-center text-center">
                       <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Solved</p>
-                      <p className="text-3xl font-black text-white">550<span className="text-cyan-400">+</span></p>
+                      <p className="text-4xl font-black text-white">{PORTFOLIO_STATS.leetcode.problemsSolved}<span className="text-cyan-400">+</span></p>
                     </div>
-                    <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
-                      <p className="text-[10px] font-mono text-green-400/80 uppercase tracking-widest mb-1">Easy</p>
-                      <p className="text-2xl font-bold text-green-400">210+</p>
-                    </div>
-                    <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
-                      <p className="text-[10px] font-mono text-yellow-400/80 uppercase tracking-widest mb-1">Medium</p>
-                      <p className="text-2xl font-bold text-yellow-400">300+</p>
-                    </div>
-                    <div className="bg-white/5 rounded-2xl p-4 border border-white/5">
-                      <p className="text-[10px] font-mono text-red-400/80 uppercase tracking-widest mb-1">Hard</p>
-                      <p className="text-2xl font-bold text-red-400">55+</p>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-3 gap-4 mb-8">
-                    <div>
-                      <p className="text-xs text-white/40 mb-1">Contest Rating</p>
-                      <p className="text-lg font-bold text-white/80">1850+</p>
-                    </div>
-                    <div>
-                      <p className="text-xs text-white/40 mb-1">Global Ranking</p>
-                      <p className="text-lg font-bold text-white/80">Top 6%</p>
-                    </div>
-                    <div>
-                      <p className="text-xs text-white/40 mb-1">Contests Attended</p>
-                      <p className="text-lg font-bold text-white/80">17</p>
+                    <div className="bg-white/5 rounded-2xl p-4 border border-white/5 flex flex-col justify-center space-y-2">
+                       <div>
+                          <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Contest Rating</p>
+                          <p className="text-xl font-bold text-white/80">{PORTFOLIO_STATS.leetcode.rating}+</p>
+                       </div>
+                       <div>
+                          <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Global Ranking</p>
+                          <p className="text-xl font-bold text-white/80">Top {PORTFOLIO_STATS.leetcode.topPercentage}</p>
+                       </div>
                     </div>
                   </div>
 
@@ -357,7 +343,7 @@ const Hero = () => {
               </PremiumCard>
             </motion.div>
 
-            {/* BLOCK 2: CODEFORCES */}
+            {/* BLOCK 2: CODEFORCES & CODECHEF */}
             <motion.div
               variants={itemVariants}
               className="flex flex-col"
@@ -372,34 +358,30 @@ const Hero = () => {
                   <div className="grid grid-cols-2 gap-4 mb-8">
                     <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col items-center justify-center text-center">
                       <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-2">Solved</p>
-                      <p className="text-5xl font-black text-white">300<span className="text-blue-400">+</span></p>
+                      <p className="text-5xl font-black text-white">{PORTFOLIO_STATS.codeforces.problemsSolved}<span className="text-blue-400">+</span></p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col justify-center space-y-4">
                       <div>
-                        <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rating</p>
-                        <p className="text-2xl font-bold text-gray-400">1459+</p>
+                        <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Codeforces Rating</p>
+                        <p className="text-2xl font-bold text-gray-400">{PORTFOLIO_STATS.codeforces.rating}+</p>
                       </div>
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rank</p>
-                        <p className="text-xl font-bold text-gray-300">Specialist</p>
+                        <p className="text-xl font-bold text-gray-300">{PORTFOLIO_STATS.codeforces.tier}</p>
                       </div>
                     </div>
                   </div>
 
                   <div className="bg-white/5 rounded-2xl p-4 border border-white/5 mb-8">
                     <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-3">CodeChef</p>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Stars</p>
-                        <p className="text-lg font-bold text-white/80">3★</p>
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rank</p>
-                        <p className="text-lg font-bold text-white/80">Div 2</p>
+                        <p className="text-lg font-bold text-white/80">{PORTFOLIO_STATS.codechef.stars}</p>
                       </div>
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rating</p>
-                        <p className="text-lg font-bold text-white/80">1634+</p>
+                        <p className="text-lg font-bold text-white/80">{PORTFOLIO_STATS.codechef.rating}+</p>
                       </div>
                     </div>
                   </div>

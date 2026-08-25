@@ -1,31 +1,43 @@
 import { motion } from "framer-motion";
-import { Server, Layout, Brain, Wrench } from "lucide-react";
+import { Server, Layout, Brain, Wrench, Code2, Cloud } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { sectionVariants, itemVariants, cardVariants, fastStaggerVariants } from "@/lib/animations";
 
 const categories = [
   {
     icon: Server,
-    title: "Full-Stack Developement",
-    items: ["Node.js", "Express", "MongoDB", "REST APIs", "JWT Auth", "Database Design"],
-    isDominant: false,
-  },
-  {
-    icon: Brain,
-    title: "Problem Solving & DSA",
-    items: ["C++", "Data Structures", "Algorithms", "Competitive Programming"],
+    title: "Backend Development",
+    items: ["Node.js", "Express.js", "GraphQL", "REST APIs", "System Design", "JWT Auth"],
     isDominant: false,
   },
   {
     icon: Layout,
     title: "Frontend Development",
-    items: ["React", "JavaScript", "Tailwind CSS", "HTML/CSS"],
+    items: ["React.js", "Next.js", "Redux", "Tailwind CSS", "Material UI", "WebSockets"],
+    isDominant: false,
+  },
+  {
+    icon: Code2,
+    title: "Languages",
+    items: ["C++", "JavaScript", "TypeScript", "Python", "SQL"],
+    isDominant: false,
+  },
+  {
+    icon: Cloud,
+    title: "Services / Integrations",
+    items: ["Razorpay", "Socket.io", "Cloudinary", "GEMINI API"],
+    isDominant: false,
+  },
+  {
+    icon: Brain,
+    title: "Core CS",
+    items: ["Data Structures & Algorithms", "OOP", "DBMS", "OS", "Computer Networks"],
     isDominant: false,
   },
   {
     icon: Wrench,
     title: "Developer Tools",
-    items: ["Git", "GitHub", "Postman", "VS Code"],
+    items: ["Git", "GitHub", "Postman", "MongoDB Compass", "VS Code"],
     isDominant: false,
   },
 ];
@@ -49,7 +61,7 @@ const Skills = () => (
       </motion.div>
 
       <motion.div
-        className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto items-stretch"
+        className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto items-stretch"
         variants={fastStaggerVariants}
       >
         {categories.map((c, i) => (

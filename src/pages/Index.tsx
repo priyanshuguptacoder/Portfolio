@@ -6,7 +6,6 @@ import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import ChatAssistant from "@/components/ChatAssistant";
 import CursorGlow from "@/components/CursorGlow";
 
 const Index = () => {
@@ -38,12 +37,9 @@ const Index = () => {
     >
       {/* Hidden SEO text — crawlable by Google, invisible to users */}
       <div className="sr-only" aria-hidden="false">
-        <h1>Priyanshu Gupta — Backend Developer at NIT Jalandhar</h1>
+        <h1>Priyanshu Gupta — Full-Stack Web Developer at NIT Jalandhar</h1>
         <p>
-          Backend-focused web developer and CSE undergraduate at National Institute of Technology, Jalandhar.
-          Specializes in building scalable Node.js APIs, Express backends, and MongoDB databases.
-          Solved 360+ Data Structures and Algorithms problems on LeetCode with a contest rating of 1565+.
-          Active competitive programmer on Codeforces. Open to backend internships.
+          Computer Science undergraduate at NIT Jalandhar building full-stack production systems involving backend APIs, real-time communication, authentication, payment integrations, AI integrations, and databases. Solved 1150+ competitive programming problems, including 625+ on LeetCode and 325+ on Codeforces.
         </p>
       </div>
 
@@ -92,7 +88,6 @@ const Index = () => {
       <Skills />
       <Contact />
       <Footer />
-      <ChatAssistant />
     </main>
   );
 };

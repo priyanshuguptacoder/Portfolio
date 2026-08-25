@@ -189,7 +189,7 @@ const Contact = () => (
           </span>
         </motion.h2>
         <motion.p variants={itemVariants} className="text-lg text-white/40 mb-16 max-w-xl mx-auto leading-relaxed font-light">
-          Currently looking for internships and impactful engineering opportunities.
+          Currently looking for software engineering and backend/full-stack internship opportunities.
         </motion.p>
 
         <motion.div variants={itemVariants} className="flex flex-col items-center gap-14">

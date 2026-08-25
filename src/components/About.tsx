@@ -4,14 +4,14 @@ import { Download, Trophy, Server, Award, Code2, BookOpen, GraduationCap, Medal,
 import { PremiumCard } from "@/components/ui/PremiumCard";
 import { sectionVariants, itemVariants, cardVariants, headingVariants } from "@/lib/animations";
 import { trackResumeDownload } from "@/lib/analytics";
-import { STATS_LABELS } from "@/lib/portfolioStats";
+import { STATS_LABELS, PORTFOLIO_STATS } from "@/lib/portfolioStats";
 
 const education = [
   {
     degree: "B.Tech in Computer Science and Engineering",
     institution: "National Institute of Technology (NIT), Jalandhar",
-    period: "2025 – Present",
-    details: "Focusing on backend architecture, distributed systems, and core computer science fundamentals.",
+    period: "2025 – 2029",
+    details: `CGPA: ${PORTFOLIO_STATS.education.cgpa} | Focusing on backend architecture, distributed systems, and core computer science fundamentals.`,
   },
   {
     degree: "Senior Secondary Education (Class XII)",
@@ -28,17 +28,21 @@ const education = [
 ];
 
 const skillsSummary = [
-  { category: "Backend Development", items: ["Node.js", "Express", "MongoDB", "REST APIs", "JWT Auth", "Database Design"] },
-  { category: "Problem Solving & DSA", items: ["C++", "Data Structures", "Algorithms", "Competitive Programming"] },
-  { category: "Frontend Development", items: ["React", "JavaScript", "Tailwind CSS", "HTML/CSS"] },
-  { category: "Developer Tools", items: ["Git", "GitHub", "Postman", "VS Code"] },
+  { category: "Backend Development", items: ["Node.js", "Express.js", "GraphQL", "REST APIs", "System Design", "JWT Auth"] },
+  { category: "Frontend Development", items: ["React.js", "Next.js", "Redux", "Tailwind CSS", "Material UI", "WebSockets"] },
+  { category: "Languages", items: ["C++", "JavaScript", "TypeScript", "Python", "SQL"] },
+  { category: "Services / Integrations", items: ["Razorpay", "Socket.io", "Cloudinary", "GEMINI API"] },
+  { category: "Core CS", items: ["Data Structures & Algorithms", "OOP", "DBMS", "OS", "Computer Networks"] },
+  { category: "Developer Tools", items: ["Git", "GitHub", "Postman", "MongoDB Compass", "VS Code"] },
 ];
 
 const achievementsList = [
-  STATS_LABELS.leetcodeProblems,
-  STATS_LABELS.leetcodeRating,
-  STATS_LABELS.codeforcesRating,
-  "NIT Jalandhar CSE '29",
+  "GSSoC'26 Contributor",
+  "JEE Advanced 2025 Qualified",
+  "99.2 Percentile in JEE Mains 2025",
+  `${PORTFOLIO_STATS.total.problemsSolved}+ Total Problems Solved`,
+  `Codeforces ${PORTFOLIO_STATS.codeforces.tier} (Rating ${PORTFOLIO_STATS.codeforces.rating})`,
+  `LeetCode ${PORTFOLIO_STATS.leetcode.tier} (Rating ${PORTFOLIO_STATS.leetcode.rating})`,
 ];
 
 const coreStrengths = [

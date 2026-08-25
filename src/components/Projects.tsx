@@ -66,7 +66,7 @@ const ProjectCard = ({
       {/* Core */}
       <div className="mt-6">
         <p className="text-xs text-white/40 uppercase mb-3">
-          Key Work
+          Key Engineering Work
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -88,7 +88,7 @@ const ProjectCard = ({
           {tech.map((t) => (
             <span
               key={t}
-              className="text-[10px] px-2 py-1 bg-white/5 text-white/40 rounded"
+              className="text-[10px] px-2 py-1 bg-white/5 text-white/40 rounded border border-white/10"
             >
               {t}
             </span>
@@ -102,7 +102,7 @@ const ProjectCard = ({
             className="flex-1 sm:flex-none text-center border border-white/20 text-white px-4 py-2 rounded-lg text-sm transition-transform hover:bg-white/5 hover:scale-105 active:scale-95"
           >
             <Github size={14} className="inline mr-1" />
-            View Code
+            Code
           </MagneticButton>
 
           <MagneticButton
@@ -111,7 +111,7 @@ const ProjectCard = ({
             className="flex-1 sm:flex-none text-center bg-white text-black px-4 py-2 rounded-lg text-sm transition-transform hover:bg-cyan-400 hover:scale-105 active:scale-95 shadow-lg shadow-white/5"
           >
             <ExternalLink size={14} className="inline mr-1" />
-            Live Demo
+            Live
           </MagneticButton>
         </div>
       </div>
@@ -141,33 +141,68 @@ const Projects = () => (
 
       {/* Project 1 */}
       <ProjectCard
-        title="Competitive Programming Tracker"
+        title="Vingo"
         isFeatured={true}
-        problem="Tracking coding progress across platforms is fragmented."
-        solution="Built a full-stack tracking platform with API syncing, analytics dashboard and streak monitoring."
-        impact="Improved centralized progress visibility and consistency."
+        problem="Real-time interactive group chats with ephemeral states require low-latency synchronization."
+        solution="Built a WebSocket-driven full-stack application for live messaging, presence, and interactive sessions."
+        impact="Enabled instantaneous synchronization for multiple active users with seamless data flow."
         coreFocus={[
-          "Designed backend APIs (Node.js / Express)",
-          "Built database schema (MongoDB)",
-          "Implemented core analytics and streak logic"
+          "Engineered real-time WebSocket backend (Socket.io)",
+          "Integrated authentication and authorization flows",
+          "Optimized component state and rendering logic"
         ]}
-        tech={["React", "Node.js", "Express", "MongoDB"]}
-        github="https://github.com/priyanshuguptacoder/LeetCode-Tracker"
-        live="https://competativeprogrammingtrackerpriyanshu.vercel.app/"
+        tech={["React.js", "Node.js", "Express.js", "Socket.io", "MongoDB"]}
+        github="https://github.com/priyanshuguptacoder/Vingo"
+        live="https://vingo-chat.vercel.app/"
       />
 
       {/* Project 2 */}
       <ProjectCard
-        title="Hostel And Mess Management"
-        problem="Manual hostel management causes inefficiency."
-        solution="Built secure role-based management system with centralized data handling and JWT auth."
-        impact="Reduced workflow complexity through automation."
+        title="ExamNotesAI"
+        isFeatured={true}
+        problem="Students struggle to find relevant and accurate exam notes efficiently."
+        solution="Built a scalable full-stack platform with Razorpay integration and optimized search functionalities."
+        impact="Improved note accessibility and enabled secure transactions for educational resources."
         coreFocus={[
-          "Designed backend APIs (Node.js)",
-          "Built database schema (MongoDB)",
-          "Implemented secure multi-role OAuth authentication"
+          "Implemented secure payment gateway (Razorpay)",
+          "Designed robust database schemas (MongoDB)",
+          "Developed efficient REST APIs"
         ]}
-        tech={["Node.js", "Express", "MongoDB", "JWT"]}
+        tech={["React.js", "Node.js", "Express.js", "MongoDB", "Razorpay"]}
+        github="https://github.com/priyanshuguptacoder/ExamNotesAI"
+        live="https://exam-notes-ai.vercel.app/"
+      />
+
+      {/* Project 3 */}
+      <ProjectCard
+        title="Competitive Programming Analytics Platform"
+        isFeatured={false}
+        problem="Tracking coding progress across platforms is fragmented and manual."
+        solution="Built a full-stack tracking platform with API syncing, analytics dashboard, and streak monitoring."
+        impact="Improved centralized progress visibility and algorithmic consistency."
+        coreFocus={[
+          "Designed scalable backend APIs (Node.js)",
+          "Built advanced analytics and data aggregation",
+          "Implemented streak and progress algorithms"
+        ]}
+        tech={["React.js", "Node.js", "Express.js", "MongoDB"]}
+        github="https://github.com/priyanshuguptacoder/LeetCode-Tracker"
+        live="https://competativeprogrammingtrackerpriyanshu.vercel.app/"
+      />
+
+      {/* Project 4 */}
+      <ProjectCard
+        title="Hostel Management System"
+        isFeatured={false}
+        problem="Manual hostel administration and record-keeping causes severe operational inefficiency."
+        solution="Built secure role-based management system with centralized data handling and JWT auth."
+        impact="Reduced workflow complexity through system automation and digitization."
+        coreFocus={[
+          "Developed RESTful backend APIs (Express.js)",
+          "Architected relational schemas (MongoDB)",
+          "Implemented secure multi-role JWT authentication"
+        ]}
+        tech={["Node.js", "Express.js", "MongoDB", "JWT"]}
         github="https://github.com/priyanshuguptaiit99/hostelpriyanshu"
         live="https://hostel-management-system-hqg0.onrender.com"
       />

@@ -462,7 +462,48 @@
   animation: card-glow-breathe 3s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
+}/* ── Inner box styling ── */
+.inner-box {
+  position: relative;
+  background: rgba(255,255,255,0.05);
+  border-radius: 1rem;
+  border: 1px solid rgba(255,255,255,0.07);
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.22,1,0.36,1),
+    background 0.25s cubic-bezier(0.22,1,0.36,1),
+    border-color 0.25s cubic-bezier(0.22,1,0.36,1);
 }
+
+.inner-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(120deg, rgba(0,180,255,0.1), rgba(0,120,255,0.3), rgba(0,180,255,0.1));
+  background-size: 200% 200%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.3;
+  pointer-events: none;
+  animation: borderMove 8s linear infinite;
+}
+
+.inner-box:hover {
+  transform: translateY(-2px) scale(1.03);
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(0,180,255,0.5);
+}
+.inner-box:hover::before { opacity: 0.5; animation-duration: 12s; }
+
+/* Knight visual animation */
+@keyframes floatKnight {
+  0%,100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+.knight-visual { animation: floatKnight 6s ease-in-out infinite; }
+
 
 @media (hover: hover) {
   .premium-card-featured:hover {
@@ -611,3 +652,137 @@
 .cursor-ring-transition {
   transition: width 0.3s ease-out, height 0.3s ease-out, background-color 0.3s ease-out, border-color 0.3s ease-out, border-radius 0.3s ease-out, opacity 0.3s ease-out;
 }
+
+/* ─────────────────────────────────────────────────────────────
+   CONTACT SECTION — PREMIUM VISUAL SYSTEM
+───────────────────────────────────────────────────────────── */
+
+/* ── Heading gradient with slow animation ── */
+.contact-heading-gradient {
+  background: linear-gradient(
+    90deg,
+    #3b82f6,
+    #2563eb,
+    #06b6d4,
+    #22d3ee,
+    #3b82f6
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: contactGradientShift 7s ease-in-out infinite;
+}
+
+@keyframes contactGradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ── CTA button animated gradient + glow ── */
+.contact-cta-btn {
+  background: linear-gradient(
+    90deg,
+    #3b82f6,
+    #06b6d4,
+    #3b82f6
+  );
+  background-size: 200% 100%;
+  animation: contactBtnGradient 5s ease-in-out infinite;
+  box-shadow:
+    0 0 16px rgba(0, 180, 255, 0.15),
+    0 4px 24px rgba(0, 0, 0, 0.3);
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.contact-cta-btn:hover {
+  box-shadow:
+    0 0 28px rgba(0, 180, 255, 0.3),
+    0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes contactBtnGradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ── Social icon animated border (hover only) ── */
+.social-icon-border {
+  border-radius: inherit;
+}
+.social-icon-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    rgba(0, 180, 255, 0.5) 25%,
+    transparent 50%,
+    rgba(0, 120, 255, 0.4) 75%,
+    transparent 100%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: borderMove 6s linear infinite;
+  pointer-events: none;
+}
+
+/* ── Mouse-reactive ambient glow parallax ── */
+.contact-glow-1 {
+  transform: translate(
+    calc(var(--contact-mx, 0) * 12px),
+    calc(var(--contact-my, 0) * 8px)
+  );
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.contact-glow-2 {
+  transform: translate(
+    calc(var(--contact-mx, 0) * 20px),
+    calc(var(--contact-my, 0) * 14px)
+  );
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.contact-glow-3 {
+  transform: translate(
+    calc(var(--contact-mx, 0) * 28px),
+    calc(var(--contact-my, 0) * 18px)
+  );
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── Reduced motion: disable all contact animations ── */
+@media (prefers-reduced-motion: reduce) {
+  .contact-heading-gradient,
+  .contact-cta-btn {
+    animation: none !important;
+  }
+  .social-icon-border::before {
+    animation: none !important;
+  }
+  .contact-glow-1,
+  .contact-glow-2,
+  .contact-glow-3 {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ── Touch / coarse pointer: disable magnetic & glow parallax ── */
+@media (pointer: coarse) {
+  .contact-glow-1,
+  .contact-glow-2,
+  .contact-glow-3 {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+

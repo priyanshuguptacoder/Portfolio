@@ -339,125 +339,105 @@ const Hero = () => {
           variants={sectionVariants}
         >
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <p className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-4 font-bold">Metrics</p>
-            <h2 className="font-heading text-4xl sm:text-5xl font-black text-white">
-              Algorithmic Proficiency
-            </h2>
-          </motion.div>
+  <p className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-4 font-bold">Metrics</p>
+  <h2 className="font-heading text-4xl sm:text-5xl font-black text-white" style={{ scrollMarginTop: 'calc(var(--navbar-height, 4rem) + 1rem)' }}>Algorithmic Proficiency</h2>
+</motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {/* BLOCK 1: LEETCODE */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-col"
-            >
-              <PremiumCard isActive={true} className="flex-1 h-full flex flex-col p-8 lg:p-12 group/card">
-                <div className="relative z-10 flex-1 flex flex-col">
-                  <h3 className="text-2xl font-black text-white mb-2">LeetCode Performance</h3>
-                  <p className="text-sm text-white/50 mb-8 leading-relaxed font-light">
-                    Consistent DSA practice with focus on pattern recognition and interview-level problem solving.
-                  </p>
-
-                  <div className="grid grid-cols-2 gap-4 mb-8">
-                    <div className="bg-white/5 rounded-2xl p-4 border border-white/5 flex flex-col items-center justify-center text-center">
-                      <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Solved</p>
-                      <p className="text-4xl font-black text-white transition-transform duration-300 md:group-hover/card:scale-[1.03]"><CountUp end={PORTFOLIO_STATS.leetcode.problemsSolved} /><span className="text-cyan-400">+</span></p>
-                    </div>
-                    <div className="bg-white/5 rounded-2xl p-4 border border-white/5 flex flex-col justify-center space-y-2">
-                       <div>
-                          <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Contest Rating</p>
-                          <p className="text-xl font-bold text-white/80"><CountUp end={PORTFOLIO_STATS.leetcode.rating} />+</p>
-                       </div>
-                       <div>
-                          <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Global Ranking</p>
-                          <p className="text-xl font-bold text-white/80">Top {PORTFOLIO_STATS.leetcode.topPercentage}</p>
-                       </div>
-                    </div>
-                  </div>
-
-                  {/* TOPIC CHIPS */}
-                  <div className="mb-8 p-4 bg-blue-500/10 border border-blue-500/20 rounded-2xl">
-                    <h4 className="text-xs font-black text-blue-400 uppercase tracking-widest mb-3 flex items-center gap-2">
-                      <Zap size={14} /> Strong Topic Coverage
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {["Arrays", "Trees", "Graphs", "Linked List", "Stacks & Queues", "Binary Search", "Sliding Window", "Dynamic Programming"].map((t) => (
-                        <span key={t} className="text-[11px] px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/60 transition-transform duration-300 hover:-translate-y-1">
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <a
-                  href="https://leetcode.com/u/invisiblemanfromheart/"
-                  className="inline-flex items-center justify-center w-full gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-cyan-500/10 text-white font-bold text-sm border border-white/10 hover:border-cyan-500/50 transition-all group mt-auto"
-                >
-                  View LeetCode Profile <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-cyan-400" />
-                </a>
-              </PremiumCard>
-            </motion.div>
-
-            {/* BLOCK 2: CODEFORCES & CODECHEF */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-col"
-            >
-              <PremiumCard isActive={true} className="flex-1 h-full flex flex-col p-8 lg:p-12 group/card">
-                <div className="relative z-10 flex-1 flex flex-col">
-                  <h3 className="text-2xl font-black text-white mb-2">Competitive Programming<br /><span className="text-lg text-white/60">(Codeforces, CodeChef)</span></h3>
-                  <p className="text-sm text-white/50 mb-8 leading-relaxed font-light">
-                    Focusing on improving speed, implementation, and contest performance under pressure.
-                  </p>
-
-                  <div className="grid grid-cols-2 gap-4 mb-8">
-                    <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col items-center justify-center text-center">
-                      <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-2">Solved</p>
-                      <p className="text-5xl font-black text-white transition-transform duration-300 md:group-hover/card:scale-[1.03]"><CountUp end={PORTFOLIO_STATS.codeforces.problemsSolved} /><span className="text-blue-400">+</span></p>
-                    </div>
-                    <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col justify-center space-y-4">
-                      <div>
-                        <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Codeforces Rating</p>
-                        <p className="text-2xl font-bold text-gray-400"><CountUp end={PORTFOLIO_STATS.codeforces.rating} />+</p>
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rank</p>
-                        <p className="text-xl font-bold text-gray-300">{PORTFOLIO_STATS.codeforces.tier}</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="bg-white/5 rounded-2xl p-4 border border-white/5 mb-8">
-                    <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-3">CodeChef</p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div>
-                        <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Stars</p>
-                        <p className="text-lg font-bold text-white/80">{PORTFOLIO_STATS.codechef.stars}</p>
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rating</p>
-                        <p className="text-lg font-bold text-white/80"><CountUp end={PORTFOLIO_STATS.codechef.rating} />+</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <a
-                  href="https://codeforces.com/profile/priyanshuguptacoder"
-                  className="inline-flex items-center justify-center w-full gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-blue-500/10 text-white font-bold text-sm border border-white/10 hover:border-blue-500/50 transition-all group mt-auto"
-                >
-                  View Codeforces Profile <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-blue-400" />
-                </a>
-                <a
-                  href="https://codechef.com/users/priyanshu9696"
-                  className="inline-flex items-center justify-center w-full gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-blue-500/10 text-white font-bold text-sm border border-white/10 hover:border-blue-500/50 transition-all group mt-3"
-                >
-                  View CodeChef Profile <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-blue-400" />
-                </a>
-              </PremiumCard>
-            </motion.div>
+<div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+  {/* BLOCK 1: LEETCODE */}
+  <motion.div variants={itemVariants} className="flex flex-col">
+    <PremiumCard isActive={true} className="flex-1 h-full flex flex-col p-8 lg:p-12 group/card">
+      <div className="relative z-10 flex-1 flex flex-col">
+        <h3 className="text-2xl font-black text-white mb-2">LeetCode Performance</h3>
+        <p className="text-sm text-white/50 mb-8 leading-relaxed font-light">
+          Consistent DSA practice with focus on pattern recognition and interview-level problem solving.
+        </p>
+        <div className="grid grid-cols-2 gap-4 mb-8">
+          <div className="inner-box bg-white/5 rounded-2xl p-4 border border-white/5 flex flex-col items-center justify-center text-center">
+            <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Solved</p>
+            <p className="text-4xl font-black text-white transition-transform duration-300 md:group-hover/card:scale-[1.03]"><CountUp end={PORTFOLIO_STATS.leetcode.problemsSolved} /><span className="text-cyan-400">+</span></p>
           </div>
+          <div className="inner-box bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col justify-center space-y-2">
+            <div>
+              <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Contest Rating</p>
+              <p className="text-2xl font-bold text-white/80"><CountUp end={PORTFOLIO_STATS.leetcode.rating} />+</p>
+            </div>
+            <div>
+              <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Global Ranking</p>
+              <p className="text-xl font-bold text-white/80">Top {PORTFOLIO_STATS.leetcode.topPercentage}</p>
+            </div>
+          </div>
+        </div>
+        {/* TOPIC CHIPS */}
+        <div className="mb-8 p-4 bg-blue-500/10 border border-blue-500/20 rounded-2xl">
+          <h4 className="text-xs font-black text-blue-400 uppercase tracking-widest mb-3 flex items-center gap-2"><Zap size={14} /> Strong Topic Coverage</h4>
+          <div className="flex flex-wrap gap-2">
+            {["Arrays", "Trees", "Graphs", "Linked List", "Stacks & Queues", "Binary Search", "Sliding Window", "Dynamic Programming"].map((t) => (
+              <span key={t} className="text-[11px] px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-white/60 transition-transform duration-300 hover:-translate-y-1">{t}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+      <a href="https://leetcode.com/u/invisiblemanfromheart/" className="inline-flex items-center justify-center w-full gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-cyan-500/10 text-white font-bold text-sm border border-white/10 hover:border-cyan-500/50 transition-all group mt-auto">
+        View LeetCode Profile <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-cyan-400" />
+      </a>
+    </PremiumCard>
+  </motion.div>
+
+  {/* BLOCK 2: CODEFORCES & CODECHEF */}
+  <motion.div variants={itemVariants} className="flex flex-col">
+    <PremiumCard isActive={true} className="flex-1 h-full flex flex-col p-8 lg:p-12 group/card">
+      <div className="relative z-10 flex-1 flex flex-col">
+        <h3 className="text-2xl font-black text-white mb-2">
+          Competitive Programming<br />
+          <span className="text-lg text-white/60">(Codeforces, CodeChef)</span>
+        </h3>
+        <p className="text-sm text-white/50 mb-8 leading-relaxed font-light">
+          Focusing on improving speed, implementation, and contest performance under pressure.
+        </p>
+        <div className="grid grid-cols-2 gap-4 mb-8">
+          <div className="inner-box bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col items-center justify-center text-center">
+            <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-2">Solved</p>
+            <p className="text-5xl font-black text-white transition-transform duration-300 md:group-hover/card:scale-[1.03]"><CountUp end={PORTFOLIO_STATS.codeforces.problemsSolved} /><span className="text-blue-400">+</span></p>
+          </div>
+          <div className="inner-box bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col justify-center space-y-4">
+            <div>
+              <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Codeforces Rating</p>
+              <p className="text-2xl font-bold text-gray-400"><CountUp end={PORTFOLIO_STATS.codeforces.rating} />+</p>
+            </div>
+            <div>
+              <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rank</p>
+              <p className="text-xl font-bold text-gray-300">{PORTFOLIO_STATS.codeforces.tier}</p>
+            </div>
+          </div>
+        </div>
+        <div className="inner-box bg-white/5 rounded-2xl p-4 border border-white/5 mb-8">
+          <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-3">CodeChef</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Stars</p>
+              <p className="text-lg font-bold text-white/80">{PORTFOLIO_STATS.codechef.stars}</p>
+            </div>
+            <div>
+              <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rating</p>
+              <p className="text-lg font-bold text-white/80"><CountUp end={PORTFOLIO_STATS.codechef.rating} />+</p>
+            </div>
+          </div>
+        </div>
+        {/* Knight visual */}
+                  <svg className="absolute bottom-4 right-4 w-24 h-24 opacity-10 group-hover:opacity-12 knight-visual" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10 52 L20 12 L30 20 L40 12 L50 52" stroke="#00aaff" strokeWidth="2" fill="none" />
+        </svg>
+        <a href="https://codeforces.com/profile/priyanshuguptacoder" className="inline-flex items-center justify-center w-full gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-blue-500/10 text-white font-bold text-sm border border-white/10 hover:border-blue-500/50 transition-all group mt-auto">
+          View Codeforces Profile <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-blue-400" />
+        </a>
+        <a href="https://codechef.com/users/priyanshu9696" className="inline-flex items-center justify-center w-full gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-blue-500/10 text-white font-bold text-sm border border-white/10 hover:border-blue-500/50 transition-all group mt-3">
+          View CodeChef Profile <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-blue-400" />
+        </a>
+      </div>
+    </PremiumCard>
+  </motion.div>
+</div>
         </motion.div>
       </section>
     </>

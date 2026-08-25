@@ -398,7 +398,7 @@ const Hero = () => {
                   View Codeforces Profile <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-blue-400" />
                 </a>
                 <a
-                  href="https://www.codechef.com/users/priyanshu9696"
+                  href="https://codechef.com/users/priyanshu9696"
                   className="inline-flex items-center justify-center w-full gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-blue-500/10 text-white font-bold text-sm border border-white/10 hover:border-blue-500/50 transition-all group mt-3"
                 >
                   View CodeChef Profile <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-blue-400" />

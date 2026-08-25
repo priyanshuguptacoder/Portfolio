@@ -45,7 +45,7 @@ const socials = [
   },
   {
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/priyanshu-gupta-b98689376/",
+    href: "https://www.linkedin.com/in/priyanshu-gupta-b98689376",
     icon: <FaLinkedin size={24} />,
     hoverColor: "group-hover:text-blue-400",
     borderGlow: "hover:border-blue-400/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.2)]",
@@ -69,7 +69,7 @@ const socials = [
   },
   {
     label: "CodeChef",
-    href: "https://www.codechef.com/users/priyanshu9696",
+    href: "https://codechef.com/users/priyanshu9696",
     icon: <SiCodechef size={24} />,
     hoverColor: "group-hover:text-orange-400",
     borderGlow: "hover:border-orange-400/50 hover:shadow-[0_0_20px_rgba(251,146,60,0.2)]",

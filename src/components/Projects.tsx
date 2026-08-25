@@ -152,8 +152,8 @@ const Projects = () => (
           "Optimized component state and rendering logic"
         ]}
         tech={["React.js", "Node.js", "Express.js", "Socket.io", "MongoDB"]}
-        github="https://github.com/priyanshuguptacoder/Vingo"
-        live="https://vingo-chat.vercel.app/"
+        github="https://github.com/priyanshuguptacoder/Vingo-Food-Delivery-App"
+        live="https://vingo-food-delivery-app-1.onrender.com/"
       />
 
       {/* Project 2 */}
@@ -170,7 +170,7 @@ const Projects = () => (
         ]}
         tech={["React.js", "Node.js", "Express.js", "MongoDB", "Razorpay"]}
         github="https://github.com/priyanshuguptacoder/ExamNotesAI"
-        live="https://exam-notes-ai.vercel.app/"
+        live="https://prepmind-ai-xpzl.onrender.com/"
       />
 
       {/* Project 3 */}
@@ -204,7 +204,7 @@ const Projects = () => (
         ]}
         tech={["Node.js", "Express.js", "MongoDB", "JWT"]}
         github="https://github.com/priyanshuguptaiit99/hostelpriyanshu"
-        live="https://hostel-management-system-hqg0.onrender.com"
+        live="https://hostel-management-system-hqg0.onrender.com/"
       />
 
     </motion.div>

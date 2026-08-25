@@ -46,9 +46,9 @@ export const PremiumCard = ({ children, className, isActive, ...props }: CardPro
     const normalizedX = (localX - centerX) / centerX;
     const normalizedY = (localY - centerY) / centerY;
     
-    // Max tilt = 3 degrees
-    x.set(normalizedX * 3);
-    y.set(-normalizedY * 3); // Negative because pulling mouse down rotates X positively
+    // Max tilt = 1 degree
+    x.set(normalizedX * 1);
+    y.set(-normalizedY * 1); // Negative because pulling mouse down rotates X positively
   };
 
   const handleMouseLeave = () => {

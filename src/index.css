@@ -462,47 +462,124 @@
   animation: card-glow-breathe 3s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
-}/* ── Inner box styling ── */
-.inner-box {
-  position: relative;
-  background: rgba(255,255,255,0.05);
-  border-radius: 1rem;
-  border: 1px solid rgba(255,255,255,0.07);
-  overflow: hidden;
-  transition: transform 0.25s cubic-bezier(0.22,1,0.36,1),
-    background 0.25s cubic-bezier(0.22,1,0.36,1),
-    border-color 0.25s cubic-bezier(0.22,1,0.36,1);
 }
 
-.inner-box::before {
+/* ─────────────────────────────────────────────────────────────
+   ALGORITHMIC PROFICIENCY — PREMIUM STAT CARDS
+───────────────────────────────────────────────────────────── */
+
+/* Primary Stat Card */
+.primary-stat-card {
+  position: relative;
+  background: rgba(10, 18, 35, 0.6);
+  border-radius: 1rem;
+  border: 1px solid rgba(0, 180, 255, 0.15);
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.primary-stat-card::before {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(120deg, rgba(0,180,255,0.1), rgba(0,120,255,0.3), rgba(0,180,255,0.1));
-  background-size: 200% 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    rgba(0, 180, 255, 0.5) 25%,
+    transparent 50%,
+    rgba(0, 255, 255, 0.5) 75%,
+    transparent 100%
+  );
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
-  opacity: 0.3;
+  opacity: 0.15;
   pointer-events: none;
-  animation: borderMove 8s linear infinite;
+  animation: borderMove 7s linear infinite;
 }
 
-.inner-box:hover {
-  transform: translateY(-2px) scale(1.03);
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(0,180,255,0.5);
+.primary-stat-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: radial-gradient(350px circle at var(--local-x, 50%) var(--local-y, 50%), rgba(0, 200, 255, 0.15), transparent 45%);
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
 }
-.inner-box:hover::before { opacity: 0.5; animation-duration: 12s; }
 
-/* Knight visual animation */
-@keyframes floatKnight {
-  0%,100% { transform: translateY(0px); }
-  50% { transform: translateY(-4px); }
+.primary-stat-card:hover {
+  transform: translateY(-3px) scale(1.015);
+  box-shadow: 0 8px 30px rgba(0, 180, 255, 0.12);
+  border-color: rgba(0, 180, 255, 0.4);
 }
-.knight-visual { animation: floatKnight 6s ease-in-out infinite; }
+
+.primary-stat-card:hover::before {
+  opacity: 0.7;
+}
+
+.primary-stat-card:hover::after {
+  opacity: 1;
+}
+
+.stat-number {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), text-shadow 0.3s ease, color 0.3s ease;
+  transform-origin: left center;
+  display: inline-block;
+  will-change: transform;
+}
+
+.primary-stat-card:hover .stat-number {
+  transform: scale(1.04);
+  text-shadow: 0 0 20px rgba(0, 180, 255, 0.5);
+}
+
+/* Secondary Stat Box (CodeChef / Topics) */
+.secondary-stat-box {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.secondary-stat-box:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(0, 180, 255, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 180, 255, 0.05);
+}
+
+/* Knight Visual Animation */
+@keyframes ambientKnight {
+  0%, 100% { transform: translateY(0px) rotate(-0.5deg); }
+  50% { transform: translateY(-5px) rotate(0.5deg); }
+}
+
+.knight-parallax {
+  transform: translate(calc(var(--mouse-x, 0) * -0.015), calc(var(--mouse-y, 0) * -0.015));
+  transition: opacity 0.4s ease;
+  will-change: transform, opacity;
+}
+
+.knight-visual {
+  animation: ambientKnight 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(0, 180, 255, 0.2));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primary-stat-card::before, .knight-visual { animation: none !important; }
+  .primary-stat-card::after { display: none; }
+  .primary-stat-card:hover { transform: none !important; }
+  .stat-number { transition: none !important; }
+  .primary-stat-card:hover .stat-number { transform: none !important; }
+}
+
+@media (pointer: coarse) {
+  .primary-stat-card::after { display: none; }
+  .knight-parallax { transform: none !important; }
+}
 
 
 @media (hover: hover) {

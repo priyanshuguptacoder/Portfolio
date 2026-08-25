@@ -283,7 +283,7 @@ const Hero = () => {
               >
                 {/* Staggered float: card1=0s, card2=0.5s, card3=1s */}
                 <div
-                  className={`stats-card h-full ${s.isDominant ? "stats-card-featured" : ""}`}
+                  className={`stats-card h-full group ${s.isDominant ? "stats-card-featured" : ""}`}
                   style={{ animationDelay: `${i * 0.5}s` }}
                 >
                   <div className={`relative p-8 flex flex-col items-center text-center h-full ${s.isDominant ? "z-[2]" : "z-10"}`}>
@@ -296,7 +296,7 @@ const Hero = () => {
                     >
                       <s.icon size={22} />
                     </div>
-                    <div className="text-4xl sm:text-5xl font-black mb-2 tracking-tighter text-white">
+                    <div className="text-4xl sm:text-5xl font-black mb-2 tracking-tighter text-white transition-transform duration-300 group-hover:scale-105">
                       <CountUp end={s.value} suffix={s.suffix} />
                     </div>
                     <h3 className="text-[11px] font-bold text-white/80 mb-2 uppercase tracking-[0.2em]">{s.label}</h3>
@@ -361,7 +361,7 @@ const Hero = () => {
                   <div className="grid grid-cols-2 gap-4 mb-8">
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5 flex flex-col items-center justify-center text-center">
                       <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Solved</p>
-                      <p className="text-4xl font-black text-white"><CountUp end={PORTFOLIO_STATS.leetcode.problemsSolved} /><span className="text-cyan-400">+</span></p>
+                      <p className="text-4xl font-black text-white transition-transform duration-300 md:group-hover/card:scale-[1.03]"><CountUp end={PORTFOLIO_STATS.leetcode.problemsSolved} /><span className="text-cyan-400">+</span></p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-4 border border-white/5 flex flex-col justify-center space-y-2">
                        <div>
@@ -414,7 +414,7 @@ const Hero = () => {
                   <div className="grid grid-cols-2 gap-4 mb-8">
                     <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col items-center justify-center text-center">
                       <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-2">Solved</p>
-                      <p className="text-5xl font-black text-white"><CountUp end={PORTFOLIO_STATS.codeforces.problemsSolved} /><span className="text-blue-400">+</span></p>
+                      <p className="text-5xl font-black text-white transition-transform duration-300 md:group-hover/card:scale-[1.03]"><CountUp end={PORTFOLIO_STATS.codeforces.problemsSolved} /><span className="text-blue-400">+</span></p>
                     </div>
                     <div className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col justify-center space-y-4">
                       <div>

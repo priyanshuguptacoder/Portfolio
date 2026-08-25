@@ -10,6 +10,8 @@ interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
 export const PremiumCard = ({ children, className, isActive, ...props }: CardProps) => {
   const ref = useRef<HTMLDivElement>(null);
 
+  const [isHovered, setIsHovered] = React.useState(false);
+  
   // Motion values for tilt
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -50,6 +52,7 @@ export const PremiumCard = ({ children, className, isActive, ...props }: CardPro
   };
 
   const handleMouseLeave = () => {
+    setIsHovered(false);
     x.set(0);
     y.set(0);
   };
@@ -57,11 +60,14 @@ export const PremiumCard = ({ children, className, isActive, ...props }: CardPro
   return (
     <motion.div
       ref={ref}
+      onMouseEnter={() => setIsHovered(true)}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
         rotateX,
         rotateY,
+        y: useSpring(isHovered ? -6 : 0, springConfig),
+        scale: useSpring(isHovered ? 1.02 : 1, springConfig),
         transformPerspective: 1000,
         "--mouse-x": useMotionTemplate`${mouseX}px`,
         "--mouse-y": useMotionTemplate`${mouseY}px`,

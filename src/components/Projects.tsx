@@ -95,7 +95,7 @@ const ProjectCard = ({
           ))}
         </div>
 
-        <div className="flex gap-3">
+        <div className="flex gap-3 transition-transform duration-300 md:group-hover/card:-translate-y-1">
           <MagneticButton
             href={github}
             {...(github !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}

@@ -24,7 +24,6 @@ const PremiumCursor = () => {
     let ring = { x: mouse.x, y: mouse.y };
     let glow = { x: mouse.x, y: mouse.y };
     let rafId: number;
-    let isClicked = false;
     
     // Trail physics
     const trailDots = 5;
@@ -75,8 +74,15 @@ const PremiumCursor = () => {
       labelText = "";
     };
 
-    const onMouseDown = () => { isClicked = true; };
-    const onMouseUp = () => { isClicked = false; };
+    let currentRingScale = 1;
+    let targetRingScale = 1;
+
+    const onMouseDown = () => {
+      currentRingScale = 0.7; 
+      targetRingScale = 1.1;
+      setTimeout(() => { targetRingScale = 1; }, 150);
+    };
+    const onMouseUp = () => {};
 
     window.addEventListener("mousemove", onMouseMove, { passive: true });
     window.addEventListener("mousedown", onMouseDown, { passive: true });
@@ -89,6 +95,8 @@ const PremiumCursor = () => {
 
       glow.x += (mouse.x - glow.x) * 0.08;
       glow.y += (mouse.y - glow.y) * 0.08;
+      
+      currentRingScale += (targetRingScale - currentRingScale) * 0.2;
 
       // Update trail positions
       let prev = { x: mouse.x, y: mouse.y };
@@ -107,10 +115,9 @@ const PremiumCursor = () => {
         // Core positioning
         dotRef.current.style.transform = `translate3d(${mouse.x}px, ${mouse.y}px, 0) translate3d(-50%, -50%, 0)`;
         
-        let ringScale = isClicked ? 0.8 : 1;
-        ringRef.current.style.transform = `translate3d(${ring.x}px, ${ring.y}px, 0) translate3d(-50%, -50%, 0) scale(${ringScale})`;
+        ringRef.current.style.transform = `translate3d(${ring.x}px, ${ring.y}px, 0) translate3d(-50%, -50%, 0) scale(${currentRingScale})`;
         
-        glowRef.current.style.transform = `translate3d(${glow.x}px, ${glow.y}px, 0) translate3d(-50%, -50%, 0)`;
+        glowRef.current.style.background = `radial-gradient(800px circle at ${glow.x}px ${glow.y}px, rgba(34,211,238,0.035), transparent 60%)`;
 
         // State Machine
         if (cursorState === "hidden") {
@@ -175,15 +182,10 @@ const PremiumCursor = () => {
 
   return (
     <>
-      {/* GLOW LAYER */}
+      {/* AMBIENT MOUSE LIGHT LAYER 3 */}
       <div
         ref={glowRef}
-        className="fixed top-0 left-0 pointer-events-none z-[98] mix-blend-screen will-change-transform transition-opacity duration-300"
-        style={{
-          width: '100px',
-          height: '100px',
-          background: 'radial-gradient(circle, rgba(34,211,238,0.15), transparent 70%)'
-        }}
+        className="fixed inset-0 pointer-events-none z-[0] mix-blend-screen transition-opacity duration-300"
       />
 
       {/* TRAIL */}

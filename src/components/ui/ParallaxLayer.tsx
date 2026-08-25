@@ -1,12 +1,16 @@
 import { useParallax } from "@/hooks/useParallax";
 import React from "react";
+import { motion } from "framer-motion";
 
-export const ParallaxLayer = ({ children, className, multiplier = 1 }: any) => {
-  const ref = useParallax(multiplier);
+export const ParallaxLayer = ({ children, className, multiplier = 1, zIndex = 0 }: any) => {
+  const { x, y } = useParallax(multiplier);
   
   return (
-    <div ref={ref} className={className} style={{ willChange: "transform" }}>
+    <motion.div 
+      className={className} 
+      style={{ x, y, zIndex, willChange: "transform" }}
+    >
       {children}
-    </div>
+    </motion.div>
   );
 };

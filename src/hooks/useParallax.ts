@@ -1,42 +1,33 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
+import { useMotionValue, useSpring } from "framer-motion";
 
-export const useParallax = (multiplier = 0.02) => {
-  const ref = useRef<HTMLDivElement>(null);
+export const useParallax = (multiplier = 1, springOptions = { stiffness: 100, damping: 30, mass: 1 }) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const springX = useSpring(x, springOptions);
+  const springY = useSpring(y, springOptions);
 
   useEffect(() => {
-    if (window.innerWidth < 768) return;
-
-    let rafId: number;
-    // We assume the target range of movement should be small
-    let target = { x: 0, y: 0 };
-    let current = { x: 0, y: 0 };
+    // Feature detection
+    if (window.innerWidth < 768 || window.matchMedia("(prefers-reduced-motion: reduce)").matches || window.matchMedia("(pointer: coarse)").matches) return;
 
     const handleMouseMove = (e: MouseEvent) => {
-      // Center based coordinate system (-1 to 1) multiplied by max pixels
-      const x = (e.clientX / window.innerWidth - 0.5) * 2 * 20; 
-      const y = (e.clientY / window.innerHeight - 0.5) * 2 * 20;
-      target = { x: x * multiplier, y: y * multiplier };
-    };
-
-    const animate = () => {
-      current.x += (target.x - current.x) * 0.1;
-      current.y += (target.y - current.y) * 0.1;
+      // Normalize from -1 to 1 based on screen size
+      const normalizedX = (e.clientX / window.innerWidth) * 2 - 1;
+      const normalizedY = (e.clientY / window.innerHeight) * 2 - 1;
       
-      if (ref.current) {
-        ref.current.style.transform = `translate(${current.x}px, ${current.y}px)`;
-      }
-      
-      rafId = requestAnimationFrame(animate);
+      // Calculate offset (e.g. multiplier = 0.02 means it moves 2% of the viewport)
+      x.set(normalizedX * 100 * multiplier);
+      y.set(normalizedY * 100 * multiplier);
     };
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    animate();
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      cancelAnimationFrame(rafId);
     };
-  }, [multiplier]);
+  }, [multiplier, x, y]);
 
-  return ref;
+  return { x: springX, y: springY };
 };

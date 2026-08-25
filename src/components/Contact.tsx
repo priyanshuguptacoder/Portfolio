@@ -5,6 +5,7 @@ import { SiCodechef, SiGeeksforgeeks } from "react-icons/si";
 import { useState } from "react";
 import { sectionVariants, itemVariants, headingVariants } from "@/lib/animations";
 import { trackContactClick, trackGitHubClick } from "@/lib/analytics";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 
 // ─── Custom LeetCode SVG (official logo style) ───────────────────────────────
 const LeetCodeIcon = ({ size = 28 }: { size?: number }) => (
@@ -128,7 +129,7 @@ const SocialIcon = ({
       transition={{ delay, duration: 0.5, ease: "easeOut" }}
       className="relative flex flex-col items-center gap-3"
     >
-      <a
+      <MagneticButton
         href={href}
         {...(href !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
         aria-label={label}
@@ -150,7 +151,7 @@ const SocialIcon = ({
         <span className={`relative z-10 transition-all duration-300 ${hoverColor}`}>
           {icon}
         </span>
-      </a>
+      </MagneticButton>
 
       {/* Tooltip */}
       <motion.span
@@ -194,7 +195,7 @@ const Contact = () => (
 
         <motion.div variants={itemVariants} className="flex flex-col items-center gap-14">
           {/* Primary CTA */}
-          <a
+          <MagneticButton
             href="mailto:priyanshuguptanitian9696@gmail.com"
             onClick={() => trackContactClick("email")}
             className="group relative bg-gradient-to-r from-blue-500 to-cyan-500 px-14 py-5 rounded-full font-black text-base text-white transition-all duration-400 hover:scale-105 active:scale-95 shadow-xl shadow-blue-500/20 hover:shadow-cyan-400/30 flex items-center gap-3"
@@ -202,7 +203,7 @@ const Contact = () => (
             <Mail size={20} />
             Email Me
             <div className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-30 blur-xl bg-cyan-400 transition-opacity" />
-          </a>
+          </MagneticButton>
 
           {/* Social Icons */}
           <div className="flex flex-wrap items-end justify-center gap-4 sm:gap-8 sm:flex-nowrap">

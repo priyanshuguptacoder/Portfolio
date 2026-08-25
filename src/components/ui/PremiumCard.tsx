@@ -1,36 +1,91 @@
-import React from "react";
+import React, { useRef } from "react";
 import { cn } from "@/lib/utils";
+import { motion, useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
-  /** Mark this card as the featured/dominant card — gets stronger animation */
   isActive?: boolean;
 }
 
 export const PremiumCard = ({ children, className, isActive, ...props }: CardProps) => {
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Motion values for tilt
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  
+  // Motion values for pointer glow (pixels)
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Springs for smooth tilt
+  const springConfig = { damping: 20, stiffness: 150, mass: 0.5 };
+  const rotateX = useSpring(useMotionTemplate`${y}deg`, springConfig);
+  const rotateY = useSpring(useMotionTemplate`${x}deg`, springConfig);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+
+    // Feature detection
+    if (window.matchMedia("(pointer: coarse)").matches || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const rect = ref.current.getBoundingClientRect();
+    
+    // Pointer glow coordinates relative to card
+    const localX = e.clientX - rect.left;
+    const localY = e.clientY - rect.top;
+    mouseX.set(localX);
+    mouseY.set(localY);
+    
+    // Tilt calculation (normalize from -1 to 1)
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const normalizedX = (localX - centerX) / centerX;
+    const normalizedY = (localY - centerY) / centerY;
+    
+    // Max tilt = 3 degrees
+    x.set(normalizedX * 3);
+    y.set(-normalizedY * 3); // Negative because pulling mouse down rotates X positively
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
   return (
-    <div
+    <motion.div
+      ref={ref}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        rotateX,
+        rotateY,
+        transformPerspective: 1000,
+        "--mouse-x": useMotionTemplate`${mouseX}px`,
+        "--mouse-y": useMotionTemplate`${mouseY}px`,
+      } as any}
       className={cn(
-        // ── Shared structural base ──────────────────────────────────────────
         "group/card relative rounded-[24px]",
         "border border-white/[0.06]",
         "active:scale-[0.98]",
-
-        // ── Sibling dimming — removed, all cards stay fully visible ──────────
         "opacity-100",
-
-        // ── Text contrast cascade on hover ─────────────────────────────────
         "[&_h3]:transition-colors [&_h3]:duration-300 [&_h3]:ease-out md:hover:[&_h3]:text-white",
         "[&_p]:transition-colors [&_p]:duration-300 [&_p]:ease-out md:hover:[&_p]:text-white/80",
-
-        // ── Animation class: featured vs standard ──────────────────────────
         isActive ? "premium-card-featured" : "premium-card",
-
         className
       )}
       {...props}
     >
-      {/* Structural depth panel — sits behind content, above pseudo-elements */}
+      {/* Dynamic Pointer Glow */}
+      <div 
+        className="pointer-events-none absolute inset-0 z-0 opacity-0 transition-opacity duration-300 group-hover/card:opacity-100"
+        style={{
+          background: "radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(34, 211, 238, 0.08), transparent 40%)"
+        }}
+      />
+
       <div
         className={cn(
           "absolute inset-[1px] rounded-[23px] pointer-events-none transition-colors duration-300 z-[2]",
@@ -40,10 +95,9 @@ export const PremiumCard = ({ children, className, isActive, ...props }: CardPro
         )}
       />
 
-      {/* Content — above depth panel and pseudo-elements */}
       <div className="relative z-10 w-full h-full flex flex-col">
         {children}
       </div>
-    </div>
+    </motion.div>
   );
 };

@@ -586,3 +586,28 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
   }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   PREMIUM CUSTOM CURSOR SYSTEM
+───────────────────────────────────────────────────────────── */
+
+@media (pointer: fine) {
+  body.custom-cursor-active,
+  body.custom-cursor-active * {
+    /* Hide native cursor by default but NOT using cursor:none to allow getComputedStyle checks.
+       Wait, actually the text detection in PremiumCursor checks tagName, not getComputedStyle.
+       So we can safely use cursor: none here! */
+    cursor: none !important;
+  }
+  
+  /* Keep native cursor for inputs and textareas so users can type */
+  body.custom-cursor-active input,
+  body.custom-cursor-active textarea,
+  body.custom-cursor-active select {
+    cursor: text !important;
+  }
+}
+
+.cursor-ring-transition {
+  transition: width 0.3s ease-out, height 0.3s ease-out, background-color 0.3s ease-out, border-color 0.3s ease-out, border-radius 0.3s ease-out, opacity 0.3s ease-out;
+}

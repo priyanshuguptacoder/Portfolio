@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 
 const navLinks = [
   { label: "About",    href: "#about"    },
@@ -79,10 +80,10 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-10">
           {navLinks.map((l) => (
-            <a
+            <MagneticButton
               key={l.href}
               href={l.href}
-              onClick={(e) => handleNavClick(e, l.href)}
+              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => handleNavClick(e, l.href)}
               className={`relative text-sm font-semibold tracking-wide transition-all duration-300 group pb-0.5 ${
                 isHome && active === l.href
                   ? "text-white"
@@ -95,17 +96,21 @@ const Navbar = () => {
                   isHome && active === l.href ? "w-full" : "w-0 group-hover:w-full"
                 }`}
               />
-            </a>
+            </MagneticButton>
           ))}
 
           {/* Blog link */}
-          <Link
-            to="/blog"
+          <MagneticButton
+            href="/blog"
             className={`relative text-sm font-semibold tracking-wide transition-all duration-300 group pb-0.5 ${
               location.pathname.startsWith("/blog")
                 ? "text-white"
                 : "text-white/40 hover:text-white/80"
             }`}
+            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+              e.preventDefault();
+              navigate("/blog");
+            }}
           >
             Blog
             <span
@@ -113,17 +118,17 @@ const Navbar = () => {
                 location.pathname.startsWith("/blog") ? "w-full" : "w-0 group-hover:w-full"
               }`}
             />
-          </Link>
+          </MagneticButton>
 
           {/* CTA Button — last position */}
-          <a
+          <MagneticButton
             href="/Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="relative px-5 py-2.5 rounded-full text-sm font-bold border border-white/10 text-white/70 hover:text-white hover:border-cyan-500/50 hover:shadow-[0_0_20px_rgba(34,211,238,0.15)] transition-all duration-300 hover:scale-105"
           >
             Resume
-          </a>
+          </MagneticButton>
         </div>
 
         {/* Mobile Toggle */}

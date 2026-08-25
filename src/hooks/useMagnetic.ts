@@ -1,46 +1,50 @@
-import { useEffect, useRef } from "react";
+import { useRef, useEffect } from "react";
+import { useMotionValue, useSpring } from "framer-motion";
 
-export const useMagnetic = (multiplier = 0.1) => {
+export const useMagnetic = (multiplier = 0.5, springOptions = { stiffness: 150, damping: 15, mass: 0.1 }) => {
   const ref = useRef<any>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  
+  const springX = useSpring(x, springOptions);
+  const springY = useSpring(y, springOptions);
 
   useEffect(() => {
     const element = ref.current;
-    if (!element || window.innerWidth < 768) return;
+    if (!element) return;
 
-    let rafId: number;
-    let target = { x: 0, y: 0 };
-    let current = { x: 0, y: 0 };
-
-    const animate = () => {
-      current.x += (target.x - current.x) * 0.1;
-      current.y += (target.y - current.y) * 0.1;
-      
-      element.style.transform = `translate(${current.x}px, ${current.y}px)`;
-      rafId = requestAnimationFrame(animate);
-    };
+    // Feature detection: Disable magnetic effect on touch or reduced motion
+    const isTouch = matchMedia("(pointer: coarse)").matches || navigator.maxTouchPoints > 0;
+    const prefersReducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    
+    if (isTouch || prefersReducedMotion) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       const { left, top, width, height } = element.getBoundingClientRect();
       const cx = left + width / 2;
       const cy = top + height / 2;
-      target = { x: (e.clientX - cx) * multiplier, y: (e.clientY - cy) * multiplier };
+      
+      // Calculate distance and apply multiplier
+      const distanceX = e.clientX - cx;
+      const distanceY = e.clientY - cy;
+      
+      x.set(distanceX * multiplier);
+      y.set(distanceY * multiplier);
     };
 
     const handleMouseLeave = () => {
-      target = { x: 0, y: 0 };
+      x.set(0);
+      y.set(0);
     };
 
     element.addEventListener("mousemove", handleMouseMove);
     element.addEventListener("mouseleave", handleMouseLeave);
-    animate();
 
     return () => {
       element.removeEventListener("mousemove", handleMouseMove);
       element.removeEventListener("mouseleave", handleMouseLeave);
-      cancelAnimationFrame(rafId);
-      element.style.transform = "";
     };
-  }, [multiplier]);
+  }, [multiplier, x, y]);
 
-  return ref;
+  return { ref, x: springX, y: springY };
 };

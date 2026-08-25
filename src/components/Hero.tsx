@@ -181,9 +181,13 @@ const Hero = () => {
               transition={{ duration: 0.9, delay: 0.25, ease: [0.25, 0.1, 0, 1] }}
               className="relative shrink-0"
             >
-              {/* Ambient glow */}
-              <ParallaxLayer multiplier={20} className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-blue-500/10 blur-[100px] rounded-full scale-125 transition-all duration-[10000ms] animate-pulse" />
-
+              {/* Parallax Layers */}
+              {/* Layer 1 - Background */}
+              <ParallaxLayer multiplier={0.2} zIndex={-2} className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent blur-[120px] rounded-full scale-[1.5] transition-all duration-[10000ms] animate-pulse" />
+              {/* Layer 2 - Midground */}
+              <ParallaxLayer multiplier={0.5} zIndex={-1} className="absolute inset-0 bg-gradient-to-tr from-transparent to-blue-500/20 blur-[80px] rounded-full scale-125" />
+              {/* Layer 3 - Foreground (Handled by the image card itself on hover, but we can wrap it slightly) */}
+              <ParallaxLayer multiplier={0.8} zIndex={10}>
               {/* Image card */}
               <div
                 className="relative z-10 w-64 h-64 lg:w-[320px] lg:h-[320px] rounded-3xl overflow-hidden transition-transform duration-500 hover:scale-[1.03]"
@@ -199,9 +203,9 @@ const Hero = () => {
                   fetchPriority="high"
                   className="w-full h-full object-cover brightness-105"
                 />
-                {/* Subtle bottom fade for grounding */}
                 <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-[#020617]/50 to-transparent" />
               </div>
+              </ParallaxLayer>
 
             </motion.div>
 
@@ -272,8 +276,8 @@ const Hero = () => {
 
       {/* COMPETITIVE & ALGORITHMIC PROWESS */}
       <section className="py-32 relative overflow-hidden bg-white/[0.01] border-y border-white/5">
-        <ParallaxLayer multiplier={15} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/8 blur-[120px] rounded-full pointer-events-none" />
-        <ParallaxLayer multiplier={10} className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-purple-500/6 blur-[100px] rounded-full pointer-events-none" />
+        <ParallaxLayer multiplier={0.15} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/8 blur-[120px] rounded-full pointer-events-none" />
+        <ParallaxLayer multiplier={0.1} className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-purple-500/6 blur-[100px] rounded-full pointer-events-none" />
 
         <motion.div
           className="container mx-auto px-6 relative z-10"

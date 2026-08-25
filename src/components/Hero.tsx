@@ -385,14 +385,6 @@ const Hero = () => {
             {/* BLOCK 1: LEETCODE */}
             <motion.div variants={itemVariants} className="flex flex-col relative">
               <PremiumCard isActive={true} className="flex-1 h-full flex flex-col p-8 lg:p-12 group/card">
-                
-                {/* Knight Visual Moved Here (Left Side) */}
-                <div className="absolute top-12 right-6 w-24 h-24 pointer-events-none opacity-[0.15] group-hover/card:opacity-40 transition-opacity duration-500 knight-parallax z-0">
-                  <svg className="w-full h-full knight-visual" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M10 52 L20 12 L30 20 L40 12 L50 52" stroke="#00aaff" strokeWidth="4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-
                 <div className="relative z-10 flex-1 flex flex-col">
                   <h3 className="text-2xl font-black text-white mb-2">LeetCode Performance</h3>
                   <p className="text-sm text-white/50 mb-8 leading-relaxed font-light">
@@ -401,15 +393,24 @@ const Hero = () => {
                   
                   <div className="grid grid-cols-2 gap-4 mb-8">
                     {/* Stat Card 1: 625+ */}
-                    <PrimaryStatCard>
-                      <p className="text-[10px] font-mono text-white/50 uppercase tracking-widest mb-3 font-semibold">Solved</p>
-                      <span className="stat-number text-5xl font-black text-white"><CountUp end={PORTFOLIO_STATS.leetcode.problemsSolved} /><span className="text-cyan-400 ml-1">+</span></span>
+                    <PrimaryStatCard className="relative overflow-hidden">
+                      {/* Knight Visual inside Solved card */}
+                      <div className="absolute right-[-10px] bottom-[-10px] w-24 h-24 pointer-events-none opacity-[0.15] group-hover/card:opacity-40 transition-opacity duration-500 knight-parallax z-0">
+                        <svg className="w-full h-full knight-visual" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M10 52 L20 12 L30 20 L40 12 L50 52" stroke="#00aaff" strokeWidth="4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </div>
+                      
+                      <div className="relative z-10">
+                        <p className="text-[10px] font-mono text-white/50 uppercase tracking-widest mb-3 font-semibold">Solved</p>
+                        <span className="stat-number text-5xl font-black text-white"><CountUp end={PORTFOLIO_STATS.leetcode.problemsSolved} /><span className="text-cyan-400">+</span></span>
+                      </div>
                     </PrimaryStatCard>
                     
                     {/* Stat Card 2: 1940+ */}
                     <PrimaryStatCard>
                       <p className="text-[10px] font-mono text-white/50 uppercase tracking-widest mb-1 font-semibold">Contest Rating</p>
-                      <span className="stat-number text-3xl font-black text-white mb-4 block"><CountUp end={PORTFOLIO_STATS.leetcode.rating} /><span className="text-cyan-400 ml-1">+</span></span>
+                      <span className="stat-number text-3xl font-black text-white mb-4 block"><CountUp end={PORTFOLIO_STATS.leetcode.rating} /><span className="text-cyan-400">+</span></span>
                       
                       <p className="text-[10px] font-mono text-white/50 uppercase tracking-widest mb-1 font-semibold">Global Ranking</p>
                       <p className="text-sm font-bold text-white/80">Top {PORTFOLIO_STATS.leetcode.topPercentage}</p>
@@ -449,13 +450,13 @@ const Hero = () => {
                     {/* Stat Card 3: 325+ */}
                     <PrimaryStatCard>
                       <p className="text-[10px] font-mono text-white/50 uppercase tracking-widest mb-3 font-semibold">Solved</p>
-                      <span className="stat-number text-5xl font-black text-white"><CountUp end={PORTFOLIO_STATS.codeforces.problemsSolved} /><span className="text-blue-400 ml-1">+</span></span>
+                      <span className="stat-number text-5xl font-black text-white"><CountUp end={PORTFOLIO_STATS.codeforces.problemsSolved} /><span className="text-blue-400 ">+</span></span>
                     </PrimaryStatCard>
                     
                     {/* Stat Card 4: 1460+ */}
                     <PrimaryStatCard>
                       <p className="text-[10px] font-mono text-white/50 uppercase tracking-widest mb-1 font-semibold">Codeforces Rating</p>
-                      <span className="stat-number text-3xl font-black text-white mb-4 block"><CountUp end={PORTFOLIO_STATS.codeforces.rating} /><span className="text-blue-400 ml-1">+</span></span>
+                      <span className="stat-number text-3xl font-black text-white mb-4 block"><CountUp end={PORTFOLIO_STATS.codeforces.rating} /><span className="text-blue-400 ">+</span></span>
                       
                       <p className="text-[10px] font-mono text-white/50 uppercase tracking-widest mb-1 font-semibold">Rank</p>
                       <p className="text-sm font-bold text-white/80">{PORTFOLIO_STATS.codeforces.tier}</p>
@@ -471,7 +472,7 @@ const Hero = () => {
                       </div>
                       <div>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rating</p>
-                        <p className="text-lg font-bold text-white/80"><CountUp end={PORTFOLIO_STATS.codechef.rating} /><span className="text-blue-400 ml-1">+</span></p>
+                        <p className="text-lg font-bold text-white/80"><CountUp end={PORTFOLIO_STATS.codechef.rating} /><span className="text-blue-400 ">+</span></p>
                       </div>
                     </div>
                   </div>

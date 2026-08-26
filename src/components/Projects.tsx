@@ -203,7 +203,7 @@ const Projects = () => (
           "Implemented secure multi-role JWT authentication"
         ]}
         tech={["Node.js", "Express.js", "MongoDB", "JWT"]}
-        github="https://github.com/priyanshuguptaiit99/hostelpriyanshu"
+        github="https://github.com/priyanshuguptacoder/hostelpriyanshu"
         live="https://hostel-management-system-hqg0.onrender.com/"
       />
 

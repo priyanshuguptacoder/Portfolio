@@ -23,7 +23,7 @@ const education = [
     degree: "Secondary Education (Class X)",
     institution: "S.B.T. Public School",
     period: "Completed",
-    details: "Percentage: 93.6% | Foundation in science and mathematics.",
+    details: "Percentage: 94% | Foundation in science and mathematics.",
   },
 ];
 
@@ -32,7 +32,7 @@ const skillsSummary = [
   { category: "Frontend Development", items: ["React.js", "Next.js", "Redux", "Tailwind CSS", "Material UI", "WebSockets"] },
   { category: "Languages", items: ["C++", "JavaScript", "TypeScript", "Python", "SQL"] },
   { category: "Services / Integrations", items: ["Razorpay", "Socket.io", "Cloudinary", "GEMINI API"] },
-  { category: "Core CS", items: ["Data Structures & Algorithms", "OOP", "DBMS", "OS", "Computer Networks"] },
+  { category: "Core CS", items: ["Data Structures & Algorithms", "OOP"] },
   { category: "Developer Tools", items: ["Git", "GitHub", "Postman", "MongoDB Compass", "VS Code"] },
 ];
 

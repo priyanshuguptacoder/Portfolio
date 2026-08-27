@@ -406,7 +406,7 @@ const Hero = () => {
                         <span className="stat-number text-5xl font-black text-white"><CountUp end={PORTFOLIO_STATS.leetcode.problemsSolved} /><span className="text-cyan-400">+</span></span>
                         
                         <p className="text-[10px] font-mono text-white/50 uppercase tracking-widest mb-3 font-semibold">Badge</p>
-                        <span className="stat-number text-3xl font-black text-white">{PORTFOLIO_STATS.leetcode.tier}</span>
+                        <span className="stat-number text-2xl font-black text-white">{PORTFOLIO_STATS.leetcode.tier}</span>
                       </div>
                     </PrimaryStatCard>
                     

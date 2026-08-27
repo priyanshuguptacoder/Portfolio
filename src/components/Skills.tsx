@@ -31,7 +31,7 @@ const categories = [
   {
     icon: Brain,
     title: "Core CS",
-    items: ["Data Structures & Algorithms", "OOP", "DBMS", "OS", "Computer Networks"],
+    items: ["Data Structures & Algorithms", "OOP", "Full-Stack Web Development"],
     isDominant: false,
   },
   {

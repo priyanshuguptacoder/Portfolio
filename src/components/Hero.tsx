@@ -154,7 +154,7 @@ const InteractivePortrait = () => {
     >
       <img
         src={profileImg}
-        alt="Priyanshu Gupta — Web Developer at NIT Jalandhar"
+        alt="Priyanshu Gupta — Full Stack Web Developer at NIT Jalandhar"
         loading="eager"
         decoding="async"
         fetchPriority="high"

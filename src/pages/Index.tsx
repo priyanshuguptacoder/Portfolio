@@ -8,6 +8,17 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import CursorGlow from "@/components/CursorGlow";
 
+const ambientParticles = [
+  { top: "12%", left: "18%", size: 6, delay: "0s", duration: "7s" },
+  { top: "18%", left: "78%", size: 5, delay: "1.5s", duration: "8.5s" },
+  { top: "36%", left: "62%", size: 7, delay: "0.8s", duration: "9.2s" },
+  { top: "48%", left: "10%", size: 4, delay: "2.6s", duration: "7.8s" },
+  { top: "56%", left: "88%", size: 5, delay: "0.3s", duration: "8.8s" },
+  { top: "66%", left: "26%", size: 6, delay: "1.9s", duration: "9.5s" },
+  { top: "74%", left: "74%", size: 4, delay: "2.3s", duration: "7.5s" },
+  { top: "84%", left: "42%", size: 6, delay: "1.1s", duration: "8.9s" },
+];
+
 const Index = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -69,6 +80,26 @@ const Index = () => {
         {/* Bottom-left: soft cyan anchor */}
         <div className="absolute bottom-[5%] left-[5%] w-[400px] h-[400px] rounded-full opacity-[0.08] blur-[100px]"
           style={{ background: "radial-gradient(circle, #22d3ee 0%, transparent 65%)" }} />
+
+        {/* Aurora wave overlays */}
+        <div className="aurora-layer aurora-layer-1" />
+        <div className="aurora-layer aurora-layer-2" />
+
+        {/* Floating particles */}
+        {ambientParticles.map((particle, i) => (
+          <span
+            key={i}
+            className="ambient-particle"
+            style={{
+              top: particle.top,
+              left: particle.left,
+              width: `${particle.size}px`,
+              height: `${particle.size}px`,
+              animationDelay: particle.delay,
+              animationDuration: particle.duration,
+            }}
+          />
+        ))}
 
         {/* Noise texture overlay */}
         <div className="absolute inset-0 opacity-[0.025]"

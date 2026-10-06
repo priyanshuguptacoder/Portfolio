@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
 const navLinks = [
@@ -17,6 +17,9 @@ const Navbar = () => {
   const location  = useLocation();
   const navigate  = useNavigate();
   const isHome    = location.pathname === "/";
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+  const progressScaleX = useSpring(scrollYProgress, { stiffness: 140, damping: 28, mass: 0.2 });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -70,6 +73,11 @@ const Navbar = () => {
           : "bg-transparent backdrop-blur-sm"
       }`}
     >
+      <motion.div
+        aria-hidden="true"
+        className="absolute top-0 left-0 h-[2px] w-full origin-left bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-300 shadow-[0_0_18px_rgba(34,211,238,0.55)]"
+        style={{ scaleX: prefersReducedMotion ? 1 : progressScaleX }}
+      />
       <div className="container mx-auto flex items-center justify-between py-5 px-6">
 
         {/* Logo */}

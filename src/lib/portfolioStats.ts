@@ -1,16 +1,16 @@
 export const PORTFOLIO_STATS = {
   total: {
-    problemsSolved: 1400,
+    problemsSolved: 1500,
   },
   leetcode: {
-    problemsSolved: 750,
-    rating: 1940,
+    problemsSolved: 800,
+    rating: 1982,
     tier: "Knight",
     topPercentage: "3.50%",
   },
   codeforces: {
-    problemsSolved: 425,
-    rating: 1460,
+    problemsSolved: 460,
+    rating: 1485,
     tier: "Specialist",
   },
   codechef: {
@@ -18,8 +18,8 @@ export const PORTFOLIO_STATS = {
     stars: "3-Star",
   },
   consistency: {
-    streak: 265,
-    activeDays: 270,
+    streak: 280,
+    activeDays: 185,
   },
   education: {
     cgpa: 8.16,

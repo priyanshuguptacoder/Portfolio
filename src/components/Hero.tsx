@@ -6,7 +6,7 @@ import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ParallaxLayer } from "@/components/ui/ParallaxLayer";
 import { PremiumCard } from "@/components/ui/PremiumCard";
 import { sectionVariants, itemVariants } from "@/lib/animations";
-import { PORTFOLIO_STATS } from "@/lib/portfolioStats";
+import { PORTFOLIO_STATS, PROFILE_URLS } from "@/lib/portfolioStats";
 
 // --- LOCAL COMPONENT: PRIMARY STAT CARD ---
 const PrimaryStatCard = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {
@@ -56,7 +56,7 @@ const stats = [
     detail: "Strong coverage across core DSA topics with consistent problem solving.",
     extraInfo: `Rating: ${PORTFOLIO_STATS.leetcode.rating} • ${PORTFOLIO_STATS.leetcode.tier} • Top ${PORTFOLIO_STATS.leetcode.topPercentage}`,
     linkText: "View Profile",
-    linkUrl: "https://leetcode.com/u/invisiblemanfromheart/"
+    linkUrl: PROFILE_URLS.leetcode
   },
   {
     icon: Server,
@@ -77,7 +77,7 @@ const stats = [
     detail: "Building competitive programming fundamentals with focus on speed and implementation.",
     extraInfo: `Rating: ${PORTFOLIO_STATS.codeforces.rating} (${PORTFOLIO_STATS.codeforces.tier})`,
     linkText: "View Profile",
-    linkUrl: "https://codeforces.com/profile/priyanshuguptacoder"
+    linkUrl: PROFILE_URLS.codeforces
   },
 ];
 
@@ -380,116 +380,120 @@ const Hero = () => {
             <h2 className="font-heading text-4xl sm:text-5xl font-black text-white" style={{ scrollMarginTop: 'calc(var(--navbar-height, 4rem) + 2rem)' }}>Algorithmic Proficiency</h2>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            
-            {/* BLOCK 1: LEETCODE */}
-            <motion.div variants={itemVariants} className="flex flex-col relative">
-              <PremiumCard isActive={true} className="flex-1 h-full flex flex-col p-8 lg:p-12 group/card">
-                <div className="relative z-10 flex-1 flex flex-col">
-                  <h3 className="text-2xl font-black text-white mb-2">LeetCode Performance</h3>
-                  <p className="text-sm text-white/50 mb-8 leading-relaxed font-light">
-                    Consistent DSA practice with focus on pattern recognition and interview-level problem solving.
-                  </p>
-                  
-                  <div className="grid grid-cols-2 gap-4 mb-8">
-                    {/* Stat Card 1: 625+ */}
-                    <PrimaryStatCard className="relative overflow-hidden">
-                      {/* Knight Visual inside Solved card */}
-                      <div className="absolute right-[-10px] bottom-[-10px] w-24 h-24 pointer-events-none opacity-[0.15] group-hover/card:opacity-40 transition-opacity duration-500 knight-parallax z-0">
-                        <svg className="w-full h-full knight-visual" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M10 52 L20 12 L30 20 L40 12 L50 52" stroke="#00aaff" strokeWidth="4" fill="none" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                      </div>
-                      
-                      <div className="relative z-10">
-                        <p className="text-[10px] font-mono text-white/50 uppercase tracking-widest mb-3 font-semibold">Solved</p>
-                        <span className="stat-number text-5xl font-black text-white"><CountUp end={PORTFOLIO_STATS.leetcode.problemsSolved} /><span className="text-cyan-400">+</span></span>
-                        
-                        <p className="text-[10px] font-mono text-white/50 uppercase tracking-widest mb-3 font-semibold">Badge</p>
-                        <span className="stat-number text-2xl font-black text-white">{PORTFOLIO_STATS.leetcode.tier}</span>
-                      </div>
-                    </PrimaryStatCard>
-                    
-                    {/* Stat Card 2: 1940+ */}
+          <div className="grid sm:grid-cols-2 gap-6 max-w-6xl mx-auto">
+            {[
+              {
+                name: "LeetCode",
+                description: "Pattern-focused DSA practice for interview-level problem solving.",
+                accent: "cyan",
+                profile: PROFILE_URLS.leetcode,
+                metrics: (
+                  <>
                     <PrimaryStatCard>
-                      <p className="text-[10px] font-mono text-white/50 uppercase tracking-widest mb-1 font-semibold">Contest Rating</p>
-                      <span className="stat-number text-3xl font-black text-white mb-4 block"><CountUp end={PORTFOLIO_STATS.leetcode.rating} /><span className="text-cyan-400">+</span></span>
-                      
-                      <p className="text-[10px] font-mono text-white/50 uppercase tracking-widest mb-1 font-semibold">Global Ranking</p>
+                      <p className="metric-label">Problems Solved</p>
+                      <span className="stat-number text-4xl font-black text-white"><CountUp end={PORTFOLIO_STATS.leetcode.problemsSolved} /><span className="text-cyan-400">+</span></span>
+                    </PrimaryStatCard>
+                    <PrimaryStatCard>
+                      <p className="metric-label">Contest Rating</p>
+                      <span className="stat-number text-3xl font-black text-white"><CountUp end={PORTFOLIO_STATS.leetcode.rating} /><span className="text-cyan-400">+</span></span>
+                      <p className="metric-label mt-4">Global Ranking</p>
                       <p className="text-sm font-bold text-white/80">Top {PORTFOLIO_STATS.leetcode.topPercentage}</p>
                     </PrimaryStatCard>
-                  </div>
-
-                  {/* TOPIC CHIPS */}
-                  <div className="mb-8 p-5 secondary-stat-box flex-1">
-                    <h4 className="text-xs font-black text-blue-400 uppercase tracking-widest mb-4 flex items-center gap-2"><Zap size={14} /> Strong Topic Coverage</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {["Arrays", "Trees", "Graphs", "Linked List", "Stacks & Queues", "Binary Search", "Sliding Window", "Dynamic Programming"].map((t) => (
-                        <span key={t} className="text-[11px] px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/60 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:text-white cursor-default">{t}</span>
-                      ))}
+                    <div className="col-span-2 flex items-center justify-between rounded-xl border border-cyan-400/20 bg-cyan-400/5 px-4 py-3">
+                      <span className="metric-label mb-0">Badge</span>
+                      <span className="font-black text-cyan-300">{PORTFOLIO_STATS.leetcode.tier}</span>
                     </div>
-                  </div>
-                </div>
-
-                <a href="https://leetcode.com/u/invisiblemanfromheart/" className="relative z-10 inline-flex items-center justify-center w-full gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-cyan-500/10 text-white font-bold text-sm border border-white/10 hover:border-cyan-500/40 transition-all group mt-auto" data-cursor="view">
-                  View LeetCode Profile <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-cyan-400" />
-                </a>
-              </PremiumCard>
-            </motion.div>
-
-            {/* BLOCK 2: CODEFORCES & CODECHEF */}
-            <motion.div variants={itemVariants} className="flex flex-col">
-              <PremiumCard isActive={true} className="flex-1 h-full flex flex-col p-8 lg:p-12 group/card">
-                <div className="relative z-10 flex-1 flex flex-col">
-                  <h3 className="text-2xl font-black text-white mb-2">
-                    Competitive Programming<br />
-                    <span className="text-lg text-white/60">(Codeforces, CodeChef)</span>
-                  </h3>
-                  <p className="text-sm text-white/50 mb-8 leading-relaxed font-light">
-                    Focusing on improving speed, implementation, and contest performance under pressure.
-                  </p>
-                  
-                  <div className="grid grid-cols-2 gap-4 mb-8">
-                    {/* Stat Card 3: 325+ */}
+                  </>
+                ),
+              },
+              {
+                name: "Codeforces",
+                description: "Building speed, implementation, and contest performance under pressure.",
+                accent: "blue",
+                profile: PROFILE_URLS.codeforces,
+                metrics: (
+                  <>
                     <PrimaryStatCard>
-                      <p className="text-[10px] font-mono text-white/50 uppercase tracking-widest mb-3 font-semibold">Solved</p>
-                      <span className="stat-number text-5xl font-black text-white"><CountUp end={PORTFOLIO_STATS.codeforces.problemsSolved} /><span className="text-blue-400 ">+</span></span>
+                      <p className="metric-label">Problems Solved</p>
+                      <span className="stat-number text-4xl font-black text-white"><CountUp end={PORTFOLIO_STATS.codeforces.problemsSolved} /><span className="text-blue-400">+</span></span>
                     </PrimaryStatCard>
-                    
-                    {/* Stat Card 4: 1460+ */}
                     <PrimaryStatCard>
-                      <p className="text-[10px] font-mono text-white/50 uppercase tracking-widest mb-1 font-semibold">Codeforces Rating</p>
-                      <span className="stat-number text-3xl font-black text-white mb-4 block"><CountUp end={PORTFOLIO_STATS.codeforces.rating} /><span className="text-blue-400 ">+</span></span>
-                      
-                      <p className="text-[10px] font-mono text-white/50 uppercase tracking-widest mb-1 font-semibold">Rank</p>
+                      <p className="metric-label">Rating</p>
+                      <span className="stat-number text-3xl font-black text-white"><CountUp end={PORTFOLIO_STATS.codeforces.rating} /><span className="text-blue-400">+</span></span>
+                      <p className="metric-label mt-4">Rank</p>
                       <p className="text-sm font-bold text-white/80">{PORTFOLIO_STATS.codeforces.tier}</p>
                     </PrimaryStatCard>
-                  </div>
-
-                  <div className="secondary-stat-box p-5 mb-8 flex-1">
-                    <p className="text-[10px] font-mono text-white/50 uppercase tracking-widest mb-4 font-semibold">CodeChef</p>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Stars</p>
-                        <p className="text-lg font-bold text-white/80">{PORTFOLIO_STATS.codechef.stars}</p>
-                      </div>
-                      <div>
-                        <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Rating</p>
-                        <p className="text-lg font-bold text-white/80"><CountUp end={PORTFOLIO_STATS.codechef.rating} /><span className="text-blue-400 ">+</span></p>
+                  </>
+                ),
+              },
+              {
+                name: "CodeChef",
+                description: "Separate contest and DSA metrics, clearly represented on one platform card.",
+                accent: "orange",
+                profile: PROFILE_URLS.codechef,
+                metrics: (
+                  <div className="col-span-2 secondary-stat-box p-4 space-y-4">
+                    <div>
+                      <p className="metric-label text-orange-300/70 mb-2">Competitive Programming</p>
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <p className="metric-label">Contest Rating</p>
+                          <p className="text-2xl font-black text-white"><CountUp end={PORTFOLIO_STATS.codechef.rating} /></p>
+                        </div>
+                        <div>
+                          <p className="metric-label">Star Rating</p>
+                          <p className="text-lg font-black text-orange-300">{PORTFOLIO_STATS.codechef.stars}</p>
+                        </div>
                       </div>
                     </div>
+                    <div className="border-t border-white/10 pt-4">
+                      <p className="metric-label text-orange-300/70">DSA</p>
+                      <p className="text-3xl font-black text-white"><CountUp end={PORTFOLIO_STATS.codechef.dsaRating} /></p>
+                      <p className="metric-label">DSA Rating</p>
+                    </div>
                   </div>
-                  
-                  <div className="flex flex-col gap-3 mt-auto">
-                    <a href="https://codeforces.com/profile/priyanshuguptacoder" className="inline-flex items-center justify-center w-full gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-blue-500/10 text-white font-bold text-sm border border-white/10 hover:border-blue-500/40 transition-all group" data-cursor="view">
-                      View Codeforces Profile <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-blue-400" />
-                    </a>
-                    <a href="https://codechef.com/users/priyanshu9696" className="inline-flex items-center justify-center w-full gap-2 px-6 py-4 rounded-xl bg-white/5 hover:bg-orange-500/10 text-white font-bold text-sm border border-white/10 hover:border-orange-500/40 transition-all group" data-cursor="view">
-                      View CodeChef Profile <ExternalLink size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform text-orange-400" />
+                ),
+              },
+              {
+                name: "AtCoder",
+                description: "Growing contest experience with a focus on consistent algorithmic progress.",
+                accent: "sky",
+                profile: PROFILE_URLS.atcoder,
+                metrics: (
+                  <>
+                    <PrimaryStatCard className="col-span-2">
+                      <p className="metric-label">Contest Rating</p>
+                      <span className="stat-number text-5xl font-black text-white"><CountUp end={PORTFOLIO_STATS.atcoder.rating} /></span>
+                    </PrimaryStatCard>
+                    <div className="col-span-2 flex items-center justify-between rounded-xl border border-amber-400/30 bg-amber-400/10 px-4 py-3">
+                      <span className="metric-label mb-0">Rank</span>
+                      <span className="font-black text-amber-300">{PORTFOLIO_STATS.atcoder.tier}</span>
+                    </div>
+                  </>
+                ),
+              },
+            ].map((platform) => (
+              <motion.div key={platform.name} variants={itemVariants} className="flex flex-col">
+                <PremiumCard isActive={true} className="h-full p-6 sm:p-8 group/card">
+                  <div className="flex h-full flex-col">
+                    <h3 className="text-2xl font-black text-white mb-2">{platform.name}</h3>
+                    <p className="text-sm text-white/50 mb-6 leading-relaxed font-light">{platform.description}</p>
+                    <div className="grid grid-cols-2 gap-3 mb-6">{platform.metrics}</div>
+                    <a href={platform.profile} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center justify-center w-full gap-2 px-5 py-3 rounded-xl bg-white/5 hover:bg-cyan-500/10 text-white font-bold text-sm border border-white/10 hover:border-cyan-500/40 transition-all group" data-cursor="view">
+                      View {platform.name} Profile <ExternalLink size={16} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 text-cyan-400" />
                     </a>
                   </div>
-                </div>
-              </PremiumCard>
+                </PremiumCard>
+              </motion.div>
+            ))}
+
+            <motion.div variants={itemVariants} className="sm:col-span-2 secondary-stat-box p-5">
+              <h4 className="text-xs font-black text-blue-400 uppercase tracking-widest mb-4 flex items-center gap-2"><Zap size={14} /> Strong Topic Coverage</h4>
+              <div className="flex flex-wrap gap-2">
+                {["Arrays", "Trees", "Graphs", "Linked List", "Stacks & Queues", "Binary Search", "Sliding Window", "Dynamic Programming"].map((topic) => (
+                  <span key={topic} className="text-[11px] px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/60 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:text-white cursor-default">{topic}</span>
+                ))}
+              </div>
             </motion.div>
           </div>
         </motion.div>

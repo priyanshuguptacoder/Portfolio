@@ -7,6 +7,7 @@ import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import CursorGlow from "@/components/CursorGlow";
+import { PORTFOLIO_STATS } from "@/lib/portfolioStats";
 
 const ambientParticles = [
   { top: "12%", left: "18%", size: 6, delay: "0s", duration: "7s" },
@@ -50,7 +51,7 @@ const Index = () => {
       <div className="sr-only" aria-hidden="false">
         <h1>Priyanshu Gupta — Full-Stack Web Developer at NIT Jalandhar</h1>
         <p>
-          Computer Science undergraduate at NIT Jalandhar building full-stack production systems involving backend APIs, real-time communication, authentication, payment integrations, AI integrations, and databases. Solved 1150+ competitive programming problems, including 625+ on LeetCode and 325+ on Codeforces.
+          Computer Science undergraduate at NIT Jalandhar building full-stack production systems involving backend APIs, real-time communication, authentication, payment integrations, AI integrations, and databases. Solved {PORTFOLIO_STATS.total.problemsSolved}+ competitive programming problems, including {PORTFOLIO_STATS.leetcode.problemsSolved}+ on LeetCode and {PORTFOLIO_STATS.codeforces.problemsSolved}+ on Codeforces.
         </p>
       </div>
 

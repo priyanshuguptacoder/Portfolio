@@ -3,6 +3,7 @@ import { useRef, useEffect, useState } from "react";
 import { Code2, Trophy, Server, ExternalLink, Zap } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { PremiumCard } from "@/components/ui/PremiumCard";
+import { ParallaxLayer } from "@/components/ui/ParallaxLayer";
 import { sectionVariants, itemVariants } from "@/lib/animations";
 import { PORTFOLIO_STATS, PROFILE_URLS } from "@/lib/portfolioStats";
 import HeroScene from "@/components/HeroScene";

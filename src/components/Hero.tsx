@@ -159,7 +159,7 @@ const Hero = () => {
     <>
       {/* HERO SECTION */}
       <section
-        className="relative min-h-screen overflow-hidden pb-20 pt-24 lg:pt-32"
+        className="relative min-h-screen overflow-hidden pb-10 pt-24 lg:pb-20 lg:pt-32"
         onMouseMove={handleAmbientMove}
         onMouseLeave={resetAmbient}
       >
@@ -236,7 +236,7 @@ const Hero = () => {
                 </p>
                 {/* Line 2 */}
                 <p className="grid grid-cols-1 items-center justify-items-center gap-1.5 text-sm font-medium leading-snug text-white/65 sm:gap-3 md:grid-cols-2 md:justify-items-start md:gap-2 lg:flex lg:flex-wrap lg:justify-start">
-                  {["Full-Stack Web Development", "Data Structures & Algorithms", "Competitive Programming"].map((chip, index) => (
+                  {["Full-Stack Web Developer", "DSA & Competitive Programmer"].map((chip, index) => (
                     <motion.span
                       key={chip}
                       custom={index}
@@ -245,7 +245,7 @@ const Hero = () => {
                       variants={reducedMotion ? fadeUp : chipRevealVariants}
                       whileHover={reducedMotion ? undefined : { y: -3, scale: 1.02 }}
                       whileTap={reducedMotion ? undefined : { scale: 0.97 }}
-                      className="inline-flex items-center justify-center rounded-full border border-cyan-200/15 bg-[#0b1222]/80 px-2.5 py-0.5 text-xs !text-white/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-md transition-[border-color,background-color,box-shadow,color] duration-300 hover:border-cyan-300/40 hover:bg-[#111d33]/90 hover:!text-white hover:shadow-[0_0_18px_rgba(34,211,238,0.25)] sm:px-3 sm:py-1 sm:text-base md:w-full md:px-2 md:text-[11px] lg:w-auto lg:px-3 lg:text-base last:md:col-span-2 last:md:w-fit"
+                      className="inline-flex items-center justify-center rounded-full border border-cyan-200/15 bg-[#0b1222]/80 px-2.5 py-0.5 text-xs !text-white/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-md transition-[border-color,background-color,box-shadow,color] duration-300 hover:border-cyan-300/40 hover:bg-[#111d33]/90 hover:!text-white hover:shadow-[0_0_18px_rgba(34,211,238,0.25)] sm:px-3 sm:py-1 sm:text-base md:w-full md:px-2 md:text-[11px] lg:w-auto lg:px-3 lg:text-base"
                     >
                       {chip}
                     </motion.span>
@@ -306,7 +306,7 @@ const Hero = () => {
       </section>
 
       {/* PROOF OF WORK */}
-      <section className="py-24 relative overflow-hidden">
+      <section className="relative overflow-hidden pb-24 pt-12 md:pt-16 lg:pt-24">
         <div className="container mx-auto px-6">
           <motion.div
             className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto"

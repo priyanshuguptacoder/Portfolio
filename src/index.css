@@ -371,7 +371,7 @@ body[data-cursor-down="true"] .fixed.left-0.top-0.z-\[9998\] { transform: transl
   position: relative;
   background: rgba(10, 18, 32, 0.9);
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 180, 255, 0.28);
   overflow: hidden;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
   animation: floatSoft 6s ease-in-out infinite;
@@ -389,9 +389,9 @@ body[data-cursor-down="true"] .fixed.left-0.top-0.z-\[9998\] { transform: transl
   padding: 1px;
   background: linear-gradient(
     120deg,
-    rgba(0, 180, 255, 0.12),
-    rgba(0, 120, 255, 0.50),
-    rgba(0, 180, 255, 0.12)
+    rgba(0, 180, 255, 0.2),
+    rgba(0, 120, 255, 0.7),
+    rgba(0, 180, 255, 0.2)
   );
   background-size: 200% 200%;
   -webkit-mask:
@@ -400,7 +400,7 @@ body[data-cursor-down="true"] .fixed.left-0.top-0.z-\[9998\] { transform: transl
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   animation: borderMove 5s linear infinite;
-  opacity: 0.5;
+  opacity: 0.72;
   pointer-events: none;
   z-index: 2;
 }

@@ -62,17 +62,6 @@
     transform: translateX(130%);
   }
 
-  .hero-name-gradient,
-  .hero-cta-primary,
-  .hero-problems-highlight::after,
-  .animate-ambient-drift {
-    animation: none !important;
-  }
-
-  .section-heading::after {
-    animation: none !important;
-    transform: scaleX(1);
-  }
 }
 
 @media (max-width: 639px) {
@@ -170,6 +159,18 @@ body[data-cursor-down="true"] .fixed.left-0.top-0.z-\[9998\] { transform: transl
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
+  }
+
+  .hero-name-gradient,
+  .hero-cta-primary,
+  .hero-problems-highlight::after,
+  .animate-ambient-drift,
+  .section-heading::after {
+    animation: none !important;
+  }
+
+  .section-heading::after {
+    transform: scaleX(1);
   }
 }
 

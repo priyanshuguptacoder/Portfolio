@@ -9,6 +9,8 @@ import BlogListPage from "./pages/blog/index.tsx";
 import BlogDetailPage from "./pages/blog/[slug].tsx";
 import NotFound from "./pages/NotFound.tsx";
 import { trackPageView } from "@/lib/analytics";
+import SmoothScroll from "@/components/SmoothScroll";
+import PageLoader from "@/components/PageLoader";
 
 // ── Track every SPA route change ─────────────────────────────────────────────
 const RouteTracker = () => {
@@ -26,16 +28,18 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <RouteTracker />
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/blog" element={<BlogListPage />} />
-          <Route path="/blog/:slug" element={<BlogDetailPage />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <SmoothScroll>
+        <PageLoader />
+        <BrowserRouter>
+          <RouteTracker />
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/blog" element={<BlogListPage />} />
+            <Route path="/blog/:slug" element={<BlogDetailPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </SmoothScroll>
     </TooltipProvider>
   </QueryClientProvider>
 );

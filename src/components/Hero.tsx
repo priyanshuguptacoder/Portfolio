@@ -1,12 +1,12 @@
-import { motion, useInView } from "framer-motion";
+import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
-import profileImg from "@/assets/profile.jpg";
 import { Code2, Trophy, Server, ExternalLink, Zap } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
-import { ParallaxLayer } from "@/components/ui/ParallaxLayer";
 import { PremiumCard } from "@/components/ui/PremiumCard";
 import { sectionVariants, itemVariants } from "@/lib/animations";
 import { PORTFOLIO_STATS, PROFILE_URLS } from "@/lib/portfolioStats";
+import HeroScene from "@/components/HeroScene";
+import { fadeUp, staggerContainer, viewport } from "@/lib/motion";
 
 // --- LOCAL COMPONENT: PRIMARY STAT CARD ---
 const PrimaryStatCard = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {
@@ -106,94 +106,41 @@ const CountUp = ({ end, prefix = "", suffix = "", duration = 2 }: { end: number;
   return <span ref={ref}>{prefix}{display}{suffix}</span>;
 };
 
-import { useMotionValue, useSpring, useMotionTemplate } from "framer-motion";
-
-const InteractivePortrait = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const springConfig = { damping: 20, stiffness: 100, mass: 1 };
-  const rotateX = useSpring(useMotionTemplate`${y}deg`, springConfig);
-  const rotateY = useSpring(useMotionTemplate`${x}deg`, springConfig);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!ref.current || window.matchMedia("(pointer: coarse)").matches || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const rect = ref.current.getBoundingClientRect();
-    const localX = e.clientX - rect.left;
-    const localY = e.clientY - rect.top;
-    mouseX.set(localX);
-    mouseY.set(localY);
-    
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    x.set(((localX - centerX) / centerX) * 3); // max 3 degrees
-    y.set(-((localY - centerY) / centerY) * 2); // max 2 degrees
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="relative z-10 w-64 h-64 lg:w-[320px] lg:h-[320px] rounded-3xl overflow-hidden group"
-      style={{
-        rotateX,
-        rotateY,
-        transformPerspective: 1000,
-        boxShadow: "0 0 0 1px rgba(255,255,255,0.07), 0 0 50px -12px rgba(34,211,238,0.25), 0 32px 64px -16px rgba(0,0,0,0.6)",
-        "--mouse-x": useMotionTemplate`${mouseX}px`,
-        "--mouse-y": useMotionTemplate`${mouseY}px`,
-      } as any}
-    >
-      <img
-        src={profileImg}
-        alt="Priyanshu Gupta — Full Stack Web Developer at NIT Jalandhar"
-        loading="eager"
-        decoding="async"
-        fetchPriority="high"
-        className="w-full h-full object-cover brightness-105 transition-transform duration-700 group-hover:scale-105"
-      />
-      {/* Subtle light reflection on hover */}
-      <div 
-        className="pointer-events-none absolute inset-0 z-20 opacity-0 transition-opacity duration-500 group-hover:opacity-100 mix-blend-overlay"
-        style={{
-          background: "radial-gradient(200px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.15), transparent 60%)"
-        }}
-      />
-      <div className="absolute inset-x-0 bottom-0 h-1/3 z-10 bg-gradient-to-t from-[#020617]/50 to-transparent pointer-events-none" />
-    </motion.div>
-  );
-};
-
 const Hero = () => {
+  const reducedMotion = useReducedMotion();
+  const [titleIndex, setTitleIndex] = useState(0);
+  const [titlePaused, setTitlePaused] = useState(false);
+  const titles = ["Full-Stack Web Developer", "Competitive Programmer"];
+
+  useEffect(() => {
+    if (reducedMotion || titlePaused) return;
+    const timer = window.setInterval(() => setTitleIndex((index) => (index + 1) % titles.length), 2500);
+    return () => window.clearInterval(timer);
+  }, [reducedMotion, titlePaused, titles.length]);
+
   return (
     <>
       {/* HERO SECTION */}
-      <section className="min-h-screen flex items-center pt-28 pb-16 relative overflow-hidden">
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-16 lg:gap-20">
+      <section className="relative min-h-screen overflow-hidden pb-20 pt-32">
+        <div className="site-grid pointer-events-none absolute inset-0 opacity-50" />
+        <div className="pointer-events-none absolute -left-32 top-20 h-96 w-96 rounded-full bg-cyan-400/10 blur-[120px] animate-pulse-glow" />
+        <div className="pointer-events-none absolute -right-32 bottom-10 h-[28rem] w-[28rem] rounded-full bg-violet-500/10 blur-[140px] animate-pulse-glow [animation-delay:1s]" />
+        <div className="container relative z-10 mx-auto">
+          <motion.div
+            className="grid items-center gap-12 lg:grid-cols-[1.05fr_.95fr]"
+            initial="hidden"
+            whileInView="show"
+            viewport={viewport}
+            variants={staggerContainer(0.08, 0.1)}
+          >
 
             {/* ── LEFT: TEXT CONTENT ─────────────────────── */}
             <motion.div
-              className="flex-1 text-center lg:text-left max-w-2xl mx-auto lg:mx-0"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              variants={sectionVariants}
+              className="mx-auto max-w-2xl text-center lg:mx-0 lg:text-left"
             >
 
               {/* Status pill */}
-              <motion.div
-                variants={itemVariants}
-                className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-8"
-              >
+              <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="glass inline-flex items-center gap-2 px-3 py-1.5 mb-8 border-cyan-300/20 bg-cyan-300/10">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
@@ -204,32 +151,33 @@ const Hero = () => {
               </motion.div>
 
               {/* Greeting */}
-              <motion.p
-                variants={itemVariants}
-                className="text-lg text-white/50 font-light mb-3 tracking-wide"
-              >
+              <motion.p variants={reducedMotion ? fadeUp : itemVariants} className="mb-3 text-lg tracking-wide text-white/50 font-light">
                 Hello, I'm
               </motion.p>
 
               {/* Name */}
-              <motion.h1
-                className="font-heading text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] mb-5 flex flex-wrap justify-center lg:justify-start gap-3"
-              >
-                <motion.span variants={itemVariants} className="bg-gradient-to-r from-blue-400 to-cyan-400 text-transparent bg-clip-text drop-shadow-[0_0_30px_rgba(34,211,238,0.25)]">
-                  Priyanshu
-                </motion.span>
-                <motion.span variants={itemVariants} className="bg-gradient-to-r from-cyan-400 to-blue-500 text-transparent bg-clip-text drop-shadow-[0_0_30px_rgba(34,211,238,0.25)]">
+              <motion.h1 variants={reducedMotion ? fadeUp : itemVariants} className="mb-5 flex flex-wrap justify-center gap-3 font-heading text-[clamp(2.5rem,6vw,5rem)] font-black leading-[1.02] tracking-tight lg:justify-start">
+                <span className="text-white">Priyanshu</span>
+                <span className="gradient-text drop-shadow-[0_0_30px_rgba(34,211,238,0.25)]">
                   Gupta
-                </motion.span>
+                </span>
               </motion.h1>
 
               {/* Role — 2-line structure */}
-              <motion.div variants={itemVariants} className="mb-5">
+              <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="mb-5">
                 {/* Line 1 */}
-                <p className="text-base sm:text-lg font-medium text-white leading-snug mb-1.5">
+                <p className="mb-2 text-base font-medium leading-snug text-white sm:text-lg" onMouseEnter={() => setTitlePaused(true)} onMouseLeave={() => setTitlePaused(false)}>
                   CSE '29 @ NIT Jalandhar
                   <span className="text-white/30 mx-2">·</span>
-                  Full-Stack Web Developer
+                  <span className="gradient-text">
+                    {reducedMotion ? titles.join(" · ") : (
+                      <AnimatePresence mode="wait" initial={false}>
+                        <motion.span key={titles[titleIndex]} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }} transition={{ duration: 0.35 }}>
+                          {titles[titleIndex]}
+                        </motion.span>
+                      </AnimatePresence>
+                    )}
+                  </span>
                 </p>
                 {/* Line 2 */}
                 <p className="text-sm sm:text-base font-medium text-white/65 leading-snug flex flex-wrap items-center gap-1.5 sm:gap-3">
@@ -246,61 +194,54 @@ const Hero = () => {
               </motion.div>
 
               {/* Description */}
-              <motion.p
-                variants={itemVariants}
-                className="text-sm sm:text-[15px] text-white/55 max-w-[580px] mx-auto lg:mx-0 mb-10 leading-[1.75] font-normal"
-              >
+              <motion.p variants={reducedMotion ? fadeUp : itemVariants} className="mx-auto mb-7 max-w-[55ch] text-sm font-normal leading-[1.75] text-white/55 sm:text-[15px] lg:mx-0">
                 Building scalable systems using React.js, Node.js, Express.js, MongoDB, GraphQL, JWT, Tailwind CSS.
                 Solved {PORTFOLIO_STATS.total.problemsSolved}+ Problems and actively improving through contests.
                 Open to Internship Opportunities.
               </motion.p>
 
+              <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="mb-8 flex flex-wrap justify-center gap-2 font-mono text-[10px] uppercase tracking-wider text-white/65 lg:justify-start">
+                <span className="glass rounded-full px-3 py-2">LeetCode {PORTFOLIO_STATS.leetcode.tier} {PORTFOLIO_STATS.leetcode.rating}</span>
+                <span className="glass rounded-full px-3 py-2">Codeforces {PORTFOLIO_STATS.codeforces.tier} {PORTFOLIO_STATS.codeforces.rating}</span>
+                <span className="glass rounded-full px-3 py-2">{PORTFOLIO_STATS.total.problemsSolved}+ Problems</span>
+              </motion.div>
+
               {/* CTAs */}
-              <motion.div
-                variants={itemVariants}
-                className="flex flex-wrap gap-4 justify-center lg:justify-start"
-              >
+              <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="flex flex-wrap justify-center gap-3 lg:justify-start">
                 <MagneticButton
                   href="#projects"
-                  className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-4 rounded-full font-bold text-sm hover:scale-105 hover:shadow-[0_0_28px_rgba(34,211,238,0.35)] active:scale-95 transition-all duration-300"
+                  aria-label="View projects"
+                  data-cursor="hover"
+                  className="focus-ring group relative overflow-hidden rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 px-7 py-3.5 text-sm font-bold text-[#05060A] transition-all hover:scale-105 hover:shadow-neon-mix active:scale-95"
                 >
+                  <span className="absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-white/40 blur-md transition-transform duration-700 group-hover:translate-x-[320%]" />
                   View Projects
                 </MagneticButton>
                 <MagneticButton
-                  href="#contact"
-                  className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white px-8 py-4 rounded-full font-bold text-sm hover:scale-105 hover:shadow-[0_0_28px_rgba(34,211,238,0.35)] active:scale-95 transition-all duration-300"
-                >
-                  Contact Me
-                </MagneticButton>
-                <MagneticButton
                   href="/Resume.pdf"
-                  className="bg-white/5 border border-white/10 text-white px-8 py-4 rounded-full font-bold text-sm hover:bg-white/10 hover:scale-105 hover:shadow-[0_0_28px_rgba(255,255,255,0.1)] active:scale-95 transition-all duration-300"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Download resume"
+                  data-cursor="hover"
+                  className="focus-ring rounded-full border border-white/15 bg-white/5 px-7 py-3.5 text-sm font-bold text-white transition-all hover:border-violet-300/60 hover:bg-white/10 hover:shadow-neon-violet active:scale-95"
                 >
-                  View Resume
+                  Download Resume
                 </MagneticButton>
+              </motion.div>
+
+              <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="mt-8 flex justify-center gap-4 text-white/45 lg:justify-start">
+                <a className="focus-ring transition-colors hover:text-cyan-300" href="https://github.com/priyanshuguptacoder" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">GitHub</a>
+                <a className="focus-ring transition-colors hover:text-cyan-300" href="https://www.linkedin.com/in/priyanshu-gupta-b98689376" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">LinkedIn</a>
+                <a className="focus-ring transition-colors hover:text-cyan-300" href={PROFILE_URLS.leetcode} target="_blank" rel="noopener noreferrer" aria-label="LeetCode profile">LeetCode</a>
               </motion.div>
             </motion.div>
 
             {/* ── RIGHT: PROFILE IMAGE ───────────────────── */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.9, delay: 0.25, ease: [0.25, 0.1, 0, 1] }}
-              className="relative shrink-0"
-            >
-              {/* Parallax Layers */}
-              {/* Layer 1 - Background */}
-              <ParallaxLayer multiplier={0.2} zIndex={-2} className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent blur-[120px] rounded-full scale-[1.5] transition-all duration-[10000ms] animate-pulse" />
-              {/* Layer 2 - Midground */}
-              <ParallaxLayer multiplier={0.5} zIndex={-1} className="absolute inset-0 bg-gradient-to-tr from-transparent to-blue-500/20 blur-[80px] rounded-full scale-125" />
-              {/* Layer 3 - Foreground (Handled by the image card itself on hover, but we can wrap it slightly) */}
-              <ParallaxLayer multiplier={0.8} zIndex={10}>
-              <InteractivePortrait />
-              </ParallaxLayer>
-
+            <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="order-first lg:order-last">
+              <HeroScene />
             </motion.div>
 
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -399,6 +340,15 @@ const Hero = () => {
                       <p className="metric-label mt-4">Global Ranking</p>
                       <p className="text-sm font-bold text-white/80">Top {PORTFOLIO_STATS.leetcode.topPercentage}</p>
                     </PrimaryStatCard>
+                    <div className="col-span-2 flex items-center gap-4 rounded-xl border border-cyan-400/20 bg-cyan-400/5 px-4 py-3">
+                      <div className="relative grid h-16 w-16 shrink-0 place-items-center rounded-full" style={{ background: "conic-gradient(#22d3ee 0 79%, rgba(255,255,255,.08) 79% 100%)" }}>
+                        <div className="grid h-12 w-12 place-items-center rounded-full bg-[#0B0D14] text-xs font-black text-white">{PORTFOLIO_STATS.leetcode.rating}</div>
+                      </div>
+                      <div>
+                        <p className="metric-label mb-1">Rating Progress</p>
+                        <p className="text-xs text-white/55">Knight-level contest performance</p>
+                      </div>
+                    </div>
                     <div className="col-span-2 flex items-center justify-between rounded-xl border border-cyan-400/20 bg-cyan-400/5 px-4 py-3">
                       <span className="metric-label mb-0">Badge</span>
                       <span className="font-black text-cyan-300">{PORTFOLIO_STATS.leetcode.tier}</span>
@@ -442,7 +392,7 @@ const Hero = () => {
                         </div>
                         <div>
                           <p className="metric-label">Star Rating</p>
-                          <p className="text-lg font-black text-orange-300">{PORTFOLIO_STATS.codechef.stars}</p>
+                          <p className="text-lg font-black text-orange-300"><span aria-hidden="true">★★★</span> <span className="sr-only">{PORTFOLIO_STATS.codechef.stars}</span></p>
                         </div>
                       </div>
                     </div>
@@ -479,7 +429,7 @@ const Hero = () => {
                     <h3 className="text-2xl font-black text-white mb-2">{platform.name}</h3>
                     <p className="text-sm text-white/50 mb-6 leading-relaxed font-light">{platform.description}</p>
                     <div className="grid grid-cols-2 gap-3 mb-6">{platform.metrics}</div>
-                    <a href={platform.profile} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex items-center justify-center w-full gap-2 px-5 py-3 rounded-xl bg-white/5 hover:bg-cyan-500/10 text-white font-bold text-sm border border-white/10 hover:border-cyan-500/40 transition-all group" data-cursor="view">
+                    <a href={platform.profile} target="_blank" rel="noopener noreferrer" aria-label={`Open ${platform.name} profile`} className="mt-auto inline-flex items-center justify-center w-full gap-2 px-5 py-3 rounded-xl bg-white/5 hover:bg-cyan-500/10 text-white font-bold text-sm border border-white/10 hover:border-cyan-500/40 transition-all group" data-cursor="view">
                       View {platform.name} Profile <ExternalLink size={16} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1 text-cyan-400" />
                     </a>
                   </div>
@@ -492,6 +442,14 @@ const Hero = () => {
               <div className="flex flex-wrap gap-2">
                 {["Arrays", "Trees", "Graphs", "Linked List", "Stacks & Queues", "Binary Search", "Sliding Window", "Dynamic Programming"].map((topic) => (
                   <span key={topic} className="text-[11px] px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/60 transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:text-white cursor-default">{topic}</span>
+                ))}
+              </div>
+            </motion.div>
+            <motion.div variants={itemVariants} className="sm:col-span-2 secondary-stat-box p-5">
+              <h4 className="mb-4 text-xs font-black uppercase tracking-widest text-violet-300">Tech Stack</h4>
+              <div className="flex flex-wrap gap-2">
+                {["C++", "JavaScript", "React.js", "Node.js", "Express.js", "MongoDB", "Redux", "Tailwind CSS", "Firebase"].map((tech) => (
+                  <span key={tech} title={tech} className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white/65 transition-all hover:-translate-y-1 hover:border-violet-300/40 hover:text-white">{tech}</span>
                 ))}
               </div>
             </motion.div>

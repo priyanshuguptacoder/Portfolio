@@ -3,6 +3,7 @@ import { ExternalLink, Github } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { PremiumCard } from "@/components/ui/PremiumCard";
 import { sectionVariants, itemVariants, cardVariants } from "@/lib/animations";
+import TiltCard from "@/components/TiltCard";
 
 interface ProjectProps {
   title: string;
@@ -31,7 +32,7 @@ const ProjectCard = ({
     variants={cardVariants}
     className="mb-10"
   >
-    <PremiumCard className="p-5 sm:p-8">
+    <TiltCard>
       
       {/* Header */}
       <div className="mb-6">
@@ -115,14 +116,14 @@ const ProjectCard = ({
           </MagneticButton>
         </div>
       </div>
-    </PremiumCard>
+    </TiltCard>
   </motion.div>
 );
 
 const Projects = () => (
   <section id="projects" className="py-20 relative overflow-hidden" aria-label="Projects by Priyanshu Gupta">
-    <motion.div 
-      className="container mx-auto px-4 sm:px-6 max-w-6xl relative z-10"
+    <motion.div
+      className="container relative z-10 mx-auto"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
@@ -139,8 +140,8 @@ const Projects = () => (
         </h2>
       </motion.div>
 
-      {/* Project 1 */}
-      <ProjectCard
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+       <ProjectCard
         title="Vingo"
         isFeatured={true}
         problem="Real-time interactive group chats with ephemeral states require low-latency synchronization."
@@ -154,10 +155,10 @@ const Projects = () => (
         tech={["React.js", "Node.js", "Express.js", "Socket.io", "MongoDB"]}
         github="https://github.com/priyanshuguptacoder/Vingo-Food-Delivery-App"
         live="https://vingo-food-delivery-app-1.onrender.com/"
-      />
+       />
 
       {/* Project 2 */}
-      <ProjectCard
+       <ProjectCard
         title="ExamNotesAI"
         isFeatured={true}
         problem="Students struggle to find relevant and accurate exam notes efficiently."
@@ -171,10 +172,10 @@ const Projects = () => (
         tech={["React.js", "Node.js", "Express.js", "MongoDB", "Razorpay"]}
         github="https://github.com/priyanshuguptacoder/ExamNotesAI"
         live="https://prepmind-ai-xpzl.onrender.com/"
-      />
+       />
 
       {/* Project 3 */}
-      <ProjectCard
+       <ProjectCard
         title="Competitive Programming Analytics Platform"
         isFeatured={false}
         problem="Tracking coding progress across platforms is fragmented and manual."
@@ -188,10 +189,10 @@ const Projects = () => (
         tech={["React.js", "Node.js", "Express.js", "MongoDB"]}
         github="https://github.com/priyanshuguptacoder/LeetCode-Tracker"
         live="https://competativeprogrammingtrackerpriyanshu.vercel.app/"
-      />
+       />
 
       {/* Project 4 */}
-      <ProjectCard
+       <ProjectCard
         title="Hostel Management System"
         isFeatured={false}
         problem="Manual hostel administration and record-keeping causes severe operational inefficiency."
@@ -205,7 +206,8 @@ const Projects = () => (
         tech={["Node.js", "Express.js", "MongoDB", "JWT"]}
         github="https://github.com/priyanshuguptacoder/hostelpriyanshu"
         live="https://hostel-management-system-hqg0.onrender.com/"
-      />
+       />
+      </div>
 
     </motion.div>
   </section>

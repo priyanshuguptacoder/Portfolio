@@ -6,7 +6,7 @@ import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import CursorGlow from "@/components/CursorGlow";
+import CustomCursor from "@/components/CustomCursor";
 import { PORTFOLIO_STATS } from "@/lib/portfolioStats";
 
 const ambientParticles = [
@@ -47,6 +47,9 @@ const Index = () => {
       className="relative min-h-screen overflow-x-hidden"
       style={{ background: "linear-gradient(180deg, #020617 0%, #020617 60%, #030a1a 100%)" }}
     >
+      <a href="#main-content" className="sr-only focus:not-sr-only focus-ring fixed left-4 top-4 z-[110] rounded-lg bg-[#0B0D14] px-4 py-2 text-sm text-white">
+        Skip to content
+      </a>
       {/* Hidden SEO text — crawlable by Google, invisible to users */}
       <div className="sr-only" aria-hidden="false">
         <h1>Priyanshu Gupta — Full-Stack Web Developer at NIT Jalandhar</h1>
@@ -56,7 +59,7 @@ const Index = () => {
       </div>
 
       {/* Cursor-reactive glow (layer 0) */}
-      <CursorGlow />
+      <CustomCursor />
       <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
         {/* Top-left: primary cyan/blue glow */}
         <div className="absolute -top-32 -left-40 w-[700px] h-[700px] rounded-full opacity-[0.18] blur-[120px]"
@@ -113,13 +116,15 @@ const Index = () => {
       </div>
       {/* ─────────────────────────────────────────────────────────────── */}
 
-      <Navbar />
-      <Hero />
-      <About />
-      <Projects />
-      <Skills />
-      <Contact />
-      <Footer />
+      <div id="main-content">
+        <Navbar />
+        <Hero />
+        <About />
+        <Projects />
+        <Skills />
+        <Contact />
+        <Footer />
+      </div>
     </main>
   );
 };

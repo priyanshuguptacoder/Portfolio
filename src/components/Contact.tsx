@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import type { ComponentType } from "react";
 import { Mail, ExternalLink } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { SiCodechef, SiGeeksforgeeks } from "react-icons/si";
@@ -122,7 +123,7 @@ const SocialIcon = ({
 }: {
   href: string;
   label: string;
-  icon: any;
+  icon: ComponentType<{ size?: number }>;
   hoverColor: string;
   hoverBorder: string;
   hoverShadow: string;

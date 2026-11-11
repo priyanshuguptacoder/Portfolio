@@ -81,11 +81,15 @@ const About = () => {
           </motion.div>
 
           {/* TAB SYSTEM */}
-          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-2 mb-12">
+          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-2 mb-12" role="tablist" aria-label="About sections">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
+                role="tab"
+                aria-selected={activeTab === tab.id}
+                aria-controls={`about-panel-${tab.id}`}
+                id={`about-tab-${tab.id}`}
                 className={`flex items-center gap-2.5 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 border ${
                   activeTab === tab.id
                     ? "bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.1)]"
@@ -106,6 +110,9 @@ const About = () => {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
+                  id="about-panel-education"
+                  role="tabpanel"
+                  aria-labelledby="about-tab-education"
                   className="space-y-6"
                 >
                   {education.map((edu, i) => (
@@ -141,6 +148,9 @@ const About = () => {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
+                  id="about-panel-skills"
+                  role="tabpanel"
+                  aria-labelledby="about-tab-skills"
                   className="grid sm:grid-cols-2 gap-4"
                 >
                   {skillsSummary.map((skill, i) => (
@@ -164,6 +174,9 @@ const About = () => {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
+                  id="about-panel-strengths"
+                  role="tabpanel"
+                  aria-labelledby="about-tab-strengths"
                   className="grid sm:grid-cols-2 gap-4"
                 >
                   {coreStrengths.map((s, i) => (
@@ -185,6 +198,9 @@ const About = () => {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
+                  id="about-panel-achievements"
+                  role="tabpanel"
+                  aria-labelledby="about-tab-achievements"
                   className="grid sm:grid-cols-2 gap-4"
                 >
                   {achievementsList.map((achievement, i) => (

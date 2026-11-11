@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
 const navLinks = [
@@ -67,9 +67,9 @@ const Navbar = () => {
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-500 ease-out ${
+      className={`fixed left-0 right-0 top-0 z-50 transition-all duration-500 ease-out ${
         scrolled
-          ? "bg-[#020617]/80 backdrop-blur-xl border-b border-white/[0.06] shadow-[0_1px_24px_rgba(0,0,0,0.4)]"
+          ? "glass-strong border-x-0 border-t-0 shadow-[0_1px_24px_rgba(0,0,0,0.4)]"
           : "bg-transparent backdrop-blur-sm"
       }`}
     >
@@ -78,7 +78,7 @@ const Navbar = () => {
         className="absolute top-0 left-0 h-[2px] w-full origin-left bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-300 shadow-[0_0_18px_rgba(34,211,238,0.55)]"
         style={{ scaleX: prefersReducedMotion ? 1 : progressScaleX }}
       />
-      <div className="container mx-auto flex items-center justify-between py-5 px-6">
+      <div className={`container mx-auto flex items-center justify-between px-6 transition-all ${scrolled ? "py-3" : "py-5"}`}>
 
         {/* Logo */}
         {/* Logo — always navigates to portfolio homepage */}
@@ -155,6 +155,8 @@ const Navbar = () => {
         <button
           className="md:hidden text-white/60 hover:text-white transition-colors"
           onClick={() => setMobileOpen(!mobileOpen)}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-navigation"
           aria-label="Toggle menu"
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -168,8 +170,9 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Drawer */}
+      <AnimatePresence>
       {mobileOpen && (
-        <div className="md:hidden bg-[#020617]/90 backdrop-blur-xl border-t border-white/5 px-6 pb-6 pt-2 space-y-1">
+        <motion.div id="mobile-navigation" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="md:hidden overflow-hidden border-t border-white/5 bg-[#05060A]/95 px-6 pb-6 pt-2 backdrop-blur-xl">
           {navLinks.map((l) => (
             <a
               key={l.href}
@@ -197,8 +200,9 @@ const Navbar = () => {
           >
             Blog
           </Link>
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </motion.nav>
   );
 };

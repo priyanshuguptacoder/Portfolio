@@ -245,7 +245,7 @@ const Hero = () => {
                       variants={reducedMotion ? fadeUp : chipRevealVariants}
                       whileHover={reducedMotion ? undefined : { y: -3, scale: 1.02 }}
                       whileTap={reducedMotion ? undefined : { scale: 0.97 }}
-                      className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-white/75 backdrop-blur-md transition-[border-color,background-color,box-shadow,color] duration-300 hover:border-cyan-300/40 hover:bg-white/10 hover:text-white hover:shadow-[0_0_18px_rgba(34,211,238,0.25)] sm:px-3 sm:py-1 sm:text-base"
+                      className="inline-flex items-center rounded-full border border-cyan-200/15 bg-[#0b1222]/80 px-2.5 py-0.5 text-xs !text-white/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-md transition-[border-color,background-color,box-shadow,color] duration-300 hover:border-cyan-300/40 hover:bg-[#111d33]/90 hover:!text-white hover:shadow-[0_0_18px_rgba(34,211,238,0.25)] sm:px-3 sm:py-1 sm:text-base"
                     >
                       {chip}
                     </motion.span>

@@ -35,10 +35,12 @@ const TiltCard = ({ children, className = "" }: { children: ReactNode; className
       ref={ref}
       style={{ rotateX: springX, rotateY: springY, transformPerspective: 1000 }}
       className={`group relative h-full transform-gpu overflow-hidden rounded-2xl ${className}`}
+      whileTap={{ scale: 0.985 }}
       data-cursor="view"
     >
       <div className="pointer-events-none absolute -inset-px rounded-2xl bg-gradient-to-br from-cyan-300/0 via-violet-400/0 to-cyan-300/0 opacity-0 transition-opacity duration-500 group-hover:from-cyan-300/50 group-hover:via-violet-400/40 group-hover:to-cyan-300/40 group-hover:opacity-100" />
       <div className="relative h-full rounded-2xl border border-white/10 bg-white/[0.05] p-1 backdrop-blur-md transition-shadow duration-500 group-hover:shadow-neon-mix">
+        <div className="tilt-glare pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         <div className="relative h-full rounded-[0.85rem] bg-[#0B0D14]/80 p-5 sm:p-7">{children}</div>
       </div>
     </motion.div>

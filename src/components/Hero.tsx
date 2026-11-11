@@ -377,7 +377,7 @@ const Hero = () => {
         >
           <motion.div variants={itemVariants} className="text-center mb-16">
             <p className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-4 font-bold">Metrics</p>
-            <h2 className="font-heading text-4xl sm:text-5xl font-black text-white" style={{ scrollMarginTop: 'calc(var(--navbar-height, 4rem) + 2rem)' }}>Algorithmic Proficiency</h2>
+            <h2 className="section-heading font-heading text-4xl sm:text-5xl font-black text-white" style={{ scrollMarginTop: 'calc(var(--navbar-height, 4rem) + 2rem)' }}>Algorithmic Proficiency</h2>
           </motion.div>
 
           <div className="grid sm:grid-cols-2 gap-6 max-w-6xl mx-auto">

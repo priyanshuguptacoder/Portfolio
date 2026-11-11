@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import type { ComponentType } from "react";
 import { Mail, ExternalLink } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
@@ -201,8 +201,11 @@ const SocialIcon = ({
 
 // ─── CONTACT SECTION ─────────────────────────────────────────────────────────
 const Contact = () => {
+  const reducedMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const depthY = useTransform(scrollYProgress, [0, 1], reducedMotion ? [0, 0] : [16, -16]);
 
   // Mouse-reactive background: store CSS vars via ref (no React re-renders)
   const mouseRef = useRef({ x: 0, y: 0 });
@@ -262,7 +265,7 @@ const Contact = () => {
         className="absolute bottom-[10%] right-[15%] w-[350px] h-[350px] bg-purple-500/[0.04] blur-[120px] rounded-full pointer-events-none contact-glow-3"
       />
 
-      <div className="container mx-auto px-6 max-w-4xl text-center relative z-10">
+      <motion.div className="container mx-auto px-6 max-w-4xl text-center relative z-10" style={{ y: depthY }}>
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -288,7 +291,7 @@ const Contact = () => {
                 transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
               },
             }}
-            className="font-heading font-black text-white mb-6 leading-[1.05] tracking-tighter"
+            className="section-heading font-heading font-black text-white mb-6 leading-[1.05] tracking-tighter"
             style={{ fontSize: "clamp(48px, 8vw, 105px)" }}
           >
             Let's Build Scalable{" "}
@@ -370,7 +373,7 @@ const Contact = () => {
             </motion.div>
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 };

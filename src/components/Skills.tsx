@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { Server, Layout, Brain, Wrench, Code2, Cloud } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { sectionVariants, itemVariants, cardVariants, fastStaggerVariants } from "@/lib/animations";
@@ -42,10 +43,27 @@ const categories = [
   },
 ];
 
-const Skills = () => (
-  <section id="skills" className="py-32 relative overflow-hidden" aria-label="Technical Skills of Priyanshu Gupta">
+const skillChipVariants = {
+  hidden: { opacity: 0, y: 8, scale: 0.92 },
+  visible: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { delay: index * 0.035, duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
+
+const Skills = () => {
+  const reducedMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const depthY = useTransform(scrollYProgress, [0, 1], reducedMotion ? [0, 0] : [14, -14]);
+
+  return (
+  <section ref={sectionRef} id="skills" className="py-32 relative overflow-hidden" aria-label="Technical Skills of Priyanshu Gupta">
     <motion.div
       className="container mx-auto px-6"
+      style={{ y: depthY }}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-80px" }}
@@ -55,7 +73,7 @@ const Skills = () => (
         <p className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-4 font-bold">
           Capabilities
         </p>
-        <h2 className="font-heading text-4xl sm:text-5xl font-black text-white">
+        <h2 className="section-heading font-heading text-4xl sm:text-5xl font-black text-white">
           Technical Arsenal
         </h2>
       </motion.div>
@@ -117,12 +135,18 @@ const Skills = () => (
               {/* Tags */}
               <div className="relative z-10 flex flex-wrap gap-2 mt-auto">
                 {c.items.map((item) => (
-                  <span
+                  <motion.span
                     key={item}
+                    custom={i}
+                    initial={reducedMotion ? false : "hidden"}
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={reducedMotion ? undefined : skillChipVariants}
+                    whileHover={reducedMotion ? undefined : { y: -3, scale: 1.03 }}
                     className="text-xs px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/50 transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:text-white"
                   >
                     {item}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </div>

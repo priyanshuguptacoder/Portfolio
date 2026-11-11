@@ -28,11 +28,50 @@
     --radius: 1rem;
   }
 
+  .section-heading {
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-heading::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.65rem;
+    width: 4.5rem;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #22d3ee, #3b82f6, transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: sectionUnderline 0.9s 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @keyframes sectionUnderline {
+    to { transform: scaleX(1); }
+  }
+
+  .tilt-glare {
+    background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,.16) 48%, transparent 62%);
+    transform: translateX(-130%);
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .group:hover > .tilt-glare,
+  .group:hover .tilt-glare {
+    transform: translateX(130%);
+  }
+
   .hero-name-gradient,
   .hero-cta-primary,
   .hero-problems-highlight::after,
   .animate-ambient-drift {
     animation: none !important;
+  }
+
+  .section-heading::after {
+    animation: none !important;
+    transform: scaleX(1);
   }
 }
 

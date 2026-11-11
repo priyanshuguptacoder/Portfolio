@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { ExternalLink, Github } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { PremiumCard } from "@/components/ui/PremiumCard";
@@ -30,7 +31,7 @@ const ProjectCard = ({
 }: ProjectProps) => (
   <motion.div
     variants={cardVariants}
-    className="mb-10"
+    className="project-card mb-10"
   >
     <TiltCard>
       
@@ -120,10 +121,17 @@ const ProjectCard = ({
   </motion.div>
 );
 
-const Projects = () => (
-  <section id="projects" className="py-20 relative overflow-hidden" aria-label="Projects by Priyanshu Gupta">
+const Projects = () => {
+  const reducedMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const depthY = useTransform(scrollYProgress, [0, 1], reducedMotion ? [0, 0] : [18, -18]);
+
+  return (
+  <section ref={sectionRef} id="projects" className="py-20 relative overflow-hidden" aria-label="Projects by Priyanshu Gupta">
     <motion.div
       className="container relative z-10 mx-auto"
+      style={{ y: depthY }}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
@@ -135,7 +143,7 @@ const Projects = () => (
         <p className="text-cyan-400 text-xs uppercase mb-2">
           Engineering Portfolio
         </p>
-        <h2 className="text-3xl sm:text-4xl font-bold text-white">
+        <h2 className="section-heading text-3xl sm:text-4xl font-bold text-white">
           Featured Development Projects
         </h2>
       </motion.div>
@@ -211,6 +219,7 @@ const Projects = () => (
 
     </motion.div>
   </section>
-);
+  );
+};
 
 export default Projects;

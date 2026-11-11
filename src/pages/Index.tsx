@@ -18,6 +18,12 @@ const ambientParticles = [
   { top: "66%", left: "26%", size: 6, delay: "1.9s", duration: "9.5s" },
   { top: "74%", left: "74%", size: 4, delay: "2.3s", duration: "7.5s" },
   { top: "84%", left: "42%", size: 6, delay: "1.1s", duration: "8.9s" },
+  { top: "22%", left: "44%", size: 3, delay: "0.5s", duration: "10.5s" },
+  { top: "42%", left: "82%", size: 4, delay: "3.1s", duration: "11.2s" },
+  { top: "61%", left: "52%", size: 3, delay: "1.7s", duration: "9.8s" },
+  { top: "78%", left: "14%", size: 4, delay: "2.8s", duration: "10.1s" },
+  { top: "31%", left: "28%", size: 3, delay: "3.6s", duration: "11.6s" },
+  { top: "90%", left: "68%", size: 4, delay: "0.9s", duration: "9.4s" },
 ];
 
 const Index = () => {

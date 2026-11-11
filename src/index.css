@@ -27,6 +27,19 @@
     --ring: 187 92% 48%;
     --radius: 1rem;
   }
+
+  .hero-name-gradient,
+  .hero-cta-primary,
+  .hero-problems-highlight::after,
+  .animate-ambient-drift {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 639px) {
+  .ambient-particle:nth-of-type(n + 7) {
+    display: none;
+  }
 }
 
 @layer base {
@@ -181,6 +194,59 @@ body[data-cursor-down="true"] .fixed.left-0.top-0.z-\[9998\] { transform: transl
   box-shadow: 0 0 10px rgba(34, 211, 238, 0.25);
   animation: particleFloat 8s ease-in-out infinite;
   will-change: transform, opacity;
+}
+
+@keyframes ambientDrift {
+  0%, 100% { transform: translate3d(-3%, 0, 0) scale(0.96); opacity: 0.45; }
+  50% { transform: translate3d(4%, -5%, 0) scale(1.04); opacity: 0.8; }
+}
+
+.animate-ambient-drift {
+  animation: ambientDrift 26s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.hero-name-gradient {
+  background-size: 180% 180%;
+  animation: heroGradientBreath 8s ease-in-out infinite;
+}
+
+@keyframes heroGradientBreath {
+  0%, 100% { filter: saturate(1); }
+  50% { filter: saturate(1.18) brightness(1.08); }
+}
+
+.hero-problems-highlight {
+  position: relative;
+  display: inline-block;
+  color: rgba(165, 243, 252, 0.95);
+}
+
+.hero-problems-highlight::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.15rem;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: #22d3ee;
+  animation: underlineSweep 1s 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes underlineSweep {
+  to { transform: scaleX(1); }
+}
+
+.hero-cta-primary {
+  animation: ctaBreath 3.8s ease-in-out infinite;
+  will-change: filter;
+}
+
+@keyframes ctaBreath {
+  0%, 100% { filter: drop-shadow(0 0 0 rgba(34, 211, 238, 0)); }
+  50% { filter: drop-shadow(0 0 10px rgba(34, 211, 238, 0.28)); }
 }
 
 /* ─────────────────────────────────────────────────────────────

@@ -1,4 +1,4 @@
-import { AnimatePresence, motion, useInView, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useInView, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Code2, Trophy, Server, ExternalLink, Zap } from "lucide-react";
 import { MagneticButton } from "@/components/ui/MagneticButton";
@@ -6,7 +6,7 @@ import { PremiumCard } from "@/components/ui/PremiumCard";
 import { sectionVariants, itemVariants } from "@/lib/animations";
 import { PORTFOLIO_STATS, PROFILE_URLS } from "@/lib/portfolioStats";
 import HeroScene from "@/components/HeroScene";
-import { fadeUp, staggerContainer, viewport } from "@/lib/motion";
+import { fadeUp, spring, staggerContainer, viewport } from "@/lib/motion";
 
 // --- LOCAL COMPONENT: PRIMARY STAT CARD ---
 const PrimaryStatCard = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => {
@@ -45,6 +45,26 @@ const fastStaggerVariants = {
       delayChildren: 0.1,
     },
   },
+};
+
+const nameRevealVariants = {
+  hidden: { opacity: 0, y: "0.75em", filter: "blur(8px)" },
+  show: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { ...spring, delay: index * 0.08 },
+  }),
+};
+
+const chipRevealVariants = {
+  hidden: { opacity: 0, y: 12, scale: 0.86 },
+  show: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { ...spring, delay: index * 0.08 },
+  }),
 };
 
 const stats = [
@@ -110,6 +130,10 @@ const Hero = () => {
   const reducedMotion = useReducedMotion();
   const [titleIndex, setTitleIndex] = useState(0);
   const [titlePaused, setTitlePaused] = useState(false);
+  const ambientX = useMotionValue(0);
+  const ambientY = useMotionValue(0);
+  const smoothAmbientX = useSpring(ambientX, { stiffness: 45, damping: 24 });
+  const smoothAmbientY = useSpring(ambientY, { stiffness: 45, damping: 24 });
   const titles = ["Full-Stack Web Developer", "Competitive Programmer"];
 
   useEffect(() => {
@@ -118,13 +142,36 @@ const Hero = () => {
     return () => window.clearInterval(timer);
   }, [reducedMotion, titlePaused, titles.length]);
 
+  const handleAmbientMove = (event: React.MouseEvent<HTMLElement>) => {
+    if (reducedMotion || window.matchMedia("(pointer: coarse)").matches) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    ambientX.set((event.clientX - rect.left - rect.width / 2) * 0.035);
+    ambientY.set((event.clientY - rect.top - rect.height / 2) * 0.02);
+  };
+
+  const resetAmbient = () => {
+    ambientX.set(0);
+    ambientY.set(0);
+  };
+
   return (
     <>
       {/* HERO SECTION */}
-      <section className="relative min-h-screen overflow-hidden pb-20 pt-32">
+      <section
+        className="relative min-h-screen overflow-hidden pb-20 pt-24 lg:pt-32"
+        onMouseMove={handleAmbientMove}
+        onMouseLeave={resetAmbient}
+      >
         <div className="site-grid pointer-events-none absolute inset-0 opacity-50" />
-        <div className="pointer-events-none absolute -left-32 top-20 h-96 w-96 rounded-full bg-cyan-400/10 blur-[120px] animate-pulse-glow" />
-        <div className="pointer-events-none absolute -right-32 bottom-10 h-[28rem] w-[28rem] rounded-full bg-violet-500/10 blur-[140px] animate-pulse-glow [animation-delay:1s]" />
+        <motion.div
+          className="pointer-events-none absolute -left-32 top-20 h-96 w-96 rounded-full bg-cyan-400/10 blur-[120px] animate-pulse-glow"
+          style={{ x: reducedMotion ? 0 : smoothAmbientX, y: reducedMotion ? 0 : smoothAmbientY }}
+        />
+        <motion.div
+          className="pointer-events-none absolute -right-32 bottom-10 h-[28rem] w-[28rem] rounded-full bg-violet-500/10 blur-[140px] animate-pulse-glow [animation-delay:1s]"
+          style={{ x: reducedMotion ? 0 : smoothAmbientX, y: reducedMotion ? 0 : smoothAmbientY }}
+        />
+        <div className="pointer-events-none absolute left-1/2 top-1/3 h-72 w-72 -translate-x-1/2 rounded-full bg-blue-500/[0.06] blur-[120px] animate-ambient-drift" />
         <div className="container relative z-10 mx-auto">
           <motion.div
             className="grid items-center gap-12 lg:grid-cols-[1.05fr_.95fr]"
@@ -140,7 +187,7 @@ const Hero = () => {
             >
 
               {/* Status pill */}
-              <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="glass inline-flex items-center gap-2 px-3 py-1.5 mb-8 border-cyan-300/20 bg-cyan-300/10">
+              <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="glass mb-6 inline-flex items-center gap-2 border-cyan-300/20 bg-cyan-300/10 px-3 py-1.5 lg:mb-8">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
@@ -157,10 +204,17 @@ const Hero = () => {
 
               {/* Name */}
               <motion.h1 variants={reducedMotion ? fadeUp : itemVariants} className="mb-5 flex flex-wrap justify-center gap-3 font-heading text-[clamp(2.5rem,6vw,5rem)] font-black leading-[1.02] tracking-tight lg:justify-start">
-                <span className="text-white">Priyanshu</span>
-                <span className="gradient-text drop-shadow-[0_0_30px_rgba(34,211,238,0.25)]">
-                  Gupta
-                </span>
+                {["Priyanshu", "Gupta"].map((word, index) => (
+                  <span key={word} className="overflow-hidden pb-1">
+                    <motion.span
+                      custom={index}
+                      variants={reducedMotion ? fadeUp : nameRevealVariants}
+                      className={index === 1 ? "gradient-text hero-name-gradient drop-shadow-[0_0_30px_rgba(34,211,238,0.25)]" : "text-white"}
+                    >
+                      {word}
+                    </motion.span>
+                  </span>
+                ))}
               </motion.h1>
 
               {/* Role — 2-line structure */}
@@ -180,23 +234,28 @@ const Hero = () => {
                   </span>
                 </p>
                 {/* Line 2 */}
-                <p className="text-sm sm:text-base font-medium text-white/65 leading-snug flex flex-wrap items-center gap-1.5 sm:gap-3">
-                  <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-white/75 backdrop-blur-md transition-all duration-300 hover:border-cyan-300/40 hover:bg-white/10 hover:text-white hover:shadow-[0_0_18px_rgba(34,211,238,0.25)] sm:px-3 sm:py-1 sm:text-base">
-                    Full-Stack Web Development
-                  </span>
-                  <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-white/75 backdrop-blur-md transition-all duration-300 hover:border-cyan-300/40 hover:bg-white/10 hover:text-white hover:shadow-[0_0_18px_rgba(34,211,238,0.25)] sm:px-3 sm:py-1 sm:text-base">
-                    Data Structures & Algorithms
-                  </span>
-                  <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-white/75 backdrop-blur-md transition-all duration-300 hover:border-cyan-300/40 hover:bg-white/10 hover:text-white hover:shadow-[0_0_18px_rgba(34,211,238,0.25)] sm:px-3 sm:py-1 sm:text-base">
-                    Competitive Programming
-                  </span>
+                <p className="flex flex-wrap items-center justify-center gap-1.5 text-sm font-medium leading-snug text-white/65 sm:gap-3 sm:text-base lg:justify-start">
+                  {["Full-Stack Web Development", "Data Structures & Algorithms", "Competitive Programming"].map((chip, index) => (
+                    <motion.span
+                      key={chip}
+                      custom={index}
+                      initial={reducedMotion ? false : "hidden"}
+                      animate="show"
+                      variants={reducedMotion ? fadeUp : chipRevealVariants}
+                      whileHover={reducedMotion ? undefined : { y: -3, scale: 1.02 }}
+                      whileTap={reducedMotion ? undefined : { scale: 0.97 }}
+                      className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-xs text-white/75 backdrop-blur-md transition-[border-color,background-color,box-shadow,color] duration-300 hover:border-cyan-300/40 hover:bg-white/10 hover:text-white hover:shadow-[0_0_18px_rgba(34,211,238,0.25)] sm:px-3 sm:py-1 sm:text-base"
+                    >
+                      {chip}
+                    </motion.span>
+                  ))}
                 </p>
               </motion.div>
 
               {/* Description */}
               <motion.p variants={reducedMotion ? fadeUp : itemVariants} className="mx-auto mb-7 max-w-[55ch] text-sm font-normal leading-[1.75] text-white/55 sm:text-[15px] lg:mx-0">
                 Building scalable systems using React.js, Node.js, Express.js, MongoDB, GraphQL, JWT, Tailwind CSS.
-                Solved {PORTFOLIO_STATS.total.problemsSolved}+ Problems and actively improving through contests.
+                Solved <span className="hero-problems-highlight"><CountUp end={PORTFOLIO_STATS.total.problemsSolved} suffix="+" /> Problems</span> and actively improving through contests.
                 Open to Internship Opportunities.
               </motion.p>
 
@@ -212,7 +271,7 @@ const Hero = () => {
                   href="#projects"
                   aria-label="View projects"
                   data-cursor="hover"
-                  className="focus-ring group relative overflow-hidden rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 px-7 py-3.5 text-sm font-bold text-[#05060A] transition-all hover:scale-105 hover:shadow-neon-mix active:scale-95"
+                  className="hero-cta-primary focus-ring group relative overflow-hidden rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 px-7 py-3.5 text-sm font-bold text-[#05060A] transition-all hover:scale-105 hover:shadow-neon-mix active:scale-95"
                 >
                   <span className="absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-white/40 blur-md transition-transform duration-700 group-hover:translate-x-[320%]" />
                   View Projects

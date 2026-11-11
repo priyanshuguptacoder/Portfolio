@@ -175,7 +175,7 @@ const Hero = () => {
         <div className="pointer-events-none absolute left-1/2 top-1/3 h-72 w-72 -translate-x-1/2 rounded-full bg-blue-500/[0.06] blur-[120px] animate-ambient-drift" />
         <div className="container relative z-10 mx-auto">
           <motion.div
-            className="grid items-center gap-12 lg:grid-cols-[1.05fr_.95fr]"
+            className="grid items-center gap-6 md:grid-cols-[1.05fr_.95fr] lg:gap-12"
             initial="hidden"
             whileInView="show"
             viewport={viewport}
@@ -184,11 +184,11 @@ const Hero = () => {
 
             {/* ── LEFT: TEXT CONTENT ─────────────────────── */}
             <motion.div
-              className="mx-auto max-w-2xl text-center lg:mx-0 lg:text-left"
+              className="mx-auto max-w-2xl text-center md:mx-0 md:text-left"
             >
 
               {/* Status pill */}
-              <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="glass mb-6 inline-flex items-center gap-2 border-cyan-300/20 bg-cyan-300/10 px-3 py-1.5 lg:mb-8">
+              <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="glass mb-6 inline-flex items-center gap-2 border-cyan-300/20 bg-cyan-300/10 px-3 py-1.5 md:mb-8">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500" />
@@ -204,7 +204,7 @@ const Hero = () => {
               </motion.p>
 
               {/* Name */}
-              <motion.h1 variants={reducedMotion ? fadeUp : itemVariants} className="mb-5 flex flex-wrap justify-center gap-3 font-heading text-[clamp(2.5rem,6vw,5rem)] font-black leading-[1.02] tracking-tight lg:justify-start">
+              <motion.h1 variants={reducedMotion ? fadeUp : itemVariants} className="mb-5 flex flex-wrap justify-center gap-3 font-heading text-[clamp(2.5rem,6vw,5rem)] font-black leading-[1.02] tracking-tight md:justify-start">
                 {["Priyanshu", "Gupta"].map((word, index) => (
                   <span key={word} className="overflow-hidden pb-1">
                     <motion.span
@@ -235,7 +235,7 @@ const Hero = () => {
                   </span>
                 </p>
                 {/* Line 2 */}
-                <p className="flex flex-wrap items-center justify-center gap-1.5 text-sm font-medium leading-snug text-white/65 sm:gap-3 sm:text-base lg:justify-start">
+                <p className="flex flex-wrap items-center justify-center gap-1.5 text-sm font-medium leading-snug text-white/65 sm:gap-3 sm:text-base md:justify-start">
                   {["Full-Stack Web Development", "Data Structures & Algorithms", "Competitive Programming"].map((chip, index) => (
                     <motion.span
                       key={chip}
@@ -254,20 +254,20 @@ const Hero = () => {
               </motion.div>
 
               {/* Description */}
-              <motion.p variants={reducedMotion ? fadeUp : itemVariants} className="mx-auto mb-7 max-w-[55ch] text-sm font-normal leading-[1.75] text-white/55 sm:text-[15px] lg:mx-0">
+              <motion.p variants={reducedMotion ? fadeUp : itemVariants} className="mx-auto mb-7 max-w-[55ch] text-sm font-normal leading-[1.75] text-white/55 sm:text-[15px] md:mx-0">
                 Building scalable systems using React.js, Node.js, Express.js, MongoDB, GraphQL, JWT, Tailwind CSS.
                 Solved <span className="hero-problems-highlight"><CountUp end={PORTFOLIO_STATS.total.problemsSolved} suffix="+" /> Problems</span> and actively improving through contests.
                 Open to Internship Opportunities.
               </motion.p>
 
-              <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="mb-8 flex flex-wrap justify-center gap-2 font-mono text-[10px] uppercase tracking-wider text-white/65 lg:justify-start">
+              <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="mb-8 flex flex-wrap justify-center gap-2 font-mono text-[10px] uppercase tracking-wider text-white/65 md:justify-start">
                 <span className="glass rounded-full px-3 py-2">LeetCode {PORTFOLIO_STATS.leetcode.tier} {PORTFOLIO_STATS.leetcode.rating}</span>
                 <span className="glass rounded-full px-3 py-2">Codeforces {PORTFOLIO_STATS.codeforces.tier} {PORTFOLIO_STATS.codeforces.rating}</span>
                 <span className="glass rounded-full px-3 py-2">{PORTFOLIO_STATS.total.problemsSolved}+ Problems</span>
               </motion.div>
 
               {/* CTAs */}
-              <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="flex flex-wrap justify-center gap-3 lg:justify-start">
+              <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="flex flex-wrap justify-center gap-3 md:justify-start">
                 <MagneticButton
                   href="#projects"
                   aria-label="View projects"
@@ -289,7 +289,7 @@ const Hero = () => {
                 </MagneticButton>
               </motion.div>
 
-              <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="mt-8 flex justify-center gap-4 text-white/45 lg:justify-start">
+              <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="mt-8 flex justify-center gap-4 text-white/45 md:justify-start">
                 <a className="focus-ring transition-colors hover:text-cyan-300" href="https://github.com/priyanshuguptacoder" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">GitHub</a>
                 <a className="focus-ring transition-colors hover:text-cyan-300" href="https://www.linkedin.com/in/priyanshu-gupta-b98689376" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">LinkedIn</a>
                 <a className="focus-ring transition-colors hover:text-cyan-300" href={PROFILE_URLS.leetcode} target="_blank" rel="noopener noreferrer" aria-label="LeetCode profile">LeetCode</a>
@@ -297,7 +297,7 @@ const Hero = () => {
             </motion.div>
 
             {/* ── RIGHT: PROFILE IMAGE ───────────────────── */}
-            <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="order-last lg:order-last">
+            <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="order-last md:order-none">
               <HeroScene />
             </motion.div>
 

@@ -159,7 +159,7 @@ const Hero = () => {
     <>
       {/* HERO SECTION */}
       <section
-        className="relative min-h-screen overflow-hidden pb-10 pt-24 lg:pb-20 lg:pt-32"
+        className="relative min-h-0 overflow-hidden pb-10 pt-24 lg:min-h-screen lg:pb-14 lg:pt-32"
         onMouseMove={handleAmbientMove}
         onMouseLeave={resetAmbient}
       >
@@ -306,7 +306,7 @@ const Hero = () => {
       </section>
 
       {/* PROOF OF WORK */}
-      <section className="relative overflow-hidden pb-24 pt-12 md:pt-16 lg:pt-24">
+      <section className="relative overflow-hidden pb-24 pt-8 md:pt-12 lg:pt-16">
         <div className="container mx-auto px-6">
           <motion.div
             className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto"

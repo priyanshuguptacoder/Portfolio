@@ -6,6 +6,7 @@ import { useRef, useState, useEffect, useCallback } from "react";
 import { sectionVariants, itemVariants } from "@/lib/animations";
 import { trackContactClick } from "@/lib/analytics";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { PROFILE_URLS } from "@/lib/portfolioStats";
 
 // ─── Custom SVG Icons ─────────────────────────────────────────────────────────
 const LeetCodeIcon = ({ size = 28 }: { size?: number }) => (
@@ -54,7 +55,7 @@ const socials = [
   },
   {
     label: "LeetCode",
-    href: "https://leetcode.com/u/invisiblemanfromheart/",
+    href: PROFILE_URLS.leetcode,
     icon: LeetCodeIcon,
     hoverColor: "group-hover:text-orange-400",
     hoverBorder: "hover:border-orange-400/50",
@@ -63,7 +64,7 @@ const socials = [
   },
   {
     label: "Codeforces",
-    href: "https://codeforces.com/profile/priyanshuguptacoder",
+    href: PROFILE_URLS.codeforces,
     icon: CodeforcesIcon,
     hoverColor: "group-hover:text-red-400",
     hoverBorder: "hover:border-red-400/50",
@@ -72,7 +73,7 @@ const socials = [
   },
   {
     label: "CodeChef",
-    href: "https://codechef.com/users/priyanshu9696",
+    href: PROFILE_URLS.codechef,
     icon: SiCodechef,
     hoverColor: "group-hover:text-orange-400",
     hoverBorder: "hover:border-orange-400/50",
@@ -81,7 +82,7 @@ const socials = [
   },
   {
     label: "AtCoder",
-    href: "https://atcoder.jp/users/TheAlgoEdge",
+    href: PROFILE_URLS.atcoder,
     icon: AtCoderIcon,
     hoverColor: "group-hover:text-blue-400",
     hoverBorder: "hover:border-blue-400/50",

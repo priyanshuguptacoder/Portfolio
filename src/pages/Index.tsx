@@ -6,7 +6,7 @@ import Projects from "@/components/Projects";
 import Skills from "@/components/Skills";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import CursorGlow from "@/components/CursorGlow";
+import CustomCursor from "@/components/CustomCursor";
 import { PORTFOLIO_STATS } from "@/lib/portfolioStats";
 
 const ambientParticles = [
@@ -18,6 +18,12 @@ const ambientParticles = [
   { top: "66%", left: "26%", size: 6, delay: "1.9s", duration: "9.5s" },
   { top: "74%", left: "74%", size: 4, delay: "2.3s", duration: "7.5s" },
   { top: "84%", left: "42%", size: 6, delay: "1.1s", duration: "8.9s" },
+  { top: "22%", left: "44%", size: 3, delay: "0.5s", duration: "10.5s" },
+  { top: "42%", left: "82%", size: 4, delay: "3.1s", duration: "11.2s" },
+  { top: "61%", left: "52%", size: 3, delay: "1.7s", duration: "9.8s" },
+  { top: "78%", left: "14%", size: 4, delay: "2.8s", duration: "10.1s" },
+  { top: "31%", left: "28%", size: 3, delay: "3.6s", duration: "11.6s" },
+  { top: "90%", left: "68%", size: 4, delay: "0.9s", duration: "9.4s" },
 ];
 
 const Index = () => {
@@ -47,6 +53,9 @@ const Index = () => {
       className="relative min-h-screen overflow-x-hidden"
       style={{ background: "linear-gradient(180deg, #020617 0%, #020617 60%, #030a1a 100%)" }}
     >
+      <a href="#main-content" className="sr-only focus:not-sr-only focus-ring fixed left-4 top-4 z-[110] rounded-lg bg-[#0B0D14] px-4 py-2 text-sm text-white">
+        Skip to content
+      </a>
       {/* Hidden SEO text — crawlable by Google, invisible to users */}
       <div className="sr-only" aria-hidden="false">
         <h1>Priyanshu Gupta — Full-Stack Web Developer at NIT Jalandhar</h1>
@@ -56,7 +65,7 @@ const Index = () => {
       </div>
 
       {/* Cursor-reactive glow (layer 0) */}
-      <CursorGlow />
+      <CustomCursor />
       <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
         {/* Top-left: primary cyan/blue glow */}
         <div className="absolute -top-32 -left-40 w-[700px] h-[700px] rounded-full opacity-[0.18] blur-[120px]"
@@ -113,13 +122,15 @@ const Index = () => {
       </div>
       {/* ─────────────────────────────────────────────────────────────── */}
 
-      <Navbar />
-      <Hero />
-      <About />
-      <Projects />
-      <Skills />
-      <Contact />
-      <Footer />
+      <div id="main-content">
+        <Navbar />
+        <Hero />
+        <About />
+        <Projects />
+        <Skills />
+        <Contact />
+        <Footer />
+      </div>
     </main>
   );
 };

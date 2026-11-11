@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { Download, Trophy, Server, Award, Code2, BookOpen, GraduationCap, Medal, Brain, Zap } from "lucide-react";
 import { PremiumCard } from "@/components/ui/PremiumCard";
 import { sectionVariants, itemVariants, cardVariants, headingVariants } from "@/lib/animations";
@@ -53,6 +54,10 @@ const coreStrengths = [
 
 const About = () => {
   const [activeTab, setActiveTab] = useState("education");
+  const reducedMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const depthY = useTransform(scrollYProgress, [0, 1], reducedMotion ? [0, 0] : [16, -16]);
 
   const tabs = [
     { id: "skills", label: "Skills", icon: Code2 },
@@ -64,9 +69,10 @@ const About = () => {
   return (
     <>
       {/* ABOUT SECTION */}
-      <section id="about" className="py-32 relative overflow-hidden" aria-label="About Priyanshu Gupta">
+      <section ref={sectionRef} id="about" className="py-32 relative overflow-hidden" aria-label="About Priyanshu Gupta">
         <motion.div 
           className="container mx-auto px-6 max-w-4xl relative z-10"
+          style={{ y: depthY }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
@@ -74,18 +80,22 @@ const About = () => {
         >
           <motion.div variants={headingVariants} className="text-center mb-16 px-4">
             <p className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-4 font-bold">Engineering Background</p>
-            <h2 className="font-heading text-4xl sm:text-5xl font-black text-white mb-8">About Me</h2>
+            <h2 className="section-heading font-heading text-4xl sm:text-5xl font-black text-white mb-8">About Me</h2>
             <p className="text-white/50 text-base sm:text-lg leading-relaxed font-light max-w-2xl mx-auto">
               Alongside development, I consistently practice data structures and algorithms and actively improve problem-solving speed through competitive programming.
             </p>
           </motion.div>
 
           {/* TAB SYSTEM */}
-          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-2 mb-12">
+          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-2 mb-12" role="tablist" aria-label="About sections">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
+                role="tab"
+                aria-selected={activeTab === tab.id}
+                aria-controls={`about-panel-${tab.id}`}
+                id={`about-tab-${tab.id}`}
                 className={`flex items-center gap-2.5 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 border ${
                   activeTab === tab.id
                     ? "bg-white text-black border-white shadow-[0_0_20px_rgba(255,255,255,0.1)]"
@@ -106,6 +116,9 @@ const About = () => {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
+                  id="about-panel-education"
+                  role="tabpanel"
+                  aria-labelledby="about-tab-education"
                   className="space-y-6"
                 >
                   {education.map((edu, i) => (
@@ -141,6 +154,9 @@ const About = () => {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
+                  id="about-panel-skills"
+                  role="tabpanel"
+                  aria-labelledby="about-tab-skills"
                   className="grid sm:grid-cols-2 gap-4"
                 >
                   {skillsSummary.map((skill, i) => (
@@ -164,6 +180,9 @@ const About = () => {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
+                  id="about-panel-strengths"
+                  role="tabpanel"
+                  aria-labelledby="about-tab-strengths"
                   className="grid sm:grid-cols-2 gap-4"
                 >
                   {coreStrengths.map((s, i) => (
@@ -185,6 +204,9 @@ const About = () => {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
+                  id="about-panel-achievements"
+                  role="tabpanel"
+                  aria-labelledby="about-tab-achievements"
                   className="grid sm:grid-cols-2 gap-4"
                 >
                   {achievementsList.map((achievement, i) => (
@@ -212,7 +234,7 @@ const About = () => {
              variants={sectionVariants}
           >
             <motion.p variants={itemVariants} className="text-cyan-400 font-mono text-[10px] tracking-[0.3em] uppercase mb-6 font-bold">Documentation</motion.p>
-            <motion.h2 variants={itemVariants} className="font-heading text-4xl sm:text-5xl font-black text-white mb-6 tracking-tighter">
+            <motion.h2 variants={itemVariants} className="section-heading font-heading text-4xl sm:text-5xl font-black text-white mb-6 tracking-tighter">
               Download Resume
             </motion.h2>
             <motion.p variants={itemVariants} className="text-lg text-white/40 mb-12 max-w-md mx-auto font-light leading-relaxed">

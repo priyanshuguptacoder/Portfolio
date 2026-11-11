@@ -53,7 +53,7 @@ const HeroScene = () => {
       onMouseLeave={() => { x.set(0); y.set(0); }}
     >
       <div className="absolute inset-8 rounded-full bg-cyan-400/20 blur-3xl" />
-      <div className="glass relative min-h-72 overflow-hidden p-2 sm:min-h-[440px]">
+      <div className="glass relative h-72 overflow-hidden p-2 sm:h-[440px]">
         {enabled ? (
           <ErrorBoundary fallback={<OrbFallback />}>
             <Suspense fallback={<OrbFallback />}>

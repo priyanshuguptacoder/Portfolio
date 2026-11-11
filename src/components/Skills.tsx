@@ -155,6 +155,7 @@ const Skills = () => {
       </motion.div>
     </motion.div>
   </section>
-);
+  );
+};
 
 export default Skills;

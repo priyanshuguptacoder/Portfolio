@@ -163,7 +163,7 @@ const Navbar = () => {
             <motion.path variants={{ closed: { d: "M3 6h18" }, open: { d: "M6 6l12 12" } }} />
             <motion.path variants={{ closed: { d: "M3 12h18" }, open: { d: "M6 18L18 6" } }} />
             <motion.path variants={{ closed: { d: "M3 18h18", opacity: 1 }, open: { d: "M6 18h12", opacity: 0 } }} />
-          </svg>
+          </motion.svg>
         </button>
       </div>
 

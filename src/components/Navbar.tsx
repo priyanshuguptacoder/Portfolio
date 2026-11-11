@@ -86,7 +86,7 @@ const Navbar = () => {
           to="/"
           className="font-heading text-xl font-black bg-gradient-to-r from-cyan-400 to-blue-500 text-transparent bg-clip-text tracking-tighter hover:opacity-80 transition-opacity"
         >
-          PG.
+          PG<span className="logo-dot inline-block origin-bottom transition-transform duration-300 hover:-translate-y-1">.</span>
         </Link>
 
         {/* Desktop Nav */}
@@ -153,18 +153,16 @@ const Navbar = () => {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-white/60 hover:text-white transition-colors"
+          className="focus-ring md:hidden text-white/60 hover:text-white transition-colors"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-expanded={mobileOpen}
           aria-controls="mobile-navigation"
           aria-label="Toggle menu"
         >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-            {mobileOpen ? (
-              <path d="M18 6L6 18M6 6l12 12" />
-            ) : (
-              <path d="M3 12h18M3 6h18M3 18h18" />
-            )}
+          <motion.svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" animate={mobileOpen ? "open" : "closed"}>
+            <motion.path variants={{ closed: { d: "M3 6h18" }, open: { d: "M6 6l12 12" } }} />
+            <motion.path variants={{ closed: { d: "M3 12h18" }, open: { d: "M6 18L18 6" } }} />
+            <motion.path variants={{ closed: { d: "M3 18h18", opacity: 1 }, open: { d: "M6 18h12", opacity: 0 } }} />
           </svg>
         </button>
       </div>
@@ -172,27 +170,41 @@ const Navbar = () => {
       {/* Mobile Drawer */}
       <AnimatePresence>
       {mobileOpen && (
-        <motion.div id="mobile-navigation" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="md:hidden overflow-hidden border-t border-white/5 bg-[#05060A]/95 px-6 pb-6 pt-2 backdrop-blur-xl">
-          {navLinks.map((l) => (
-            <a
+        <motion.div
+          id="mobile-navigation"
+          initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, height: 0 }}
+          animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, height: "auto" }}
+          exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, height: 0 }}
+          transition={prefersReducedMotion ? { duration: 0.01 } : undefined}
+          className="md:hidden overflow-hidden border-t border-white/5 bg-[#05060A]/95 px-6 pb-6 pt-2 backdrop-blur-xl"
+        >
+          {navLinks.map((l, index) => (
+            <motion.a
               key={l.href}
               href={l.href}
               onClick={(e) => handleNavClick(e, l.href)}
+              initial={{ opacity: 0, x: -12 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: prefersReducedMotion ? 0 : index * 0.06, duration: prefersReducedMotion ? 0.01 : 0.25 }}
               className={`block py-3 text-sm font-semibold transition-colors ${
                 isHome && active === l.href ? "text-cyan-400" : "text-white/50 hover:text-white"
               }`}
             >
               {l.label}
-            </a>
+            </motion.a>
           ))}
-          <a
+          <motion.a
             href="/Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
+            initial={{ opacity: 0, x: -12 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: prefersReducedMotion ? 0 : navLinks.length * 0.06, duration: prefersReducedMotion ? 0.01 : 0.25 }}
             className="block py-3 text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors"
           >
             Resume →
-          </a>
+          </motion.a>
+          <motion.div initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: prefersReducedMotion ? 0 : (navLinks.length + 1) * 0.06, duration: prefersReducedMotion ? 0.01 : 0.25 }}>
           <Link
             to="/blog"
             onClick={() => setMobileOpen(false)}
@@ -200,6 +212,7 @@ const Navbar = () => {
           >
             Blog
           </Link>
+          </motion.div>
         </motion.div>
       )}
       </AnimatePresence>

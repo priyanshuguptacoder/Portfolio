@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import profileImage from "@/assets/profile.jpg";
 
 // Replace PLACEHOLDER with the published Spline scene identifier.
 const SPLINE_SCENE_URL = "https://prod.spline.design/PLACEHOLDER/scene.splinecode";
@@ -8,10 +9,16 @@ const Spline = lazy(() => import("@splinetool/react-spline"));
 
 const OrbFallback = () => (
   <div className="relative grid h-full min-h-72 place-items-center overflow-hidden rounded-[1.75rem]">
-    <div className="absolute h-56 w-56 animate-pulse-glow rounded-full bg-gradient-to-br from-cyan-300/70 via-sky-500/30 to-violet-500/60 blur-2xl" />
+    <img
+      src={profileImage}
+      alt="Priyanshu Gupta"
+      className="absolute inset-0 h-full w-full object-cover object-[center_18%] opacity-90"
+    />
+    <div className="absolute inset-0 bg-gradient-to-t from-[#05060A]/80 via-[#05060A]/15 to-cyan-400/10" />
+    <div className="absolute h-56 w-56 animate-pulse-glow rounded-full bg-gradient-to-br from-cyan-300/35 via-sky-500/15 to-violet-500/35 blur-2xl" />
     <div className="absolute h-64 w-64 animate-spin rounded-full border border-cyan-300/30 [animation-duration:12s]" />
     <div className="absolute h-44 w-44 animate-spin rounded-full border border-violet-300/30 [animation-direction:reverse] [animation-duration:9s]" />
-    <div className="relative grid h-24 w-24 place-items-center rounded-full border border-white/20 bg-white/10 text-center shadow-neon-mix backdrop-blur-xl">
+    <div className="relative grid h-24 w-24 place-items-center rounded-full border border-white/20 bg-[#0B0D14]/45 text-center shadow-neon-mix backdrop-blur-xl">
       <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/70">Build<br />Create</span>
     </div>
   </div>

@@ -297,7 +297,7 @@ const Hero = () => {
             </motion.div>
 
             {/* ── RIGHT: PROFILE IMAGE ───────────────────── */}
-            <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="order-first lg:order-last">
+            <motion.div variants={reducedMotion ? fadeUp : itemVariants} className="order-last lg:order-last">
               <HeroScene />
             </motion.div>
 

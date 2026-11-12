@@ -3,28 +3,28 @@ export const PORTFOLIO_STATS = {
     problemsSolved: 1500,
   },
   leetcode: {
-    problemsSolved: 800,
-    rating: 1982,
+    problemsSolved: 810,
+    rating: 1980,
     tier: "Knight",
     topPercentage: "3.50%",
   },
   codeforces: {
     problemsSolved: 460,
-    rating: 1485,
+    rating: 1490,
     tier: "Specialist",
   },
   codechef: {
-    rating: 1648,
+    rating: 1680,
     stars: "3-Star",
-    dsaRating: 1747,
+    dsaRating: 1785,
   },
   atcoder: {
-    rating: 574,
+    rating: 560,
     tier: "Brown Coder",
   },
   consistency: {
-    streak: 280,
-    activeDays: 185,
+    streak: 290,
+    activeDays: 295,
   },
   education: {
     cgpa: 8.16,
